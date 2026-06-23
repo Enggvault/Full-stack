@@ -3,7 +3,6 @@
 > **Day 2 | Full Stack Development**
 > Structured notes covering tech stacks, frontend, backend, databases, DOM, and BOM.
 
----
 
 ## Table of Contents
 
@@ -49,7 +48,6 @@ Every application has a stack, whether explicitly defined or not. The stack dete
 
 Just as a house requires a coordinated set of materials and trades, a web app requires a coordinated set of technologies working in layers.
 
----
 
 ## 2. Main Parts of a Tech Stack
 
@@ -98,7 +96,6 @@ Every tech stack is divided into distinct layers, each owning a specific respons
 | Dev Tools        | Tools that assist and streamline development      | Git, VS Code, Docker, Postman     |
 | Deploy / Hosting | Deploying the app so users can access it online   | Vercel, AWS, Netlify, Railway     |
 
----
 
 ## 3. Frontend Technologies
 
@@ -167,7 +164,6 @@ document.getElementById("loginBtn").addEventListener("click", function() {
 <button class="btn btn-primary">Submit</button>
 ```
 
----
 
 ## 4. Backend Technologies
 
@@ -192,7 +188,6 @@ JavaScript across the stack   -->  Node.js + Express.js
 TypeScript backend            -->  NestJS
 ```
 
----
 
 ## 5. Databases
 
@@ -241,7 +236,6 @@ Databases
 | Best for        | Financial data, ERP, structured data| Rapid dev, unstructured/varied data |
 | Examples        | PostgreSQL, MySQL, SQLite           | MongoDB, Firebase, Redis            |
 
----
 
 ## 6. Popular Tech Stacks
 
@@ -257,7 +251,6 @@ A named stack is a shorthand label for a frequently used combination of technolo
 | T3 Stack     | TypeScript, tRPC, Tailwind, Prisma, Next.js         | Type-safe modern full-stack apps         |
 | Django Stack | Django, PostgreSQL, HTML/CSS                        | Python-based full-stack applications     |
 
----
 
 ## 7. MERN Stack
 
@@ -341,7 +334,6 @@ The MERN stack uses **JavaScript across the entire application** — one languag
 - Fast development cycle; well-suited to startups and MVPs
 - React's component model scales well for complex interfaces
 
----
 
 ## 8. MARN Stack
 
@@ -377,7 +369,6 @@ MARN is an advanced, less common configuration used when a project requires both
 
 > MERN is the standard choice for most web applications. MARN is a specialized architecture for specific enterprise scenarios.
 
----
 
 ## 9. DOM — Document Object Model
 
@@ -480,7 +471,6 @@ let box = document.querySelector(".card");
 box.style.backgroundColor = "#1a1a2e";
 ```
 
----
 
 ## 10. BOM — Browser Object Model
 
@@ -592,7 +582,6 @@ let timer = setInterval(function() {
 }, 1000);
 ```
 
----
 
 ## 11. Comparison Tables
 
@@ -745,7 +734,6 @@ User sees the updated result
      assign   go(n)   onLine
 ```
 
----
 
 ## 13. Quick Revision
 
