@@ -40,7 +40,7 @@ All of these together = the **tech stack**.
 
 Every tech stack is usually divided into these layers:
 
-````````````
+```
 ┌──────────────────────────────┐
 │        Developer Tools       │  ← Git, VS Code, Docker
 ├──────────────────────────────┤
