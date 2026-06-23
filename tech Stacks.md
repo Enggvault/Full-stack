@@ -1,8 +1,7 @@
-# 📚 Tech Stacks — Beginner Notes
+# 📚 Tech Stacks
 > **Day 2 | Full Stack Development**
 > _Simple notes, easy language, quick to revise!_
 
----
 
 ## 📌 Table of Contents
 1. [What is a Tech Stack?](#1-what-is-a-tech-stack)
