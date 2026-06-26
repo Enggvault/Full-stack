@@ -23,8 +23,8 @@ This repository is designed to be easy to read, practical, and useful as both a 
 
 | Day   | Topic                                   | File                                                                 | Focus Area                                                      |
 | ----- | --------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------- |
-| Day 1 | Full Stack Basics                       | [Full Stack.md](./Full%20Stack.md)                                   | Web architecture, request-response cycle, system design basics  |
-| Day 2 | Tech Stacks, MERN, MARN, DOM, BOM       | [tech Stacks.md](./tech%20Stacks.md)                                 | Frontend, backend, databases, stack comparison, browser objects |
+| Day 1 | Full Stack Basics                       | [Full_Stack.md](./Full_Stack.md)                                     | Web architecture, request-response cycle, system design basics  |
+| Day 2 | Tech Stacks, MERN, MARN, DOM, BOM       | [Tech_Stacks.md](./Tech_Stacks.md)                                   | Frontend, backend, databases, stack comparison, browser objects |
 | Day 3 | HTML, CSS, JavaScript, API Fundamentals | [HTML_CSS_JS_API_Fundamentals.md](./HTML_CSS_JS_API_Fundamentals.md) | Core coding fundamentals, APIs, JSON, Fetch, async JavaScript   |
 
 ## What You Will Learn
@@ -77,8 +77,8 @@ Move into hands-on coding concepts used to build real web pages.
 
 ## Recommended Learning Order
 
-1. Start with [Full Stack.md](./Full%20Stack.md) to understand how web applications work.
-2. Read [tech Stacks.md](./tech%20Stacks.md) to learn about the tools used in full-stack development.
+1. Start with [Full_Stack.md](./Full_Stack.md) to understand how web applications work.
+2. Read [Tech_Stacks.md](./Tech_Stacks.md) to learn about the tools used in full-stack development.
 3. Complete [HTML_CSS_JS_API_Fundamentals.md](./HTML_CSS_JS_API_Fundamentals.md) to practice actual coding concepts.
 4. Revise using the comparison tables and diagrams.
 5. Try the coding tasks and mini-project from Day 3.
@@ -150,8 +150,6 @@ Planned additions may include:
 ## Maintainer
 
 This repository is maintained as a student-friendly learning resource under **Enggvault**.
-
-<br />
 
 <p align="center">
   Made with dedication for students learning full-stack development.
