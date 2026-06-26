@@ -163,8 +163,7 @@ This repository is maintained as a student-friendly learning resource under **En
 
 <p align="center">
   <a href="https://github.com/Tusharxhub">GitHub</a> •
-  <a href="https://darkaura.me">Portfolio</a> •
-  <a href="https://github.com/Enggvault">Enggvault</a>
+  <a href="https://tushardex01.tech">Portfolio</a>
 </p>
 
 <p align="center">
