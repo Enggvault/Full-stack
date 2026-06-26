@@ -147,9 +147,11 @@ Planned additions may include:
 * Mini-projects with source code
 * Interview questions for beginners
 
-## Maintainer
+<h2 align="center">Maintainer</h2>
 
-This repository is maintained as a student-friendly learning resource under **Enggvault**.
+<p align="center">
+  This repository is maintained as a student-friendly learning resource under <strong>Enggvault</strong>.
+</p>
 
 <p align="center">
   Made with dedication for students learning full-stack development.
@@ -158,8 +160,6 @@ This repository is maintained as a student-friendly learning resource under **En
 <p align="center">
   <strong>Developed and Maintained by <a href="https://tushardevx.tech">Tushar Kanti Dey</a></strong>
 </p>
-
-
 
 <p align="center">
   If this repository helps you, consider giving it a star.
