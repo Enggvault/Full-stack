@@ -17,7 +17,6 @@
 9. [Mini Project](#9-mini-project)
 10. [Practice Questions](#10-practice-questions)
 
----
 
 ## 1. Introduction to Web Development
 
