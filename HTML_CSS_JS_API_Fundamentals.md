@@ -1,6 +1,6 @@
 # HTML, CSS, JS & API Fundamentals
 
-> **Day 1 | Full Stack Development**
+> **Day 3 | Full Stack Development**
 > Structured notes covering HTML, CSS, JavaScript, APIs, JSON, Fetch API, and Async JS.
 
 
