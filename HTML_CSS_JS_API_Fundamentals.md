@@ -20,9 +20,13 @@
 
 ## 1. Introduction to Web Development
 
-Web development is the process of building websites and applications for the internet. A web application is typically built using three core languages that work together to create the experience you see on your screen.
+Web development is the process of building websites and applications for the internet. Whenever you open a website like YouTube or Amazon, you are looking at a **Web Application**. 
+
+Every website is built using three core languages that work together to create the final experience you see on your screen. If you master these three, you can build almost any website!
 
 ### Analogy — Building a House
+
+Imagine you are building a new house. You can't start with the paint; you need a structure first.
 
 ```
 +---------------------------+      +---------------------------+
@@ -34,11 +38,11 @@ Web development is the process of building websites and applications for the int
 +---------------------------+      +---------------------------+
 ```
 
-| Technology   | Role          | Responsibility                                           |
+| Technology   | Role          | Responsibility (What it does)                            |
 |--------------|---------------|----------------------------------------------------------|
-| **HTML**     | Structure     | Gives the webpage its basic structure and content.       |
-| **CSS**      | Design        | Makes the webpage look beautiful and visually appealing. |
-| **JavaScript**| Behavior     | Makes the webpage interactive (e.g., clicking a button). |
+| **HTML**     | Structure     | Gives the webpage its basic structure, text, and images. |
+| **CSS**      | Design        | Makes the webpage look beautiful (colors, layout, fonts).|
+| **JavaScript**| Behavior     | Makes the webpage interactive (clicking a button, popups).|
 
 
 ## 2. HTML Notes
@@ -46,19 +50,22 @@ Web development is the process of building websites and applications for the int
 ### What is HTML?
 
 - **HTML** stands for **HyperText Markup Language**.
-- It is the standard language used to create the structure of a webpage.
-- It uses "tags" to wrap content and tell the browser how to display it.
+- Think of it as the skeleton of your webpage. Without it, there is no webpage.
+- It uses special words wrapped in angle brackets called **"tags"** (like `<h1>`) to tell the browser how to display content.
 
 ### Basic HTML Document Structure
 
+Every single HTML file in the world starts with a basic template. Here is what it looks like:
+
 ```html
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Tells the browser this is a modern HTML5 document -->
+<html lang="en"> <!-- The root of the document, language set to English -->
 <head>
     <meta charset="UTF-8">
-    <title>My First Webpage</title>
+    <title>My First Webpage</title> <!-- Shows up in the browser tab -->
 </head>
 <body>
+    <!-- Everything inside the body tag is what the user actually sees on the screen -->
     <h1>Welcome to my website!</h1>
     <p>This is a paragraph of text.</p>
 </body>
@@ -67,48 +74,55 @@ Web development is the process of building websites and applications for the int
 
 ### HTML Elements Reference
 
+Most tags come in pairs: an opening tag `<p>` and a closing tag `</p>` with a slash.
+
 | Element Type       | Example Tags                  | Description                                      |
 |--------------------|-------------------------------|--------------------------------------------------|
-| **Headings**       | `<h1>` to `<h6>`              | Headings from largest (`h1`) to smallest (`h6`). |
-| **Text content**   | `<p>`, `<br>`                 | Paragraph blocks and line breaks.                |
-| **Lists**          | `<ul>`, `<ol>`, `<li>`        | Unordered (bullets), Ordered (numbers) lists.    |
-| **Links**          | `<a href="url">`              | Used to navigate to other pages or websites.     |
-| **Images**         | `<img src="img.jpg" alt="">`  | Used to display pictures.                        |
+| **Headings**       | `<h1>` to `<h6>`              | `<h1>` is the largest, most important title. `<h6>` is the smallest. |
+| **Text content**   | `<p>`, `<br>`                 | `<p>` is for standard paragraph text. `<br>` forces a line break. |
+| **Lists**          | `<ul>`, `<ol>`, `<li>`        | `<ul>` makes a bulleted list. `<ol>` makes a numbered list. `<li>` is an item inside the list. |
+| **Links**          | `<a href="url">`              | The anchor tag. Turns text into a clickable link to another page. |
+| **Images**         | `<img src="img.jpg" alt="">`  | Displays an image. `src` is the file path, `alt` is text for screen readers. |
 
 ### Semantic Tags
 
-Semantic tags clearly describe their meaning to both the browser and the developer. They help with accessibility and SEO.
+In the past, developers used `<div>` (a generic container) for everything. Today, we use **Semantic Tags**. These tags have clear, human-readable names that tell the browser *exactly* what type of content is inside them. This is great for SEO (Google searches) and accessibility.
 
 ```
 +--------------------------------------------------+
-|                   <header>                       |
+|      <header>  (Website logo and main title)     |
 +--------------------------------------------------+
-|                    <nav>                         |
+|      <nav>     (Navigation menu / Home / About)  |
 +--------------------------------------------------+
 |                                                  |
 |                   <main>                         |
+|           (The core content of the page)         |
 |                                                  |
 |   +------------------------------------------+   |
 |   |              <article>                   |   |
+|   |       (A standalone blog post or news)   |   |
 |   +------------------------------------------+   |
 |                                                  |
 +--------------------------------------------------+
-|                   <footer>                       |
+|      <footer>  (Copyright info, bottom links)    |
 +--------------------------------------------------+
 ```
 
 ### Forms and Inputs
 
-Forms are used to collect user input.
+Forms are how websites collect information from users (like a login or a contact page).
 
 ```html
 <form>
+    <!-- The label tells the user what to type -->
     <label for="username">Username:</label>
+    <!-- The input is the actual text box -->
     <input type="text" id="username" name="username">
     
     <label for="password">Password:</label>
     <input type="password" id="password" name="password">
     
+    <!-- The button submits the form data -->
     <button type="submit">Login</button>
 </form>
 ```
@@ -119,67 +133,77 @@ Forms are used to collect user input.
 ### What is CSS?
 
 - **CSS** stands for **Cascading Style Sheets**.
-- It controls the visual presentation of HTML elements (colors, fonts, spacing, layout).
+- If HTML is the skeleton, CSS is the skin and clothing. It controls colors, fonts, spacing, and layouts.
 
 ### Types of CSS
 
+How do we add CSS to our HTML? There are three ways:
+
 | Type         | Description                                          | Example                                       |
 |--------------|------------------------------------------------------|-----------------------------------------------|
-| **Inline**   | Styles applied directly inside the HTML tag.         | `<h1 style="color: blue;">Heading</h1>`       |
+| **Inline**   | Styles applied directly inside the HTML tag. (Messy) | `<h1 style="color: blue;">Heading</h1>`       |
 | **Internal** | Styles inside a `<style>` block in the `<head>`.     | `<style> h1 { color: blue; } </style>`        |
-| **External** | Styles in a separate `.css` file. (Best practice).   | `<link rel="stylesheet" href="styles.css">`   |
+| **External** | Styles in a separate `.css` file. (**Best practice**)| `<link rel="stylesheet" href="styles.css">`   |
 
 ### Selectors Reference
 
+Selectors tell CSS *which* HTML elements you want to style.
+
 ```css
-/* Element Selector */
+/* 1. Element Selector: Targets EVERY <p> tag on the page */
 p { color: red; } 
 
-/* Class Selector (Prefix with a dot) */
+/* 2. Class Selector: Targets only elements with class="my-button" (use a dot) */
+/* Classes can be reused on many different elements! */
 .my-button { font-size: 16px; }
 
-/* ID Selector (Prefix with a hash) */
+/* 3. ID Selector: Targets ONE specific element with id="main-header" (use a hash) */
+/* IDs must be unique. Only one per page! */
 #main-header { background: black; }
 ```
 
 ### The Box Model
 
-Every HTML element is essentially a box.
+This is the most important concept in CSS! **Every HTML element is essentially a square box.** The Box Model controls the spacing around that box.
 
 ```
 +-----------------------------------+
-|              Margin               |
+|     Margin (Invisible outer space)|
 |  +-----------------------------+  |
-|  |           Border            |  |
-|  |  +-----------------------+  |  |
-|  |  |        Padding        |  |  |
-|  |  |  +-----------------+  |  |  |
-|  |  |  |     Content     |  |  |  |
-|  |  |  +-----------------+  |  |  |
-|  |  +-----------------------+  |  |
+|  |     Border (The physical line)||
+|  |  +-----------------------+   | |
+|  |  |  Padding (Inner space)|   | |
+|  |  |  +-----------------+  |   | |
+|  |  |  |     Content     |  |   | |
+|  |  |  |  (Text/Image)   |  |   | |
+|  |  |  +-----------------+  |   | |
+|  |  +-----------------------+   | |
 |  +-----------------------------+  |
 +-----------------------------------+
 ```
 
 ### Layouts & Positioning
 
-| Concept          | Description                                                                 |
+How do we arrange boxes on the screen?
+
+| Concept          | Description (When to use it)                                                |
 |------------------|-----------------------------------------------------------------------------|
-| **Flexbox**      | 1-dimensional layout (row or column). Great for alignment inside containers.|
-| **Grid**         | 2-dimensional layout (rows and columns). Great for overall page structure.  |
-| **static**       | Default positioning. Flows naturally down the page.                         |
-| **relative**     | Positioned relative to its normal static position.                          |
-| **absolute**     | Positioned relative to its closest positioned ancestor.                     |
-| **fixed**        | Positioned relative to the browser window (stays on scroll).                |
-| **sticky**       | Toggles between relative and fixed depending on scroll position.            |
+| **Flexbox**      | Arranges items in a single row OR a single column. Perfect for aligning a navigation menu.|
+| **Grid**         | Arranges items in rows AND columns (like a checkerboard). Great for photo galleries.|
+| **static**       | Default behavior. Elements just stack naturally down the page.              |
+| **relative**     | Allows you to nudge an element slightly away from its normal static position.|
+| **absolute**     | Completely removes the element from the normal flow. You can place it exactly where you want using top/left coordinates. |
+| **fixed**        | Locks the element to the browser screen. It won't move even if you scroll down (like a sticky chat button). |
 
 ### Responsive Design
 
-Use **Media Queries** to apply different CSS rules based on screen size.
+Websites need to look good on massive monitors and tiny smartphones. We use **Media Queries** to change CSS rules based on screen size.
 
 ```css
+/* Default styles apply to mobile phones first */
 body { font-size: 14px; }
 
+/* If the screen is wider than 768px (like a tablet/laptop), use this font size instead */
 @media (min-width: 768px) {
     body { font-size: 18px; }
 }
@@ -190,50 +214,66 @@ body { font-size: 14px; }
 
 ### What is JavaScript?
 
-JavaScript (JS) is a programming language that allows you to implement complex features and interactions on web pages.
+JavaScript (JS) is the brain of the webpage. It allows you to implement complex features, do math, hide/show elements, and fetch data from the internet.
 
 ### Variables
 
+Variables are like labeled boxes where we store data so we can use it later.
+
 | Keyword   | Scope           | Can be Reassigned? | Notes                                      |
 |-----------|-----------------|--------------------|--------------------------------------------|
-| `let`     | Block-scoped    | Yes                | Standard way to declare variables today.   |
-| `const`   | Block-scoped    | No                 | Used for variables that will never change. |
-| `var`     | Function-scoped | Yes                | Old way. Avoid using in modern JS.         |
+| `let`     | Block-scoped    | Yes                | Use this when a value might change later (e.g., a score). |
+| `const`   | Block-scoped    | No                 | Use this for values that will NEVER change (e.g., your birth date). |
+| `var`     | Function-scoped | Yes                | The old way of doing things. Avoid using it today! |
 
 ### Data Types
 
+What kind of data can we store in our variables?
+
 | Type          | Example                          | Description                               |
 |---------------|----------------------------------|-------------------------------------------|
-| **String**    | `"Hello World"`                  | Text data.                                |
-| **Number**    | `42`, `3.14`                     | Numeric data.                             |
-| **Boolean**   | `true`, `false`                  | True or false logic.                      |
-| **Null**      | `null`                           | Intentional absence of any value.         |
-| **Undefined** | `undefined`                      | Variable declared but no value assigned.  |
+| **String**    | `"Hello World"`                  | Text data, always wrapped in quotes.      |
+| **Number**    | `42`, `3.14`                     | Math numbers (no quotes needed).          |
+| **Boolean**   | `true`, `false`                  | Simple yes/no logic.                      |
+| **Null**      | `null`                           | You explicitly set a box to be completely empty.|
+| **Undefined** | `undefined`                      | You created a variable box, but haven't put anything in it yet. |
 
 ### Arrays and Objects
 
-```javascript
-// Array (ordered list)
-const colors = ["red", "green", "blue"];
+When you have a lot of data, simple variables aren't enough.
 
-// Object (key-value pairs)
+```javascript
+// Array: An ordered list of items (like a grocery list).
+// Items are accessed by their position number (starting at 0).
+const colors = ["red", "green", "blue"];
+console.log(colors[0]); // Prints "red"
+
+// Object: A collection of key-value pairs (like a dictionary).
+// Great for representing real-world things.
 const user = {
     firstName: "John",
     age: 30
 };
+console.log(user.firstName); // Prints "John"
 ```
 
 ### DOM Manipulation & Events
 
+The **DOM** (Document Object Model) is how JavaScript sees your HTML. It turns your HTML tags into JavaScript objects so you can change them on the fly!
+
 ```html
+<!-- The HTML -->
 <button id="myButton">Click Me!</button>
 <p id="message"></p>
 
 <script>
+  // 1. Grab the HTML elements and store them in JS variables
   const btn = document.getElementById("myButton");
   const msg = document.getElementById("message");
 
+  // 2. Add an 'Event Listener'. This tells JS to wait and listen for a specific action (like a 'click').
   btn.addEventListener("click", function() {
+      // 3. When clicked, change the text inside the paragraph!
       msg.textContent = "Button was clicked!";
   });
 </script>
@@ -241,9 +281,16 @@ const user = {
 
 ### localStorage
 
+Need to save user preferences (like Dark Mode) even if they close the browser? Use `localStorage`.
+
 ```javascript
+// Save data to the browser
 localStorage.setItem("theme", "dark");
+
+// Retrieve the data later
 let currentTheme = localStorage.getItem("theme");
+
+// Delete the data
 localStorage.removeItem("theme");
 ```
 
@@ -252,44 +299,49 @@ localStorage.removeItem("theme");
 
 ### What is an API?
 
-API stands for **Application Programming Interface**. It allows your frontend application to communicate with backend servers or third-party services.
+API stands for **Application Programming Interface**. It is a secure bridge that allows your frontend application (what the user sees) to talk to backend servers (where databases live).
 
 ### Frontend and Backend Communication
+
+Think of an API exactly like a waiter in a restaurant:
 
 ```
 +----------------+            +----------------+            +----------------+
 |    Frontend    |            |       API      |            |    Backend     |
 | (You/Customer) |  Request   |    (Waiter)    |  Query     |   (Kitchen)    |
 |                | ---------> |                | ---------> |                |
-| Asks for data  |            | Carries request|            | Processes data |
-|                | <--------- |                | <--------- |                |
-| Displays UI    |  Response  | Brings food    |  Result    | Sends DB data  |
+| Looks at Menu, |            | Carries your   |            | Cooks the food |
+| asks for food  | <--------- | order to back  | <--------- | (Gets the data)|
+|                |  Response  | Brings food    |  Result    |                |
+| Eats the food  |            | back to table  |            |                |
 +----------------+            +----------------+            +----------------+
 ```
 
 ### Real-life Examples
 
-| Use Case                        | API Function                                         |
+| Use Case                        | How the API helps                                    |
 |---------------------------------|------------------------------------------------------|
-| **Weather App**                 | Fetches current forecast from a remote weather server|
-| **Google/Facebook Login**       | Verifies user identity with secure auth servers      |
-| **E-commerce Payments**         | Securely processes credit cards (e.g., Stripe API)   |
+| **Weather App**                 | Your phone asks a remote weather server: "What is the temp in London?" The server replies with data.|
+| **Google/Facebook Login**       | An app asks Google: "Is this user's password correct?" Google replies Yes/No.|
+| **E-commerce Payments**         | A store sends your credit card to Stripe's API. Stripe processes it securely and tells the store if it succeeded. |
 
 
 ## 6. JSON Notes
 
 ### What is JSON?
 
-JSON stands for **JavaScript Object Notation**. It is the standard text-based format for storing and transporting data across the web.
+JSON stands for **JavaScript Object Notation**. When APIs send data across the internet, they need a universal language that all computers understand. That language is JSON. It is purely text-based.
 
 ### JSON vs JavaScript Object
 
+They look similar, but have strict differences:
+
 | Feature           | JavaScript Object                          | JSON                                       |
 |-------------------|--------------------------------------------|--------------------------------------------|
-| **Format**        | Code running in memory                     | Pure string of text                        |
-| **Quotes**        | Keys do not require quotes                 | **Keys MUST be wrapped in double quotes**  |
-| **Functions**     | Can contain functions as values            | Cannot contain functions                   |
-| **Use Case**      | Logic and state within an app              | Data transfer between client and server    |
+| **Where it lives**| Lives inside active code memory            | It is just a massive string of text        |
+| **Quotes Rule**   | Keys (like `name`) don't need quotes       | **Keys MUST be wrapped in double quotes**  |
+| **Functions**     | Can contain playable functions             | Cannot contain functions (just data)       |
+| **Primary Use**   | Using data inside your app                 | Transferring data over the internet        |
 
 ### Example JSON
 
@@ -309,23 +361,28 @@ JSON stands for **JavaScript Object Notation**. It is the standard text-based fo
 
 ### What is Fetch?
 
-The `fetch()` method is a built-in JavaScript way to make network requests to a server.
+`fetch()` is the tool built into JavaScript that acts as our "waiter". We use it to make network requests to an API.
 
 ### Basic Fetch Request
 
+When we ask for data, the API replies with raw text. We have to convert it into a usable JavaScript object using `.json()`.
+
 ```javascript
+// Step 1: Call the API URL
 fetch('https://jsonplaceholder.typicode.com/users')
   .then(response => {
-      // Step 1: Convert raw network response to JSON
+      // Step 2: The waiter brings back raw data. We convert it to JSON.
       return response.json(); 
   })
   .then(data => {
-      // Step 2: Use the JavaScript data object
+      // Step 3: Now we have a usable JavaScript array of users!
       console.log(data);
   });
 ```
 
 ### Error Handling
+
+What if the internet is down? We must handle errors gracefully using `.catch()`.
 
 ```javascript
 fetch('https://jsonplaceholder.typicode.com/users')
@@ -335,8 +392,8 @@ fetch('https://jsonplaceholder.typicode.com/users')
       }
       return response.json();
   })
-  .then(users => console.log(users))
-  .catch(error => console.error('Fetch failed:', error));
+  .then(users => console.log("Here are the users:", users))
+  .catch(error => console.error('Uh oh, the fetch failed:', error));
 ```
 
 
@@ -346,29 +403,32 @@ fetch('https://jsonplaceholder.typicode.com/users')
 
 | Paradigm       | Behavior                                                       | Analogy                             |
 |----------------|----------------------------------------------------------------|-------------------------------------|
-| **Synchronous**| Code runs line-by-line. Blocks execution until done.           | Waiting in a single checkout line.  |
-| **Asynchronous**| Starts a task, moves on, handles result when ready (non-blocking)| Taking a pager at a restaurant.     |
+| **Synchronous**| Code runs strictly line-by-line. If line 1 takes 5 seconds, line 2 MUST wait. | Waiting in a single checkout line at the grocery store. |
+| **Asynchronous**| Starts a task, moves on to the next line immediately, and handles the result whenever it finishes. | Taking a buzzer at a restaurant. You can chat while waiting for food. |
 
-**Why is async important?** API calls take time. If JavaScript was synchronous, the browser would freeze while waiting for data.
+**Why is async important?** Fetching data from an API takes a few seconds. If JavaScript was purely Synchronous, your entire webpage would freeze solid while waiting for the data! Asynchronous JS allows the page to remain clickable while data loads in the background.
 
 ### `async` / `await` Flow
 
+This is the modern, cleanest way to write Asynchronous code. It makes async code read like a normal, top-to-bottom book.
+
 ```javascript
+// Adding the word 'async' unlocks the magic 'await' keyword inside
 async function fetchUsers() {
     try {
-        // Pauses execution of THIS function until fetch completes
+        // 'await' tells JS: "Pause THIS function until the fetch finishes, but keep the rest of the website running normally."
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
         
         if (!response.ok) {
             throw new Error('Failed to fetch data');
         }
         
-        // Pauses again to parse JSON
+        // Wait again to parse the JSON
         const data = await response.json(); 
-        console.log(data);
+        console.log("Success! Data:", data);
         
     } catch (error) {
-        // Catch network or custom errors
+        // If anything goes wrong above, the code immediately jumps down here
         console.error("An error occurred:", error);
     }
 }
@@ -379,55 +439,55 @@ async function fetchUsers() {
 
 ### Project: API User Card App
 
-**Goal:** Create a web app that fetches user data and displays it beautifully in cards.
+**Goal:** Create a web app that fetches user data and displays it beautifully in cards. This is a real-world task!
 
 | Requirement       | Details                                                                       |
 |-------------------|-------------------------------------------------------------------------------|
-| **Tech Stack**    | HTML, CSS, JavaScript                                                         |
-| **API Endpoint**  | `https://jsonplaceholder.typicode.com/users`                                  |
-| **UI Layout**     | CSS Grid/Flexbox to display user data as cards (Name, Email, Company).        |
-| **Loading State** | Show a "Loading..." message before data arrives.                              |
-| **Error Handling**| Show a user-friendly error message on the screen if the fetch fails.          |
-| **Search Feature**| Input box that filters the displayed cards by user name in real-time.         |
-| **Responsiveness**| Use Media Queries so cards stack on mobile but form a grid on desktop.        |
+| **Tech Stack**    | HTML, CSS, JavaScript.                                                        |
+| **API Endpoint**  | Use `https://jsonplaceholder.typicode.com/users` to get fake user data.       |
+| **UI Layout**     | Use CSS Grid or Flexbox to display the data as cards (Show Name, Email, Company). |
+| **Loading State** | The screen should display a "Loading..." message before the data arrives.     |
+| **Error Handling**| Show a red, user-friendly error message on the screen if the internet fails.  |
+| **Search Feature**| Add an input box. As the user types a name, filter the cards in real-time.    |
+| **Responsiveness**| Use Media Queries: Cards should stack in a single column on mobile, but form a 3-column grid on desktop. |
 
 
 ## 10. Practice Questions
 
-### Theory Questions
+### Theory Questions (Check your understanding!)
 
 | #  | Question                                                                                          |
 |----|---------------------------------------------------------------------------------------------------|
-| 1  | Explain the distinct roles of HTML, CSS, and JavaScript in a webpage.                             |
-| 2  | What is the purpose of semantic HTML tags? Provide three examples.                                |
-| 3  | Explain the CSS Box Model and its four main components.                                           |
-| 4  | What is the difference between Flexbox and CSS Grid? When would you use each?                     |
-| 5  | What is the difference between `let`, `const`, and `var` in JavaScript?                           |
+| 1  | Explain the distinct roles of HTML, CSS, and JavaScript as if explaining to a 10-year-old.        |
+| 2  | What is the purpose of Semantic HTML tags? Provide three examples.                                |
+| 3  | Explain the CSS Box Model and list its four main components.                                      |
+| 4  | What is the primary difference between Flexbox and CSS Grid?                                      |
+| 5  | What is the difference between `let` and `const` in JavaScript? Why avoid `var`?                  |
 | 6  | Explain what the DOM is and how JavaScript interacts with it.                                     |
 | 7  | In your own words, describe the relationship between a Frontend, an API, and a Backend.           |
-| 8  | Why do keys in JSON format require double quotes, unlike JavaScript objects?                      |
-| 9  | Why is Asynchronous JavaScript necessary for web development?                                     |
-| 10 | What is the advantage of using `async/await` over `.then()/.catch()` Promise chains?              |
+| 8  | Why do keys in JSON format require double quotes, unlike standard JavaScript objects?             |
+| 9  | Why is Asynchronous JavaScript (like Promises or async/await) necessary for web development?      |
+| 10 | What is the advantage of using `async/await` syntax over `.then()` Promise chains?                |
 
-### Coding Practice Tasks
+### Coding Practice Tasks (Time to write some code!)
 
 | #  | Task Description                                                                                  |
 |----|---------------------------------------------------------------------------------------------------|
-| 1  | Create a simple HTML form with fields for Name, Email, Password, and a Submit button.             |
-| 2  | Style an HTML `<div>` to look like a button with a hover effect (changes background color).       |
-| 3  | Write a JavaScript function that takes two numbers as arguments and returns their sum.            |
-| 4  | Write a `for` loop that prints the numbers 1 to 10 in the console.                                |
-| 5  | Create an array of your top 3 favorite movies. Write a loop to print each movie name.             |
-| 6  | Create a JS object representing a car (make, model, year). Log the car's model to the console.    |
-| 7  | Create an HTML file with an empty `<ul>`. Write JavaScript to add three `<li>` elements dynamically.|
-| 8  | Create a button in HTML. Write JS to show an `alert("Hello!")` when the button is clicked.        |
-| 9  | Write a `fetch` request to `https://jsonplaceholder.typicode.com/posts/1` and log the JSON.       |
-| 10 | Rewrite the fetch request from Task 9 using an `async` function and the `await` keyword.          |
+| 1  | **HTML**: Create a simple HTML form with fields for Name, Email, Password, and a Submit button.   |
+| 2  | **CSS**: Style an HTML `<div>` to look like a button with a hover effect (changes background color).|
+| 3  | **JS Basics**: Write a function that takes two numbers as arguments and returns their sum.        |
+| 4  | **JS Loops**: Write a `for` loop that prints the numbers 1 to 10 in the console.                  |
+| 5  | **JS Arrays**: Create an array of your top 3 favorite movies. Write a loop to print each movie name.|
+| 6  | **JS Objects**: Create an object representing a car (make, model, year). Log the car's model to the console.|
+| 7  | **DOM**: Create an HTML file with an empty `<ul>`. Write JavaScript to add three `<li>` elements dynamically.|
+| 8  | **Events**: Create a button in HTML. Write JS to show an `alert("Hello!")` when the button is clicked. |
+| 9  | **Fetch**: Write a `fetch` request to `https://jsonplaceholder.typicode.com/posts/1` and log the JSON.|
+| 10 | **Async**: Rewrite the fetch request from Task 9 using an `async` function and the `await` keyword.|
 
 ### Final Assignment
 
 **Build a Random Advice Generator:**
-1. Create an HTML layout with a heading, text area for advice, and a "Get New Advice" button.
-2. Style it nicely with CSS (center it, add nice fonts, shadows).
-3. Use JavaScript and `fetch` to get a random quote from `https://api.adviceslip.com/advice`.
-4. Handle loading states ("Thinking...") and network errors using a `try/catch` block.
+1. **HTML**: Create an HTML layout with a heading, a large text area for advice, and a "Get New Advice" button.
+2. **CSS**: Style it nicely! Center it on the screen, add nice fonts, and maybe a shadow behind the text box.
+3. **JS API**: Use JavaScript and `fetch` to get a random quote from the free API: `https://api.adviceslip.com/advice`.
+4. **JS Logic**: Handle loading states (show "Thinking...") and handle network errors using a `try/catch` block.
