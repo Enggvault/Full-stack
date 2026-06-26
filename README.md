@@ -156,13 +156,10 @@ This repository is maintained as a student-friendly learning resource under **En
 </p>
 
 <p align="center">
-  <strong>Developed and Maintained by Tushar Kanti Dey</strong>
+  <strong>Developed and Maintained by <a href="https://tushardevx.tech">Tushar Kanti Dey</a></strong>
 </p>
 
-<p align="center">
-  <a href="https://github.com/Tusharxhub">GitHub</a> •
-  <a href="https://tushardex01.tech">Portfolio</a>
-</p>
+
 
 <p align="center">
   If this repository helps you, consider giving it a star.
