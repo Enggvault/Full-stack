@@ -1,4 +1,4 @@
-# The Complete CSS Guide
+# The Complete CSS Reference Guide
 Welcome to the ultimate guide to CSS. This comprehensive reference is designed to take you from a complete beginner to an advanced front-end developer.
 
 
