@@ -2,7 +2,6 @@
 
 > **JavaScript (JS)** is a lightweight, cross-platform, interpreted programming language — the **language of the web**. It adds behavior and interactivity to static HTML/CSS pages.
 
----
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
@@ -32,7 +31,6 @@
 25. [Best Practices & Mistakes](#25-best-practices--common-mistakes)
 26. [JavaScript Cheat Sheet](#26-javascript-cheat-sheet)
 
----
 
 ## 1. Introduction
 
@@ -53,7 +51,6 @@ JavaScript  →  Behavior  (what it does)
 ### How JS Works in the Browser
 Browsers have built-in JS engines (Chrome uses **V8**) that read, compile, and execute JS code using **Just-In-Time (JIT) compilation**.
 
----
 
 ## 2. JS Versions (ECMAScript)
 
@@ -65,7 +62,6 @@ Browsers have built-in JS engines (Chrome uses **V8**) that read, compile, and e
 | **ES2018-2022** | 2018-22 | Optional chaining (`?.`), Nullish coalescing (`??`), `Promise.allSettled()` |
 | **ES2023+** | Present | Array `findLast()`, continuous improvements |
 
----
 
 ## 3. Ways to Add JavaScript
 
@@ -90,7 +86,6 @@ Browsers have built-in JS engines (Chrome uses **V8**) that read, compile, and e
 
 > **Best practice:** Use `defer` on `<script>` tags placed in `<head>`.
 
----
 
 ## 4. Syntax Basics
 
@@ -105,7 +100,6 @@ console.log(name);    // Output to browser console
 // Identifiers must start with a letter, _ , or $
 ```
 
----
 
 ## 5. Variables
 
@@ -127,7 +121,6 @@ let count = 0;         // Use let when value will change
 // NEVER use var in modern JS
 ```
 
----
 
 ## 6. Data Types
 
@@ -164,7 +157,6 @@ Boolean("")     // false
 typeof "hello"  // "string"
 ```
 
----
 
 ## 7. Operators
 
@@ -198,7 +190,6 @@ let city = user?.address?.city;  // No error if address is undefined
 ...  // (see Destructuring section)
 ```
 
----
 
 ## 8. Strings
 
@@ -225,7 +216,6 @@ let template = `Template: ${single}`;  // String interpolation
 | `.split(sep)` | Split into array |
 | `.repeat(n)` | Repeat string n times |
 
----
 
 ## 9. Numbers & Math
 
@@ -252,7 +242,6 @@ Math.abs(-5)      // 5
 Math.pow(2, 10)   // 1024
 ```
 
----
 
 ## 10. Conditionals & Loops
 
@@ -301,7 +290,6 @@ for (const key in person) { console.log(key, person[key]); }
 | `break` | Exits the loop entirely |
 | `continue` | Skips current iteration, moves to next |
 
----
 
 ## 11. Functions
 
@@ -335,7 +323,6 @@ double(5); // 10
 (function() { console.log("Runs immediately!"); })();
 ```
 
----
 
 ## 12. Scope & Closures
 
@@ -363,7 +350,6 @@ counter(); // 1
 counter(); // 2  ← count persists!
 ```
 
----
 
 ## 13. Hoisting
 
@@ -376,7 +362,6 @@ counter(); // 2  ← count persists!
 | `function` declaration | ✅ Yes | ✅ Fully — can call before it's written |
 | `function` expression | Variable only | ❌ Not the function body |
 
----
 
 ## 14. Arrays
 
@@ -430,7 +415,6 @@ const sum = [1,2,3].reduce((acc, n) => acc + n, 0);  // 6
 [1,2,3].every(n => n > 0);  // true
 ```
 
----
 
 ## 15. Objects
 
@@ -464,7 +448,6 @@ Object.seal(obj)              // No add/delete, CAN modify
 obj.hasOwnProperty("prop")    // Check if own property
 ```
 
----
 
 ## 16. Destructuring & Spread/Rest
 
@@ -499,7 +482,6 @@ function sum(first, ...rest) {
 sum(1, 2, 3, 4);  // 10
 ```
 
----
 
 ## 17. DOM Manipulation
 
@@ -581,7 +563,6 @@ document.getElementById("list").addEventListener("click", (e) => {
 });
 ```
 
----
 
 ## 19. Async JavaScript
 
@@ -631,7 +612,6 @@ async function getData() {
 getData();
 ```
 
----
 
 ## 20. Fetch API
 
@@ -684,7 +664,6 @@ JSON.parse('{"name":"John"}');
 // { name: "John" }
 ```
 
----
 
 ## 21. Local Storage & Cookies
 
@@ -720,7 +699,6 @@ document.cookie = "username=Tushar; max-age=86400; Secure; SameSite=Strict";
 | **Sent to server** | No | No | **Yes** |
 | **Size limit** | ~5MB | ~5MB | ~4KB |
 
----
 
 ## 22. Classes & OOP
 
@@ -770,7 +748,6 @@ fn.apply(obj, [arg1, arg2]) // Same, but args as array
 const bound = fn.bind(obj)  // Return new function with this bound
 ```
 
----
 
 ## 23. Modules
 
@@ -787,7 +764,6 @@ import sayHi, { PI, add } from './math.js';
 import * as math from './math.js';  // Import all as namespace
 ```
 
----
 
 ## 24. Advanced Concepts
 
