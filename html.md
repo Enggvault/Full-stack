@@ -2,7 +2,6 @@
 
 > **HTML** (HyperText Markup Language) is the standard **markup language** for creating web pages. It defines the **structure and content** of a webpage.
 
----
 
 ## Table of Contents
 1. [HTML Version History](#1-html-version-history)
@@ -25,7 +24,6 @@
 18. [Common Beginner Mistakes](#18-common-beginner-mistakes)
 19. [HTML Cheat Sheet](#19-html-cheat-sheet)
 
----
 
 ## 1. HTML Version History
 
@@ -40,7 +38,6 @@
 
 > **HTML5** is the current **living standard** — continuously updated and the one you should learn.
 
----
 
 ## 2. The HTML5 Boilerplate
 
@@ -178,7 +175,6 @@ INLINE-BLOCK:           Inline behavior but allows width/height.
 ### Deprecated Tags (Never Use)
 `<font>`, `<center>`, `<strike>`, `<marquee>` — Use CSS instead.
 
----
 
 ## 4. HTML Elements
 
@@ -325,7 +321,6 @@ Forms are used to **collect user input** and send it to a server for processing.
 | `multiple` | Allow multiple values (for `email` or `file`) |
 | `autofocus` | Auto-focuses the field when page loads |
 
----
 
 ## 8. HTML5 Features
 
@@ -346,7 +341,6 @@ HTML5 revolutionized web development with powerful **native APIs** and **semanti
 | **Responsive Images** | `srcset` attribute and `<picture>` element for different screen sizes |
 | **Native Form Validation** | Built-in validation without JavaScript |
 
----
 
 ## 9. Semantic HTML
 
@@ -410,7 +404,6 @@ HTML5 revolutionized web development with powerful **native APIs** and **semanti
 </body>
 ```
 
----
 
 ## 10. Tables
 
@@ -456,7 +449,6 @@ HTML tables display **tabular data** (rows and columns). **Never use tables for 
 | `colspan` | Makes a cell span multiple columns |
 | `rowspan` | Makes a cell span multiple rows |
 
----
 
 ## 11. Lists
 
@@ -503,7 +495,6 @@ HTML tables display **tabular data** (rows and columns). **Never use tables for 
 </ul>
 ```
 
----
 
 ## 12. Media
 
@@ -554,7 +545,6 @@ HTML tables display **tabular data** (rows and columns). **Never use tables for 
 </iframe>
 ```
 
----
 
 ## 13. HTML Entities
 
@@ -576,7 +566,6 @@ Some characters are **reserved in HTML** (e.g., `<`, `>`, `&`). Use **character 
 
 > **`&nbsp;`** is heavily used to prevent browsers from collapsing multiple spaces.
 
----
 
 ## 14. Accessibility (a11y)
 
@@ -602,7 +591,6 @@ Web accessibility ensures websites are usable by people with **disabilities** (v
 | `aria-expanded="true/false"` | Indicates if a collapsible section is open or closed |
 | `role="button"` | Defines the role of an element for assistive technology |
 
----
 
 ## 15. SEO in HTML
 
@@ -656,7 +644,6 @@ These tags are **obsolete in HTML5** and should **never** be used. Use CSS inste
 | `<acronym>` | Defined an acronym | `<abbr>` |
 | `<applet>` | Embedded Java applets | `<object>` or `<embed>` |
 
----
 
 ## 18. Common Beginner Mistakes
 
@@ -714,7 +701,6 @@ Use CSS: margin-bottom: 20px;
 <div><p>Hello</p></div>
 ```
 
----
 
 ## 19. HTML Cheat Sheet
 
