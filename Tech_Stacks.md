@@ -26,11 +26,11 @@
 
 A **tech stack** is the complete set of technologies — programming languages, frameworks, libraries, databases, and tools — chosen to build a particular application.
 
-Every application has a stack, whether explicitly defined or not. The stack determines:
-- What language(s) developers write
-- How fast the application can be built
-- How well the application performs at scale
-- How easy it is to find developers who can work on it
+Every application has a stack. The stack determines:
+- What **language(s)** developers write
+- How **fast** the application can be built
+- How well the application **performs at scale**
+- How easy it is to **find developers** who can work on it
 
 ### Analogy — Building a House
 
@@ -46,7 +46,7 @@ Every application has a stack, whether explicitly defined or not. The stack dete
 +---------------------------+      +---------------------------+
 ```
 
-Just as a house requires a coordinated set of materials and trades, a web app requires a coordinated set of technologies working in layers.
+> Just as a house requires coordinated materials and trades, a web app requires coordinated technologies working in layers.
 
 
 ## 2. Main Parts of a Tech Stack
@@ -89,23 +89,23 @@ Every tech stack is divided into distinct layers, each owning a specific respons
 
 | Layer            | Responsibility                                    | Example Technologies              |
 |------------------|---------------------------------------------------|-----------------------------------|
-| Frontend         | Visual interface the user sees and interacts with | React, HTML, CSS, Tailwind        |
-| API              | Communication channel between frontend/backend    | REST, GraphQL, WebSockets         |
-| Backend          | Server logic, request processing, business rules  | Node.js, Express, Django          |
-| Database         | Permanent storage of all application data         | MongoDB, PostgreSQL, MySQL, Redis |
-| Dev Tools        | Tools that assist and streamline development      | Git, VS Code, Docker, Postman     |
-| Deploy / Hosting | Deploying the app so users can access it online   | Vercel, AWS, Netlify, Railway     |
+| **Frontend**     | Visual interface the user sees and interacts with | React, HTML, CSS, Tailwind        |
+| **API**          | Communication channel between frontend/backend    | REST, GraphQL, WebSockets         |
+| **Backend**      | Server logic, request processing, business rules  | Node.js, Express, Django          |
+| **Database**     | Permanent storage of all application data         | MongoDB, PostgreSQL, MySQL, Redis |
+| **Dev Tools**    | Tools that assist and streamline development      | Git, VS Code, Docker, Postman     |
+| **Deploy/Hosting** | Deploying the app so users can access it online | Vercel, AWS, Netlify, Railway     |
 
 
 ## 3. Frontend Technologies
 
-The frontend is the part of the application that runs directly in the user's browser. It defines what the user sees and how they interact with the app.
+The frontend is the part of the application that runs directly in the **user's browser**. It defines what the user sees and how they interact with the app.
 
 ### HTML — HyperText Markup Language
 
-- **Role:** Defines the structure and content of a webpage.
-- **Elements used:** Headings, paragraphs, images, links, forms, buttons, tables.
-- **Example:**
+- **Role:** Defines the **structure and content** of a webpage.
+- **Elements:** Headings, paragraphs, images, links, forms, buttons, tables.
+
 ```html
 <h1>Welcome to My App</h1>
 <button id="loginBtn">Login</button>
@@ -113,9 +113,9 @@ The frontend is the part of the application that runs directly in the user's bro
 
 ### CSS — Cascading Style Sheets
 
-- **Role:** Controls the visual presentation of HTML elements.
-- **Features:** Colors, fonts, spacing, layout (Flexbox, Grid), animations.
-- **Example:**
+- **Role:** Controls the **visual presentation** of HTML elements.
+- **Features:** Colors, fonts, spacing, layout (**Flexbox, Grid**), animations.
+
 ```css
 body {
   font-family: 'Inter', sans-serif;
@@ -125,9 +125,9 @@ body {
 
 ### JavaScript
 
-- **Role:** Adds interactivity and dynamic behavior to the browser.
+- **Role:** Adds **interactivity** and dynamic behavior to the browser.
 - **Features:** Click/keyboard event handling, DOM manipulation, API requests.
-- **Example:**
+
 ```javascript
 document.getElementById("loginBtn").addEventListener("click", function() {
   console.log("Login button clicked");
@@ -136,20 +136,20 @@ document.getElementById("loginBtn").addEventListener("click", function() {
 
 ### React.js
 
-- **Role:** JavaScript library for building component-based user interfaces.
-- **Key concept:** The UI is split into reusable, self-contained components (Header, Button, Card, Form).
-- **Used by:** Instagram, Airbnb, Netflix, Atlassian, Meta.
+- **Role:** JavaScript library for building **component-based** user interfaces.
+- **Key concept:** The UI is split into reusable, self-contained components (`Header`, `Button`, `Card`, `Form`).
+- **Used by:** Instagram, Airbnb, Netflix, Meta.
 
 ### Next.js
 
-- **Role:** React framework with built-in server-side rendering (SSR), static generation, and file-based routing.
-- **Benefits:** Better SEO, faster initial page loads, simplified routing.
+- **Role:** React framework with built-in **server-side rendering (SSR)**, static generation, and file-based routing.
+- **Benefits:** Better **SEO**, faster initial page loads, simplified routing.
 - **Used for:** Blogs, e-commerce, portfolios, dashboards.
 
 ### Tailwind CSS
 
-- **Role:** Utility-first CSS framework for rapidly styling elements using predefined class names.
-- **Example:**
+- **Role:** **Utility-first** CSS framework for rapidly styling elements using predefined class names.
+
 ```html
 <div class="flex items-center justify-center p-6 bg-gray-100 rounded-xl">
   Content
@@ -158,8 +158,8 @@ document.getElementById("loginBtn").addEventListener("click", function() {
 
 ### Bootstrap
 
-- **Role:** CSS framework providing pre-built, responsive UI components.
-- **Example:**
+- **Role:** CSS framework providing **pre-built, responsive** UI components.
+
 ```html
 <button class="btn btn-primary">Submit</button>
 ```
@@ -167,16 +167,16 @@ document.getElementById("loginBtn").addEventListener("click", function() {
 
 ## 4. Backend Technologies
 
-The backend runs on a server — not in the browser. It handles all the logic, validates user input, enforces security rules, communicates with the database, and returns structured responses to the frontend.
+The backend runs on a **server** — not in the browser. It handles all logic, validates user input, enforces security rules, communicates with the database, and returns structured responses to the frontend.
 
 | Technology       | Language       | Primary Use Case                                           |
-|------------------|----------------|------------------------------------------------------------|
-| Node.js          | JavaScript     | Runs JavaScript on the server; non-blocking I/O            |
-| Express.js       | JavaScript     | Minimalist framework for building REST APIs on Node.js     |
-| Django           | Python         | Full-featured framework with built-in admin, ORM, auth     |
-| Flask            | Python         | Lightweight micro-framework; good for small APIs           |
-| Spring Boot      | Java           | Enterprise-grade applications (banking, finance, ERP)      |
-| NestJS           | TypeScript     | Structured, scalable backend framework (Angular-inspired)  |
+|------------------|----------------|-------------------------------------------------------------|
+| **Node.js**      | JavaScript     | Runs JavaScript on the server; non-blocking I/O            |
+| **Express.js**   | JavaScript     | Minimalist framework for building REST APIs on Node.js     |
+| **Django**       | Python         | Full-featured framework with built-in admin, ORM, auth     |
+| **Flask**        | Python         | Lightweight micro-framework; good for small APIs           |
+| **Spring Boot**  | Java           | Enterprise-grade applications (banking, finance, ERP)      |
+| **NestJS**       | TypeScript     | Structured, scalable backend framework (Angular-inspired)  |
 
 ### Choosing a Backend Framework
 
@@ -191,7 +191,7 @@ TypeScript backend            -->  NestJS
 
 ## 5. Databases
 
-A database is the persistent storage layer of an application. All data that must survive beyond a single request — user accounts, orders, messages, settings — is stored here.
+A database is the **persistent storage layer** of an application. All data that must survive beyond a single request is stored here.
 
 ### Two Major Categories
 
@@ -199,7 +199,7 @@ A database is the persistent storage layer of an application. All data that must
 Databases
 |
 +-- SQL (Relational)
-|      Data organized into tables with rows and columns.
+|      Data organized into TABLES with rows and columns.
 |      Relationships between tables are enforced by the database.
 |      +-- PostgreSQL
 |      +-- MySQL
@@ -219,27 +219,27 @@ Databases
 
 | Database     | Type     | Best Suited For                                        |
 |--------------|----------|--------------------------------------------------------|
-| MongoDB      | NoSQL    | Flexible JSON documents; great with Node.js            |
-| PostgreSQL   | SQL      | Complex queries and relations; high reliability        |
-| MySQL        | SQL      | Widely supported; standard for web applications        |
-| Firebase     | NoSQL    | Real-time sync; mobile apps; Google ecosystem          |
-| Redis        | NoSQL    | In-memory caching, sessions, real-time pub/sub         |
-| Supabase     | SQL      | Open-source Firebase alternative built on PostgreSQL   |
+| **MongoDB**  | NoSQL    | Flexible JSON documents; great with Node.js            |
+| **PostgreSQL** | SQL    | Complex queries and relations; high reliability        |
+| **MySQL**    | SQL      | Widely supported; standard for web applications        |
+| **Firebase** | NoSQL    | Real-time sync; mobile apps; Google ecosystem          |
+| **Redis**    | NoSQL    | In-memory caching, sessions, real-time pub/sub         |
+| **Supabase** | SQL      | Open-source Firebase alternative built on PostgreSQL   |
 
 ### SQL vs NoSQL
 
 | Feature         | SQL                                 | NoSQL                               |
 |-----------------|-------------------------------------|-------------------------------------|
-| Data format     | Tables (rows and columns)           | Documents, key-value, graphs        |
-| Schema          | Fixed — defined strictly upfront    | Flexible — can vary per record      |
-| Relationships   | Native (JOIN, foreign keys)         | Handled in application code         |
-| Best for        | Financial data, ERP, structured data| Rapid dev, unstructured/varied data |
-| Examples        | PostgreSQL, MySQL, SQLite           | MongoDB, Firebase, Redis            |
+| **Data format** | Tables (rows and columns)           | Documents, key-value, graphs        |
+| **Schema**      | Fixed — defined strictly upfront    | Flexible — can vary per record      |
+| **Relationships** | Native (JOIN, foreign keys)       | Handled in application code         |
+| **Best for**    | Financial data, ERP, structured data| Rapid dev, unstructured/varied data |
+| **Examples**    | PostgreSQL, MySQL, SQLite           | MongoDB, Firebase, Redis            |
 
 
 ## 6. Popular Tech Stacks
 
-A named stack is a shorthand label for a frequently used combination of technologies across the frontend, backend, and database layers.
+A named stack is a shorthand label for a frequently used combination of technologies.
 
 | Stack Name   | Technologies                                        | Primary Use Case                         |
 |--------------|-----------------------------------------------------|------------------------------------------|
@@ -256,7 +256,7 @@ A named stack is a shorthand label for a frequently used combination of technolo
 
 **MERN = MongoDB + Express.js + React.js + Node.js**
 
-The MERN stack uses **JavaScript across the entire application** — one language for the frontend, backend, and database queries. This makes it one of the most accessible and widely taught full-stack setups.
+The MERN stack uses **JavaScript across the entire application** — one language for the frontend, backend, and database queries.
 
 ### What Each Letter Represents
 
@@ -280,8 +280,7 @@ The MERN stack uses **JavaScript across the entire application** — one languag
 |    React.js       |  Renders the UI; handles user events
 +-------------------+
          |
-         |  User clicks "Load Users" -- React sends:
-         |  GET /api/users
+         |  GET /api/users   (HTTP API request)
          v
 +-------------------+
 |   Express.js      |  Receives the request; routes to handler
@@ -305,7 +304,7 @@ The MERN stack uses **JavaScript across the entire application** — one languag
          |
          v
 +-------------------+
-|    React.js       |  Receives data; updates component state; re-renders
+|    React.js       |  Receives data; updates state; re-renders UI
 +-------------------+
          |
          v
@@ -317,62 +316,62 @@ The MERN stack uses **JavaScript across the entire application** — one languag
 ### Example — To-Do App Flow
 
 | Step | Actor         | Action                                                     |
-|------|---------------|------------------------------------------------------------|
-| 1    | User          | Opens the app — React renders the to-do list               |
-| 2    | User          | Types a new task and clicks "Add"                          |
-| 3    | React.js      | Sends `POST /api/todos` with the task data                 |
-| 4    | Express.js    | Receives and validates the request                         |
-| 5    | Node.js       | Instructs MongoDB to save the new task                     |
-| 6    | MongoDB       | Saves the document; returns success confirmation           |
-| 7    | Express.js    | Sends the success response back to React                   |
-| 8    | React.js      | Updates the list on screen; user sees the new task         |
+|------|---------------|-------------------------------------------------------------|
+| 1    | **User**      | Opens the app — React renders the to-do list               |
+| 2    | **User**      | Types a new task and clicks "Add"                          |
+| 3    | **React.js**  | Sends `POST /api/todos` with the task data                 |
+| 4    | **Express.js** | Receives and validates the request                        |
+| 5    | **Node.js**   | Instructs MongoDB to save the new task                     |
+| 6    | **MongoDB**   | Saves the document; returns success confirmation           |
+| 7    | **Express.js** | Sends the success response back to React                  |
+| 8    | **React.js**  | Updates the list on screen; user sees the new task         |
 
 ### Why MERN Is Popular
 
-- One language (JavaScript) used across frontend, backend, and queries
-- Massive community — large number of tutorials, packages, and job listings
-- Fast development cycle; well-suited to startups and MVPs
-- React's component model scales well for complex interfaces
+- **One language** (JavaScript) used across frontend, backend, and queries
+- **Massive community** — large number of tutorials, packages, and job listings
+- **Fast development** cycle; well-suited to startups and MVPs
+- React's **component model** scales well for complex interfaces
 
 
 ## 8. MARN Stack
 
 **MARN = MongoDB + Angular + React + Node.js**
 
-MARN is an advanced, less common configuration used when a project requires both Angular and React simultaneously. This typically occurs in large enterprise settings where different teams or micro-frontends use different frameworks.
+MARN is an advanced, less common configuration used when a project requires **both Angular and React** simultaneously. This typically occurs in large enterprise settings or micro-frontend architectures.
 
 ### What Each Letter Represents
 
 | Letter | Technology | Role                                                          |
 |--------|------------|---------------------------------------------------------------|
-| M      | MongoDB    | Stores data as flexible JSON-like documents                   |
-| A      | Angular    | Full frontend framework by Google; TypeScript-first; opinionated |
-| R      | React      | Flexible frontend library; component-based; JavaScript/TSX    |
-| N      | Node.js    | Server-side runtime                                           |
+| **M**  | MongoDB    | Stores data as flexible JSON-like documents                   |
+| **A**  | Angular    | Full frontend framework by Google; TypeScript-first           |
+| **R**  | React      | Flexible frontend library; component-based; JavaScript/TSX    |
+| **N**  | Node.js    | Server-side runtime                                           |
 
 ### When MARN Is Used
 
 - **Micro-frontend architecture:** Different teams own separate parts of the UI using their preferred framework.
-- **Gradual migration:** A team is incrementally moving from an Angular codebase to React.
+- **Gradual migration:** A team is incrementally moving from Angular to React.
 - **Enterprise systems:** Existing Angular applications being extended with new React-based features.
 
 ### MERN vs MARN
 
 | Feature           | MERN                               | MARN                                       |
-|-------------------|------------------------------------|--------------------------------------------|
-| Frontend          | React only                         | Angular + React (both used)                |
-| Languages         | JavaScript                         | JavaScript + TypeScript                    |
-| Learning curve    | Moderate (one frontend framework)  | Steeper (two frontend frameworks)          |
-| Team size         | Small to medium teams              | Large teams; enterprise environments       |
-| Typical use case  | Startups, SPAs, standard web apps  | Large apps, micro-frontends, migrations    |
-| Community size    | Very large                         | Smaller (less common combination)          |
+|-------------------|------------------------------------|---------------------------------------------|
+| **Frontend**      | React only                         | Angular + React (both used)                |
+| **Languages**     | JavaScript                         | JavaScript + TypeScript                    |
+| **Learning curve**| Moderate (one frontend framework)  | Steeper (two frontend frameworks)          |
+| **Team size**     | Small to medium teams              | Large teams; enterprise environments       |
+| **Typical use**   | Startups, SPAs, standard web apps  | Large apps, micro-frontends, migrations    |
+| **Community**     | Very large                         | Smaller (less common combination)          |
 
-> MERN is the standard choice for most web applications. MARN is a specialized architecture for specific enterprise scenarios.
+> **MERN** is the standard choice for most web applications. **MARN** is a specialized architecture for specific enterprise scenarios.
 
 
 ## 9. DOM — Document Object Model
 
-### Definition
+### What is the DOM?
 
 The **DOM** (Document Object Model) is a programming interface created by the browser when it loads an HTML page. The browser reads the HTML and constructs a **tree-like structure in memory** where every HTML element becomes a **node** that JavaScript can read, modify, create, or delete — without reloading the page.
 
@@ -380,10 +379,10 @@ The **DOM** (Document Object Model) is a programming interface created by the br
 
 | Purpose                      | Example                                              |
 |------------------------------|------------------------------------------------------|
-| Find elements on the page    | Locate a login button, an input field, or a div      |
-| Modify content dynamically   | Update displayed text or swap an image source        |
-| Add or remove elements       | Insert a new notification; delete a list item        |
-| Respond to user events       | Handle clicks, keyboard input, form submissions      |
+| **Find elements**            | Locate a login button, an input field, or a div      |
+| **Modify content**           | Update displayed text or swap an image source        |
+| **Add or remove elements**   | Insert a new notification; delete a list item        |
+| **Respond to user events**   | Handle clicks, keyboard input, form submissions      |
 
 ### DOM Tree Structure
 
@@ -404,7 +403,7 @@ When the browser parses this HTML:
 </html>
 ```
 
-It builds this tree in memory:
+It builds this **tree in memory**:
 
 ```
 Document
@@ -424,24 +423,24 @@ Document
                     +-- <button id="btn">  "Click Me"
 ```
 
-Every node in this tree can be targeted and manipulated by JavaScript.
+> Every node in this tree can be **targeted and manipulated** by JavaScript.
 
 ### Common DOM Methods
 
 | Method / Property                         | Description                                      |
 |-------------------------------------------|--------------------------------------------------|
-| `document.getElementById("id")`           | Find an element by its `id` attribute            |
-| `document.querySelector(".class")`        | Find the first element matching a CSS selector   |
-| `document.querySelectorAll("tag")`        | Find all elements matching a CSS selector        |
-| `element.innerHTML`                       | Get or set the HTML content inside an element    |
-| `element.textContent`                     | Get or set the plain text inside an element      |
-| `element.style.color = "red"`             | Apply a CSS style directly via JavaScript        |
-| `element.classList.add("active")`         | Add a CSS class to an element                    |
-| `element.classList.remove("active")`      | Remove a CSS class from an element               |
-| `element.addEventListener("click", fn)`   | Attach an event listener to an element           |
-| `document.createElement("div")`           | Create a new HTML element                        |
-| `parent.appendChild(child)`               | Add a new child element to a parent node         |
-| `element.remove()`                        | Remove an element from the DOM entirely          |
+| `document.getElementById("id")`          | Find an element by its `id` attribute            |
+| `document.querySelector(".class")`       | Find the first element matching a CSS selector   |
+| `document.querySelectorAll("tag")`       | Find all elements matching a CSS selector        |
+| `element.innerHTML`                      | Get or set the HTML content inside an element    |
+| `element.textContent`                    | Get or set the plain text inside an element      |
+| `element.style.color = "red"`            | Apply a CSS style directly via JavaScript        |
+| `element.classList.add("active")`        | Add a CSS class to an element                    |
+| `element.classList.remove("active")`     | Remove a CSS class from an element               |
+| `element.addEventListener("click", fn)`  | Attach an event listener to an element           |
+| `document.createElement("div")`          | Create a new HTML element                        |
+| `parent.appendChild(child)`              | Add a new child element to a parent node         |
+| `element.remove()`                       | Remove an element from the DOM entirely          |
 
 ### DOM Examples
 
@@ -474,9 +473,9 @@ box.style.backgroundColor = "#1a1a2e";
 
 ## 10. BOM — Browser Object Model
 
-### Definition
+### What is the BOM?
 
-The **BOM** (Browser Object Model) is the interface through which JavaScript communicates with the **browser itself** — not the HTML page content, but the browser's environment: the current URL, navigation history, screen dimensions, dialog boxes, and timers.
+The **BOM** (Browser Object Model) is the interface through which JavaScript communicates with the **browser itself** — the current URL, navigation history, screen dimensions, dialog boxes, and timers.
 
 ### BOM Structure
 
@@ -496,7 +495,7 @@ window   (global top-level object — represents the browser tab)
   |     +-- go(n)         -->  Go n steps in history
   |
   +-- window.navigator
-  |     Information about the browser and operating system
+  |     Information about the browser and OS
   |     +-- userAgent     -->  Browser identification string
   |     +-- language      -->  User's preferred language
   |     +-- onLine        -->  Boolean: is the user online?
@@ -516,7 +515,7 @@ window   (global top-level object — represents the browser tab)
   +-- clearInterval(id)       -->  Stop a running setInterval
 ```
 
-> The `window` prefix is optional in most cases — `alert()` and `window.alert()` are equivalent because `window` is the global object.
+> The `window` prefix is optional in most cases — `alert()` and `window.alert()` are equivalent because `window` is the **global object**.
 
 ### Common BOM Reference
 
@@ -589,33 +588,32 @@ let timer = setInterval(function() {
 
 | Feature          | DOM                                         | BOM                                           |
 |------------------|---------------------------------------------|-----------------------------------------------|
-| Full form        | Document Object Model                       | Browser Object Model                          |
-| Controls         | The HTML document (page content, elements)  | The browser environment (URL, history, screen)|
-| Root object      | `document`                                  | `window`                                      |
-| Key methods      | `getElementById`, `querySelector`, `addEventListener` | `location`, `history`, `navigator`, `setTimeout` |
-| Primary use      | Manipulate page structure and content       | Control browser behavior and read environment |
-| Standardised?    | Yes — W3C standard                          | No — browser-defined; no formal specification |
+| **Full form**    | Document Object Model                       | Browser Object Model                          |
+| **Controls**     | The HTML document (page content, elements)  | The browser environment (URL, history, screen)|
+| **Root object**  | `document`                                  | `window`                                      |
+| **Key methods**  | `getElementById`, `querySelector`, `addEventListener` | `location`, `history`, `navigator`, `setTimeout` |
+| **Primary use**  | Manipulate page structure and content       | Control browser behavior and read environment |
+| **Standardised?**| Yes — W3C standard                          | No — browser-defined                          |
 
 ### MERN vs MARN
 
 | Feature           | MERN Stack                          | MARN Stack                                |
 |-------------------|-------------------------------------|-------------------------------------------|
-| Full form         | MongoDB Express React Node          | MongoDB Angular React Node                |
-| Frontend          | React only                          | Angular + React (both used together)      |
-| Language          | JavaScript                          | JavaScript + TypeScript                   |
-| Learning curve    | Moderate                            | Steeper (two frontend frameworks)         |
-| Common use        | Startups, SPAs, standard apps       | Enterprise apps, micro-frontends          |
-| Community size    | Very large                          | Smaller (less common)                     |
+| **Frontend**      | React only                          | Angular + React (both used together)      |
+| **Language**      | JavaScript                          | JavaScript + TypeScript                   |
+| **Learning curve**| Moderate                            | Steeper (two frontend frameworks)         |
+| **Common use**    | Startups, SPAs, standard apps       | Enterprise apps, micro-frontends          |
+| **Community**     | Very large                          | Smaller (less common)                     |
 
 ### SQL vs NoSQL
 
 | Feature         | SQL                              | NoSQL                              |
-|-----------------|----------------------------------|------------------------------------|
-| Data format     | Rows and columns (tables)        | Documents, key-value, graphs       |
-| Schema          | Fixed; defined strictly upfront  | Flexible; varies per record        |
-| Relationships   | Native — JOIN, foreign keys      | Handled manually in application    |
-| Best for        | Structured, relational data      | Flexible or rapidly changing data  |
-| Examples        | PostgreSQL, MySQL, SQLite        | MongoDB, Firebase, Redis           |
+|-----------------|----------------------------------|-------------------------------------|
+| **Data format** | Rows and columns (tables)        | Documents, key-value, graphs       |
+| **Schema**      | Fixed; defined strictly upfront  | Flexible; varies per record        |
+| **Relationships**| Native — JOIN, foreign keys      | Handled manually in application   |
+| **Best for**    | Structured, relational data      | Flexible or rapidly changing data  |
+| **Examples**    | PostgreSQL, MySQL, SQLite        | MongoDB, Firebase, Redis           |
 
 ---
 
@@ -660,52 +658,6 @@ Frontend updates the UI
 User sees the updated result
 ```
 
-### MERN Stack — Full Request Cycle
-
-```
-+------------------+
-|  User (Browser)  |
-+------------------+
-         |
-         v
-+------------------+
-|    React.js      |  Renders UI; captures user interactions
-+------------------+
-         |
-         |  HTTP API call (fetch / axios)
-         |  Example: GET /api/products
-         v
-+------------------+
-|   Express.js     |  Routes request to the correct handler
-+------------------+
-         |
-         v
-+------------------+
-|    Node.js       |  Executes server-side logic
-+------------------+
-         |
-         v
-+------------------+
-|    MongoDB       |  Reads or writes data
-+------------------+
-         |
-         |  Returns JSON
-         v
-+------------------+
-|   Express.js     |  Sends JSON response
-+------------------+
-         |
-         v
-+------------------+
-|    React.js      |  Updates state and re-renders components
-+------------------+
-         |
-         v
-+------------------+
-|  User sees data  |
-+------------------+
-```
-
 ### DOM Tree
 
 ```
@@ -718,8 +670,8 @@ User sees the updated result
       <title>  <h1>  <div>
          |       |       \
        "Page" "Hello"  <button id="btn">
-                            |
-                         "Click Me"
+                             |
+                          "Click Me"
 ```
 
 ### BOM Structure
@@ -741,67 +693,37 @@ User sees the updated result
 
 | Term         | One-Line Definition                                                      |
 |--------------|--------------------------------------------------------------------------|
-| Tech Stack   | The full set of technologies chosen to build an application              |
-| Frontend     | The visual layer users see and interact with (HTML, CSS, JS, React)     |
-| Backend      | Server-side logic and processing (Node.js, Express, Django)              |
-| Database     | Persistent storage layer for all application data                        |
-| API          | The defined interface connecting frontend to backend                     |
-| DOM          | The browser's in-memory tree of the HTML page, accessible by JavaScript  |
-| BOM          | JavaScript's interface to the browser's own environment and features     |
-| MERN         | MongoDB + Express + React + Node.js (JavaScript full-stack)              |
-| MARN         | MongoDB + Angular + React + Node.js (hybrid enterprise frontend)         |
-| Cache        | Temporary fast storage (e.g. Redis) to reduce repeated database queries  |
+| **Tech Stack** | The full set of technologies chosen to build an application            |
+| **Frontend** | The visual layer users see and interact with (HTML, CSS, JS, React)     |
+| **Backend**  | Server-side logic and processing (Node.js, Express, Django)              |
+| **Database** | Persistent storage layer for all application data                        |
+| **API**      | The defined interface connecting frontend to backend                     |
+| **DOM**      | The browser's in-memory tree of the HTML page, accessible by JavaScript  |
+| **BOM**      | JavaScript's interface to the browser's own environment and features     |
+| **MERN**     | MongoDB + Express + React + Node.js (JavaScript full-stack)              |
+| **MARN**     | MongoDB + Angular + React + Node.js (hybrid enterprise frontend)         |
+| **Cache**    | Temporary fast storage (e.g. Redis) to reduce repeated database queries  |
 
 ### True / False Check
 
 | Statement                                           | Answer                                 |
 |-----------------------------------------------------|----------------------------------------|
-| JavaScript can manipulate the DOM                   | True                                   |
-| The BOM controls HTML page elements                 | False — that is the DOM                |
-| MERN uses Python as its backend language            | False — it uses JavaScript             |
-| MongoDB is a NoSQL database                         | True                                   |
-| React is a backend framework                        | False — it is a frontend library       |
-| `window.location` is part of the BOM               | True                                   |
-| Express.js runs on top of Node.js                   | True                                   |
-| SQL databases use a flexible, schema-less format    | False — that describes NoSQL           |
-
-### DOM Methods Reference
-
-```
-getElementById(id)        -->  Find element by its id attribute
-querySelector(selector)   -->  Find first element matching a CSS selector
-querySelectorAll(selector)-->  Find all elements matching a CSS selector
-innerHTML                 -->  Get or set HTML content inside an element
-textContent               -->  Get or set plain text inside an element
-addEventListener(event)   -->  Attach an event handler (click, input, etc.)
-createElement(tag)        -->  Create a new HTML element
-appendChild(child)        -->  Add a child element to a parent node
-remove()                  -->  Remove an element from the page
-```
-
-### BOM Reference
-
-```
-window.location.href       -->  Get or set the current page URL
-window.location.reload()   -->  Reload the page
-window.history.back()      -->  Navigate to the previous page
-window.screen.width        -->  Get the user's screen width in pixels
-window.alert("msg")        -->  Show a popup alert
-window.confirm("msg")      -->  Show a yes/no confirmation dialog
-window.prompt("msg")       -->  Prompt user to enter text
-setTimeout(fn, ms)         -->  Run a function once after a delay
-setInterval(fn, ms)        -->  Run a function repeatedly at an interval
-window.navigator.userAgent -->  Get the browser and OS identification string
-```
+| JavaScript can manipulate the DOM                   | **True**                               |
+| The BOM controls HTML page elements                 | **False** — that is the DOM            |
+| MERN uses Python as its backend language            | **False** — it uses JavaScript         |
+| MongoDB is a NoSQL database                         | **True**                               |
+| React is a backend framework                        | **False** — it is a frontend library   |
+| `window.location` is part of the BOM               | **True**                               |
+| Express.js runs on top of Node.js                   | **True**                               |
+| SQL databases use a flexible, schema-less format    | **False** — that describes NoSQL       |
 
 ### Named Stacks at a Glance
 
 ```
-MERN  =  MongoDB + Express + React + Node      Most popular JavaScript stack
-MEAN  =  MongoDB + Express + Angular + Node    Angular instead of React
-MARN  =  MongoDB + Angular + React + Node      Hybrid; enterprise use
-LAMP  =  Linux + Apache + MySQL + PHP          Traditional; still widely deployed
-PERN  =  PostgreSQL + Express + React + Node   MERN with a relational database
-T3    =  TypeScript + tRPC + Tailwind + Prisma + Next.js   Type-safe modern stack
+MERN  =  MongoDB + Express + React + Node      ← Most popular JavaScript stack
+MEAN  =  MongoDB + Express + Angular + Node    ← Angular-based alternative to MERN
+MARN  =  MongoDB + Angular + React + Node      ← Enterprise / Micro-frontend use
+PERN  =  PostgreSQL + Express + React + Node   ← Same as MERN but with SQL
+LAMP  =  Linux + Apache + MySQL + PHP          ← Classic/traditional web stack
+T3    =  TypeScript + tRPC + Tailwind + Prisma + Next.js  ← Modern typed stack
 ```
-
