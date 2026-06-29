@@ -1,223 +1,265 @@
 # The Complete JavaScript Reference Guide
 
-Welcome to the ultimate guide to JavaScript. This comprehensive reference is designed to take you from a complete beginner to an advanced JavaScript developer.
+> **JavaScript (JS)** is a lightweight, cross-platform, interpreted programming language — the **language of the web**. It adds behavior and interactivity to static HTML/CSS pages.
 
-## 1. Introduction to JavaScript
+---
 
-### What is JavaScript?
-JavaScript (JS) is a lightweight, cross-platform, and interpreted programming language primarily known as the scripting language for web pages.
+## Table of Contents
+1. [Introduction](#1-introduction)
+2. [JS Versions (ECMAScript)](#2-js-versions-ecmascript)
+3. [Ways to Add JavaScript](#3-ways-to-add-javascript)
+4. [Syntax Basics](#4-syntax-basics)
+5. [Variables](#5-variables)
+6. [Data Types](#6-data-types)
+7. [Operators](#7-operators)
+8. [Strings](#8-strings)
+9. [Numbers & Math](#9-numbers--math)
+10. [Conditionals & Loops](#10-conditionals--loops)
+11. [Functions](#11-functions)
+12. [Scope & Closures](#12-scope--closures)
+13. [Hoisting](#13-hoisting)
+14. [Arrays](#14-arrays)
+15. [Objects](#15-objects)
+16. [Destructuring & Spread/Rest](#16-destructuring--spreadrest)
+17. [DOM Manipulation](#17-dom-manipulation)
+18. [Events](#18-events)
+19. [Async JavaScript](#19-async-javascript)
+20. [Fetch API](#20-fetch-api)
+21. [Local Storage & Cookies](#21-local-storage--cookies)
+22. [Classes & OOP](#22-classes--oop)
+23. [Modules](#23-modules)
+24. [Advanced Concepts](#24-advanced-concepts)
+25. [Best Practices & Mistakes](#25-best-practices--common-mistakes)
+26. [JavaScript Cheat Sheet](#26-javascript-cheat-sheet)
 
-### Why JavaScript is used
-It allows developers to implement complex features on web pages, such as interactive forms, animations, 2D/3D graphics, and dynamic content updates without reloading the page.
+---
 
-### Role of JavaScript in web development
-JavaScript provides the behavior and interactivity to the static structure provided by HTML and CSS.
+## 1. Introduction
 
-### JavaScript vs HTML vs CSS
-*   **HTML:** Defines the structure (e.g., paragraphs, headings).
-*   **CSS:** Defines the presentation (e.g., colors, layouts).
-*   **JavaScript:** Defines the behavior (e.g., clicking a button shows a popup).
+### Role of JavaScript
+```
+HTML        →  Structure  (what exists)
+CSS         →  Presentation  (how it looks)
+JavaScript  →  Behavior  (what it does)
+```
 
-### Client-side vs Server-side JavaScript
-*   **Client-side:** Runs in the user's web browser to control the user interface.
-*   **Server-side:** Runs on a web server (using Node.js) to handle database queries, server logic, and APIs.
+### Client-side vs Server-side
+| | Client-side | Server-side |
+|-|-------------|-------------|
+| **Runs in** | User's browser | Web server |
+| **Controls** | UI, DOM, interactivity | Database, APIs, logic |
+| **Runtime** | Browser (V8, SpiderMonkey) | Node.js |
 
-### How JavaScript works in the browser
-Browsers have built-in JS engines (like Chrome's V8) that read, compile, and execute JS code on the fly (Just-In-Time compilation).
+### How JS Works in the Browser
+Browsers have built-in JS engines (Chrome uses **V8**) that read, compile, and execute JS code using **Just-In-Time (JIT) compilation**.
 
-### Advantages of JavaScript
-Speed (executes on the client side), simplicity, versatility (frontend and backend), and a massive ecosystem of libraries/frameworks.
+---
 
-### Limitations of JavaScript
-Client-side security (code is visible), browser inconsistencies (historically, though mostly resolved now), and single-threaded nature (can block the UI if not careful).
+## 2. JS Versions (ECMAScript)
 
+| Version | Year | Major Features |
+|---------|------|----------------|
+| **ES5** | 2009 | `strict mode`, JSON, Array methods (`forEach`, `map`) |
+| **ES6 / ES2015** | 2015 | `let/const`, Arrow functions, Classes, **Promises**, Modules — Biggest update |
+| **ES2017** | 2017 | **`async/await`**, `Object.entries()` |
+| **ES2018-2022** | 2018-22 | Optional chaining (`?.`), Nullish coalescing (`??`), `Promise.allSettled()` |
+| **ES2023+** | Present | Array `findLast()`, continuous improvements |
 
-## 2. JavaScript Versions and History
-
-JavaScript was created by Brendan Eich in 1995 in just 10 days for the Netscape Navigator browser. To standardize the language, it was handed over to ECMA International.
-
-**ECMAScript:** The official standard specification that JavaScript is based on.
-
-| Version | Year | Major Features | Importance |
-| ------- | ---- | -------------- | ---------- |
-| **ES1-3** | 1997-1999 | Basic syntax, regex, try/catch. | Foundation of JS. |
-| **ES5** | 2009 | strict mode, JSON support, Array methods (`forEach`, `map`). | Modernized the language. |
-| **ES6 / ES2015**| 2015 | `let`, `const`, Arrow functions, Classes, Promises, Modules. | The biggest update in JS history. |
-| **ES2016** | 2016 | `Array.includes()`, exponentiation operator (`**`). | Smaller iterative updates begin. |
-| **ES2017** | 2017 | `async/await`, `Object.entries()`. | Revolutionized async programming. |
-| **ES2018-2022**| 2018-2022| Rest/Spread for objects, Optional chaining (`?.`), Nullish coalescing (`??`), `Promise.allSettled()`. | Quality of life improvements. |
-| **ES2023+**| Present | Array `findLast()`, Records & Tuples (upcoming). | Continuous evolution (Modern JS). |
-
+---
 
 ## 3. Ways to Add JavaScript
 
-### Inline JavaScript
-Placed directly inside HTML tags using event attributes. (Not recommended).
 ```html
+<!-- 1. Inline JS (Not recommended) -->
 <button onclick="alert('Hello!')">Click Me</button>
-```
 
-### Internal JavaScript
-Placed inside a `<script>` tag within the HTML file.
-```html
+<!-- 2. Internal JS -->
 <script>
     console.log("Hello World");
 </script>
-```
 
-### External JavaScript
-Linked from an external `.js` file. (Best practice).
-```html
-<script src="script.js"></script>
-```
-
-### Script Tag Attributes
-*   **`defer`:** The script is downloaded asynchronously while HTML parses, but executed *after* HTML parsing is fully complete. Maintains script order.
-*   **`async`:** The script is downloaded asynchronously and executed immediately upon download, pausing HTML parsing. Does not guarantee order.
-
-```html
+<!-- 3. External JS (Best practice) -->
 <script src="script.js" defer></script>
 ```
 
+### Script Tag Attributes
+| Attribute | Behavior |
+|-----------|----------|
+| **`defer`** | Downloads while HTML parses, executes **after** HTML is fully parsed. Maintains order. |
+| **`async`** | Downloads while HTML parses, executes **immediately** when downloaded. Does not guarantee order. |
 
-## 4. JavaScript Syntax Basics
+> **Best practice:** Use `defer` on `<script>` tags placed in `<head>`.
 
-*   **Statements:** Instructions performed by the computer.
-*   **Semicolons:** Used to separate statements. JS has Automatic Semicolon Insertion (ASI), but using them explicitly is best practice.
-*   **Comments:** `// single line` or `/* multi line */`.
-*   **Case sensitivity:** `Name` and `name` are different variables.
-*   **Whitespace:** Ignored by JS, used for readability.
-*   **Blocks:** Code grouped inside curly braces `{ ... }`.
-*   **Expressions:** Code that resolves to a value (e.g., `5 + 5`).
-*   **Identifiers:** Names given to variables and functions (must start with a letter, `_`, or `$`).
+---
+
+## 4. Syntax Basics
 
 ```js
-let name = "Tushar";
-console.log(name);
+// Single-line comment
+/* Multi-line comment */
+
+let name = "Tushar";  // Statement ends with semicolon
+console.log(name);    // Output to browser console
+
+// Case sensitive: Name ≠ name
+// Identifiers must start with a letter, _ , or $
 ```
 
+---
 
 ## 5. Variables
 
-A variable is a container for storing data values.
+> A **variable** is a named container for storing data values.
 
 ### `var`, `let`, and `const`
-*   `var`: Old way to declare variables. Function-scoped. Avoid using in modern JS.
-*   `let`: Modern way. Block-scoped. Can be reassigned.
-*   `const`: Modern way. Block-scoped. Cannot be reassigned.
 
 | Feature | `var` | `let` | `const` |
-| :--- | :--- | :--- | :--- |
+|---------|-------|-------|---------|
 | **Scope** | Function / Global | Block | Block |
 | **Redeclaration** | Yes | No | No |
-| **Reassignment** | Yes | Yes | No |
-| **Hoisted** | Yes (initialized as `undefined`) | Yes (Temporal Dead Zone) | Yes (Temporal Dead Zone) |
+| **Reassignment** | Yes | Yes | **No** |
+| **Hoisted** | Yes (as `undefined`) | Yes (Temporal Dead Zone) | Yes (Temporal Dead Zone) |
 
-### Best Practices
-Always use `const` by default. If you know the value will change, use `let`. Never use `var`.
+### Best Practice
+```js
+const PI = 3.14;       // Use const by default
+let count = 0;         // Use let when value will change
+// NEVER use var in modern JS
+```
 
+---
 
 ## 6. Data Types
 
-JavaScript is dynamically typed (types are assigned at runtime).
+JavaScript is **dynamically typed** — types are assigned at runtime.
 
-### Primitive Data Types
-Stored directly in the location that the variable accesses.
-*   **String:** Text data (`"Hello"`).
-*   **Number:** Integers and floats (`42`, `3.14`).
-*   **BigInt:** For numbers larger than `Number.MAX_SAFE_INTEGER`.
-*   **Boolean:** Logical entity (`true` or `false`).
-*   **Undefined:** A variable declared but not assigned a value.
-*   **Null:** Intentional absence of any object value.
-*   **Symbol:** Unique and immutable identifier (advanced use cases).
+### Primitive Types (stored by value)
+| Type | Example | Description |
+|------|---------|-------------|
+| **String** | `"Hello"` | Text data — immutable |
+| **Number** | `42`, `3.14` | Integers and floats |
+| **BigInt** | `9007199254740991n` | Numbers larger than `Number.MAX_SAFE_INTEGER` |
+| **Boolean** | `true`, `false` | Logical yes/no |
+| **Undefined** | `undefined` | Variable declared but not assigned |
+| **Null** | `null` | Intentional absence of value |
+| **Symbol** | `Symbol("id")` | Unique, immutable identifier |
 
-### Non-Primitive (Reference) Data Types
-Stored in the heap. The variable holds a pointer to the location in memory.
-*   **Object:** Key-value pairs (`{name: "John"}`).
-*   **Array:** Ordered list of values (`[1, 2, 3]`).
-*   **Function:** A callable object.
-*   **Date, Map, Set:** Specialized objects.
+### Reference Types (stored by reference)
+- **Object** — `{ name: "John" }`
+- **Array** — `[1, 2, 3]`
+- **Function** — callable object
 
-### Type Conversion and Coercion
-*   **Conversion:** Explicitly changing types (e.g., `Number("5")`).
-*   **Coercion:** JS automatically converting types behind the scenes (e.g., `"5" + 5` results in `"55"`).
-*   **Truthy/Falsy:** Values that evaluate to `true` or `false` in a boolean context. Falsy values are: `false`, `0`, `""`, `null`, `undefined`, `NaN`. Everything else is truthy.
+### Truthy / Falsy Values
+```
+Falsy:   false, 0, "", null, undefined, NaN
+Truthy:  Everything else (including "0", [], {})
+```
 
+### Type Conversion
+```js
+Number("5")     // 5   (explicit)
+"5" + 5         // "55" (coercion — string wins)
+Number(true)    // 1
+Boolean("")     // false
+typeof "hello"  // "string"
+```
+
+---
 
 ## 7. Operators
 
-*   **Arithmetic:** `+` (add), `-` (subtract), `*` (multiply), `/` (divide), `%` (remainder), `**` (exponentiation).
-*   **Assignment:** `=`, `+=`, `-=`, `*=`, `/=`.
-*   **Comparison:** `==` (loose equal), `===` (strict equal, checks type), `!=`, `!==`, `>`, `<`, `>=`, `<=`.
-*   **Logical:** `&&` (AND), `||` (OR), `!` (NOT).
-*   **String:** `+` concatenates strings.
-*   **Ternary:** `condition ? exprIfTrue : exprIfFalse`.
-*   **Nullish Coalescing (`??`):** Returns right side if left side is `null` or `undefined`.
-*   **Optional Chaining (`?.`):** Safely accesses nested object properties without throwing an error if a reference is missing.
-*   **Spread (`...`):** Expands an iterable into individual elements.
-*   **Rest (`...`):** Condenses multiple elements into an array.
-*   **Type Operators:** `typeof` (returns type string), `instanceof` (checks object prototype).
-*   **`delete` / `in`:** `delete obj.prop` removes a property. `"prop" in obj` checks if it exists.
+```js
+// Arithmetic
++  -  *  /  %  **    // ** = exponentiation (2**3 = 8)
 
+// Assignment
+=  +=  -=  *=  /=
+
+// Comparison
+==   // Loose equal (ignores type) — AVOID
+===  // Strict equal (checks type) — ALWAYS USE THIS
+!=   !== > < >= <=
+
+// Logical
+&&   // AND
+||   // OR
+!    // NOT
+
+// Ternary
+let result = age >= 18 ? "Adult" : "Minor";
+
+// Nullish Coalescing
+let name = user.name ?? "Guest"; // Returns right side if left is null/undefined
+
+// Optional Chaining
+let city = user?.address?.city;  // No error if address is undefined
+
+// Spread / Rest
+...  // (see Destructuring section)
+```
+
+---
 
 ## 8. Strings
 
-Strings are sequences of characters. They are **immutable** (cannot be changed once created).
+> Strings are **sequences of characters** and are **immutable**.
 
-### Creation
 ```js
-let single = 'Single quotes';
-let double = "Double quotes";
-let template = `Template literal allows ${single}`; // String interpolation
+let single   = 'Single quotes';
+let double   = "Double quotes";
+let template = `Template: ${single}`;  // String interpolation
 ```
 
 ### String Methods
-*   `length`: Property returning character count.
-*   `charAt(index)` / `at(index)`: Gets character at index. (`at` supports negative indexes).
-*   `indexOf(str)` / `lastIndexOf(str)`: Finds position of substring.
-*   `includes(str)`: Returns true if string contains substring.
-*   `startsWith(str)` / `endsWith(str)`: Checks start/end.
-*   `slice(start, end)`: Extracts a section of a string.
-*   `toUpperCase()` / `toLowerCase()`: Changes case.
-*   `trim()` / `trimStart()` / `trimEnd()`: Removes whitespace.
-*   `replace(search, replace)` / `replaceAll()`: Replaces substring(s).
-*   `split(separator)`: Splits string into an array of substrings.
-*   `repeat(count)`: Repeats the string.
 
+| Method | Description |
+|--------|-------------|
+| `.length` | Character count |
+| `.charAt(i)` / `.at(i)` | Get char at index (`at` supports negatives) |
+| `.indexOf()` / `.includes()` | Find substring |
+| `.startsWith()` / `.endsWith()` | Check start/end |
+| `.slice(start, end)` | Extract a section |
+| `.toUpperCase()` / `.toLowerCase()` | Change case |
+| `.trim()` | Remove whitespace from both ends |
+| `.replace(s, r)` / `.replaceAll()` | Replace substring(s) |
+| `.split(sep)` | Split into array |
+| `.repeat(n)` | Repeat string n times |
 
-## 9. Numbers and Math
+---
 
-JS has only one number type, which includes both integers and floating-point decimals.
-
-*   `NaN`: Not-a-Number (result of an invalid math operation).
-*   `Infinity`: Result of dividing by zero.
-*   **Precision:** JS uses 64-bit floating-point format, which can cause precision issues (`0.1 + 0.2 === 0.30000000000000004`).
-
-### Number Methods
-*   `Number("5")`: Converts string to number.
-*   `parseInt("10.5")`: Parses integer (returns 10).
-*   `parseFloat("10.5")`: Parses float.
-*   `isNaN(val)`: Checks if value is NaN.
-*   `toFixed(decimals)`: Formats number to specified decimal places (returns string).
-
-### Math Object
-*   `Math.round(x)`: Rounds to nearest integer.
-*   `Math.floor(x)`: Rounds down.
-*   `Math.ceil(x)`: Rounds up.
-*   `Math.random()`: Random number between 0 (inclusive) and 1 (exclusive).
-*   `Math.max(x, y, ...)` / `Math.min(x, y, ...)`: Finds highest/lowest.
-
-
-## 10. Booleans and Conditions
-
-### Conditional Statements
-*   `if`: Executes block if condition is true.
-*   `else`: Executes block if `if` condition is false.
-*   `else if`: Specifies a new condition to test.
-*   `switch`: Evaluates an expression, matching its value to `case` clauses.
+## 9. Numbers & Math
 
 ```js
+// Special values
+NaN       // Not-a-Number (result of invalid math)
+Infinity  // Result of dividing by zero
+
+// Number methods
+Number("5")       // 5
+parseInt("10.9")  // 10
+parseFloat("10.9")// 10.9
+(3.14159).toFixed(2)  // "3.14"
+isNaN("abc")      // true
+
+// Math object
+Math.round(4.7)   // 5
+Math.floor(4.7)   // 4
+Math.ceil(4.1)    // 5
+Math.random()     // Random 0 to <1
+Math.max(1, 5, 3) // 5
+Math.min(1, 5, 3) // 1
+Math.abs(-5)      // 5
+Math.pow(2, 10)   // 1024
+```
+
+---
+
+## 10. Conditionals & Loops
+
+### Conditionals
+```js
 let age = 18;
+
 if (age < 18) {
     console.log("Minor");
 } else if (age === 18) {
@@ -225,528 +267,652 @@ if (age < 18) {
 } else {
     console.log("Adult");
 }
-```
 
-
-## 11. Loops
-
-Loops execute a block of code repeatedly.
-
-*   `for`: Loops a specific number of times.
-*   `while`: Loops while a condition is true.
-*   `do...while`: Loops at least once, then repeats while condition is true.
-*   `for...of`: Loops through the values of an iterable (Arrays, Strings).
-*   `for...in`: Loops through the properties (keys) of an Object.
-*   `break`: Exits the loop entirely.
-*   `continue`: Skips the current iteration and moves to the next.
-
-```js
-const fruits = ["Apple", "Banana"];
-for (const fruit of fruits) {
-    console.log(fruit);
+// Switch
+switch(day) {
+    case "Mon": console.log("Monday"); break;
+    case "Fri": console.log("Friday"); break;
+    default: console.log("Other day");
 }
 ```
 
+### Loops
+```js
+// for loop
+for (let i = 0; i < 5; i++) { console.log(i); }
 
-## 12. Functions
+// while loop
+while (count < 10) { count++; }
 
-A function is a reusable block of code designed to perform a particular task.
+// do...while — runs at least once
+do { count++; } while (count < 10);
 
-*   **Function Declaration:** Hoisted to the top.
-    ```js
-    function greet(name) { return "Hello " + name; }
-    ```
-*   **Function Expression:** Stored in a variable. Not hoisted.
-    ```js
-    const greet = function(name) { return "Hello " + name; };
-    ```
-*   **Arrow Function (ES6):** Shorter syntax, does not bind its own `this`.
-    ```js
-    const greet = (name) => "Hello " + name;
-    ```
-*   **Parameters vs Arguments:** Parameters are the names in the definition; arguments are the real values passed in.
-*   **Default Parameters:** `function greet(name = "Guest") { ... }`
-*   **Callback Function:** A function passed as an argument to another function.
-*   **Higher-Order Function:** A function that takes another function as an argument, or returns a function.
-*   **IIFE (Immediately Invoked Function Expression):** Executes immediately after being created. `(function() { ... })();`
+// for...of — iterates VALUES (Arrays, Strings)
+const fruits = ["Apple", "Banana"];
+for (const fruit of fruits) { console.log(fruit); }
 
+// for...in — iterates KEYS (Objects)
+const person = { name: "John", age: 30 };
+for (const key in person) { console.log(key, person[key]); }
+```
 
-## 13. Scope
+| Statement | Description |
+|-----------|-------------|
+| `break` | Exits the loop entirely |
+| `continue` | Skips current iteration, moves to next |
 
-Scope determines the accessibility (visibility) of variables.
+---
 
-*   **Global Scope:** Variables declared outside any function or block. Accessible everywhere.
-*   **Function Scope:** Variables declared inside a function (using `var`, `let`, `const`). Only accessible inside that function.
-*   **Block Scope:** Variables declared inside a `{}` block (only applies to `let` and `const`).
-*   **Lexical Scope:** Inner functions have access to variables in their outer functions' scopes.
-*   **Closures:** A function bundled together with references to its surrounding state (lexical environment). It gives you access to an outer function's scope from an inner function, even after the outer function has finished executing.
+## 11. Functions
 
+```js
+// 1. Function Declaration (hoisted — can be called before declaration)
+function greet(name) {
+    return "Hello " + name;
+}
 
-## 14. Hoisting
+// 2. Function Expression (not hoisted)
+const greet = function(name) {
+    return "Hello " + name;
+};
 
-Hoisting is JavaScript's default behavior of moving declarations to the top of the current scope before execution.
+// 3. Arrow Function (ES6) — shorter syntax, no own `this`
+const greet = (name) => "Hello " + name;
+const add = (a, b) => a + b;
 
-*   **`var`:** Hoisted and initialized with `undefined`. Accessing it before declaration returns `undefined`.
-*   **`let` and `const`:** Hoisted, but NOT initialized. Accessing them before declaration causes a `ReferenceError` (they are in the Temporal Dead Zone).
-*   **Function Declarations:** Completely hoisted. Can be called before they are defined.
-*   **Function Expressions:** Treated like variables. Only the variable name is hoisted, not the function body.
+// Default Parameters
+function greet(name = "Guest") { return "Hello " + name; }
 
+// Callback Function — a function passed as an argument
+[1,2,3].forEach(function(num) { console.log(num); });
 
-## 15. Arrays
+// Higher-Order Function — takes/returns a function
+function makeMultiplier(x) { return (y) => x * y; }
+const double = makeMultiplier(2);
+double(5); // 10
 
-An array is a special variable that can hold more than one value at a time.
+// IIFE (Immediately Invoked Function Expression)
+(function() { console.log("Runs immediately!"); })();
+```
+
+---
+
+## 12. Scope & Closures
+
+### Scope
+```
+Global Scope   → Accessible everywhere
+Function Scope → Inside a function (var, let, const)
+Block Scope    → Inside { } — only let and const
+Lexical Scope  → Inner functions access outer function variables
+```
+
+### Closures
+> A **closure** is a function that **remembers its outer scope** even after the outer function has finished executing.
+
+```js
+function makeCounter() {
+    let count = 0;              // count is in outer scope
+    return function() {
+        count++;                // inner function "closes over" count
+        return count;
+    };
+}
+const counter = makeCounter();
+counter(); // 1
+counter(); // 2  ← count persists!
+```
+
+---
+
+## 13. Hoisting
+
+> JavaScript's behavior of **moving declarations to the top** of the scope before execution.
+
+| Declaration | Hoisted? | Initialized? |
+|-------------|----------|--------------|
+| `var` | ✅ Yes | As `undefined` — accessing before declaration returns `undefined` |
+| `let` / `const` | ✅ Yes | ❌ No — **Temporal Dead Zone** — accessing before declaration = `ReferenceError` |
+| `function` declaration | ✅ Yes | ✅ Fully — can call before it's written |
+| `function` expression | Variable only | ❌ Not the function body |
+
+---
+
+## 14. Arrays
+
+> An **array** is a special variable that holds **multiple values** in an ordered list (zero-indexed).
 
 ```js
 const cars = ["Saab", "Volvo", "BMW"];
-console.log(cars[0]); // Accessing: Saab
-cars[0] = "Opel"; // Updating
+console.log(cars[0]);  // "Saab"
+cars.push("Tesla");    // Add to end
 ```
 
-### Mutating Array Methods (Change original array)
-*   `push()`: Adds element to end.
-*   `pop()`: Removes element from end.
-*   `unshift()`: Adds element to beginning.
-*   `shift()`: Removes element from beginning.
-*   `splice(start, deleteCount, items...)`: Adds/removes items at specific index.
-*   `sort()` / `reverse()`: Sorts/reverses the array in place.
+### Mutating Methods (change original array)
+```js
+.push(item)         // Add to end
+.pop()              // Remove from end
+.unshift(item)      // Add to beginning
+.shift()            // Remove from beginning
+.splice(i, n, ...items)  // Add/remove at index
+.sort()             // Sort in place
+.reverse()          // Reverse in place
+```
 
-### Non-Mutating Array Methods (Return new array/value)
-*   `slice(start, end)`: Returns a shallow copy of a portion of the array.
-*   `concat()`: Merges arrays.
-*   `join(separator)`: Joins elements into a string.
-*   `includes(val)` / `indexOf(val)`: Searches array.
-*   `find()` / `findIndex()`: Finds element/index matching a condition.
+### Non-Mutating Methods (return new array/value)
+```js
+.slice(start, end)  // Copy a portion
+.concat(arr)        // Merge arrays
+.join(sep)          // Join into string
+.includes(val)      // Boolean search
+.indexOf(val)       // Find index
+.find(fn)           // First element matching condition
+.findIndex(fn)      // Index of first match
+```
 
-### Iteration Methods (Higher-Order Functions)
-*   `forEach(callback)`: Executes a provided function once for each element.
-*   `map(callback)`: Creates a new array populated with the results of calling a provided function.
-*   `filter(callback)`: Creates a new array with all elements that pass the test.
-*   `reduce(callback, initialValue)`: Executes a reducer function on each element, resulting in a single output value.
-*   `some()` / `every()`: Checks if some/all elements pass a test (returns boolean).
+### Higher-Order Array Methods
+```js
+// forEach — execute for each element (no return)
+[1,2,3].forEach(n => console.log(n));
 
+// map — transform each element, return NEW array
+const doubled = [1,2,3].map(n => n * 2);  // [2,4,6]
 
-## 16. Objects
+// filter — return NEW array of elements that pass test
+const evens = [1,2,3,4].filter(n => n % 2 === 0);  // [2,4]
 
-Objects are variables too, but they contain many values in the form of key:value pairs.
+// reduce — reduce to single value
+const sum = [1,2,3].reduce((acc, n) => acc + n, 0);  // 6
+
+// some — true if ANY element passes test
+// every — true if ALL elements pass test
+[1,2,3].some(n => n > 2);   // true
+[1,2,3].every(n => n > 0);  // true
+```
+
+---
+
+## 15. Objects
+
+> Objects store data as **key-value pairs**.
 
 ```js
 const person = {
     firstName: "John",
     lastName: "Doe",
     age: 50,
-    fullName: function() { return this.firstName + " " + this.lastName; }
+    fullName() { return this.firstName + " " + this.lastName; }
 };
 
 // Accessing properties
-console.log(person.firstName); // Dot notation
-console.log(person["lastName"]); // Bracket notation (useful for dynamic keys)
+person.firstName        // Dot notation
+person["lastName"]      // Bracket notation (use for dynamic keys)
 
-// Adding/Updating
-person.age = 51;
+// Add / Update
 person.job = "Developer";
+person.age = 51;
 ```
 
 ### Object Methods
-*   `Object.keys(obj)`: Returns an array of keys.
-*   `Object.values(obj)`: Returns an array of values.
-*   `Object.entries(obj)`: Returns an array of [key, value] pairs.
-*   `Object.assign(target, source)`: Copies properties from source to target.
-*   `Object.freeze(obj)`: Prevents adding, deleting, or modifying properties.
-*   `Object.seal(obj)`: Prevents adding/deleting properties, but allows modifying existing ones.
-*   `obj.hasOwnProperty(prop)`: Checks if object has a direct property.
+```js
+Object.keys(obj)              // Array of keys
+Object.values(obj)            // Array of values
+Object.entries(obj)           // Array of [key, value] pairs
+Object.assign(target, source) // Copy properties
+Object.freeze(obj)            // No add/delete/modify
+Object.seal(obj)              // No add/delete, CAN modify
+obj.hasOwnProperty("prop")    // Check if own property
+```
 
+---
 
-## 17. Destructuring
+## 16. Destructuring & Spread/Rest
 
-Extracts values from arrays or properties from objects into distinct variables.
-
+### Destructuring
 ```js
 // Array Destructuring
-const fruits = ["Apple", "Banana"];
-const [fruit1, fruit2] = fruits;
+const [first, second] = ["Apple", "Banana"];
 
 // Object Destructuring
-const user = { name: "Alice", age: 25 };
-const { name, age, job = "Unemployed" } = user; // job gets default value
-const { name: fullName } = user; // Renaming variable
+const { name, age, job = "Unemployed" } = user; // job gets default
+const { name: fullName } = user;                 // Rename variable
 ```
 
-
-## 18. Spread and Rest Operators
-
-Both use the `...` syntax but act oppositely.
-
-### Spread (Expands)
-*   **Arrays:** `const arr2 = [...arr1, 4, 5];` (Copies/merges arrays)
-*   **Objects:** `const obj2 = { ...obj1, newProp: true };`
-
-### Rest (Condenses)
-Used in function parameters to gather remaining arguments into an array.
+### Spread (expands)
 ```js
-function sum(first, ...restOfNumbers) {
-    // restOfNumbers is an array
-}
+// Arrays
+const arr2 = [...arr1, 4, 5];
+
+// Objects
+const obj2 = { ...obj1, newProp: true };
+
+// Function call
+Math.max(...[1, 5, 3]);  // 5
 ```
 
+### Rest (condenses)
+```js
+// Gather remaining function arguments
+function sum(first, ...rest) {
+    return rest.reduce((a, b) => a + b, first);
+}
+sum(1, 2, 3, 4);  // 10
+```
 
-## 19. DOM Manipulation
+---
 
-**DOM (Document Object Model):** The browser's internal representation of the HTML document as a tree structure of objects. JS can modify this tree.
+## 17. DOM Manipulation
+
+> **DOM** = Document Object Model. The browser's in-memory tree of HTML elements that JavaScript can read and modify.
 
 ### Selecting Elements
-*   `document.getElementById("id")`
-*   `document.querySelector(".class")`: Selects the first matching element.
-*   `document.querySelectorAll("div")`: Selects all matching elements (NodeList).
-
-### Modifying Elements
-*   `element.innerText`: Gets/sets visible text.
-*   `element.textContent`: Gets/sets all text.
-*   `element.innerHTML`: Gets/sets HTML markup inside element.
-*   `element.style.color = "red"`: Changes inline CSS.
-*   `element.classList.add("active")`, `.remove()`, `.toggle()`: Modifies CSS classes.
-*   `element.setAttribute("src", "img.png")` / `getAttribute("src")`.
-
-### Creating/Appending Elements
 ```js
-const newDiv = document.createElement("div");
-newDiv.innerText = "Hello";
-document.body.appendChild(newDiv); // Appends to body
-newDiv.remove(); // Removes the element
+document.getElementById("id")          // Single element by ID
+document.querySelector(".class")       // First match (CSS selector)
+document.querySelectorAll("div")       // All matches (NodeList)
+document.getElementsByClassName("cls") // HTMLCollection by class
 ```
 
+### Modifying Elements
+```js
+element.innerText = "New text";        // Visible text only
+element.textContent = "All text";      // All text (including hidden)
+element.innerHTML = "<b>Bold</b>";     // HTML content (⚠️ XSS risk)
 
-## 20. Events
+element.style.color = "red";           // Inline CSS
+element.classList.add("active");
+element.classList.remove("hidden");
+element.classList.toggle("open");
 
-Events are "things" that happen to HTML elements (clicks, typing, loading).
+element.setAttribute("src", "img.png");
+element.getAttribute("href");
+```
 
-### Event Listeners
+### Creating & Removing Elements
+```js
+const div = document.createElement("div");
+div.innerText = "Hello";
+document.body.appendChild(div);   // Add to end of body
+div.remove();                      // Remove element
+```
+
+---
+
+## 18. Events
+
 ```js
 const btn = document.querySelector("button");
+
 btn.addEventListener("click", function(event) {
     console.log("Clicked!");
-    console.log(event.target); // The element that triggered the event
+    console.log(event.target);          // Element that triggered the event
+    event.preventDefault();            // Stop default action (e.g., form submit)
+    event.stopPropagation();           // Stop event from bubbling up
 });
 ```
 
-*   `event.preventDefault()`: Stops the default action (e.g., stops a form from submitting/refreshing page).
-*   `event.stopPropagation()`: Stops event bubbling.
-*   **Event Bubbling:** An event triggers on the innermost element, then bubbles up to its parents.
-*   **Event Delegation:** Attaching a single event listener to a parent element to handle events on its children (useful for dynamically created elements).
+### Common Events
+```
+click         Mouse click
+dblclick      Double click
+mouseover     Mouse enters element
+keydown       Key pressed
+keyup         Key released
+submit        Form submitted
+input         Input value changes
+change        Input loses focus with new value
+load          Page/resource loaded
+resize        Window resized
+scroll        Page scrolled
+```
 
+### Event Bubbling & Delegation
+```
+Event Bubbling: Event triggers on the innermost element, then bubbles UP to parents.
 
-## 21. Forms and Validation
-
-Forms are how users submit data. JS can validate this data before sending it to the server.
-
+Event Delegation: Attach ONE listener to a parent to handle events on its children.
+```
 ```js
-const form = document.getElementById("myForm");
-form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Prevent page reload
-    
-    const email = document.getElementById("email").value;
-    if (!email.includes("@")) {
-        alert("Invalid email");
-    } else {
-        console.log("Form submitted successfully!");
+// Event Delegation — handles dynamically created children
+document.getElementById("list").addEventListener("click", (e) => {
+    if (e.target.tagName === "LI") {
+        console.log("Clicked:", e.target.textContent);
     }
 });
 ```
 
+---
 
-## 22. Browser BOM
+## 19. Async JavaScript
 
-**BOM (Browser Object Model):** Interacts with the browser outside the DOM. The global object is `window`.
+> JavaScript is **single-threaded** — executes one command at a time. Async JS allows operations (like fetching data) to run in the **background** without blocking the UI.
 
-*   `window.screen`: Info about user's screen.
-*   `window.location`: Get current URL or redirect (`location.href = 'new.html'`).
-*   `window.history`: Go back/forward (`history.back()`).
-*   `window.navigator`: Info about the browser (user agent).
-*   **Dialogs:** `alert()`, `confirm()` (returns true/false), `prompt()` (returns string input).
-*   **Timers:** 
-    *   `setTimeout(callback, delayMs)`: Runs once after delay.
-    *   `setInterval(callback, intervalMs)`: Runs repeatedly.
-    *   `clearTimeout(id)` / `clearInterval(id)`: Stops the timer.
-
-
-## 23. Date and Time
-
-```js
-const now = new Date(); // Current date/time
-const specificDate = new Date("2023-01-01");
-
-console.log(now.getFullYear()); // 2023
-console.log(now.getMonth()); // 0-11 (Jan is 0)
-console.log(now.toLocaleDateString()); // Formatted string based on locale
+### The Async Flow
+```
+Call Stack → Web APIs (setTimeout, fetch) → Callback Queue → Event Loop → Call Stack
 ```
 
-
-## 24. Error Handling
-
-When JS encounters an error, it usually stops executing. We can handle errors gracefully.
-
+### Callbacks (old way — leads to "Callback Hell")
 ```js
-try {
-    // Code that might throw an error
-    let x = y + 1; // y is not defined
-} catch (error) {
-    // Runs if an error occurs
-    console.error("An error occurred:", error.message);
-} finally {
-    // Runs regardless of success or error
-    console.log("Execution finished.");
-}
-
-// Custom Error
-throw new Error("Invalid Input!");
+fetchData(function(data) {
+    processData(data, function(result) {
+        saveResult(result, function() { ... }); // deeply nested!
+    });
+});
 ```
 
-
-## 25. JSON
-
-**JSON (JavaScript Object Notation):** A lightweight data-interchange format. It looks like a JS object, but keys must be wrapped in double quotes.
-
-*   `JSON.stringify(obj)`: Converts a JS object into a JSON string (for sending to a server/localStorage).
-*   `JSON.parse(jsonString)`: Converts a JSON string back into a JS object.
-
-
-## 26. Asynchronous JavaScript
-
-JS is single-threaded (executes one command at a time). Asynchronous JS allows operations (like fetching data) to happen in the background without blocking the main thread.
-
-*   **Event Loop / Web APIs / Callback Queue:** JS offloads async tasks (like `setTimeout` or `fetch`) to the browser's Web APIs. When finished, callbacks are pushed to the Queue, and the Event Loop pushes them back to the Call Stack when it's empty.
-
-### Callbacks
-Historically used for async logic, leading to deeply nested, unreadable code ("Callback Hell").
-
-### Promises
-An object representing the eventual completion (or failure) of an asynchronous operation.
-*   **States:** Pending, Fulfilled, Rejected.
+### Promises (modern way)
 ```js
+// States: Pending → Fulfilled | Rejected
+
 fetchData()
-    .then(data => console.log(data))
-    .catch(error => console.error(error))
-    .finally(() => console.log("Done"));
+    .then(data => console.log(data))      // On success
+    .catch(error => console.error(error)) // On failure
+    .finally(() => console.log("Done"));  // Always runs
 ```
 
-### Async / Await (Modern way)
-Syntactic sugar over Promises. Makes async code look synchronous.
+### async / await (cleanest way)
+> **Syntactic sugar over Promises.** Makes async code look synchronous.
+
 ```js
 async function getData() {
     try {
-        const response = await fetch('url'); // execution pauses here until resolved
+        const response = await fetch('https://api.example.com/data');
+        // ↑ Pauses THIS function until response arrives (but page stays responsive)
+
+        if (!response.ok) throw new Error("Failed!");
+
         const data = await response.json();
         console.log(data);
     } catch (error) {
-        console.error(error);
+        console.error("Error:", error);
+    }
+}
+getData();
+```
+
+---
+
+## 20. Fetch API
+
+> The **Fetch API** is a modern native tool for making **HTTP requests**. Returns a Promise.
+
+### GET Request
+```js
+fetch('https://api.example.com/users')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+```
+
+### POST Request
+```js
+fetch('https://api.example.com/users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: "Tushar", age: 22 })
+})
+.then(res => res.json())
+.then(data => console.log(data));
+```
+
+### With async/await
+```js
+async function createUser(userData) {
+    try {
+        const res = await fetch('/api/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+        });
+        const data = await res.json();
+        return data;
+    } catch (err) {
+        console.error("Fetch failed:", err);
     }
 }
 ```
 
-
-## 27. Fetch API
-
-Modern native API to make HTTP requests. It returns a Promise.
-
+### JSON
 ```js
-// GET Request
-fetch('https://api.example.com/data')
-    .then(response => response.json())
-    .then(data => console.log(data));
+// JS Object → JSON string (for sending)
+JSON.stringify({ name: "John", age: 30 });
+// '{"name":"John","age":30}'
 
-// POST Request
-fetch('https://api.example.com/data', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: "Tushar" })
-});
+// JSON string → JS Object (for using)
+JSON.parse('{"name":"John"}');
+// { name: "John" }
 ```
 
+---
 
-## 28. Local Storage and Session Storage
+## 21. Local Storage & Cookies
 
-Store data directly in the user's browser as key-value pairs (strings only).
-
-*   `localStorage`: Data persists even after the browser is closed.
-*   `sessionStorage`: Data is cleared when the browser tab is closed.
-
+### localStorage
 ```js
-// Storing an object requires stringify
+// Stores data with NO expiration (persists after browser close)
+localStorage.setItem("theme", "dark");
+const theme = localStorage.getItem("theme");
+localStorage.removeItem("theme");
+localStorage.clear();
+
+// Store objects (must stringify)
 const user = { name: "Tushar" };
 localStorage.setItem("user", JSON.stringify(user));
-
-// Reading
 const savedUser = JSON.parse(localStorage.getItem("user"));
-
-// Removing
-localStorage.removeItem("user");
-localStorage.clear(); // Clears all
 ```
 
+### sessionStorage
+```js
+// Same API, but data cleared when the TAB is closed
+sessionStorage.setItem("key", "value");
+```
 
-## 29. Cookies
+### Cookies
+```js
+// Sent to server with every HTTP request
+document.cookie = "username=Tushar; max-age=86400; Secure; SameSite=Strict";
+```
 
-Small strings of data stored in the browser, mainly used for session management (logging in) and tracking.
-*   Unlike localStorage, cookies are sent to the server with every HTTP request.
-*   Created/read via `document.cookie`.
+| | localStorage | sessionStorage | Cookies |
+|-|-------------|----------------|---------|
+| **Expiry** | Never | Tab close | Set manually |
+| **Sent to server** | No | No | **Yes** |
+| **Size limit** | ~5MB | ~5MB | ~4KB |
 
+---
 
-## 30. ES6 and Modern JavaScript Features
+## 22. Classes & OOP
 
-A quick recap of modern features: `let/const`, Arrow Functions, Template Literals, Destructuring, Spread/Rest, Modules, Promises, Classes, `Map`/`Set`, Optional Chaining (`?.`), Nullish Coalescing (`??`), and Dynamic Imports.
-
-
-## 31. Classes and Object-Oriented JavaScript
-
-Classes in JS are syntactic sugar over the existing prototype-based inheritance.
+> JavaScript classes are **syntactic sugar** over prototype-based inheritance.
 
 ```js
 class Animal {
     constructor(name) {
-        this.name = name;
+        this.name = name;             // Instance property
     }
-    speak() { console.log(this.name + " makes a noise."); }
+    speak() {
+        console.log(`${this.name} makes a noise.`);
+    }
+    static describe() {
+        console.log("Animals are living things.");
+    }
 }
 
 class Dog extends Animal {
     constructor(name, breed) {
-        super(name); // Calls parent constructor
+        super(name);                  // Call parent constructor
         this.breed = breed;
     }
-    speak() { console.log(this.name + " barks."); }
+    speak() {                         // Method override
+        console.log(`${this.name} barks!`);
+    }
 }
 
 const myDog = new Dog("Rex", "German Shepherd");
-myDog.speak();
+myDog.speak();       // "Rex barks!"
+Animal.describe();   // Static method call
 ```
 
+### `this` Keyword
 
-## 32. `this` Keyword
+| Context | `this` refers to |
+|---------|-----------------|
+| Object method | The **owner object** |
+| Regular function | Global object (`window`) or `undefined` in strict mode |
+| Arrow function | Inherited from **enclosing lexical scope** — no own `this` |
+| Event handler | The **element** that received the event |
 
-`this` refers to the object it belongs to. Its value depends on *where* and *how* it is called.
-
-*   In a method, `this` refers to the **owner object**.
-*   Alone, `this` refers to the **global object** (Window).
-*   In a function, `this` refers to the **global object** (or `undefined` in strict mode).
-*   In an event, `this` refers to the **element** that received the event.
-*   **Arrow functions** DO NOT bind their own `this`. They inherit `this` from the enclosing lexical scope.
-
-Methods to explicitly bind `this`: `call()`, `apply()`, `bind()`.
-
-
-## 33. Modules
-
-Modules allow you to break code into separate files.
-
-**file1.js (Exporting):**
 ```js
-export const name = "Tushar"; // Named export
-export default function sayHi() {} // Default export
+// Explicit binding
+fn.call(obj, arg1, arg2)   // Call fn with obj as this
+fn.apply(obj, [arg1, arg2]) // Same, but args as array
+const bound = fn.bind(obj)  // Return new function with this bound
 ```
 
-**file2.js (Importing):**
+---
+
+## 23. Modules
+
+> Modules allow **splitting code into separate files** for organization and reusability.
+
 ```js
-import sayHi, { name } from './file1.js';
+// math.js — Exporting
+export const PI = 3.14;
+export function add(a, b) { return a + b; }
+export default function sayHi() { console.log("Hi!"); }
+
+// app.js — Importing
+import sayHi, { PI, add } from './math.js';
+import * as math from './math.js';  // Import all as namespace
 ```
 
+---
 
-## 34. Advanced Functions
+## 24. Advanced Concepts
 
-*   **Currying:** Transforming a function with multiple arguments into a sequence of functions, each with a single argument. `func(a,b,c)` becomes `func(a)(b)(c)`.
-*   **Memoization:** Caching the results of expensive function calls.
-*   **Debouncing:** Ensuring a function is only executed after a certain amount of time has passed since it was last invoked (e.g., waiting for user to stop typing before searching).
-*   **Throttling:** Ensuring a function is called at most once in a specified time period (e.g., handling scroll events).
+### Map & Set
+```js
+// Map: key-value pairs where keys can be ANY type
+const map = new Map();
+map.set("name", "John");
+map.get("name");           // "John"
+map.has("name");           // true
 
-
-## 35. Advanced Objects
-
-*   **Shallow Copy:** Copies top-level properties. (using `...spread` or `Object.assign()`). Nested objects are still referenced.
-*   **Deep Copy:** Creates a completely independent copy. (Historically `JSON.parse(JSON.stringify(obj))`, modern JS has `structuredClone(obj)`).
-*   **Getters / Setters:** `get propName() {}` and `set propName(val) {}` allow defining methods that are accessed like properties.
-
-
-## 36. Map, Set, WeakMap, WeakSet
-
-*   **Map:** Holds key-value pairs where keys can be *any* data type (unlike objects where keys must be strings/symbols). Maintains insertion order.
-*   **Set:** Collection of *unique* values. Prevents duplicates automatically.
-*   **WeakMap / WeakSet:** Similar to Map/Set but keys/values must be objects, and they do not prevent garbage collection of those objects.
-
-
-## 37. Regular Expressions
-
-Patterns used to match character combinations in strings. Created between slashes `/pattern/flags`.
-
-*   `/hello/i`: Case-insensitive match.
-*   `/^[a-z]+$/`: Matches only lowercase letters.
-*   Methods: `regex.test("string")` (returns boolean), `string.match(regex)` (returns array).
-
-
-## 38. Browser APIs Overview
-
-*   **DOM / BOM / Fetch API:** Covered previously.
-*   **Geolocation API:** Gets user's physical location (requires permission).
-*   **Canvas API:** Draw 2D/3D graphics via JS.
-*   **Web Workers:** Run JS scripts in background threads (prevents UI blocking).
-
-
-## 39. JavaScript in Backend
-
-JavaScript isn't just for browsers anymore. 
-**Node.js** is a runtime environment that allows you to run JS on a server. It uses the V8 engine and has built-in modules for handling file systems, networks, and HTTP requests. **npm** (Node Package Manager) is used to install third-party libraries.
-
-
-## 40. JavaScript Best Practices
-
-*   Use `const` for variables that don't change, `let` for variables that do. Avoid `var`.
-*   Use strict equality (`===`) instead of loose equality (`==`).
-*   Keep functions small and focused on a single task.
-*   Avoid global variables to prevent scope pollution.
-*   Handle errors properly using `try/catch` or `.catch()` on promises.
-*   Use descriptive variable and function names.
-
-
-## 41. Common Beginner Mistakes
-
-*   **Confusing `==` and `===`:** Always use `===`.
-*   **Accidentally mutating arrays:** E.g., using `sort()` modifies the original array. Use `[...arr].sort()` if you need a copy.
-*   **Losing `this` context:** When passing object methods as callbacks, `this` is lost. Use `.bind(this)` or arrow functions.
-*   **Not understanding async behavior:** Trying to return a value from a `fetch` directly instead of using `.then` or `await`.
-*   **Accessing DOM before it loads:** Put `<script defer>` in `<head>` or put `<script>` at the end of the `<body>`.
-
-
-## 42. Practical JavaScript Projects
-
-### 1. Simple Counter App
-```html
-<button id="dec">-</button>
-<span id="count">0</span>
-<button id="inc">+</button>
-
-<script>
-    let count = 0;
-    const countDisplay = document.getElementById('count');
-    document.getElementById('inc').addEventListener('click', () => {
-        count++;
-        countDisplay.innerText = count;
-    });
-    document.getElementById('dec').addEventListener('click', () => {
-        count--;
-        countDisplay.innerText = count;
-    });
-</script>
+// Set: collection of UNIQUE values
+const set = new Set([1, 2, 2, 3]);  // {1, 2, 3}
+set.add(4);
+set.has(2);   // true
 ```
-*Concept:* DOM selection, event listeners, state manipulation.
 
+### Currying
+```js
+// Transform multi-arg function into sequence of single-arg functions
+const add = a => b => a + b;
+add(2)(3);  // 5
+```
 
-## 43. JavaScript Cheat Sheet
+### Debouncing vs Throttling
+| | Debounce | Throttle |
+|-|----------|----------|
+| **When to use** | Wait until user stops typing | Limit scroll/resize events |
+| **Behavior** | Executes **after** delay of no calls | Executes at most **once per interval** |
 
-| Category | Important Examples / Methods |
-| :--- | :--- |
-| **Variables** | `let`, `const` |
-| **Data Types**| String, Number, Boolean, Object, Array, Null, Undefined |
+### Shallow vs Deep Copy
+```js
+// Shallow copy (nested objects still shared)
+const copy = { ...original };
+const copy = Object.assign({}, original);
+
+// Deep copy (completely independent)
+const deepCopy = structuredClone(original);  // Modern
+const deepCopy = JSON.parse(JSON.stringify(original));  // Old way
+```
+
+### Regular Expressions
+```js
+const pattern = /hello/i;           // Case-insensitive match
+pattern.test("Hello World");        // true
+"Hello World".match(/hello/i);      // ["Hello"]
+"a1b2".replace(/[0-9]/g, "X");     // "aXbX"
+```
+
+---
+
+## 25. Best Practices & Common Mistakes
+
+### ✅ Best Practices
+- Use **`const`** by default; `let` when value changes; **never `var`**
+- Use **strict equality** (`===`) instead of loose (`==`)
+- Keep functions **small and focused** on one task
+- **Avoid global variables** to prevent scope pollution
+- Handle errors with **`try/catch`** or `.catch()` on Promises
+- Use **descriptive names**: `getUserById()` not `getData()`
+- Use `defer` on script tags, or place `<script>` at the end of `<body>`
+
+### ❌ Common Mistakes
+
+| Mistake | Fix |
+|---------|-----|
+| Using `==` instead of `===` | Always use `===` |
+| Mutating arrays with `sort()` | Use `[...arr].sort()` to keep original |
+| Losing `this` in callbacks | Use arrow functions or `.bind(this)` |
+| Not handling async errors | Always use `try/catch` with `await` |
+| Accessing DOM before it loads | Use `defer` or put script at end of body |
+| `null` vs `undefined` confusion | `null` = intentional empty; `undefined` = not assigned |
+
+---
+
+## 26. JavaScript Cheat Sheet
+
+### Variables & Types
+```js
+const name = "Tushar";    let count = 0;
+typeof "hello" // "string"    typeof 42 // "number"
+```
+
+### Arrays
+```js
+.push()  .pop()  .shift()  .unshift()  .splice()
+.map()  .filter()  .reduce()  .find()  .includes()
+```
+
+### Objects
+```js
+Object.keys(obj)   Object.values(obj)   Object.entries(obj)
+const { name, age } = user;    // Destructuring
+const copy = { ...obj };       // Spread
+```
+
+### DOM
+```js
+document.querySelector(".class")
+element.textContent = "text"
+element.classList.toggle("active")
+element.addEventListener("click", fn)
+document.createElement("div")
+parent.appendChild(child)
+```
+
+### Async
+```js
+async function fetchData() {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+}
+```
+
+### Quick Reference
+
+| Category | Key Items |
+|----------|-----------|
+| **Variables** | `const`, `let` |
+| **Data Types** | String, Number, Boolean, Object, Array, Null, Undefined |
 | **Arrays** | `.push()`, `.pop()`, `.map()`, `.filter()`, `.reduce()` |
 | **Objects** | `Object.keys()`, `Object.values()`, destructuring |
 | **DOM** | `querySelector()`, `addEventListener()`, `createElement()` |
-| **Async** | `fetch()`, `Promises`, `async / await` |
-| **Storage** | `localStorage.setItem(key, val)`, `localStorage.getItem(key)` |
-
-
+| **Async** | `fetch()`, Promises, `async/await` |
+| **Storage** | `localStorage.setItem(k, v)`, `.getItem(k)` |
+| **Classes** | `class`, `extends`, `super`, `constructor` |
+| **Modules** | `export`, `import`, `export default` |

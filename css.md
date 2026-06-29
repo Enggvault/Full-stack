@@ -2,7 +2,6 @@
 
 > **CSS** (Cascading Style Sheets) is a stylesheet language that describes the **presentation, formatting, and layout** of HTML documents.
 
----
 
 ## Table of Contents
 1. [Introduction](#1-introduction-to-css)
@@ -27,7 +26,6 @@
 20. [Architecture & Performance](#20-architecture--performance)
 21. [CSS Cheat Sheet](#21-css-cheat-sheet)
 
----
 
 ## 1. Introduction to CSS
 
@@ -57,7 +55,6 @@ JavaScript  →  Behavior  (the muscles)
 - **Reusability** — one CSS file styles multiple HTML pages
 - **Responsiveness** — adapts pages to different devices
 
----
 
 ## 2. Ways to Add CSS
 
@@ -78,7 +75,6 @@ JavaScript  →  Behavior  (the muscles)
 
 > **Best practice:** Always use **External CSS** for real projects.
 
----
 
 ## 3. CSS Syntax
 
@@ -102,7 +98,6 @@ h1 {
 | **Property** | The style attribute you want to change (`color`) |
 | **Value** | The specific setting for the property (`red`) |
 
----
 
 ## 4. CSS Selectors
 
@@ -158,7 +153,6 @@ h1 {
 ::marker         /* Styles the list item marker (bullet/number) */
 ```
 
----
 
 ## 5. CSS Specificity and Cascade
 
@@ -185,7 +179,6 @@ The algorithm determining which CSS rule applies when **multiple rules target th
 - **Source Order** — If two rules have equal specificity, the **last one** declared wins.
 - **Inheritance** — Properties like `color` and `font-family` are **inherited** by children. Layout properties (`margin`, `border`) are NOT inherited.
 
----
 
 ## 6. CSS Units
 
@@ -207,7 +200,6 @@ The algorithm determining which CSS rule applies when **multiple rules target th
 
 > **Rule of Thumb:** Use `rem` for font sizes, `%` or `fr` for layouts, `px` for fine details.
 
----
 
 ## 7. CSS Colors
 
@@ -230,7 +222,6 @@ The algorithm determining which CSS rule applies when **multiple rules target th
 | **HSL** | `hsl(0, 100%, 50%)` | Great for theme creation |
 | **HSLA** | `hsla(0,100%,50%,0.5)` | HSL + alpha |
 
----
 
 ## 8. Text & Font Properties
 
@@ -265,7 +256,6 @@ body {
 
 > **Google Fonts:** Link in HTML, use `font-family: 'FontName', sans-serif;`
 
----
 
 ## 9. CSS Box Model
 
@@ -336,7 +326,6 @@ margin: 0 auto;
 }
 ```
 
----
 
 ## 10. Display Property
 
@@ -382,7 +371,6 @@ Controls how elements are **positioned** in the document.
 }
 ```
 
----
 
 ## 12. CSS Flexbox
 
@@ -442,7 +430,6 @@ Cross Axis →  Perpendicular to main axis
 }
 ```
 
----
 
 ## 13. CSS Grid
 
@@ -532,7 +519,6 @@ Desktop:  > 1024px
 img { max-width: 100%; height: auto; }
 ```
 
----
 
 ## 15. Transforms & Transitions
 
@@ -591,7 +577,6 @@ img { max-width: 100%; height: auto; }
 }
 ```
 
----
 
 ## 17. CSS Variables (Custom Properties)
 
@@ -639,7 +624,6 @@ img { max-width: 100%; height: auto; }
 | `repeat()` | `repeat(3, 1fr)` | Repeat grid tracks |
 | `minmax()` | `minmax(200px, 1fr)` | Grid track size constraints |
 
----
 
 ## 19. Filters & Effects
 
@@ -684,7 +668,6 @@ img { max-width: 100%; height: auto; }
 }
 ```
 
----
 
 ## 20. Architecture & Performance
 
