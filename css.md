@@ -158,7 +158,6 @@ Target specific *parts* of an element.
 * `::placeholder`: Styles the placeholder text of an input.
 * `::marker`: Styles the list item marker (bullet/number).
 
----
 
 ## 6. CSS Specificity and Cascade
 
@@ -203,7 +202,6 @@ Some properties (like `color` and `font-family`) are inherited by child elements
 }
 ```
 
----
 
 ## 7. CSS Units
 
@@ -234,7 +232,6 @@ Size relative to another length property. Essential for responsive design.
 | `%` | Layout widths relative to containers. |
 | `vh` / `vw` | Full-screen sections (Hero banners). |
 
----
 
 ## 8. CSS Colors
 
@@ -259,7 +256,6 @@ CSS provides multiple ways to define colors.
 }
 ```
 
----
 
 ## 9. CSS Text Properties
 
@@ -313,7 +309,6 @@ body {
 }
 ```
 
----
 
 ## 11. CSS Box Model
 
@@ -356,7 +351,6 @@ Using `box-sizing: border-box;` forces padding and border to be included *within
 }
 ```
 
----
 
 ## 12. Width, Height, Min, Max
 
@@ -368,7 +362,6 @@ Using `box-sizing: border-box;` forces padding and border to be included *within
 * `max-content`: Expands to the width of the longest unbroken string.
 * `min-content`: Shrinks to the width of the longest word.
 
----
 
 ## 13. Border Properties
 
@@ -381,7 +374,6 @@ Using `box-sizing: border-box;` forces padding and border to be included *within
 * `outline`: Similar to border, but draws *outside* the element dimensions and doesn't affect layout space.
 * `outline-offset`: Space between border and outline.
 
----
 
 ## 14. Margin and Padding
 
@@ -395,7 +387,6 @@ Using `box-sizing: border-box;` forces padding and border to be included *within
 * **Auto margin:** `margin: 0 auto;` horizontally centers block-level elements.
 * **Margin Collapse:** Vertical margins of adjacent block elements sometimes overlap (collapse) into a single margin equal to the largest of the two sizes.
 
----
 
 ## 15. Background Properties
 
@@ -457,7 +448,6 @@ Changes how elements are positioned in the document.
 }
 ```
 
----
 
 ## 18. Float and Clear
 
@@ -468,7 +458,6 @@ Changes how elements are positioned in the document.
 * **Clearfix:** A CSS hack applied to a parent container to force it to wrap around its floating children.
 * **Why it's old for layout:** Floating was never meant for page structures, leading to collapsing parent bugs. Modern layouts should use **Flexbox** or **Grid**.
 
----
 
 ## 19. Overflow
 
@@ -482,7 +471,6 @@ Controls what happens when content is too big for its container.
 * `auto`: Shows scrollbars *only* if necessary.
 * `clip`: Clips content precisely at the border-box (no scrolling allowed).
 
----
 
 ## 20. CSS Flexbox
 
@@ -529,7 +517,6 @@ A 1-dimensional layout model for arranging items in rows OR columns.
 }
 ```
 
----
 
 ## 21. CSS Grid
 
@@ -568,7 +555,6 @@ A 2-dimensional layout model for arranging items in both rows AND columns simult
 }
 ```
 
----
 
 ## 22. CSS Responsive Design
 
@@ -594,7 +580,6 @@ Designing web pages that look good on all devices.
 }
 ```
 
----
 
 ## 23. CSS Transforms
 
@@ -609,7 +594,6 @@ Modifies the coordinate space of the CSS visual formatting model.
 * `perspective`: Gives a 3D depth effect.
 * **2D vs 3D:** Transforms can operate on X/Y axes (2D) or X/Y/Z axes (3D).
 
----
 
 ## 24. CSS Transitions
 
@@ -633,7 +617,6 @@ Allows changes in property values to occur smoothly over a specified duration.
 }
 ```
 
----
 
 ## 25. CSS Animations
 
@@ -662,7 +645,6 @@ For complex, multi-step animations (more powerful than transitions).
 }
 ```
 
----
 
 ## 26. CSS Variables (Custom Properties)
 
@@ -687,7 +669,6 @@ CSS Variables allow storing specific values for reuse throughout a document.
 }
 ```
 
----
 
 ## 27. CSS Functions
 
@@ -705,7 +686,6 @@ CSS offers built-in functions to calculate values dynamically.
 * `url('path')`: Links an external resource.
 * `attr(attribute)`: Retrieves the value of an attribute of the selected element.
 
----
 
 ## 28. CSS Filters and Effects
 
@@ -724,7 +704,6 @@ Modifies visual rendering of images and backgrounds.
 * `box-shadow`: Adds shadow to boxes.
 * `text-shadow`: Adds shadow to text.
 
----
 
 ## 29. CSS Object Fit and Object Position
 
@@ -737,7 +716,6 @@ Useful for `<img>` and `<video>` tags to maintain aspect ratios without distorti
 * `object-fit: scale-down`: Smaller of `none` or `contain`.
 * `object-position`: Controls X/Y alignment of the image within its box (e.g., `center top`).
 
----
 
 ## 30. CSS Lists
 
@@ -748,7 +726,6 @@ Styling `<ul>` and `<ol>`.
 * `list-style-image`: Uses an image as a custom bullet.
 * `list-style`: Shorthand for type, position, image.
 
----
 
 ## 31. CSS Tables
 
@@ -760,7 +737,6 @@ Styling HTML `<table>`.
 * `empty-cells`: `show` or `hide` empty cells.
 * `table-layout: fixed;`: Forces table to respect set widths, rendering faster.
 
----
 
 ## 32. CSS Forms Styling
 
@@ -773,7 +749,6 @@ Forms require specific targeting.
 * `:valid` / `:invalid`: Style inputs based on HTML5 validation.
 * `input[type="checkbox"]` / `radio`: Often hidden and replaced with custom styled labels using `::before`/`::after`.
 
----
 
 ## 33. CSS Pseudo-class Practical Usage
 
@@ -784,7 +759,6 @@ Forms require specific targeting.
 * **Disabled button:** `button:disabled { opacity: 0.5; cursor: not-allowed; }`
 * **Active nav link:** `.nav-link.active { font-weight: bold; border-bottom: 2px solid; }`
 
----
 
 ## 34. CSS Layout Techniques
 
@@ -798,7 +772,6 @@ Evolution of layouts:
 * **Sticky header:** `position: sticky; top: 0;` keeps headers visible.
 * **Card layout:** Usually Grid or Flexbox container with styled inner elements.
 
----
 
 ## 35. CSS Architecture
 
@@ -814,7 +787,6 @@ Keeping CSS maintainable in large projects.
 * **Tailwind CSS:** A popular utility-first CSS framework.
 * **SCSS/Sass:** CSS preprocessors that add logic, nesting, and mixins.
 
----
 
 ## 36. CSS Performance
 
@@ -827,7 +799,6 @@ Keeping CSS maintainable in large projects.
 * **Use responsive images:** Prevents loading massive images on mobile.
 * **Reduce layout shift:** Pre-define `width` and `height` or `aspect-ratio` on images.
 
----
 
 ## 37. CSS Accessibility
 
@@ -846,7 +817,6 @@ Keeping CSS maintainable in large projects.
 }
 ```
 
----
 
 ## 38. Modern CSS Features
 
@@ -863,7 +833,6 @@ Keeping CSS maintainable in large projects.
 * **`:is()` and `:where()`:** Groups selectors cleanly.
 * **`:has()`:** The parent selector (styles a parent based on its children).
 
----
 
 ## 39. Common Beginner Mistakes
 
@@ -879,7 +848,6 @@ Keeping CSS maintainable in large projects.
 * **Using `!important` too much:** Ruins the cascade.
 * **Not handling mobile screens:** Always check on smaller viewports.
 
----
 
 ## 40. CSS Best Practices
 
