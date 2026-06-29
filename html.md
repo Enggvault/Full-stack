@@ -231,7 +231,6 @@ Elements that start on a new line and take up the full width available.
 Tags no longer recommended for use in HTML5 (use CSS instead).
 - `<font>`, `<center>`, `<strike>`, `<marquee>`, `<b>` (use strong/css), `<i>` (use em/css).
 
----
 
 ## 5. HTML Elements
 
@@ -310,7 +309,6 @@ These attributes can be used on *any* HTML element.
 - `disabled` (used in `<input>`, `<button>`): Disables the element.
 - `action`, `method` (used in `<form>`): Specifies where and how to send form data.
 
----
 
 ## 7. HTML Forms
 
@@ -359,7 +357,6 @@ Forms are used to collect user input. The user input is most often sent to a ser
 </form>
 ```
 
----
 
 ## 8. Input Types
 
@@ -405,7 +402,6 @@ HTML5 introduced built-in client-side form validation without needing JavaScript
 - `min` / `max`: Specifies the minimum/maximum numerical or date value.
 - `step`: Specifies the legal number intervals (e.g., `step="2"` allows 0, 2, 4...).
 
----
 
 ## 9. HTML5 Features
 
@@ -427,7 +423,6 @@ HTML5 revolutionized web development by introducing powerful native APIs and sem
   - `<picture>` element allows art direction (loading entirely different images based on screen width or format support).
 - **Native Form Validation:** Built-in validation using attributes like `required`, `pattern`, `type="email"`.
 
----
 
 ## 10. Semantic HTML
 
@@ -486,7 +481,6 @@ Semantic HTML refers to using HTML tags that carry meaning about the content the
 </body>
 ```
 
----
 
 ## 11. Tables
 
@@ -537,7 +531,6 @@ HTML tables are used to display tabular data (data arranged in rows and columns)
 </table>
 ```
 
----
 
 ## 12. Lists
 
@@ -638,7 +631,6 @@ Embeds another HTML document inside the current one (e.g., embedding a YouTube v
 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" width="560" height="315" title="YouTube video"></iframe>
 ```
 
----
 
 ## 14. HTML Entities
 
@@ -664,7 +656,6 @@ Entities start with an ampersand (`&`) and end with a semicolon (`;`).
 
 *Note: `&nbsp;` is heavily used to prevent browsers from truncating multiple spaces or breaking lines awkwardly.*
 
----
 
 ## 15. Accessibility (a11y)
 
@@ -681,7 +672,6 @@ Web accessibility ensures that websites are usable by people with disabilities (
   - `aria-hidden="true"`: Hides elements from screen readers.
   - `aria-expanded="true/false"`: Indicates if a collapsible menu is open or closed.
 
----
 
 ## 16. SEO in HTML
 
@@ -701,7 +691,6 @@ Search Engine Optimization (SEO) makes your site more visible on search engines 
   ```
 - **Robots Meta Tag:** Instructs search engine crawlers. `<meta name="robots" content="index, follow">` (default).
 
----
 
 ## 17. Best Practices
 
@@ -715,7 +704,6 @@ Writing clean, maintainable HTML is a sign of a professional developer.
 - **Validate Your Code:** Run your HTML through the W3C Markup Validation Service to catch errors.
 - **Keep Structure Separate from Presentation:** Never use inline styles (`style="..."`) unless absolutely necessary. Keep CSS in external stylesheets.
 
----
 
 ## 18. Deprecated HTML Tags
 
@@ -880,7 +868,6 @@ These tags are obsolete in HTML5 and should **never** be used in modern web deve
 </main>
 ```
 
----
 
 ## 21. HTML Cheat Sheet
 
@@ -910,5 +897,4 @@ These tags are obsolete in HTML5 and should **never** be used in modern web deve
 - `&`: `&amp;`
 - `©`: `&copy;`
 
----
-*End of Guide. Happy Coding!*
+
