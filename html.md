@@ -1,4 +1,4 @@
-# Comprehensive HTML Reference Guide: Basic to Advanced
+# Comprehensive HTML Reference Guide
 
 HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser. 
 
@@ -67,6 +67,7 @@ Tags are the building blocks of HTML. They usually come in pairs (start tag and 
 - `<sub>`: Subscript (e.g., H₂O).
 - `<sup>`: Superscript (e.g., E = mc²).
 - `<small>`: Smaller text (often used for copyright).
+- `<mark>`: Highlights text to mark it for reference or relevance (typically renders with a yellow background). Example: `<p>Do not forget to buy <mark>milk</mark> today.</p>`
 
 ### Heading Tags
 - `<h1>` to `<h6>`: Represent section headings. `<h1>` is the most important (main title), `<h6>` is the least.
@@ -384,7 +385,7 @@ Semantic HTML refers to using HTML tags that carry meaning about the content the
 - `<figcaption>`: The caption for a `<figure>`.
 - `<details>` & `<summary>`: Creates an accordion-like expandable widget natively.
 - `<time>`: Represents a specific period in time (useful for computers to parse dates).
-- `<mark>`: Represents text that has been highlighted for reference or relevance.
+- `<mark>`: Represents text that has been highlighted for reference or relevance (e.g., highlighting search terms in a list of results).
 
 ### Example Layout
 ```html
