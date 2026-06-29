@@ -749,5 +749,4 @@ JavaScript isn't just for browsers anymore.
 | **Async** | `fetch()`, `Promises`, `async / await` |
 | **Storage** | `localStorage.setItem(key, val)`, `localStorage.getItem(key)` |
 
----
-*End of JavaScript Complete Notes.*
+
