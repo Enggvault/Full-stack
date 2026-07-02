@@ -107,7 +107,6 @@ Contributions are always welcome! You can help improve this repository by:
 ## 🔮 Future Roadmap
 
 Upcoming topics we plan to add:
-* Git and GitHub Collaboration Basics
 * Node.js & Express Server Setup
 * MongoDB Database integration
 * React.js Component Fundamentals
