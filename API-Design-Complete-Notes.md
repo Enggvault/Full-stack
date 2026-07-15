@@ -60,8 +60,6 @@ APIs have evolved significantly over the years to meet the demands of changing s
 | **WebSockets** | Persistent, bidirectional communication channel. | Binary/Text | Real-time, low latency. | Stateful, harder to scale. |
 | **SSE (Server-Sent Events)** | Unidirectional event stream from server to client. | Text | Simple real-time updates. | Server-to-client only. |
 
----
-
 ## 3. HTTP Fundamentals
 
 Understanding HTTP is critical for API design, as REST APIs are built entirely on top of it.
