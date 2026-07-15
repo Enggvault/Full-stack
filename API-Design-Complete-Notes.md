@@ -169,7 +169,6 @@ The server failed to fulfill an apparently valid request.
 * **503 Service Unavailable**: Server is overloaded or down for maintenance.
 * **504 Gateway Timeout**: Upstream server failed to send a request in the time allowed.
 
----
 
 ## 6. REST API Principles
 
