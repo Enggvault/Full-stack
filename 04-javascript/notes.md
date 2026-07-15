@@ -2,7 +2,6 @@
 
 > **Module 04** · Prerequisites: [CSS ←](../03-css/notes.md) · Next: [HTTP, JSON & Fetch →](../05-http-json-fetch/notes.md)
 
----
 
 ## Table of Contents
 
@@ -29,7 +28,6 @@
 21. [Modules](#21-modules)
 22. [Async JavaScript — Introduction](#22-async-javascript--introduction)
 
----
 
 ## 1. Introduction
 
@@ -43,7 +41,6 @@ JavaScript  →  Behavior (what it does)
 
 Browsers execute JavaScript using a **JavaScript engine**: Chrome and Edge use **V8**, Firefox uses **SpiderMonkey**, Safari uses **JavaScriptCore**. Node.js also runs on V8, enabling JavaScript outside the browser.
 
----
 
 ## 2. ECMAScript Versions
 
@@ -57,7 +54,6 @@ JavaScript is standardized as **ECMAScript (ES)**. New versions are released yea
 | ES2018–2022 | 2018–22 | Optional chaining (`?.`), nullish coalescing (`??`), `Promise.allSettled()` |
 | ES2023+ | 2023+ | `Array.findLast()`, `Array.toSorted()`, ongoing improvements |
 
----
 
 ## 3. Adding JavaScript to a Page
 
@@ -81,7 +77,6 @@ JavaScript is standardized as **ECMAScript (ES)**. New versions are released yea
 
 > Always use `defer` on scripts in `<head>`. Place scripts at the end of `<body>` only when `defer` is not available.
 
----
 
 ## 4. Variables
 
@@ -101,7 +96,6 @@ let requestCount = 0;                       // Use let when value will change
 // Never use var in modern JavaScript
 ```
 
----
 
 ## 5. Data Types
 
@@ -145,7 +139,6 @@ typeof []           // 'object'
 Array.isArray([])   // true — correct way to check for an array
 ```
 
----
 
 ## 6. Operators
 
@@ -176,7 +169,6 @@ const first = arr?.[0];
 const result = obj?.method?.();
 ```
 
----
 
 ## 7. Strings
 
@@ -209,7 +201,6 @@ const html = `
 | `.split(sep)` | Split into array |
 | `.padStart(len, char)` / `.padEnd(len, char)` | Pad to length |
 
----
 
 ## 8. Numbers & Math
 
@@ -238,7 +229,6 @@ Math.sqrt(16)      // 4
 Math.pow(2, 10)    // 1024
 ```
 
----
 
 ## 9. Conditionals & Loops
 
@@ -272,7 +262,6 @@ for (const item of items) { console.log(item); }
 for (const key in config) { console.log(key, config[key]); }
 ```
 
----
 
 ## 10. Functions
 
@@ -325,7 +314,6 @@ const triple = makeMultiplier(3);
 triple(5); // 15
 ```
 
----
 
 ## 11. Scope & Closures
 
@@ -361,7 +349,6 @@ counter.value();     // 2
 
 Closures are the foundation of module patterns, memoization, and event handlers that retain state.
 
----
 
 ## 12. Hoisting
 
@@ -385,7 +372,6 @@ greet(); // 'Hello' — function declaration is fully hoisted
 function greet() { return 'Hello'; }
 ```
 
----
 
 ## 13. Arrays
 
@@ -445,7 +431,6 @@ const sum = [1, 2, 3].reduce((acc, n) => acc + n, 0); // 6
 [1, 2, 3].every(n => n > 0);   // true
 ```
 
----
 
 ## 14. Objects
 
@@ -481,7 +466,6 @@ Object.freeze(obj)                // Prevents all modifications
 obj.hasOwnProperty('key')         // Check for own property
 ```
 
----
 
 ## 15. ES6+ Features
 
@@ -529,7 +513,6 @@ const count = response.count ?? 0;   // 0 only if count is null/undefined
 // Unlike ||, it does NOT treat 0 or '' as falsy
 ```
 
----
 
 ## 16. DOM Manipulation
 
@@ -578,7 +561,6 @@ parent.insertAdjacentHTML('beforeend', html);  // Insert parsed HTML — efficie
 card.remove();                                 // Remove element from DOM
 ```
 
----
 
 ## 17. Events
 
@@ -617,7 +599,6 @@ document.getElementById('task-list').addEventListener('click', (event) => {
 });
 ```
 
----
 
 ## 18. Browser Storage APIs
 
@@ -656,7 +637,6 @@ sessionStorage.setItem('draft', draftContent);
 
 > **Note:** Cookies are an HTTP state management mechanism. They are sent automatically with every request via the `Cookie` header. For HTTP headers and request metadata, see [Module 05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md#1-http-in-depth).
 
----
 
 ## 19. The Browser Object Model (BOM)
 
@@ -704,7 +684,6 @@ const intervalId = setInterval(() => {
 clearInterval(intervalId); // Stop the interval
 ```
 
----
 
 ## 20. Classes & OOP
 
@@ -754,7 +733,6 @@ dog.fetch('ball'); // 'Rex fetches the ball!'
 | Event handler | The element the listener is attached to |
 | Constructor | The newly created instance |
 
----
 
 ## 21. Modules
 
@@ -776,7 +754,6 @@ const module = await import('./heavy-module.js');
 
 > Scripts using ES modules must have `type="module"` on the `<script>` tag, or be loaded via a bundler (Vite, webpack).
 
----
 
 ## 22. Async JavaScript — Introduction
 
@@ -822,6 +799,5 @@ async function loadUserPosts(id) {
 
 > The Fetch API, JSON, Promises in depth, error handling patterns, and CRUD via Fetch are fully covered in [05 — HTTP, JSON & Fetch →](../05-http-json-fetch/notes.md)
 
----
 
 > **Next:** [05 — HTTP, JSON & Fetch →](../05-http-json-fetch/notes.md)
