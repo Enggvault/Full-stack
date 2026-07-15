@@ -123,7 +123,7 @@ Upcoming topics we plan to add:
 </p>
 
 <p align="center">
-  <strong>Developed and Maintained by <a href="https://tushardevx.tech">Tushar Kanti Dey</a></strong>
+  <strong>Developed and Maintained by <a href="https://tushardevx01.tech">Tushar Kanti Dey</a></strong>
 </p>
 
 <p align="center">
