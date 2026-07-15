@@ -86,7 +86,6 @@ Understanding HTTP is critical for API design, as REST APIs are built entirely o
 2. **Headers**: Metadata about the response (e.g., `Content-Type: application/json`).
 3. **Body**: The requested data or error details.
 
----
 
 ## 4. HTTP Methods
 
