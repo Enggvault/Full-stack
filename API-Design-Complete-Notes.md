@@ -262,9 +262,9 @@ Use JSON for standard data transfer. Ensure the structure is flat where possible
 ```json
 // POST /api/v1/users
 {
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john@example.com",
+  "firstName": "Tushar" ,
+  "lastName": "Dey",
+  "email": "thetushardev0@gmail.com",
   "preferences": {
     "newsletter": true,
     "theme": "dark"
