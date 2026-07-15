@@ -1,28 +1,68 @@
-# 🌐 Day 1 & 2: Full Stack Fundamentals
+# Module 01 — Full Stack Fundamentals
 
-Welcome to the **Full Stack Fundamentals** module! Here, you will learn the core concepts of how modern web applications are designed, structured, and how they communicate.
+## Purpose
 
-## 📁 What's Inside?
-
-In this folder, you will find two comprehensive study guides:
-1. **[full-stack.md](./full-stack.md)** — Understand the big picture: web architecture, request-response cycles, server and database basics, cache, cookies, rate limiting, and session authentication.
-2. **[tech-stacks.md](./tech-stacks.md)** — Dive into tools: what is a tech stack, comparisons of popular stacks (like MERN and MARN), and browser interfaces (DOM and BOM).
+This module establishes the conceptual foundation for every module that follows. It explains how the internet, browsers, and web applications work at an architectural level — before any code is written.
 
 ---
 
-## 🎯 Learning Objectives
+## Topics Covered
 
-By the end of this module, you should be able to:
-* Explain the **request-response cycle** using real-world analogies (like a restaurant).
-* Identify the roles of the **Client (Browser), Frontend, API, Backend, and Database**.
-* Distinguish between **SQL** (relational) and **NoSQL** (non-relational) databases.
-* Understand popular tech stacks like **MERN** (MongoDB, Express, React, Node.js).
-* Differentiate between the **DOM** (Document Object Model) and the **BOM** (Browser Object Model).
+- What is full stack development
+- How the internet works (DNS, TCP/IP overview)
+- The Browser
+- Client-Server Architecture
+- HTTP — the protocol of the web
+- The Request-Response Cycle
+- Full Stack Architecture (all layers)
+- State management: Cookies, Sessions, localStorage
+- Caching and Rate Limiting
+- Tech Stacks (MERN, PERN, T3, Django)
+- Databases — SQL vs NoSQL
+- Developer tooling and workflow
+- Deployment overview
 
 ---
 
-## 💡 Recommended Study Guide
+## Learning Objectives
 
-1. **Start with `full-stack.md`**: Focus on the diagrams and real-world restaurant analogy. Trace how a login request travels from the browser to the database and back.
-2. **Move to `tech-stacks.md`**: Understand the stack options. Focus on the **MERN** request flow and study the comparison tables (like **DOM vs BOM** and **SQL vs NoSQL**).
-3. **Check Your Understanding**: Run through the *Quick Revision* section at the end of each file to test yourself!
+By the end of this module, the reader should be able to:
+
+- Describe, without code, what happens when a user types a URL and presses Enter.
+- Identify the distinct responsibility of each layer in a full stack application.
+- Explain the difference between cookies and sessions, and when each is used.
+- Compare at least three tech stacks and justify a technology choice for a given project.
+- Distinguish between SQL and NoSQL databases and identify appropriate use cases.
+
+---
+
+## Prerequisites
+
+None. This is the entry point for the roadmap.
+
+---
+
+## Estimated Reading Time
+
+45 – 60 minutes
+
+---
+
+## Difficulty
+
+⬛ Beginner
+
+---
+
+## Next Module
+
+→ [02 — HTML](../02-html/README.md)
+
+---
+
+## Files in This Module
+
+| File | Description |
+|:-----|:------------|
+| `README.md` | This file — module overview and objectives |
+| `notes.md` | Full reference notes for this module |

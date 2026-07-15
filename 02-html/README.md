@@ -1,30 +1,65 @@
-# 🧱 Day 3: HTML (HyperText Markup Language)
+# Module 02 — HTML
 
-Welcome to the **HTML** module! This is the starting point of your coding journey. HTML defines the skeleton and structure of every single web page on the internet.
+## Purpose
 
-## 📁 What's Inside?
-
-* **[html.md](./html.md)** — A comprehensive study guide covering:
-  * HTML5 Boilerplate and structural tags.
-  * Form elements, input validation, and semantic markup.
-  * Native audio/video media and responsiveness.
-  * Key accessibility (a11y) and SEO best practices.
+This module covers the complete HTML language. It is the canonical reference for all HTML concepts in this repository. No other module re-explains HTML structure, tags, semantics, forms, or accessibility.
 
 ---
 
-## 🎯 Learning Objectives
+## Topics Covered
 
-By the end of this module, you should be able to:
-* Set up a correct **HTML5 boilerplate** from scratch.
-* Differentiate between **Block** and **Inline** elements.
-* Build accessible **HTML Forms** with built-in input validations.
-* Write structured **Semantic HTML** (e.g., `<header>`, `<main>`, `<article>`, `<footer>`) to improve SEO and screen reader compatibility.
-* Apply accessibility (a11y) rules like using the `alt` attribute for images.
+- Document structure and the HTML5 boilerplate
+- All standard HTML tags — structure, text, media, interactive
+- Inline vs block elements
+- HTML attributes — global and element-specific
+- Semantic HTML and why it matters
+- Forms, input types, and native validation
+- HTML5 browser APIs (storage, canvas, geolocation — brief)
+- Accessibility (a11y) — ARIA, keyboard navigation
+- SEO best practices in HTML
+- Deprecated tags and common mistakes
 
 ---
 
-## 💡 Recommended Study Guide
+## Learning Objectives
 
-1. Read through **`html.md`** section by section. Pay close attention to the difference between inline and block elements.
-2. Review the **Common Beginner Mistakes** section to avoid writing "Div Soup" and spacing with `<br>` tags.
-3. Try out the **HTML Cheat Sheet** at the end for quick reference while building pages.
+By the end of this module, the reader should be able to:
+
+- Write a complete, valid HTML5 document from memory.
+- Distinguish between semantic and presentational elements, and justify using semantic markup.
+- Build a functional HTML form with appropriate input types, labels, and native validation.
+- Apply ARIA attributes to custom UI components for screen reader compatibility.
+- Identify common HTML mistakes (div soup, skipped heading levels, missing alt text) and correct them.
+
+---
+
+## Prerequisites
+
+- [01 — Full Stack Fundamentals](../01-full-stack-fundamentals/README.md) — specifically the browser and client-server sections.
+
+---
+
+## Estimated Reading Time
+
+40 – 50 minutes
+
+---
+
+## Difficulty
+
+⬛ Beginner
+
+---
+
+## Next Module
+
+→ [03 — CSS](../03-css/README.md)
+
+---
+
+## Files in This Module
+
+| File | Description |
+|:-----|:------------|
+| `README.md` | This file — module overview and objectives |
+| `notes.md` | Complete HTML reference |

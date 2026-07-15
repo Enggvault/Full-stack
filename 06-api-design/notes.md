@@ -1,6 +1,12 @@
-# The Complete Guide to API Design: From Basic to Advanced
+# API Design
 
-Welcome to the definitive guide on Application Programming Interface (API) design. This handbook is designed for developers of all levels to understand, design, and build robust, scalable, and secure APIs for modern web applications.
+> **Module 06** · Prerequisites: [HTTP, JSON & Fetch ←](../05-http-json-fetch/notes.md)
+
+> This module covers **designing and building** server-side APIs. For **consuming** APIs from the browser using the Fetch API, see [Module 05](../05-http-json-fetch/notes.md). For HTTP fundamentals (status codes, methods, headers), the conceptual definitions are in [Module 05](../05-http-json-fetch/notes.md#1-http-in-depth); this module applies them in an API design context.
+
+---
+
+This is the definitive reference for API design — covering REST architecture, resource design, authentication, error handling, versioning, caching, GraphQL, gRPC, and production security practices.
 
 
 ## 1. Introduction to APIs

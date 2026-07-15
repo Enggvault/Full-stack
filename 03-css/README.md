@@ -1,31 +1,73 @@
-# 🎨 Day 3: CSS (Cascading Style Sheets)
+# Module 03 — CSS
 
-Welcome to the **CSS** module! If HTML is the skeleton, CSS is the skin, hair, and clothing. This is where you bring your structures to life with beautiful colors, layouts, and animations.
+## Purpose
 
-## 📁 What's Inside?
-
-* **[css.md](./css.md)** — A complete study guide covering:
-  * Selectors, combinators, specificity, and the cascade algorithm.
-  * Absolute vs. relative units (`px`, `rem`, `em`, `%`, `vh`, `vw`).
-  * The **Box Model** (Content, Padding, Border, Margin).
-  * Layout systems: **Flexbox** (1D) and **CSS Grid** (2D).
-  * Responsive web design, variables, filters, transitions, and animations.
+This module is the canonical reference for CSS in this repository. It assumes the reader has completed Module 02 (HTML) and understands document structure and semantic elements. No HTML basics are re-explained here.
 
 ---
 
-## 🎯 Learning Objectives
+## Topics Covered
 
-By the end of this module, you should be able to:
-* Calculate CSS **specificity scores** to resolve styling conflicts.
-* Master the **Box Model** and set `box-sizing: border-box` globally.
-* Arrange components in 1D layouts using **Flexbox** and page layouts using **CSS Grid**.
-* Build responsive interfaces using **Media Queries** and fluid values.
-* Create micro-interactions using **Transforms, Transitions, and CSS Variables**.
+- How CSS applies to HTML — cascade, inheritance, and specificity
+- Selectors — basic, combinators, pseudo-classes, pseudo-elements
+- CSS units — absolute and relative
+- Colors
+- Typography and font properties
+- The Box Model — `box-sizing`, margin, padding, border
+- Display property
+- Position property
+- Flexbox — 1-dimensional layout
+- CSS Grid — 2-dimensional layout
+- Responsive design — mobile-first, media queries, breakpoints
+- Transforms and transitions
+- Animations with `@keyframes`
+- CSS custom properties (variables)
+- CSS functions
+- Filters, effects, and `object-fit`
+- CSS architecture and performance
 
 ---
 
-## 💡 Recommended Study Guide
+## Learning Objectives
 
-1. Read **`css.md`**. Pay special attention to the **CSS Box Model** diagram — it is the single most important concept in styling.
-2. Practice building layouts. Make sure you understand the difference: use **Flexbox** for alignments and **Grid** for complex grids.
-3. Keep the **CSS Cheat Sheet** at the bottom open in a side window for quick reference on syntax!
+By the end of this module, the reader should be able to:
+
+- Predict which CSS rule wins when multiple rules target the same element.
+- Use `rem`, `em`, `%`, `vw`, and `vh` units correctly for responsive layouts.
+- Center elements horizontally and vertically using Flexbox and Grid.
+- Build a responsive page layout using CSS Grid with `auto-fit` and `minmax`.
+- Write CSS animations using `@keyframes` and `transition`.
+- Design a simple dark-mode toggle using CSS custom properties.
+
+---
+
+## Prerequisites
+
+- [02 — HTML](../02-html/README.md)
+
+---
+
+## Estimated Reading Time
+
+50 – 65 minutes
+
+---
+
+## Difficulty
+
+⬛ Beginner
+
+---
+
+## Next Module
+
+→ [04 — JavaScript](../04-javascript/README.md)
+
+---
+
+## Files in This Module
+
+| File | Description |
+|:-----|:------------|
+| `README.md` | This file |
+| `notes.md` | Complete CSS reference |

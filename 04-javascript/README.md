@@ -1,32 +1,78 @@
-# 🧠 Day 3: JavaScript (JS)
+# Module 04 — JavaScript
 
-Welcome to the **JavaScript** module! JavaScript is the brain of the browser. It adds logic, calculations, data management, and dynamic user interactivity to your web applications.
+## Purpose
 
-## 📁 What's Inside?
+This module is the canonical reference for the JavaScript language and browser APIs. It assumes the reader has completed Modules 02 and 03 and understands HTML document structure and CSS styling.
 
-* **[javascript.md](./javascript.md)** — A comprehensive reference guide covering:
-  * Variables (`let`, `const`), Data Types, and dynamic conversion.
-  * Arrays (and Higher-Order methods like `map`, `filter`, `reduce`).
-  * Objects, Destructuring, and Scope/Closures.
-  * DOM Manipulation and Event Handlers.
-  * Asynchronous JS (Promises, `async/await`), Fetch API, and Local Storage.
+HTTP, JSON, the Fetch API, Promises, and async/await are introduced here at a surface level to complete the language picture, but are fully documented in [05 — HTTP, JSON & Fetch](../05-http-json-fetch/README.md).
 
 ---
 
-## 🎯 Learning Objectives
+## Topics Covered
 
-By the end of this module, you should be able to:
-* Declare variables correctly and understand block vs. function scope.
-* Write reusable logic using **Functions** (Declarations, Expressions, and Arrow functions).
-* Manipulate arrays using higher-order functions like **map, filter, and reduce**.
-* Target HTML elements dynamically via the **DOM** and listen for user **Events** (clicks, keypresses).
-* Understand how to fetch data from APIs using `async/await` and handle errors.
-* Store persistent user settings locally using **localStorage**.
+- JavaScript engines and execution model
+- ECMAScript versions
+- Variables — `const`, `let`, `var`
+- Data types — primitives and reference types
+- Operators
+- Strings and template literals
+- Numbers and the Math object
+- Conditionals and loops
+- Functions — declarations, expressions, arrow functions, closures
+- Scope and hoisting
+- Arrays — methods, higher-order functions
+- Objects — methods, destructuring
+- ES6+ features — spread, rest, optional chaining, nullish coalescing
+- DOM Manipulation
+- Events — listeners, bubbling, delegation
+- Browser APIs — localStorage, sessionStorage, BOM
+- Classes and OOP
+- Modules — `import`/`export`
+- Async JavaScript (introduction — see Module 05 for full coverage)
 
 ---
 
-## 💡 Recommended Study Guide
+## Learning Objectives
 
-1. Read **`javascript.md`** step-by-step. Focus heavily on **Arrays** and **Objects** as they form the foundation of data handling.
-2. Carefully study the **async/await** and **Fetch API** sections; these are crucial for connecting your frontend to backend servers.
-3. Review the **Best Practices & Mistakes** section to avoid common pitfalls like using `var` or `==`.
+By the end of this module, the reader should be able to:
+
+- Explain the difference between `const`, `let`, and `var` and know when to use each.
+- Write functions using all three syntaxes and explain where `this` points in each context.
+- Use higher-order array methods (`map`, `filter`, `reduce`) fluently.
+- Select DOM elements, modify their content and classes, and attach event listeners.
+- Store and retrieve data from `localStorage`.
+- Define a class with a constructor, instance methods, and inheritance.
+
+---
+
+## Prerequisites
+
+- [02 — HTML](../02-html/README.md)
+- [03 — CSS](../03-css/README.md)
+
+---
+
+## Estimated Reading Time
+
+70 – 90 minutes
+
+---
+
+## Difficulty
+
+🟦 Intermediate
+
+---
+
+## Next Module
+
+→ [05 — HTTP, JSON & Fetch](../05-http-json-fetch/README.md)
+
+---
+
+## Files in This Module
+
+| File | Description |
+|:-----|:------------|
+| `README.md` | This file |
+| `notes.md` | Complete JavaScript reference |
