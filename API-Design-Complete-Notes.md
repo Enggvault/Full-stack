@@ -321,7 +321,6 @@ When returning collections, include metadata to help the client navigate.
 * **Null Values**: Return `null` for missing scalar values rather than an empty string `""` or omitting the key entirely, unless omitting the key reduces payload size significantly and is documented.
 * **Arrays**: Always return arrays for collections, even if empty `[]`. Do not return `null` when a list is requested but empty.
 
----
 
 ## 12. CRUD API Design
 
