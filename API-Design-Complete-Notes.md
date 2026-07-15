@@ -312,7 +312,6 @@ When returning collections, include metadata to help the client navigate.
 }
 ```
 
----
 
 ## 11. JSON Best Practices
 
