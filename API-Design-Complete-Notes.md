@@ -45,7 +45,6 @@ The architecture involves a **Client** (e.g., a web browser, a mobile app, or an
 #### API-first Development
 API-first development means designing the API contract (like an OpenAPI spec) before writing any code. This allows frontend and backend teams to work in parallel.
 
----
 
 ## 2. API History and Evolution
 
