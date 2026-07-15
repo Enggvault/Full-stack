@@ -2,8 +2,6 @@
 
 > **Module 03** · Prerequisites: [HTML ←](../02-html/notes.md) · Next: [JavaScript →](../04-javascript/notes.md)
 
----
-
 ## Table of Contents
 
 1. [What is CSS?](#1-what-is-css)
@@ -26,7 +24,6 @@
 18. [Filters & Effects](#18-filters--effects)
 19. [Architecture & Performance](#19-architecture--performance)
 
----
 
 ## 1. What is CSS?
 
@@ -40,7 +37,6 @@ JavaScript  →  Behavior  (what it does)
 
 CSS is a **living standard**, continuously updated via separate specification modules (Selectors Level 4, CSS Grid Level 2, etc.).
 
----
 
 ## 2. Ways to Add CSS
 
@@ -58,8 +54,6 @@ CSS is a **living standard**, continuously updated via separate specification mo
 ```
 
 **Priority (highest to lowest):** Inline > Internal > External > Browser default
-
----
 
 ## 3. Selectors
 
@@ -118,8 +112,6 @@ CSS is a **living standard**, continuously updated via separate specification mo
 ::placeholder    /* Placeholder text in inputs */
 ```
 
----
-
 ## 4. Specificity & the Cascade
 
 When multiple rules target the same element and property, the **cascade** determines which rule wins using three factors in order of priority:
@@ -147,7 +139,6 @@ h1       { color: green; } /* 0-0-0-1 */
 
 Properties like `color`, `font-family`, and `line-height` are **inherited** by children. Layout properties (`margin`, `border`, `padding`) are not. Use `inherit` to force inheritance, `initial` to reset to the browser default.
 
----
 
 ## 5. Units
 
@@ -172,7 +163,6 @@ Properties like `color`, `font-family`, and `line-height` are **inherited** by c
 
 > **Rule of thumb:** `rem` for font sizes, `%` or `fr` for layout, `px` for fine details like borders.
 
----
 
 ## 6. Colors
 
@@ -223,8 +213,6 @@ p {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 ```
-
----
 
 ## 8. The Box Model
 
@@ -278,7 +266,6 @@ margin: 0 auto;              /* center a block element horizontally */
 }
 ```
 
----
 
 ## 9. Display Property
 
@@ -292,7 +279,6 @@ margin: 0 auto;              /* center a block element horizontally */
 | `grid` | Enables CSS Grid on the element's children |
 | `inline-flex` | Flex container that itself behaves as an inline element |
 
----
 
 ## 10. Position Property
 
@@ -323,7 +309,6 @@ margin: 0 auto;              /* center a block element horizontally */
 }
 ```
 
----
 
 ## 11. Flexbox
 
@@ -386,7 +371,6 @@ Cross Axis →  Perpendicular to the main axis
 }
 ```
 
----
 
 ## 12. CSS Grid
 
@@ -446,7 +430,6 @@ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 | **Best for** | Components, alignment, navbars | Page layouts, galleries, dashboards |
 | **Control** | Content-driven | Layout-driven |
 
----
 
 ## 13. Responsive Design
 
@@ -485,7 +468,6 @@ Responsive design ensures a layout works well across screen sizes — from a 320
 | Tablet | 768px – 1199px |
 | Desktop | ≥ 1200px |
 
----
 
 ## 14. Transforms & Transitions
 
@@ -522,7 +504,6 @@ Responsive design ensures a layout works well across screen sizes — from a 320
 
 > Animate `transform` and `opacity` — these are GPU-composited and do not cause layout reflow. Avoid animating `width`, `height`, `margin`, or `top`.
 
----
 
 ## 15. Animations
 
@@ -559,7 +540,6 @@ Responsive design ensures a layout works well across screen sizes — from a 320
 | `animation-fill-mode` | `none`, `forwards`, `backwards`, `both` |
 | `animation-play-state` | `running`, `paused` |
 
----
 
 ## 16. CSS Custom Properties
 
@@ -593,7 +573,6 @@ CSS custom properties (variables) store values for reuse and enable theming.
 }
 ```
 
----
 
 ## 17. CSS Functions
 
@@ -608,7 +587,6 @@ CSS custom properties (variables) store values for reuse and enable theming.
 | `repeat()` | `repeat(3, 1fr)` | Grid track repetition |
 | `minmax()` | `minmax(200px, 1fr)` | Grid track size constraint |
 
----
 
 ## 18. Filters & Effects
 
@@ -651,7 +629,6 @@ img {
 }
 ```
 
----
 
 ## 19. Architecture & Performance
 
@@ -694,6 +671,5 @@ img, video {
 }
 ```
 
----
 
 > **Next:** [04 — JavaScript →](../04-javascript/notes.md)
