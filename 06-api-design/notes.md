@@ -4,7 +4,6 @@
 
 > This module covers **designing and building** server-side APIs. For **consuming** APIs from the browser using the Fetch API, see [Module 05](../05-http-json-fetch/notes.md). HTTP fundamentals (methods, status codes, headers) are defined in [Module 05 — §1](../05-http-json-fetch/notes.md#1-http-in-depth); this module applies them in an API design context.
 
----
 
 ## Table of Contents
 
@@ -37,7 +36,6 @@
 27. [Production Operations](#27-production-operations)
 28. [Best Practices and Common Mistakes](#28-best-practices-and-common-mistakes)
 
----
 
 ## 1. Introduction to APIs
 
@@ -75,7 +73,6 @@ An **API (Application Programming Interface)** is a contract that defines how so
 
 API-first development means authoring the API contract (e.g., an OpenAPI specification) **before** writing implementation code. This enables frontend and backend teams to work in parallel against an agreed interface.
 
----
 
 ## 2. API Paradigms
 
@@ -93,7 +90,6 @@ APIs have evolved through several architectural paradigms.
 
 > **Note:** REST is the dominant paradigm for public-facing APIs. GraphQL and gRPC are covered in [§22](#22-graphql) and [§23](#23-grpc).
 
----
 
 ## 3. REST Architecture
 
@@ -121,7 +117,6 @@ A framework for evaluating how closely an API follows REST principles:
 
 Most production APIs target **Level 2**. Level 3 (HATEOAS) is rare in practice.
 
----
 
 ## 4. Resource Naming
 
@@ -150,7 +145,6 @@ GET    /UserList               ← mixed casing
 GET    /company_reports        ← underscores (hyphens preferred in URLs)
 ```
 
----
 
 ## 5. URL Design
 
@@ -192,7 +186,6 @@ Query parameters modify the collection without changing the resource identity.
 | **Pagination** | `/users?page=2&limit=20` |
 | **Searching** | `/users?q=john` |
 
----
 
 ## 6. Request Design
 
@@ -223,9 +216,9 @@ Use JSON for standard data payloads. Keep structures flat where possible; group 
 
 ```json
 {
-  "firstName": "Jane",
-  "lastName": "Doe",
-  "email": "jane.doe@example.com",
+  "firstName": "Tushar",
+  "lastName": "Dey",
+  "email": "thetushardev0@gmail.com",
   "preferences": {
     "newsletter": true,
     "theme": "dark"
@@ -233,7 +226,6 @@ Use JSON for standard data payloads. Keep structures flat where possible; group 
 }
 ```
 
----
 
 ## 7. Response Design
 
@@ -288,7 +280,6 @@ When returning collections, include metadata that enables the client to navigate
 }
 ```
 
----
 
 ## 8. JSON Conventions
 
@@ -303,7 +294,6 @@ When returning collections, include metadata that enables the client to navigate
 
 > **Prerequisite** — JSON syntax and `JSON.parse()` / `JSON.stringify()` are covered in [Module 05 — §4](../05-http-json-fetch/notes.md#4-json).
 
----
 
 ## 9. CRUD API Blueprint
 
@@ -320,7 +310,6 @@ A standard mapping of CRUD operations to HTTP methods for a `products` resource:
 
 > **Prerequisite** — HTTP method semantics (safety, idempotency) are defined in [Module 05 — §1](../05-http-json-fetch/notes.md#1-http-in-depth).
 
----
 
 ## 10. Validation
 
@@ -360,7 +349,6 @@ Return `400 Bad Request` or `422 Unprocessable Entity` with field-level details:
 }
 ```
 
----
 
 ## 11. Error Handling
 
@@ -396,7 +384,6 @@ Internal error codes (e.g., `AUTH_001`, `DB_TIMEOUT`) help support teams debug i
 
 > **Prerequisite** — For the full HTTP status code reference, see [Module 05 — §3](../05-http-json-fetch/notes.md#3-http-status-codes).
 
----
 
 ## 12. Authentication
 
@@ -435,7 +422,6 @@ header.payload.signature
 | **Client Credentials** | Machine-to-machine (no user context) |
 | **Device Code** | Smart TVs, CLI tools with limited input |
 
----
 
 ## 13. Authorization
 
@@ -459,7 +445,6 @@ Example: An `editor` can only update a `post` if `post.authorId === user.id`.
 
 ABAC is more granular than RBAC and is suited to systems with complex ownership or tenancy rules.
 
----
 
 ## 14. Versioning
 
@@ -475,7 +460,6 @@ APIs evolve. Versioning ensures that breaking changes do not disrupt existing co
 
 > **Best Practice:** Use URI versioning (`/v1/`) for major breaking changes. Non-breaking, additive changes (new fields, new optional parameters) do not require a version bump.
 
----
 
 ## 15. Pagination
 
@@ -507,7 +491,6 @@ GET /users?cursor=eyJpZCI6MTU2fQ==&limit=20
 
 > **Best Practice:** Use cursor pagination for high-volume, real-time datasets. Use offset pagination when page-jumping is a product requirement.
 
----
 
 ## 16. Filtering and Sorting
 
@@ -530,7 +513,6 @@ GET /users?sort=-createdAt,name
 
 This sorts by `createdAt` descending (newest first), then by `name` ascending.
 
----
 
 ## 17. Rate Limiting
 
@@ -555,7 +537,6 @@ X-RateLimit-Reset: 1752590400
 
 When the limit is exceeded, return `429 Too Many Requests` with a `Retry-After` header indicating when the client may retry.
 
----
 
 ## 18. Caching
 
@@ -576,7 +557,6 @@ Caching reduces database load and improves response times.
 | **Application** | Redis, Memcached | Cache database query results |
 | **Edge** | CDN (Cloudflare, CloudFront) | Cache static or semi-static API responses close to the user |
 
----
 
 ## 19. File Uploads
 
@@ -589,7 +569,6 @@ File handling differs from standard JSON payloads.
 | **Storage** | Store files in object storage (AWS S3, Google Cloud Storage); save the URL in the database |
 | **Endpoint** | Use a resource-specific path: `/users/{id}/avatar` |
 
----
 
 ## 20. API Security
 
@@ -605,7 +584,6 @@ Security must be implemented at every layer.
 | **Least Privilege** | The database user behind the API should have only the permissions it needs — no `DROP TABLE`. |
 | **No Secrets in URLs** | Passwords, tokens, and PII must never appear in query parameters. URLs are logged in server access logs and browser history. |
 
----
 
 ## 21. API Documentation and OpenAPI
 
@@ -631,7 +609,6 @@ The industry standard for defining REST APIs. Written in JSON or YAML, an OpenAP
 | **Redoc** | Generates clean, static documentation from OpenAPI |
 | **Swagger Codegen / OpenAPI Generator** | Generates client SDKs in Python, Java, TypeScript, Go, etc., from the spec |
 
----
 
 ## 22. GraphQL
 
@@ -693,7 +670,6 @@ mutation {
 
 > **Best Practice:** REST is the default choice for most APIs. GraphQL is suited to frontends with complex, varied data requirements (dashboards, mobile apps with limited bandwidth).
 
----
 
 ## 23. gRPC
 
@@ -710,7 +686,6 @@ gRPC is a high-performance RPC framework developed by Google. It uses **Protocol
 
 **Use case:** Internal microservice-to-microservice communication where high throughput and low latency are critical. gRPC is not natively supported by web browsers.
 
----
 
 ## 24. WebSockets
 
@@ -725,7 +700,6 @@ WebSockets provide a **persistent, full-duplex** communication channel over a si
 
 > **Note:** WebSockets are appropriate when the server must push data to the client unprompted. For simple server-to-client event streams, consider **Server-Sent Events (SSE)**, which use standard HTTP and are simpler to implement.
 
----
 
 ## 25. API Testing
 
@@ -751,7 +725,6 @@ WebSockets provide a **persistent, full-duplex** communication channel over a si
 | Rate limit exceeded | `429 Too Many Requests` |
 | Server failure | `500 Internal Server Error` (generic — no stack trace) |
 
----
 
 ## 26. Implementation Patterns
 
@@ -819,7 +792,6 @@ src/
 | **DTO (Data Transfer Object)** | Defines the exact shape of data passed between layers (e.g., strips password hashes before sending to the client) |
 | **Dependency Injection** | Injects database clients and services into controllers — simplifies unit testing with mocks |
 
----
 
 ## 27. Production Operations
 
@@ -851,7 +823,6 @@ src/
 | **APM** | Trace requests end-to-end across services to find bottlenecks (Datadog, New Relic) |
 | **Health checks** | Expose `GET /health` that verifies database connectivity and returns the service version |
 
----
 
 ## 28. Best Practices and Common Mistakes
 
@@ -899,6 +870,5 @@ PATCH  /api/v1/users/me/settings
 DELETE /api/v1/posts/{id}
 ```
 
----
 
 > This is the final module in the current roadmap. Return to the [root README](../README.md) for the full module index and planned future modules.
