@@ -2,8 +2,6 @@
 
 > **Module 02** · Prerequisites: [Full Stack Fundamentals ←](../01-full-stack-fundamentals/notes.md) · Next: [CSS →](../03-css/notes.md)
 
----
-
 ## Table of Contents
 
 1. [What is HTML?](#1-what-is-html)
@@ -25,7 +23,6 @@
 17. [Deprecated Tags](#17-deprecated-tags)
 18. [Common Mistakes](#18-common-mistakes)
 
----
 
 ## 1. What is HTML?
 
@@ -49,7 +46,6 @@ JavaScript  →  Behavior (what it does)
 
 > HTML5 is the current **living standard**, maintained by WHATWG. It is what this module covers.
 
----
 
 ## 2. The HTML5 Boilerplate
 
@@ -83,7 +79,6 @@ Every valid HTML5 document follows this minimum structure:
 | `<link rel="stylesheet">` | Links an external CSS file |
 | `<body>` | All visible page content belongs here |
 
----
 
 ## 3. HTML Tags
 
@@ -186,7 +181,6 @@ Inline elements:   Flow within text. Occupy only their content width.
   <span>, <a>, <strong>, <em>, <img>, <input>, <button>, <code>
 ```
 
----
 
 ## 4. HTML Elements
 
@@ -226,7 +220,6 @@ An **element** is the complete unit: opening tag + content + closing tag.
 | **Sibling** | Elements sharing the same direct parent |
 | **Descendant** | Any element nested inside another at any depth |
 
----
 
 ## 5. HTML Attributes
 
@@ -261,7 +254,6 @@ Attributes provide additional configuration for elements. They are placed in the
 | `readonly` | `<input>` | Value is shown but not editable; value is submitted |
 | `name` | `<input>`, `<select>` | Key used when form data is submitted |
 
----
 
 ## 6. Semantic HTML
 
@@ -326,7 +318,6 @@ Attributes provide additional configuration for elements. They are placed in the
 
 > **Rule:** If a `<div>` has a class name like `header`, `nav`, `main`, `footer`, or `article` — replace it with the corresponding semantic element.
 
----
 
 ## 7. HTML Forms
 
@@ -379,7 +370,6 @@ Forms collect user input and submit it to a server.
 
 > Never use `GET` for sensitive data (passwords, personal information) — query parameters are visible in server logs and browser history.
 
----
 
 ## 8. Input Types & Native Validation
 
@@ -424,7 +414,6 @@ Forms collect user input and submit it to a server.
        title="At least 8 characters, including one digit">
 ```
 
----
 
 ## 9. Tables
 
@@ -506,7 +495,6 @@ Tables represent **tabular data** — information that has a natural row-and-col
 </dl>
 ```
 
----
 
 ## 11. Media
 
@@ -548,7 +536,6 @@ Tables represent **tabular data** — information that has a natural row-and-col
 </iframe>
 ```
 
----
 
 ## 12. HTML Entities
 
@@ -565,7 +552,6 @@ Reserved HTML characters must be escaped using entities to render correctly.
 | `©` | `&copy;` | `&#169;` | Copyright |
 | `®` | `&reg;` | `&#174;` | Registered trademark |
 
----
 
 ## 13. HTML5 Browser APIs
 
@@ -581,7 +567,6 @@ HTML5 introduced browser APIs that JavaScript can access. These are introduced h
 | **History API** | Programmatically manipulate the browser history (enables SPAs without page reloads) |
 | **Drag and Drop** | Native browser drag-and-drop event system |
 
----
 
 ## 14. Accessibility
 
@@ -620,7 +605,6 @@ ARIA (Accessible Rich Internet Applications) supplements HTML semantics for cust
 </button>
 ```
 
----
 
 ## 15. SEO in HTML
 
@@ -645,7 +629,6 @@ Search Engine Optimization improves a page's visibility in search results.
 <meta property="og:type" content="article">
 ```
 
----
 
 ## 16. Best Practices
 
@@ -659,7 +642,6 @@ Search Engine Optimization improves a page's visibility in search results.
 | **Separate structure from style** | Use external CSS. Never use `<font>`, `<center>`, or `style` attributes. |
 | **Validate** | Use the W3C Markup Validation Service |
 
----
 
 ## 17. Deprecated Tags
 
@@ -675,7 +657,6 @@ These tags are obsolete in HTML5. Replace them with CSS.
 | `<acronym>` | `<abbr title="...">` |
 | `<big>` / `<small>` (presentational) | CSS `font-size` |
 
----
 
 ## 18. Common Mistakes
 
@@ -752,6 +733,5 @@ These tags are obsolete in HTML5. Replace them with CSS.
 <input type="email" id="email" name="email">
 ```
 
----
 
 > **Next:** [03 — CSS →](../03-css/notes.md)
