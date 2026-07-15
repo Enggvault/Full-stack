@@ -188,7 +188,6 @@ A model to measure how closely an API adheres to REST principles:
 * **Level 2**: HTTP Verbs - Using GET, POST, PUT, DELETE properly alongside HTTP status codes.
 * **Level 3**: Hypermedia Controls (HATEOAS) - Responses contain links to discover other related actions/resources dynamically.
 
----
 
 ## 7. Resource Naming
 
