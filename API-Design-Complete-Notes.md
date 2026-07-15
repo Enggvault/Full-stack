@@ -336,7 +336,6 @@ Here is a blueprint for standard CRUD operations.
 | **Partial Update**| PATCH| `/products/{id}`| `{ "price": 1199 }` | 200 OK |
 | **Delete** | DELETE | `/products/{id}`| - | 204 No Content |
 
----
 
 ## 13. Validation
 
@@ -371,7 +370,6 @@ When validation fails, return a `400 Bad Request` or `422 Unprocessable Entity` 
 }
 ```
 
----
 
 ## 14. Error Handling
 
