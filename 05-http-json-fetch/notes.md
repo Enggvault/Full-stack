@@ -2,7 +2,6 @@
 
 > **Module 05** · Prerequisites: [JavaScript ←](../04-javascript/notes.md) · Next: [API Design →](../06-api-design/notes.md)
 
----
 
 ## Table of Contents
 
@@ -20,7 +19,6 @@
 12. [Practical CRUD Pattern](#12-practical-crud-pattern)
 13. [Reading the Network Tab](#13-reading-the-network-tab)
 
----
 
 ## 1. HTTP in Depth
 
@@ -77,7 +75,6 @@ Location: /api/v1/orders/ord_9981
 **Safe** — does not modify server state.
 **Idempotent** — multiple identical requests produce the same result as one.
 
----
 
 ## 2. HTTP Headers
 
@@ -105,7 +102,6 @@ Headers are key-value metadata attached to both requests and responses.
 | `X-RateLimit-Remaining` | `42` | Requests remaining in the rate limit window |
 | `Access-Control-Allow-Origin` | `https://app.example.com` | CORS policy |
 
----
 
 ## 3. HTTP Status Codes
 
@@ -127,7 +123,6 @@ Headers are key-value metadata attached to both requests and responses.
 | **502** | Bad Gateway | Upstream server returned an invalid response |
 | **503** | Service Unavailable | Server is temporarily unable to handle requests |
 
----
 
 ## 4. JSON
 
@@ -142,14 +137,14 @@ Headers are key-value metadata attached to both requests and responses.
 ```json
 {
   "userId": 42,
-  "name": "Alice",
-  "email": "alice@example.com",
+  "name": "Tushar",
+  "email": "thetushardev0@gmail.com",
   "isVerified": true,
   "score": 9.5,
   "tags": ["admin", "beta-tester"],
   "address": {
-    "city": "Berlin",
-    "country": "DE"
+    "city": "Kolkata",
+    "country": "India"
   },
   "deletedAt": null
 }
@@ -173,7 +168,6 @@ const obj = JSON.parse('{"name":"Alice"}');
 
 > `response.json()` in the Fetch API does `JSON.parse` automatically — it is not needed manually when using Fetch.
 
----
 
 ## 5. The Fetch API
 
@@ -215,7 +209,6 @@ response.url;         // Final URL (after redirects)
 | `response.blob()` | Promise → Blob | Server returns binary data (images, files) |
 | `response.arrayBuffer()` | Promise → ArrayBuffer | Low-level binary processing |
 
----
 
 ## 6. Sending Data with Fetch
 
@@ -276,7 +269,6 @@ if (response.status !== 204) {
 // No body to parse — 204 No Content
 ```
 
----
 
 ## 7. Fetch with Authentication
 
@@ -307,7 +299,6 @@ const response = await fetch('/api/v1/profile', {
 | `same-origin` | Send cookies only to the same origin (default) |
 | `include` | Always send cookies, including cross-origin |
 
----
 
 ## 8. Error Handling
 
@@ -352,7 +343,6 @@ try {
 }
 ```
 
----
 
 ## 9. Promises in Depth
 
@@ -406,7 +396,6 @@ fetch('/api/users')
 | `Promise.race(promises)` | Resolves/rejects with the **first** settled Promise |
 | `Promise.any(promises)` | Resolves with the **first fulfilled** Promise; rejects if all reject |
 
----
 
 ## 10. async/await in Depth
 
@@ -469,7 +458,6 @@ async function load() {
 }
 ```
 
----
 
 ## 11. Parallel Async Operations
 
@@ -504,7 +492,6 @@ results.forEach(result => {
 });
 ```
 
----
 
 ## 12. Practical CRUD Pattern
 
@@ -550,7 +537,6 @@ const newUser = await usersApi.create({ name: 'Bob', email: 'bob@example.com' })
 await usersApi.remove(42);
 ```
 
----
 
 ## 13. Reading the Network Tab
 
@@ -585,6 +571,5 @@ The browser **DevTools → Network tab** is the primary tool for debugging HTTP 
 - Is the response body what the server actually returned?
 - Is the status code what you expect?
 
----
 
 > **Next:** [06 — API Design →](../06-api-design/notes.md)
