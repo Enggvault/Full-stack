@@ -796,5 +796,3 @@ Once deployed, you must know what your API is doing.
 * **PUT**: Replace (Not Safe, Idempotent)
 * **PATCH**: Update Part (Not Safe, Usually Idempotent)
 * **DELETE**: Remove (Not Safe, Idempotent)
-
-
