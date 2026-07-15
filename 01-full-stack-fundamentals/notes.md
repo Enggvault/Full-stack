@@ -2,7 +2,6 @@
 
 > **Module 01** · Prerequisites: None · Next: [HTML →](../02-html/notes.md)
 
----
 
 ## Table of Contents
 
@@ -19,7 +18,6 @@
 11. [Deployment Overview](#11-deployment-overview)
 12. [Full Stack Roadmap](#12-full-stack-roadmap)
 
----
 
 ## 1. What is Full Stack Development?
 
@@ -31,7 +29,6 @@ A **full stack developer** designs and builds every layer of a web application �
 | **Backend** | Server-side logic, data processing, APIs | Node.js, Django, Spring Boot |
 | **Database** | Persistent data storage and retrieval | PostgreSQL, MongoDB, Redis |
 
----
 
 ## 2. How the Internet Works
 
@@ -62,7 +59,6 @@ All web communication travels over **TCP/IP** (Transmission Control Protocol / I
 
 > **Warning:** All production web applications must use HTTPS. HTTP transmits data in plaintext.
 
----
 
 ## 3. The Browser
 
@@ -83,7 +79,6 @@ A web browser is a runtime environment that:
 
 > **Note:** The DOM and JavaScript interaction are covered in depth in [Module 04 — JavaScript](../04-javascript/notes.md#16-dom-manipulation).
 
----
 
 ## 4. Client-Server Architecture
 
@@ -106,7 +101,6 @@ Every web application is built on a **client-server** model. The client initiate
 - Communication between them follows a defined contract — the API.
 - The server is stateless by default: each request must carry enough information to be processed independently.
 
----
 
 ## 5. Web Architecture
 
@@ -161,7 +155,6 @@ A production web application is divided into distinct layers, each with a clearl
 | **Backend** | Validate, process, apply business rules |
 | **Database** | Persist and retrieve data reliably |
 
----
 
 ## 6. HTTP Overview
 
@@ -171,7 +164,6 @@ HTTP is stateless — each request is independent. The server does not retain in
 
 > **Note:** HTTP is covered in full detail in [Module 05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md). This section provides only the conceptual introduction required for understanding web architecture.
 
----
 
 ## 7. Tech Stacks
 
@@ -215,7 +207,6 @@ React.js receives data, updates state, re-renders
 - Large ecosystem of packages via npm.
 - Fast initial development cycle suited to startups and prototypes.
 
----
 
 ## 8. Databases
 
@@ -248,8 +239,8 @@ Stores data as flexible documents, key-value pairs, or graphs. The schema is not
 ```json
 {
   "_id": "648f...",
-  "name": "Alice",
-  "email": "alice@email.com",
+  "name": "Tushar",
+  "email": "thetushardev0@gmail.com",
   "orders": [
     { "product": "Laptop", "qty": 1 }
   ]
@@ -268,7 +259,6 @@ Stores data as flexible documents, key-value pairs, or graphs. The schema is not
 | **Best for** | Financial data, complex relations | Rapid iteration, variable structure |
 | **Scaling** | Vertical (primarily) | Horizontal |
 
----
 
 ## 9. Version Control
 
@@ -308,7 +298,6 @@ git merge feature/x         # Merge a branch into the current branch
 git log --oneline -10       # View last 10 commits
 ```
 
----
 
 ## 10. Developer Tooling & Workflow
 
@@ -322,7 +311,6 @@ git log --oneline -10       # View last 10 commits
 | **Docker** | Containerise the application for consistent environments |
 | **Browser DevTools** | Inspect DOM, debug JS, profile network requests |
 
----
 
 ## 11. Deployment Overview
 
@@ -343,7 +331,6 @@ Local (dev) → Staging (testing) → Production (users)
 
 > **Warning:** Environment variables (secrets, database URLs, API keys) must never be committed to version control. Use `.env` files locally and platform-provided secret management in production.
 
----
 
 ## 12. Full Stack Roadmap
 
