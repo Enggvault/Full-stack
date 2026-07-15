@@ -395,7 +395,6 @@ Using internal codes (e.g., `AUTH_001`, `DB_TIMEOUT`) helps support teams debug 
 3. **Authorization Errors (403)**: Valid token, but insufficient privileges (e.g., User trying to access Admin route).
 4. **Server Errors (500)**: Unhandled exceptions. Never leak stack traces to the client in production!
 
----
 
 ## 15. Authentication
 
@@ -409,7 +408,6 @@ Authentication proves **who** the user is.
 | **JWT (Bearer Token)**| Stateless token containing encrypted/signed user payload. Passed as `Authorization: Bearer <token>`. | Stateless, scalable, great for microservices and mobile. | Cannot be easily invalidated before expiry; risk of XSS if stored in localStorage. |
 | **OAuth 2.0**| Framework for delegated access (e.g., "Log in with Google"). | Extremely secure, industry standard. | Complex to implement from scratch. |
 
----
 
 ## 16. Authorization
 
@@ -423,7 +421,6 @@ Users are assigned roles (e.g., `Admin`, `Editor`, `Viewer`). Permissions are as
 Permissions depend on the attributes of the user, the resource, and the environment.
 * *Example*: An `Editor` can only edit a `Post` if `post.authorId === user.id`.
 
----
 
 ## 17. API Security
 
@@ -437,7 +434,6 @@ Security must be implemented at every layer.
 * **Least Privilege**: Ensure the database user connecting from your API has only necessary permissions.
 * **Avoid Sensitive Data in URLs**: Never pass passwords, tokens, or PII in query parameters, as URLs are logged in server access logs.
 
----
 
 ## 18. Pagination
 
@@ -455,7 +451,6 @@ Uses an identifier (cursor) of the last retrieved item to fetch the next set.
 * **Pros**: Highly performant on large datasets, resilient to data shifts.
 * **Cons**: Cannot easily "jump" to page 10; requires sequential navigation.
 
----
 
 ## 19. Filtering and Sorting
 
@@ -472,7 +467,6 @@ Allow operators for ranges (using standard prefixes):
 Use a `sort` parameter. Prefix with `-` for descending.
 `GET /users?sort=-createdAt,name` (Sort by newest first, then alphabetical by name)
 
----
 
 ## 20. API Versioning
 
@@ -495,7 +489,6 @@ APIs change over time. Versioning ensures that breaking changes don't destroy ex
 
 *Best Practice*: Use URI versioning (`v1`) for major breaking changes. Minor non-breaking changes should be additive and not require a version bump.
 
----
 
 ## 21. Rate Limiting
 
@@ -512,7 +505,6 @@ X-RateLimit-Reset: 1609459200 (Timestamp when the limit resets)
 ```
 If a limit is exceeded, return `429 Too Many Requests` with a `Retry-After` header.
 
----
 
 ## 22. Caching
 
@@ -527,7 +519,6 @@ Caching improves performance drastically by reducing database load.
 * **Redis/Memcached**: Application-level caching for database query results.
 * **CDN (Content Delivery Network)**: Edge caching for static API responses (like configuration JSONs).
 
----
 
 ## 23. File Upload APIs
 
@@ -538,7 +529,6 @@ Handling files differs from handling standard JSON payloads.
 * **Storage**: Do not store files in the database. Store them in object storage (AWS S3, Google Cloud Storage) and save the URL in the database.
 * **Endpoint Design**: `/users/{id}/avatar`
 
----
 
 ## 24. API Documentation
 
@@ -551,7 +541,6 @@ An API is only as good as its documentation.
   * Example requests and responses.
   * Definitions of all status codes and error formats returned by the endpoint.
 
----
 
 ## 25. REST vs GraphQL
 
@@ -564,7 +553,6 @@ An API is only as good as its documentation.
 | **Caching** | Native HTTP caching works perfectly. | Complex, requires specialized tools (Apollo). |
 | **Learning Curve**| Low (Standard HTTP rules). | Steep (requires learning Schema definition, Resolvers). |
 
----
 
 ## 26. GraphQL Basics
 
@@ -603,7 +591,6 @@ mutation {
 }
 ```
 
----
 
 ## 27. gRPC Basics
 
@@ -616,7 +603,6 @@ gRPC uses Protocol Buffers (Protobuf) instead of JSON and HTTP/2 instead of HTTP
 
 *Use Case*: Internal microservice-to-microservice communication where high throughput and low latency are critical.
 
----
 
 ## 28. WebSockets
 
@@ -626,7 +612,6 @@ WebSockets provide a persistent, full-duplex communication channel over a single
 * **Connection**: Initiated via an HTTP handshake, then "upgrades" to the `ws://` or `wss://` protocol.
 * **Event-Driven**: The server can push data to the client at any time without the client requesting it.
 
----
 
 ## 29. API Testing
 
@@ -642,7 +627,6 @@ API testing is essential to ensure reliability.
   3. Security (unauthorized access - 401/403).
   4. Performance (Load testing).
 
----
 
 ## 30. API Documentation Standards
 
@@ -650,7 +634,6 @@ API testing is essential to ensure reliability.
 * **Redoc**: A tool to generate beautiful static documentation from OpenAPI specs.
 * **SDK Generation**: Tools like Swagger Codegen can automatically generate client libraries (SDKs) in Python, Java, JS, etc., based on your OpenAPI spec.
 
----
 
 ## 31. Node.js Express API Example
 
@@ -695,8 +678,6 @@ app.post('/api/v1/users', (req, res) => {
 app.listen(3000, () => console.log('API running on port 3000'));
 ```
 
----
-
 ## 32. API Folder Structure
 
 A scalable folder structure for Node.js (MVC / Service-Controller pattern):
@@ -713,7 +694,6 @@ src/
 └── app.js            # Express app initialization
 ```
 
----
 
 ## 33. Microservices API Design
 
@@ -725,7 +705,6 @@ In a microservices architecture, APIs communicate across networks heavily.
   * Synchronous: HTTP REST or gRPC.
   * Asynchronous: Event-Driven architectures using Message Brokers (Kafka, RabbitMQ) to decouple services.
 
----
 
 ## 34. API Performance
 
@@ -737,7 +716,6 @@ Fast APIs lead to great user experiences.
 4. **Caching**: Implement Redis for frequently accessed, rarely changed data.
 5. **Connection Pooling**: Reuse database connections instead of opening new ones per request.
 
----
 
 ## 35. API Monitoring
 
@@ -748,7 +726,6 @@ Once deployed, you must know what your API is doing.
 * **APM (Application Performance Monitoring)**: Tools like Datadog or New Relic trace requests end-to-end to find bottlenecks.
 * **Health Checks**: Implement a `GET /health` endpoint that ping the database to ensure the service is fully operational.
 
----
 
 ## 36. API Best Practices Summary
 
@@ -763,7 +740,6 @@ Once deployed, you must know what your API is doing.
 9. **Write OpenAPI specs first (API-First)**.
 10. **Validate everything**.
 
----
 
 ## 37. Common API Design Mistakes
 
@@ -776,7 +752,6 @@ Once deployed, you must know what your API is doing.
 * **Mistake**: Returning null instead of empty arrays `[]`.
   * **Alternative**: Consistency is key. Collections should always be arrays.
 
----
 
 ## 38. Real-World API Examples
 
@@ -792,7 +767,6 @@ Once deployed, you must know what your API is doing.
 * `POST /api/v1/posts/{post_id}/comments`
 * `PATCH /api/v1/users/me/settings`
 
----
 
 ## 39. API Design Patterns
 
@@ -801,7 +775,6 @@ Once deployed, you must know what your API is doing.
 * **DTO (Data Transfer Object)**: Defines the exact structure of data passed between layers (e.g., stripping password hashes before sending a user object to the controller).
 * **Dependency Injection**: Injecting database instances or services into controllers, making testing significantly easier.
 
----
 
 ## 40. API Cheat Sheet
 
@@ -824,5 +797,4 @@ Once deployed, you must know what your API is doing.
 * **PATCH**: Update Part (Not Safe, Usually Idempotent)
 * **DELETE**: Remove (Not Safe, Idempotent)
 
----
-*End of Guide*
+
