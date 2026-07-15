@@ -129,7 +129,6 @@ HTTP methods define the action to be performed on a resource.
 ### HEAD
 * **Purpose**: Identical to GET, but returns only the headers without the response body. Useful for checking if a resource exists or its size.
 
----
 
 ## 5. HTTP Status Codes
 
