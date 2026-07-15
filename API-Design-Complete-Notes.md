@@ -272,7 +272,6 @@ Use JSON for standard data transfer. Ensure the structure is flat where possible
 }
 ```
 
----
 
 ## 10. Response Design
 
