@@ -243,7 +243,6 @@ Use query parameters for operations that modify the collection without changing 
 * **Pagination**: `/users?page=2&limit=20`
 * **Searching**: `/users?q=John`
 
----
 
 ## 9. Request Design
 
