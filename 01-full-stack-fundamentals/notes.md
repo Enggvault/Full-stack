@@ -10,17 +10,14 @@
 2. [How the Internet Works](#2-how-the-internet-works)
 3. [The Browser](#3-the-browser)
 4. [Client-Server Architecture](#4-client-server-architecture)
-5. [Full Stack Architecture](#5-full-stack-architecture)
-6. [The Request-Response Cycle](#6-the-request-response-cycle)
-7. [HTTP Overview](#7-http-overview)
-8. [State: Cookies, Sessions & Storage](#8-state-cookies-sessions--storage)
-9. [Caching](#9-caching)
-10. [Rate Limiting](#10-rate-limiting)
-11. [Tech Stacks](#11-tech-stacks)
-12. [Databases](#12-databases)
-13. [Developer Tooling & Workflow](#13-developer-tooling--workflow)
-14. [Deployment Overview](#14-deployment-overview)
-15. [Full Stack Roadmap](#15-full-stack-roadmap)
+5. [Web Architecture](#5-web-architecture)
+6. [HTTP Overview](#6-http-overview)
+7. [Tech Stacks](#7-tech-stacks)
+8. [Databases](#8-databases)
+9. [Version Control](#9-version-control)
+10. [Developer Tooling & Workflow](#10-developer-tooling--workflow)
+11. [Deployment Overview](#11-deployment-overview)
+12. [Full Stack Roadmap](#12-full-stack-roadmap)
 
 ---
 
@@ -28,9 +25,7 @@
 
 A **full stack developer** designs and builds every layer of a web application — the user interface, the server-side logic, and the database. The term "full stack" refers to the complete set of software layers required to deliver a working application to a user.
 
-**The three primary stacks:**
-
-| Stack | Responsibility | Examples |
+| Layer | Responsibility | Examples |
 |:------|:---------------|:---------|
 | **Frontend** | The interface rendered in a user's browser | HTML, CSS, React, Next.js |
 | **Backend** | Server-side logic, data processing, APIs | Node.js, Django, Spring Boot |
@@ -65,7 +60,7 @@ All web communication travels over **TCP/IP** (Transmission Control Protocol / I
 - Authenticates the server via a certificate issued by a trusted Certificate Authority.
 - Establishes an encrypted channel so data cannot be read in transit.
 
-> All production web applications must use HTTPS. HTTP transmits data in plaintext.
+> **Warning:** All production web applications must use HTTPS. HTTP transmits data in plaintext.
 
 ---
 
@@ -86,7 +81,7 @@ A web browser is a runtime environment that:
 | SpiderMonkey | Firefox |
 | JavaScriptCore | Safari |
 
-> The DOM and JavaScript interaction are covered in depth in [04 — JavaScript](../04-javascript/notes.md).
+> **Note:** The DOM and JavaScript interaction are covered in depth in [Module 04 — JavaScript](../04-javascript/notes.md#16-dom-manipulation).
 
 ---
 
@@ -96,10 +91,10 @@ Every web application is built on a **client-server** model. The client initiate
 
 ```
 +------------------+        HTTP Request        +------------------+
-|                  | ─────────────────────────> |                  |
+|                  | ─────────────────────────→ |                  |
 |   Client         |                            |   Server         |
 |   (Browser /     |                            |   (Application + |
-|   Mobile App)    | <───────────────────────── |   Database)      |
+|   Mobile App)    | ←───────────────────────── |   Database)      |
 |                  |        HTTP Response        |                  |
 +------------------+                            +------------------+
 ```
@@ -113,7 +108,7 @@ Every web application is built on a **client-server** model. The client initiate
 
 ---
 
-## 5. Full Stack Architecture
+## 5. Web Architecture
 
 A production web application is divided into distinct layers, each with a clearly bounded responsibility.
 
@@ -159,8 +154,6 @@ A production web application is divided into distinct layers, each with a clearl
 +----------------------------------------------------------+
 ```
 
-**Layer responsibilities at a glance:**
-
 | Layer | Primary Responsibility |
 |:------|:----------------------|
 | **Frontend** | Render UI, capture input, call the API |
@@ -170,195 +163,17 @@ A production web application is divided into distinct layers, each with a clearl
 
 ---
 
-## 6. The Request-Response Cycle
+## 6. HTTP Overview
 
-Every user action that requires data follows this cycle:
+**HTTP (Hypertext Transfer Protocol)** is the application-layer protocol that defines how clients and servers communicate. Every interaction between a browser and a server is an HTTP transaction consisting of a **request** and a **response**.
 
-```
-User clicks "Submit"
-        │
-        ▼
-Frontend captures the event
-        │
-        ▼
-Frontend builds an HTTP request (method + URL + headers + body)
-        │  POST /api/orders  { productId: 42, qty: 1 }
-        ▼
-API Layer receives and routes the request
-        │
-        ▼
-Rate Limiter checks request frequency
-        │  429 Too Many Requests ──→ Client
-        ▼
-Backend handler executes:
-  1. Authenticate the caller (is the token valid?)
-  2. Authorize the action (does this user have permission?)
-  3. Validate the input (is qty a positive integer?)
-  4. Apply business logic (is the product in stock?)
-  5. Query the database (INSERT order record)
-        │
-        ▼
-Database returns a result
-        │
-        ▼
-Backend formats a JSON response { "orderId": 9981 }
-        │  HTTP 201 Created
-        ▼
-Frontend receives the response and updates the UI
-        │
-        ▼
-User sees the confirmation
-```
+HTTP is stateless — each request is independent. The server does not retain information about previous requests unless a persistence mechanism (cookies, tokens) is used.
+
+> **Note:** HTTP is covered in full detail in [Module 05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md). This section provides only the conceptual introduction required for understanding web architecture.
 
 ---
 
-## 7. HTTP Overview
-
-**HTTP (Hypertext Transfer Protocol)** is the application-layer protocol that defines how clients and servers communicate.
-
-> HTTP is covered in full detail in [05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md). This section provides the conceptual orientation required for understanding the architecture.
-
-### HTTP Methods
-
-| Method | Semantic Meaning | Safe | Idempotent |
-|:-------|:-----------------|:----:|:----------:|
-| `GET` | Read a resource | ✓ | ✓ |
-| `POST` | Create a resource | ✗ | ✗ |
-| `PUT` | Replace a resource entirely | ✗ | ✓ |
-| `PATCH` | Partially update a resource | ✗ | Usually |
-| `DELETE` | Remove a resource | ✗ | ✓ |
-
-### HTTP Status Code Families
-
-| Range | Meaning |
-|:------|:--------|
-| `1xx` | Informational |
-| `2xx` | Success |
-| `3xx` | Redirection |
-| `4xx` | Client Error |
-| `5xx` | Server Error |
-
----
-
-## 8. State: Cookies, Sessions & Storage
-
-HTTP is stateless. Each request is independent. Applications use several mechanisms to maintain state across requests.
-
-### Cookies
-
-A **cookie** is a small string the server sends to the browser via the `Set-Cookie` response header. The browser stores it and sends it back automatically with every subsequent request to the same origin.
-
-```
-Server → Set-Cookie: sessionId=a1b2c3; HttpOnly; Secure; SameSite=Strict; Max-Age=86400
-Browser stores the cookie.
-Browser → Cookie: sessionId=a1b2c3  (sent with every future request)
-```
-
-| Cookie Attribute | Effect |
-|:-----------------|:-------|
-| `HttpOnly` | Prevents JavaScript from reading the cookie (mitigates XSS) |
-| `Secure` | Transmits only over HTTPS |
-| `SameSite=Strict` | Prevents the cookie from being sent with cross-site requests (mitigates CSRF) |
-| `Max-Age` | Expiry in seconds; omitting it creates a session cookie (cleared on browser close) |
-
-### Sessions
-
-A **session** is a server-side record of an authenticated user's state. The browser holds only the session ID (in a cookie). All meaningful data — user ID, role, permissions — is stored on the server, typically in Redis.
-
-```json
-Session ID: a1b2c3 (stored in browser cookie)
-
-Session record (stored on server / Redis):
-{
-  "userId": 45,
-  "role": "admin",
-  "createdAt": "2026-07-15T12:00:00Z",
-  "expiresAt": "2026-07-16T12:00:00Z"
-}
-```
-
-| | Cookie | Session |
-|:--|:-------|:--------|
-| **Stored in** | Browser | Server |
-| **Contains** | Session ID only | Full user data |
-| **Size limit** | ~4 KB | No hard limit |
-| **Security** | Lower (client-side) | Higher (server-side) |
-
-### localStorage and sessionStorage
-
-Browser-native key-value stores for client-side persistence. Unlike cookies, these are never automatically sent to the server.
-
-| | localStorage | sessionStorage | Cookie |
-|:--|:-------------|:---------------|:-------|
-| **Cleared** | Never (manual only) | On tab close | On expiry or manually |
-| **Sent to server** | ✗ | ✗ | ✓ |
-| **Size** | ~5 MB | ~5 MB | ~4 KB |
-
-> `localStorage` and `sessionStorage` JavaScript APIs are documented in [04 — JavaScript](../04-javascript/notes.md#browser-storage-apis).
-
----
-
-## 9. Caching
-
-A **cache** is a temporary storage layer that holds copies of responses so that the same data does not need to be recomputed or re-fetched from the database for every request.
-
-```
-Without cache:
-Request → Server → Database → Server → Client
-                  (executed every time, potentially slow)
-
-With cache (hit):
-Request → Server → Cache → Client
-                  (immediate, no database query)
-
-With cache (miss):
-Request → Server → Cache (empty) → Database → Cache (stored) → Client
-                  (slower once, then fast for all subsequent requests)
-```
-
-**Cache types:**
-
-| Type | Location | Common Tools |
-|:-----|:---------|:-------------|
-| **In-memory cache** | Application server | Redis, Memcached |
-| **HTTP cache** | Browser / CDN | `Cache-Control`, `ETag`, `Last-Modified` headers |
-| **CDN (Edge cache)** | Geographically distributed nodes | Cloudflare, AWS CloudFront |
-
-> HTTP caching headers are documented in detail in [06 — API Design](../06-api-design/notes.md#caching).
-
----
-
-## 10. Rate Limiting
-
-**Rate limiting** restricts the number of requests a client (identified by IP address, API key, or user ID) can make within a defined time window.
-
-```
-Incoming Request
-        │
-        ▼
-Rate Limiter: Has this client exceeded N requests per minute?
-        │                           │
-       NO                          YES
-        │                           │
-        ▼                           ▼
-  Forward to handler         HTTP 429 Too Many Requests
-                             Retry-After: 60
-```
-
-**What rate limiting prevents:**
-
-| Threat | Description |
-|:-------|:------------|
-| **DDoS** | Flooding a server with millions of requests to exhaust its resources |
-| **Brute force** | Automated repeated password attempts |
-| **Scraping** | Excessive automated data extraction |
-| **API abuse** | A single client consuming a disproportionate share of server capacity |
-
-> Rate limiting implementation for API servers is covered in [06 — API Design](../06-api-design/notes.md#rate-limiting).
-
----
-
-## 11. Tech Stacks
+## 7. Tech Stacks
 
 A **tech stack** is the combination of technologies used to build an application end-to-end.
 
@@ -402,7 +217,7 @@ React.js receives data, updates state, re-renders
 
 ---
 
-## 12. Databases
+## 8. Databases
 
 ### SQL (Relational Databases)
 
@@ -431,7 +246,6 @@ FROM orders JOIN users ON orders.userId = users.id;
 Stores data as flexible documents, key-value pairs, or graphs. The schema is not enforced by the database — it is the application's responsibility.
 
 ```json
-// MongoDB document
 {
   "_id": "648f...",
   "name": "Alice",
@@ -456,9 +270,47 @@ Stores data as flexible documents, key-value pairs, or graphs. The schema is not
 
 ---
 
-## 13. Developer Tooling & Workflow
+## 9. Version Control
 
-**Core tools every full stack developer uses:**
+**Git** is the industry-standard version control system. It tracks changes to files over time, enables collaboration, and supports rollback to any previous state.
+
+### Core Concepts
+
+| Concept | Description |
+|:--------|:------------|
+| **Repository** | A project directory tracked by Git |
+| **Commit** | A snapshot of the project at a point in time |
+| **Branch** | An independent line of development |
+| **Merge** | Combining changes from one branch into another |
+| **Pull Request** | A review process before merging code |
+| **Remote** | A hosted copy of the repository (GitHub, GitLab) |
+
+### Git Workflow (Feature Branch)
+
+```
+main ─────────────────────────────────────────────────────▶ production
+         │                              │
+         └─ feature/login-page ─────────┘
+              commit → commit → PR → review → merge
+```
+
+### Essential Commands
+
+```bash
+git init                    # Initialise a new repository
+git clone <url>             # Clone a remote repository
+git add .                   # Stage all changes
+git commit -m "message"     # Commit staged changes
+git push origin main        # Push commits to remote
+git pull origin main        # Pull latest changes
+git checkout -b feature/x   # Create and switch to a new branch
+git merge feature/x         # Merge a branch into the current branch
+git log --oneline -10       # View last 10 commits
+```
+
+---
+
+## 10. Developer Tooling & Workflow
 
 | Tool | Purpose |
 |:-----|:--------|
@@ -470,18 +322,9 @@ Stores data as flexible documents, key-value pairs, or graphs. The schema is not
 | **Docker** | Containerise the application for consistent environments |
 | **Browser DevTools** | Inspect DOM, debug JS, profile network requests |
 
-### Git Workflow (Feature Branch)
-
-```
-main ─────────────────────────────────────────────────────▶ production
-         │                              │
-         └─ feature/login-page ─────────┘
-              commit → commit → PR → review → merge
-```
-
 ---
 
-## 14. Deployment Overview
+## 11. Deployment Overview
 
 **Deployment** is the process of making an application accessible to users over the internet.
 
@@ -498,11 +341,11 @@ main ─────────────────────────
 Local (dev) → Staging (testing) → Production (users)
 ```
 
-Environment variables (secrets, database URLs, API keys) must never be committed to version control. Use `.env` files locally and platform-provided secret management in production.
+> **Warning:** Environment variables (secrets, database URLs, API keys) must never be committed to version control. Use `.env` files locally and platform-provided secret management in production.
 
 ---
 
-## 15. Full Stack Roadmap
+## 12. Full Stack Roadmap
 
 The recommended learning sequence for this repository:
 

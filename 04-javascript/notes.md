@@ -654,7 +654,7 @@ sessionStorage.setItem('draft', draftContent);
 | **Sent to server** | ✗ | ✗ | ✓ |
 | **Size** | ~5 MB | ~5 MB | ~4 KB |
 
-> Cookies are explained conceptually in [01 — Full Stack Fundamentals](../01-full-stack-fundamentals/notes.md#state-cookies-sessions--storage).
+> **Note:** Cookies are an HTTP state management mechanism. They are sent automatically with every request via the `Cookie` header. For HTTP headers and request metadata, see [Module 05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md#1-http-in-depth).
 
 ---
 

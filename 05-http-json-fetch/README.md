@@ -4,8 +4,6 @@
 
 This module is the canonical reference for the communication layer between the browser and a server. It bridges the JavaScript language knowledge from Module 04 with the API design principles in Module 06.
 
-The old `05-api-json-fetch-async/` directory has been superseded by this module. All content that duplicated HTML, CSS, or JavaScript fundamentals has been removed. Those topics are documented in their respective modules.
-
 ---
 
 ## Topics Covered

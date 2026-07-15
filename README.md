@@ -6,8 +6,9 @@
 
 [![Modules](https://img.shields.io/badge/Modules-6-4f46e5?style=flat-square)](.)
 [![Format](https://img.shields.io/badge/Format-Markdown-0ea5e9?style=flat-square)](.)
-[![Level](https://img.shields.io/badge/Level-Beginner%20→%20Intermediate-10b981?style=flat-square)](.)
-[![Maintained](https://img.shields.io/badge/Maintained-Yes-f59e0b?style=flat-square)](.)
+[![Level](https://img.shields.io/badge/Level-Beginner%20→%20Advanced-10b981?style=flat-square)](.)
+[![License](https://img.shields.io/badge/License-MIT-f59e0b?style=flat-square)](./LICENSE)
+[![Maintained](https://img.shields.io/badge/Maintained-Yes-22c55e?style=flat-square)](.)
 
 *Maintained by **[Tushar Kanti Dey](https://tushardevx01.tech)** under [EnggVault](https://github.com/Enggvault)*
 
@@ -15,13 +16,31 @@
 
 ---
 
-## Purpose
+## Table of Contents
+
+- [Project Description](#project-description)
+- [Learning Roadmap](#learning-roadmap)
+- [Module Overview](#module-overview)
+- [Repository Structure](#repository-structure)
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Recommended Learning Order](#recommended-learning-order)
+- [How to Use This Repository](#how-to-use-this-repository)
+- [Contribution Guide](#contribution-guide)
+- [Future Modules](#future-modules)
+- [License](#license)
+- [Author](#author)
+
+---
+
+## Project Description
 
 This repository is a curated, structured learning resource for developers who want to understand how the modern web works and how to build production-quality full-stack applications.
 
-Each module covers exactly one topic. There are no repeated definitions or overlapping explanations. Every concept has a single canonical location, and modules cross-reference each other where continuity is needed.
+Each module covers exactly one topic. Every concept has a single canonical location. Modules cross-reference each other where continuity is needed — definitions are never repeated.
 
-The writing follows the conventions of professional technical documentation — concise, correct, and example-driven.
+The writing follows the conventions of professional technical documentation: concise, technically accurate, and example-driven.
 
 ---
 
@@ -29,31 +48,34 @@ The writing follows the conventions of professional technical documentation — 
 
 Read modules in order. Each module assumes the reader has completed all preceding modules.
 
+```mermaid
+graph TD
+    A["01 — Full Stack Fundamentals"]
+    B["02 — HTML"]
+    C["03 — CSS"]
+    D["04 — JavaScript"]
+    E["05 — HTTP, JSON & Fetch"]
+    F["06 — API Design"]
+
+    A -->|"Internet, Architecture, Tooling"| B
+    B -->|"Document Structure, Semantics"| C
+    C -->|"Styling, Layout, Responsive"| D
+    D -->|"Language Core, DOM, Events"| E
+    E -->|"HTTP, Fetch, Promises, Async"| F
 ```
-01 - Full Stack Fundamentals
-     Web architecture, client-server model, HTTP overview,
-     cookies, sessions, tech stacks, databases, deployment.
-          ↓
-02 - HTML
-     Document structure, semantic markup, forms,
-     accessibility, SEO, HTML5 APIs.
-          ↓
-03 - CSS
-     Selectors, cascade, Box Model, Flexbox, Grid,
-     responsive design, animations, CSS variables.
-          ↓
-04 - JavaScript
-     Language core, DOM, events, browser APIs,
-     classes, modules, async introduction.
-          ↓
-05 - HTTP, JSON & Fetch
-     HTTP in depth, JSON format, Fetch API,
-     Promises, async/await, client-side CRUD.
-          ↓
-06 - API Design
-     REST architecture, resource design, auth,
-     versioning, rate limiting, GraphQL, gRPC, OpenAPI.
-```
+
+---
+
+## Module Overview
+
+| # | Module | Key Topics | Difficulty |
+|:--|:-------|:-----------|:----------:|
+| 01 | [Full Stack Fundamentals](./01-full-stack-fundamentals/README.md) | Internet, browsers, client-server, tech stacks, tooling | ⬛ Beginner |
+| 02 | [HTML](./02-html/README.md) | Document structure, semantics, forms, accessibility, SEO | ⬛ Beginner |
+| 03 | [CSS](./03-css/README.md) | Selectors, Box Model, Flexbox, Grid, responsive, animations | ⬛ Beginner |
+| 04 | [JavaScript](./04-javascript/README.md) | Language core, DOM, events, storage, OOP, modules | 🟦 Intermediate |
+| 05 | [HTTP, JSON & Fetch](./05-http-json-fetch/README.md) | HTTP protocol, JSON, Fetch API, Promises, async/await, CRUD | 🟦 Intermediate |
+| 06 | [API Design](./06-api-design/README.md) | REST, auth, versioning, pagination, GraphQL, gRPC, security | 🟥 Advanced |
 
 ---
 
@@ -61,54 +83,86 @@ Read modules in order. Each module assumes the reader has completed all precedin
 
 ```
 Full-stack/
+├── README.md                         ← This file
 ├── 01-full-stack-fundamentals/
-│   ├── README.md          — Module overview, objectives, prerequisites
-│   └── notes.md           — Full stack fundamentals reference
-│
+│   ├── README.md                     — Module overview and objectives
+│   └── notes.md                      — Full stack fundamentals reference
 ├── 02-html/
 │   ├── README.md
-│   └── notes.md           — HTML reference
-│
+│   └── notes.md                      — HTML reference
 ├── 03-css/
 │   ├── README.md
-│   └── notes.md           — CSS reference
-│
+│   └── notes.md                      — CSS reference
 ├── 04-javascript/
 │   ├── README.md
-│   └── notes.md           — JavaScript language & browser APIs
-│
+│   └── notes.md                      — JavaScript reference
 ├── 05-http-json-fetch/
 │   ├── README.md
-│   └── notes.md           — HTTP, JSON, Fetch, async/await
-│
-├── 06-api-design/
-│   ├── README.md
-│   └── notes.md           — REST, GraphQL, gRPC, API design patterns
-│
-└── README.md              — This file
+│   └── notes.md                      — HTTP, JSON, Fetch reference
+└── 06-api-design/
+    ├── README.md
+    └── notes.md                      — API design reference
 ```
 
 ---
 
-## Module Overview
+## Quick Start
 
-| # | Module | Topics | Difficulty |
-|:--|:-------|:-------|:----------:|
-| 01 | [Full Stack Fundamentals](./01-full-stack-fundamentals/README.md) | Web architecture, browsers, protocols, tech stacks | ⬛ Beginner |
-| 02 | [HTML](./02-html/README.md) | Document structure, semantics, forms, a11y, SEO | ⬛ Beginner |
-| 03 | [CSS](./03-css/README.md) | Styling, layouts, responsive design, animations | ⬛ Beginner |
-| 04 | [JavaScript](./04-javascript/README.md) | Language core, DOM, browser APIs, OOP, modules | 🟦 Intermediate |
-| 05 | [HTTP, JSON & Fetch](./05-http-json-fetch/README.md) | HTTP protocol, JSON, Fetch API, Promises, async/await | 🟦 Intermediate |
-| 06 | [API Design](./06-api-design/README.md) | REST, resource naming, auth, GraphQL, gRPC, security | 🟥 Advanced |
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Enggvault/Full-stack.git
+   cd Full-stack
+   ```
+
+2. **Open in your editor**
+
+   ```bash
+   code .
+   ```
+
+3. **Start reading** — open [`01-full-stack-fundamentals/notes.md`](./01-full-stack-fundamentals/notes.md) and follow the navigation links at the top and bottom of each module.
+
+---
+
+## Features
+
+- **Single source of truth** — every concept is defined exactly once
+- **Dependency-ordered curriculum** — each module builds on the previous
+- **Cross-referenced** — internal Markdown links eliminate redundancy
+- **Professional documentation style** — reads like MDN, not classroom notes
+- **Modern code examples** — ES2024+, `const`/`let`, `async`/`await`, Fetch API
+- **Self-contained** — no external tooling required; read in any Markdown viewer
+
+---
+
+## Prerequisites
+
+No prior programming experience is assumed for Module 01. Starting from Module 04, basic familiarity with a code editor (VS Code recommended) and a browser's developer tools is expected.
+
+---
+
+## Recommended Learning Order
+
+```
+01 → Full Stack Fundamentals (start here)
+02 → HTML
+03 → CSS
+04 → JavaScript
+05 → HTTP, JSON & Fetch
+06 → API Design
+```
+
+Each module's `README.md` lists its specific prerequisites and links to the next module.
 
 ---
 
 ## How to Use This Repository
 
-1. **Read sequentially.** The modules are ordered by dependency. Module 05 explicitly requires concepts from 04, which requires 03, and so on.
-2. **Use the notes as a reference.** After the initial read, each `notes.md` is designed to be revisited as a quick-reference document.
-3. **Follow cross-references.** When a `notes.md` file references another module (`→ See 04-javascript/notes.md#closures`), follow it. Concepts are not repeated — they are explained once and referenced everywhere they apply.
-4. **Run the code examples.** Every code block is complete and runnable. Open a browser console or VS Code and execute them.
+1. **Read sequentially.** Modules are ordered by dependency. Module 05 requires Module 04, which requires Module 03, and so on.
+2. **Use the notes as a reference.** After the initial read, each `notes.md` file is designed to be revisited as a quick-reference document.
+3. **Follow cross-references.** When a `notes.md` file references another module, follow it. Concepts are explained once and referenced everywhere they apply.
+4. **Run the code examples.** Every code block is self-contained. Open a browser console or a local `.js` file and execute them.
 
 ---
 
@@ -119,10 +173,11 @@ Contributions that maintain the documentation's quality and architecture are wel
 **Before submitting a pull request:**
 
 - Ensure the change belongs in the correct module. Do not add explanations that duplicate content already present in another module — add a cross-reference instead.
-- Follow the established Markdown conventions: `#` for the page title, `##` for major sections, `###` for topics.
+- Follow the heading hierarchy: `#` for the page title, `##` for major sections, `###` for topics.
 - Use `const` and `let` in all JavaScript examples. Never `var`.
-- Write in the second or third person. Avoid first-person plural ("we", "let's").
+- Write in the second or third person. Avoid first-person plural ("we", "let's") and conversational phrases ("imagine", "let's learn").
 - Keep prose concise. This is documentation, not a tutorial blog post.
+- Validate Markdown rendering before submitting.
 
 ---
 
@@ -130,18 +185,30 @@ Contributions that maintain the documentation's quality and architecture are wel
 
 Planned additions to the roadmap:
 
-- `07-nodejs-express` — Server-side JavaScript, Express.js, middleware, routing
-- `08-databases` — SQL with PostgreSQL, NoSQL with MongoDB, ORMs
-- `09-authentication` — JWT, OAuth 2.0, session strategies, secure implementation
-- `10-react` — Components, hooks, state management, React Router
-- `11-nextjs` — App Router, server components, SSR, deployment
-- `12-deployment` — Docker, CI/CD, cloud platforms, environment configuration
+| # | Module | Status |
+|:--|:-------|:------:|
+| 07 | Node.js & Express | Planned |
+| 08 | Databases (PostgreSQL, MongoDB) | Planned |
+| 09 | Authentication (JWT, OAuth 2.0) | Planned |
+| 10 | React | Planned |
+| 11 | Next.js | Planned |
+| 12 | Deployment & DevOps | Planned |
 
 ---
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+---
+
+## Author
 
 <div align="center">
 
 Developed and maintained by **[Tushar Kanti Dey](https://tushardevx01.tech)**
+
+[![GitHub](https://img.shields.io/badge/GitHub-Enggvault-181717?style=flat-square&logo=github)](https://github.com/Enggvault)
 
 If this repository is useful, consider starring it. ⭐
 
