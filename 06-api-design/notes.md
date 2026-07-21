@@ -102,7 +102,7 @@ REST (Representational State Transfer) is an architectural style — not a proto
 | 3 | **Cacheable** | Responses must declare themselves cacheable or non-cacheable so clients and intermediaries can avoid redundant requests. |
 | 4 | **Uniform Interface** | Resources are identified by URIs. Interactions use standard HTTP methods applied consistently. |
 | 5 | **Layered System** | A client cannot distinguish whether it connects directly to the origin server or through a load balancer, CDN, or proxy. |
-| 6 | **Code on Demand** *(optional)* | The server may extend client functionality by transferring executable code (e.g., JavaScript). |
+| 6 | **Code on Demand**  | The server may extend client functionality by transferring executable code (e.g., JavaScript). |
 
 ### Richardson Maturity Model
 
