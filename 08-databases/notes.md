@@ -3,7 +3,6 @@
 > **Module 08** · Full-Stack Engineering · Enggvault
 > A complete, production-quality engineering guide to modern databases, distributed systems, and SQL.
 
----
 
 ## Table of Contents
 
@@ -13,7 +12,6 @@
 - [Part 4: Relational Databases](#part-4-relational-databases)
 - *(Parts 5-25 to be generated in subsequent steps)*
 
----
 
 # PART 1: DATABASE FUNDAMENTALS
 
@@ -97,7 +95,7 @@ Since network failures (Partitions) are inevitable in the cloud, databases must 
     - **Replication**: Copying data from a Primary node to Read Replica nodes. Scales *reads*.
     - **Sharding/Partitioning**: Splitting data across multiple primary nodes (e.g., Users A-M on Server 1, N-Z on Server 2). Scales *reads and writes*, but heavily increases application complexity.
 
----
+
 
 # PART 2: DATABASE TYPES
 
@@ -151,7 +149,6 @@ Combines the horizontal scalability of NoSQL with the ACID guarantees of SQL.
 - **Examples**: CockroachDB, Google Spanner, TiDB.
 - **Best For**: Global banking, massive multi-region SaaS platforms.
 
----
 
 # PART 3: STRUCTURED vs SEMI-STRUCTURED vs UNSTRUCTURED DATA
 
@@ -178,7 +175,7 @@ Data with no predefined data model. It accounts for ~80% of all data generated t
 - **Advantages**: Can store anything at virtually infinite scale.
 - **Disadvantages**: Cannot be queried traditionally. Requires AI, OCR, or NLP to extract metadata before it can be searched.
 
----
+
 
 # PART 4: RELATIONAL DATABASES
 
@@ -249,7 +246,7 @@ An index is a B-Tree data structure that speeds up data retrieval, functioning l
 2. **Non-Clustered Index (Secondary Index)**: A separate B-Tree structure. The leaf nodes do not contain the actual data; they contain the indexed value and a pointer (the Primary Key value) back to the actual row in the clustered index.
 3. **Covering Index**: If a Non-Clustered index contains *all* the columns requested by a `SELECT` query, the database does not need to look up the actual row. It returns the result entirely from the index (an Index-Only Scan), which is blindingly fast.
 
----
+
 
 # PART 5: SQL COMPLETE
 
@@ -372,7 +369,7 @@ It reveals:
 - Never use `SELECT *`. It prevents Index-Only scans, wastes memory, and network bandwidth.
 - Avoid functions on indexed columns in the `WHERE` clause (e.g., `WHERE YEAR(created_at) = 2023`). This disables the index (creates a "Non-Sargable" query). Instead use `WHERE created_at >= '2023-01-01' AND created_at < '2024-01-01'`.
 
----
+
 
 # PART 6: DATABASE DESIGN AND MODELING
 
@@ -431,7 +428,7 @@ Migrations are timestamped files containing SQL (or code) that represent state c
 
 Tools like Flyway, Liquibase, or ORMs (Prisma, TypeORM) read these files, execute them in order, and track which ones have been applied using an internal migrations table.
 
----
+
 
 # PART 7: DATABASE CONNECTION MANAGEMENT
 
@@ -483,7 +480,7 @@ How should your backend communicate with the database?
 
 **Best Practice**: Use an ORM (like Prisma) for 95% of CRUD operations to maximize developer speed. Use raw SQL for the 5% of complex, performance-critical analytical queries.
 
----
+
 
 # PART 8: LOCAL DATABASE SETUP
 
@@ -564,7 +561,7 @@ services:
     # Redis is an in-memory cache, so we usually don't need persistent volumes for local dev.
 ```
 
----
+
 
 # PART 9: CLOUD DATABASES
 
@@ -597,7 +594,7 @@ When moving from local development to production, you do not install a database 
 2. **Read Replicas**: If your dashboard queries are slow, don't run them on the primary database (it will slow down user writes). Spin up a Read Replica. Route all `SELECT` queries to the replica, and all `INSERT/UPDATE` queries to the Primary.
 3. **Multi-AZ Failover**: Enable Multi-Availability Zone. If the primary datacenter catches fire, the cloud provider will automatically switch DNS to a standby replica in a different datacenter within 60 seconds.
 
----
+
 
 # PART 10: DATABASE CONNECTIONS USING CODE
 
@@ -742,7 +739,7 @@ app.listen(3000, () => console.log('Server running on port 3000'));
 
 **Performance Note**: Notice the `$transaction` block. If the database crashes or the Node.js server dies exactly between the decrement and the increment, the database will detect the dropped connection and automatically trigger a `ROLLBACK`, ensuring money isn't lost in the digital void.
 
----
+
 
 # PART 11: CRUD OPERATIONS DEEP DIVE
 
@@ -821,7 +818,7 @@ WHERE id = 1 AND balance >= 50;
 
 **Best Practice**: In enterprise systems (banking, healthcare, SaaS), never hard-delete data. Always use Soft Deletes to preserve audit trails and recover from accidental deletions.
 
----
+
 
 # PART 12: NOSQL DATABASES DEEP DIVE
 
@@ -876,7 +873,7 @@ RDBMS write performance degrades as B-Trees grow. Cassandra can ingest millions 
 **Disadvantages**:
 Reading data is slower than in an RDBMS. You cannot perform SQL `JOIN`s. You must know your read queries *before* you design your schema (Query-Driven Design).
 
----
+
 
 # PART 13: DATA WAREHOUSING (OLAP)
 
@@ -917,7 +914,7 @@ To calculate `SUM(Salary)`, the disk must read the *entire* row (including Name 
 Data is stored sequentially: `[All Names]`, `[All Ages]`, `[All Salaries]`.
 To calculate `SUM(Salary)`, the disk only reads the `[All Salaries]` block. Furthermore, because a column contains similar data types (e.g., all integers), it can be aggressively compressed (Run-Length Encoding), reducing a 1TB table to 100GB.
 
----
+
 
 # PART 14: DATA LAKES & LAKEHOUSES
 
@@ -952,7 +949,7 @@ It achieves this using Open Table Formats:
 
 These formats maintain transaction logs on top of raw Parquet files in S3, allowing you to run `UPDATE` and `DELETE` queries directly on the Data Lake!
 
----
+
 
 # PART 15: DATABASE ENGINES (INTERNALS)
 
@@ -983,7 +980,7 @@ WiredTiger is a highly advanced, pluggable storage engine.
 - **Compression**: It uses Snappy compression by default, vastly reducing disk I/O at the cost of a slight CPU penalty.
 - **Memory Management**: WiredTiger uses 50% of the host RAM as its internal cache, plus the OS filesystem cache.
 
----
+
 
 # PART 16: DATABASE INDEXING DEEP DIVE
 
@@ -1026,7 +1023,7 @@ flowchart TD
     Q3[WHERE Age = 30] --> |IGNORES INDEX| Slow(Sequential Scan!)
 ```
 
----
+
 
 # PART 17: DATABASE SECURITY
 
@@ -1062,7 +1059,7 @@ const values = [req.body.email];
 ```
 An ORM like Prisma handles this automatically, preventing 99% of SQL injections.
 
----
+
 
 # PART 18: DATABASE OPTIMIZATION
 
@@ -1093,7 +1090,7 @@ Partitioning splits a massive logical table into smaller physical tables (e.g., 
 - **`work_mem`**: The amount of memory used for internal sorting (`ORDER BY`) and Hash Joins before spilling to the disk (which causes massive slowdowns). Increase this for analytical queries.
 - **Vacuuming**: PostgreSQL requires autovacuum to clean up dead rows (from MVCC). Never turn autovacuum off, or your database will eventually grind to a halt (table bloat).
 
----
+
 
 # PART 19: DATABASE BACKUP & RECOVERY
 
@@ -1125,7 +1122,7 @@ If an intern accidentally runs `DELETE FROM users;` at 2:14 PM, a nightly backup
 - **RTO (Recovery Time Objective)**: How long can the system be down before it hurts the business? (e.g., 1 hour to restore).
 Architecting for 0 RPO and 0 RTO requires globally distributed synchronous replication, which is incredibly expensive.
 
----
+
 
 # PART 20: DATABASE COMPARISON
 
@@ -1157,7 +1154,7 @@ Understanding the differences between database engines is critical for system de
 | **Persistence** | Can write to disk (RDB/AOF) to survive reboots. | Completely volatile. Data is lost on reboot. |
 | **Best For** | Complex caching, leaderboards, pub/sub queues. | Simple HTML fragment caching. |
 
----
+
 
 # PART 21: WHICH DATABASE SHOULD YOU CHOOSE?
 
@@ -1187,7 +1184,7 @@ System Design requires selecting the right tool for the job. Here is the decisio
 - **Application State**: PostgreSQL.
 - **Analytics Engine**: Snowflake or Amazon Redshift. Data is moved from PostgreSQL to Snowflake via an ETL pipeline (e.g., Fivetran) every hour to power the heavy dashboard queries.
 
----
+
 
 # PART 22: BEST DATABASE SERVERS & CLOUD REGIONS
 
@@ -1224,7 +1221,7 @@ Use a database like CockroachDB or Google Spanner. The database behaves like a s
 - **GCP (Google Cloud Platform)**: Excellent network infrastructure. Cloud SQL and Spanner are elite.
 - **Serverless Providers (Vercel, Supabase, Neon)**: Best for startups and indie developers. They provide generous free tiers and scale automatically without managing infrastructure.
 
----
+
 
 # PART 23: INTERVIEW PREPARATION
 
@@ -1262,7 +1259,7 @@ Database and System Design rounds are the hardest part of a backend engineering 
 5. **"What is Sharding and what is the hardest part about it?"**
    Sharding splits a table across multiple servers. The hardest part is choosing a Shard Key. A bad key causes "Hotspots" (e.g., if you shard by country, the US server will crash while the Iceland server sits idle).
 
----
+
 
 # PART 24: CHEAT SHEETS
 
@@ -1282,7 +1279,7 @@ Database and System Design rounds are the hardest part of a backend engineering 
 - **MySQL**: `mysql://user:password@host:port/dbname`
 - **MongoDB**: `mongodb+srv://user:password@cluster.mongodb.net/dbname`
 
----
+
 
 # PART 25: VISUAL DIAGRAMS
 
@@ -1329,5 +1326,3 @@ flowchart TD
     UserEU((EU User)) --> API_EU
 ```
 
----
-*End of Databases & SQL Deep Dive Handbook.*
