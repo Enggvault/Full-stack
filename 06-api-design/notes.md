@@ -43,7 +43,6 @@
 24. [Cheat Sheet](#chapter-24-cheat-sheet)
 25. [Summary](#chapter-25-summary)
 
----
 
 ## Chapter 1: Introduction to APIs
 
@@ -100,7 +99,6 @@ APIs solve this by providing a **controlled, standardised interface**:
 | **2016** | gRPC by Google | High-performance API protocol using Protocol Buffers |
 | **2020s** | REST + GraphQL + gRPC | All three coexist for different use cases |
 
----
 
 ## Chapter 2: Client-Server Architecture
 
@@ -189,7 +187,6 @@ The **database** is where data is permanently stored. The server queries it base
 > **Interview Tip:** "Why does the client not access the database directly?"
 > Because it would expose your credentials, allow data tampering, bypass business logic, and be a massive security vulnerability.
 
----
 
 ## Chapter 3: HTTP Basics
 
@@ -302,7 +299,6 @@ Body:
 | `Cache-Control` | Response | Caching instructions | `no-cache, no-store` |
 | `X-Request-ID` | Both | Unique request identifier for tracing | `550e8400-e29b-41d4` |
 
----
 
 ## Chapter 4: HTTP Request Lifecycle
 
@@ -373,7 +369,6 @@ When you make an API call, many steps happen in milliseconds. Understanding this
 └──────────────────────────────────────────────────────────┘
 ```
 
----
 
 ## Chapter 5: HTTP Methods
 
@@ -394,7 +389,6 @@ HTTP methods tell the server **what action** to perform on the resource. Choosin
 > **Safe** = No side effects; the server state does not change.
 > **Idempotent** = Calling it multiple times produces the same result as calling it once.
 
----
 
 ### GET
 
@@ -448,7 +442,6 @@ app.get('/api/v1/users/:id', (req, res) => {
 
 > **Rule:** GET requests must **never** change server state. They should be safe to call repeatedly.
 
----
 
 ### POST
 
@@ -540,7 +533,6 @@ app.put('/api/v1/users/:id', (req, res) => {
 });
 ```
 
----
 
 ### PATCH
 
@@ -592,7 +584,6 @@ PATCH body: { role: "admin" }
 Result:    { id: 1, name: "Alice", email: "old@email.com", role: "admin" }  ← safe!
 ```
 
----
 
 ### DELETE
 
@@ -624,7 +615,6 @@ app.delete('/api/v1/users/:id', (req, res) => {
 
 > **Best Practice:** Return **204 No Content** on successful delete (no body). Some APIs return 200 with a confirmation message — both are acceptable.
 
----
 
 ### HEAD
 
@@ -646,7 +636,6 @@ OPTIONS /api/v1/users
 → Response: Allow: GET, POST, PUT, DELETE, OPTIONS
 ```
 
----
 
 ## Chapter 6: REST API Design Principles
 
@@ -731,7 +720,7 @@ Level 0 ──── Level 1 ──── Level 2 ──── Level 3
 | **3** | HATEOAS | Response includes `"links": { "self": "...", "delete": "..." }` | Rare in practice |
 
 > **Most production APIs operate at Level 2.** Aim for Level 2.
----
+
 
 ## Chapter 7: Designing Good Endpoints
 
