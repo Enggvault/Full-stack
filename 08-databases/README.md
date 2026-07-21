@@ -34,7 +34,7 @@ After completing this module, you will be able to:
 ## Prerequisites
 
 - Basic programming knowledge
-- [07 — Node.js & Express Deep Dive](../07-nodejs-express/README.md)
+- [07 — Node.js & Express](../07-nodejs-express/README.md)
 
 
 ## Estimated Reading Time
@@ -49,7 +49,7 @@ After completing this module, you will be able to:
 
 ## Next Module
 
-→ [Next.js (Planned)]()
+→ 09 — Authentication (Planned)
 
 
 ## Files in This Module
