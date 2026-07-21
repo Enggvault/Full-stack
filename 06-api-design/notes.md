@@ -650,7 +650,7 @@ The response includes **only** the fields requested — no over-fetching.
 
 ```graphql
 mutation {
-  createUser(name: "Jane Doe") {
+  createUser(name: "Tushar kanti Dey") {
     id
     name
   }
