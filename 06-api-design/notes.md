@@ -3,9 +3,8 @@
 > **Module 06** · Full-Stack Engineering · Enggvault
 > Prerequisites: Basic JavaScript · HTML/CSS
 
----
 
-## 📋 Learning Objectives
+##  Learning Objectives
 
 | Item | Detail |
 |:-----|:-------|
@@ -15,7 +14,6 @@
 | **Estimated Reading Time** | 3–4 hours |
 | **Skills Gained** | Build and design REST APIs, choose correct HTTP methods and status codes, handle errors, validate input, document APIs |
 
----
 
 ## Table of Contents
 
