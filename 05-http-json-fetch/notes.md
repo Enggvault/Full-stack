@@ -1,26 +1,42 @@
-# HTTP, JSON & Fetch
+title: "HTTP, JSON & Fetch: Complete Beginner to Advanced"
+subtitle: "From First Principles to Production-Grade Architecture"
+author: "Principal Backend Engineer — 15+ Years Industry Experience"
+version: "2.0"
+date: "2025"
 
-> **Module 05** · Prerequisites: [JavaScript ←](../04-javascript/notes.md) · Next: [API Design →](../06-api-design/notes.md)
+# HTTP, JSON & Fetch
+## Complete Beginner to Advanced Engineering Handbook
+
+> A production-grade, book-quality reference covering HTTP protocols, JSON, Fetch API, Promises, and async/await. Written for engineers at all levels — from beginners to FAANG system designers.
+
+> **Prerequisites:** [04 — JavaScript ←](../04-javascript/notes.md) · **Next:** [06 — API Design →](../06-api-design/notes.md)
 
 
 ## Table of Contents
 
-1. [HTTP in Depth](#1-http-in-depth)
-2. [HTTP Headers](#2-http-headers)
-3. [HTTP Status Codes](#3-http-status-codes)
-4. [JSON](#4-json)
-5. [The Fetch API](#5-the-fetch-api)
-6. [Sending Data with Fetch](#6-sending-data-with-fetch)
-7. [Fetch with Authentication](#7-fetch-with-authentication)
-8. [Error Handling](#8-error-handling)
-9. [Promises in Depth](#9-promises-in-depth)
-10. [async/await in Depth](#10-asyncawait-in-depth)
-11. [Parallel Async Operations](#11-parallel-async-operations)
-12. [Practical CRUD Pattern](#12-practical-crud-pattern)
-13. [Reading the Network Tab](#13-reading-the-network-tab)
+### Part I: HTTP Foundations
+- [Chapter 1: HTTP in Depth](#chapter-1-http-in-depth)
+- [Chapter 2: HTTP Headers](#chapter-2-http-headers)
+- [Chapter 3: HTTP Status Codes](#chapter-3-http-status-codes)
+
+### Part II: Data & API Communication
+- [Chapter 4: JSON](#chapter-4-json)
+- [Chapter 5: The Fetch API](#chapter-5-the-fetch-api)
+- [Chapter 6: Sending Data with Fetch](#chapter-6-sending-data-with-fetch)
+- [Chapter 7: Fetch with Authentication](#chapter-7-fetch-with-authentication)
+- [Chapter 8: Error Handling](#chapter-8-error-handling)
+
+### Part III: Async Patterns
+- [Chapter 9: Promises in Depth](#chapter-9-promises-in-depth)
+- [Chapter 10: async/await in Depth](#chapter-10-asyncawait-in-depth)
+- [Chapter 11: Parallel Async Operations](#chapter-11-parallel-async-operations)
+- [Chapter 12: Practical CRUD Pattern](#chapter-12-practical-crud-pattern)
+
+### Part IV: Tools & Reference
+- [Chapter 13: Reading the Network Tab](#chapter-13-reading-the-network-tab)
 
 
-## 1. HTTP in Depth
+# CHAPTER 1: HTTP in Depth
 
 **HTTP (HyperText Transfer Protocol)** is the application-layer protocol that governs how clients (browsers, apps) and servers exchange data. Every API call is an HTTP transaction.
 
@@ -76,7 +92,7 @@ Location: /api/v1/orders/ord_9981
 **Idempotent** — multiple identical requests produce the same result as one.
 
 
-## 2. HTTP Headers
+# CHAPTER 2: HTTP Headers
 
 Headers are key-value metadata attached to both requests and responses.
 
@@ -103,7 +119,7 @@ Headers are key-value metadata attached to both requests and responses.
 | `Access-Control-Allow-Origin` | `https://app.example.com` | CORS policy |
 
 
-## 3. HTTP Status Codes
+# CHAPTER 3: HTTP Status Codes
 
 | Code | Name | Meaning |
 |:-----|:-----|:--------|
@@ -124,7 +140,7 @@ Headers are key-value metadata attached to both requests and responses.
 | **503** | Service Unavailable | Server is temporarily unable to handle requests |
 
 
-## 4. JSON
+# CHAPTER 4: JSON
 
 **JSON (JavaScript Object Notation)** is the universal data format for web APIs. It is purely text-based and language-agnostic.
 
@@ -169,7 +185,7 @@ const obj = JSON.parse('{"name":"Alice"}');
 > `response.json()` in the Fetch API does `JSON.parse` automatically — it is not needed manually when using Fetch.
 
 
-## 5. The Fetch API
+# CHAPTER 5: The Fetch API
 
 `fetch()` is the browser-native API for making HTTP requests. It returns a **Promise** that resolves to a `Response` object.
 
@@ -210,7 +226,7 @@ response.url;         // Final URL (after redirects)
 | `response.arrayBuffer()` | Promise → ArrayBuffer | Low-level binary processing |
 
 
-## 6. Sending Data with Fetch
+# CHAPTER 6: Sending Data with Fetch
 
 ### POST — Create a Resource
 
@@ -270,7 +286,7 @@ if (response.status !== 204) {
 ```
 
 
-## 7. Fetch with Authentication
+# CHAPTER 7: Fetch with Authentication
 
 ### Bearer Token (JWT)
 
@@ -300,7 +316,7 @@ const response = await fetch('/api/v1/profile', {
 | `include` | Always send cookies, including cross-origin |
 
 
-## 8. Error Handling
+# CHAPTER 8: Error Handling
 
 `fetch()` **only** rejects the Promise on a network-level failure. HTTP 4xx and 5xx responses resolve the Promise — they must be checked manually.
 
@@ -344,7 +360,7 @@ try {
 ```
 
 
-## 9. Promises in Depth
+# CHAPTER 9: Promises in Depth
 
 A **Promise** represents the eventual result of an asynchronous operation.
 
@@ -397,7 +413,7 @@ fetch('/api/users')
 | `Promise.any(promises)` | Resolves with the **first fulfilled** Promise; rejects if all reject |
 
 
-## 10. async/await in Depth
+# CHAPTER 10: async/await in Depth
 
 `async`/`await` is syntactic sugar over Promises. An `async` function always returns a Promise.
 
@@ -459,7 +475,7 @@ async function load() {
 ```
 
 
-## 11. Parallel Async Operations
+# CHAPTER 11: Parallel Async Operations
 
 When multiple async operations do not depend on each other, run them in parallel.
 
@@ -493,7 +509,7 @@ results.forEach(result => {
 ```
 
 
-## 12. Practical CRUD Pattern
+# CHAPTER 12: Practical CRUD Pattern
 
 A reusable client-side API layer encapsulates all network logic in one place.
 
@@ -538,7 +554,7 @@ await usersApi.remove(42);
 ```
 
 
-## 13. Reading the Network Tab
+# CHAPTER 13: Reading the Network Tab
 
 The browser **DevTools → Network tab** is the primary tool for debugging HTTP requests.
 

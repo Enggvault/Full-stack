@@ -9,6 +9,8 @@ date: "2025"
 
 > A production-grade, book-quality reference covering every database paradigm, from relational foundations to AI-native vector databases. Written for engineers at all levels — from beginners to FAANG system designers.
 
+> **Prerequisites:** [07 — Node.js & Express ←](../07-nodejs-express/notes.md) · **Next:** [Next.js (Planned) →]()
+
 
 ## Table of Contents
 
@@ -4956,3 +4958,8 @@ JOIN pg_catalog.pg_locks blocking_locks ON blocking_locks.locktype = blocked_loc
 JOIN pg_catalog.pg_stat_activity blocking_activity ON blocking_activity.pid = blocking_locks.pid
 WHERE NOT blocked_locks.granted AND blocking_locks.granted;
 ```
+
+---
+
+> **Next Module →** [Next.js (Planned)]()
+> **Previous Module ←** [Node.js & Express](../07-nodejs-express/notes.md)

@@ -1,35 +1,49 @@
-# JavaScript Reference
+title: "JavaScript: Complete Beginner to Advanced"
+subtitle: "From First Principles to Production-Grade Architecture"
+author: "Principal Software Engineer — 15+ Years Industry Experience"
+version: "2.0"
+date: "2025"
 
-> **Module 04** · Prerequisites: [CSS ←](../03-css/notes.md) · Next: [HTTP, JSON & Fetch →](../05-http-json-fetch/notes.md)
+# JavaScript
+## Complete Beginner to Advanced Engineering Handbook
+
+> A production-grade, book-quality reference covering JavaScript internals, ES6+, async, DOM, patterns, and TypeScript. Written for engineers at all levels — from beginners to FAANG system designers.
+
+> **Prerequisites:** [03 — CSS ←](../03-css/notes.md) · **Next:** [05 — HTTP, JSON & Fetch →](../05-http-json-fetch/notes.md)
 
 
 ## Table of Contents
 
-1. [Introduction](#1-introduction)
-2. [ECMAScript Versions](#2-ecmascript-versions)
-3. [Adding JavaScript to a Page](#3-adding-javascript-to-a-page)
-4. [Variables](#4-variables)
-5. [Data Types](#5-data-types)
-6. [Operators](#6-operators)
-7. [Strings](#7-strings)
-8. [Numbers & Math](#8-numbers--math)
-9. [Conditionals & Loops](#9-conditionals--loops)
-10. [Functions](#10-functions)
-11. [Scope & Closures](#11-scope--closures)
-12. [Hoisting](#12-hoisting)
-13. [Arrays](#13-arrays)
-14. [Objects](#14-objects)
-15. [ES6+ Features](#15-es6-features)
-16. [DOM Manipulation](#16-dom-manipulation)
-17. [Events](#17-events)
-18. [Browser Storage APIs](#18-browser-storage-apis)
-19. [The Browser Object Model (BOM)](#19-the-browser-object-model-bom)
-20. [Classes & OOP](#20-classes--oop)
-21. [Modules](#21-modules)
-22. [Async JavaScript — Introduction](#22-async-javascript--introduction)
+### Part I: Language Fundamentals
+- [Chapter 1: Introduction](#chapter-1-introduction)
+- [Chapter 2: ECMAScript Versions](#chapter-2-ecmascript-versions)
+- [Chapter 3: Adding JavaScript to a Page](#chapter-3-adding-javascript-to-a-page)
+- [Chapter 4: Variables](#chapter-4-variables)
+- [Chapter 5: Data Types](#chapter-5-data-types)
+- [Chapter 6: Operators](#chapter-6-operators)
+- [Chapter 7: Strings](#chapter-7-strings)
+- [Chapter 8: Numbers & Math](#chapter-8-numbers--math)
+- [Chapter 9: Conditionals & Loops](#chapter-9-conditionals--loops)
+
+### Part II: Functions, Scope & Objects
+- [Chapter 10: Functions](#chapter-10-functions)
+- [Chapter 11: Scope & Closures](#chapter-11-scope--closures)
+- [Chapter 12: Hoisting](#chapter-12-hoisting)
+- [Chapter 13: Arrays](#chapter-13-arrays)
+- [Chapter 14: Objects](#chapter-14-objects)
+- [Chapter 15: ES6+ Features](#chapter-15-es6-features)
+
+### Part III: Browser & Async
+- [Chapter 16: DOM Manipulation](#chapter-16-dom-manipulation)
+- [Chapter 17: Events](#chapter-17-events)
+- [Chapter 18: Browser Storage APIs](#chapter-18-browser-storage-apis)
+- [Chapter 19: The Browser Object Model (BOM)](#chapter-19-the-browser-object-model-bom)
+- [Chapter 20: Classes & OOP](#chapter-20-classes--oop)
+- [Chapter 21: Modules](#chapter-21-modules)
+- [Chapter 22: Async JavaScript — Introduction](#chapter-22-async-javascript--introduction)
 
 
-## 1. Introduction
+# CHAPTER 1: Introduction
 
 JavaScript (JS) is a dynamically typed, interpreted programming language. In a browser, it adds behavior to HTML and CSS — handling user events, manipulating the DOM, and communicating with servers.
 
@@ -42,7 +56,7 @@ JavaScript  →  Behavior (what it does)
 Browsers execute JavaScript using a **JavaScript engine**: Chrome and Edge use **V8**, Firefox uses **SpiderMonkey**, Safari uses **JavaScriptCore**. Node.js also runs on V8, enabling JavaScript outside the browser.
 
 
-## 2. ECMAScript Versions
+# CHAPTER 2: ECMAScript Versions
 
 JavaScript is standardized as **ECMAScript (ES)**. New versions are released yearly.
 
@@ -55,7 +69,7 @@ JavaScript is standardized as **ECMAScript (ES)**. New versions are released yea
 | ES2023+ | 2023+ | `Array.findLast()`, `Array.toSorted()`, ongoing improvements |
 
 
-## 3. Adding JavaScript to a Page
+# CHAPTER 3: Adding JavaScript to a Page
 
 ```html
 <!-- External script — best practice -->
@@ -78,7 +92,7 @@ JavaScript is standardized as **ECMAScript (ES)**. New versions are released yea
 > Always use `defer` on scripts in `<head>`. Place scripts at the end of `<body>` only when `defer` is not available.
 
 
-## 4. Variables
+# CHAPTER 4: Variables
 
 A variable is a named binding to a value in memory.
 
@@ -97,7 +111,7 @@ let requestCount = 0;                       // Use let when value will change
 ```
 
 
-## 5. Data Types
+# CHAPTER 5: Data Types
 
 JavaScript is **dynamically typed** — the type of a variable is determined at runtime.
 
@@ -140,7 +154,7 @@ Array.isArray([])   // true — correct way to check for an array
 ```
 
 
-## 6. Operators
+# CHAPTER 6: Operators
 
 ```js
 // Arithmetic
@@ -170,7 +184,7 @@ const result = obj?.method?.();
 ```
 
 
-## 7. Strings
+# CHAPTER 7: Strings
 
 ```js
 const single   = 'Single quotes';
@@ -202,7 +216,7 @@ const html = `
 | `.padStart(len, char)` / `.padEnd(len, char)` | Pad to length |
 
 
-## 8. Numbers & Math
+# CHAPTER 8: Numbers & Math
 
 ```js
 // Special values
@@ -230,7 +244,7 @@ Math.pow(2, 10)    // 1024
 ```
 
 
-## 9. Conditionals & Loops
+# CHAPTER 9: Conditionals & Loops
 
 ```js
 // if / else if / else
@@ -263,7 +277,7 @@ for (const key in config) { console.log(key, config[key]); }
 ```
 
 
-## 10. Functions
+# CHAPTER 10: Functions
 
 ```js
 // 1. Function Declaration — hoisted; callable before the declaration
@@ -315,7 +329,7 @@ triple(5); // 15
 ```
 
 
-## 11. Scope & Closures
+# CHAPTER 11: Scope & Closures
 
 ### Scope
 
@@ -350,7 +364,7 @@ counter.value();     // 2
 Closures are the foundation of module patterns, memoization, and event handlers that retain state.
 
 
-## 12. Hoisting
+# CHAPTER 12: Hoisting
 
 JavaScript moves declarations to the top of their scope before execution.
 
@@ -373,7 +387,7 @@ function greet() { return 'Hello'; }
 ```
 
 
-## 13. Arrays
+# CHAPTER 13: Arrays
 
 ```js
 const fruits = ['apple', 'banana', 'cherry'];
@@ -432,7 +446,7 @@ const sum = [1, 2, 3].reduce((acc, n) => acc + n, 0); // 6
 ```
 
 
-## 14. Objects
+# CHAPTER 14: Objects
 
 ```js
 const user = {
@@ -467,7 +481,7 @@ obj.hasOwnProperty('key')         // Check for own property
 ```
 
 
-## 15. ES6+ Features
+# CHAPTER 15: ES6+ Features
 
 ### Destructuring
 
@@ -514,7 +528,7 @@ const count = response.count ?? 0;   // 0 only if count is null/undefined
 ```
 
 
-## 16. DOM Manipulation
+# CHAPTER 16: DOM Manipulation
 
 The **DOM (Document Object Model)** is a tree of nodes that the browser builds from the HTML document. JavaScript can read and modify this tree to update the UI dynamically.
 
@@ -562,7 +576,7 @@ card.remove();                                 // Remove element from DOM
 ```
 
 
-## 17. Events
+# CHAPTER 17: Events
 
 ```js
 const button = document.querySelector('#submit-btn');
@@ -600,7 +614,7 @@ document.getElementById('task-list').addEventListener('click', (event) => {
 ```
 
 
-## 18. Browser Storage APIs
+# CHAPTER 18: Browser Storage APIs
 
 ### localStorage
 
@@ -638,7 +652,7 @@ sessionStorage.setItem('draft', draftContent);
 > **Note:** Cookies are an HTTP state management mechanism. They are sent automatically with every request via the `Cookie` header. For HTTP headers and request metadata, see [Module 05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md#1-http-in-depth).
 
 
-## 19. The Browser Object Model (BOM)
+# CHAPTER 19: The Browser Object Model (BOM)
 
 The **BOM** is the interface through which JavaScript communicates with the browser itself — not the document content, but the browser environment.
 
@@ -685,7 +699,7 @@ clearInterval(intervalId); // Stop the interval
 ```
 
 
-## 20. Classes & OOP
+# CHAPTER 20: Classes & OOP
 
 JavaScript classes are syntactic sugar over prototype-based inheritance.
 
@@ -734,7 +748,7 @@ dog.fetch('ball'); // 'Rex fetches the ball!'
 | Constructor | The newly created instance |
 
 
-## 21. Modules
+# CHAPTER 21: Modules
 
 ES modules split code across files for organisation and reusability. Each file is its own scope.
 
@@ -755,7 +769,7 @@ const module = await import('./heavy-module.js');
 > Scripts using ES modules must have `type="module"` on the `<script>` tag, or be loaded via a bundler (Vite, webpack).
 
 
-## 22. Async JavaScript — Introduction
+# CHAPTER 22: Async JavaScript — Introduction
 
 JavaScript is **single-threaded**. Long operations (network requests, file reads) would block the UI if run synchronously. Async patterns allow the runtime to continue executing other code while waiting for the operation to complete.
 

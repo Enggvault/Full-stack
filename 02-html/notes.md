@@ -1,30 +1,45 @@
-# HTML Reference
+title: "HTML: Complete Beginner to Advanced"
+subtitle: "From First Principles to Production-Grade Architecture"
+author: "Principal Frontend Engineer — 15+ Years Industry Experience"
+version: "2.0"
+date: "2025"
 
-> **Module 02** · Prerequisites: [Full Stack Fundamentals ←](../01-full-stack-fundamentals/notes.md) · Next: [CSS →](../03-css/notes.md)
+# HTML
+## Complete Beginner to Advanced Engineering Handbook
+
+> A production-grade, book-quality reference covering semantic, accessible, and performant HTML5. Written for engineers at all levels — from beginners to FAANG system designers.
+
+> **Prerequisites:** [01 — Full Stack Fundamentals ←](../01-full-stack-fundamentals/notes.md) · **Next:** [03 — CSS →](../03-css/notes.md)
+
 
 ## Table of Contents
 
-1. [What is HTML?](#1-what-is-html)
-2. [The HTML5 Boilerplate](#2-the-html5-boilerplate)
-3. [HTML Tags](#3-html-tags)
-4. [HTML Elements](#4-html-elements)
-5. [HTML Attributes](#5-html-attributes)
-6. [Semantic HTML](#6-semantic-html)
-7. [HTML Forms](#7-html-forms)
-8. [Input Types & Native Validation](#8-input-types--native-validation)
-9. [Tables](#9-tables)
-10. [Lists](#10-lists)
-11. [Media](#11-media)
-12. [HTML Entities](#12-html-entities)
-13. [HTML5 Browser APIs](#13-html5-browser-apis)
-14. [Accessibility](#14-accessibility)
-15. [SEO in HTML](#15-seo-in-html)
-16. [Best Practices](#16-best-practices)
-17. [Deprecated Tags](#17-deprecated-tags)
-18. [Common Mistakes](#18-common-mistakes)
+### Part I: HTML Fundamentals
+- [Chapter 1: What is HTML?](#chapter-1-what-is-html)
+- [Chapter 2: The HTML5 Boilerplate](#chapter-2-the-html5-boilerplate)
+- [Chapter 3: HTML Tags](#chapter-3-html-tags)
+- [Chapter 4: HTML Elements](#chapter-4-html-elements)
+- [Chapter 5: HTML Attributes](#chapter-5-html-attributes)
+
+### Part II: Structure & Content
+- [Chapter 6: Semantic HTML](#chapter-6-semantic-html)
+- [Chapter 7: HTML Forms](#chapter-7-html-forms)
+- [Chapter 8: Input Types & Native Validation](#chapter-8-input-types--native-validation)
+- [Chapter 9: Tables](#chapter-9-tables)
+- [Chapter 10: Lists](#chapter-10-lists)
+- [Chapter 11: Media](#chapter-11-media)
+- [Chapter 12: HTML Entities](#chapter-12-html-entities)
+
+### Part III: Browser, Accessibility & Production
+- [Chapter 13: HTML5 Browser APIs](#chapter-13-html5-browser-apis)
+- [Chapter 14: Accessibility](#chapter-14-accessibility)
+- [Chapter 15: SEO in HTML](#chapter-15-seo-in-html)
+- [Chapter 16: Best Practices](#chapter-16-best-practices)
+- [Chapter 17: Deprecated Tags](#chapter-17-deprecated-tags)
+- [Chapter 18: Common Mistakes](#chapter-18-common-mistakes)
 
 
-## 1. What is HTML?
+# CHAPTER 1: What is HTML?
 
 **HTML (HyperText Markup Language)** is the standard markup language for documents displayed in a web browser. It defines the **structure and meaning** of content — headings, paragraphs, images, links, forms. HTML is not a programming language; it does not have logic or state.
 
@@ -47,7 +62,7 @@ JavaScript  →  Behavior (what it does)
 > HTML5 is the current **living standard**, maintained by WHATWG. It is what this module covers.
 
 
-## 2. The HTML5 Boilerplate
+# CHAPTER 2: The HTML5 Boilerplate
 
 Every valid HTML5 document follows this minimum structure:
 
@@ -80,7 +95,7 @@ Every valid HTML5 document follows this minimum structure:
 | `<body>` | All visible page content belongs here |
 
 
-## 3. HTML Tags
+# CHAPTER 3: HTML Tags
 
 ### Document Structure
 
@@ -182,7 +197,7 @@ Inline elements:   Flow within text. Occupy only their content width.
 ```
 
 
-## 4. HTML Elements
+# CHAPTER 4: HTML Elements
 
 An **element** is the complete unit: opening tag + content + closing tag.
 
@@ -221,7 +236,7 @@ An **element** is the complete unit: opening tag + content + closing tag.
 | **Descendant** | Any element nested inside another at any depth |
 
 
-## 5. HTML Attributes
+# CHAPTER 5: HTML Attributes
 
 Attributes provide additional configuration for elements. They are placed in the opening tag as `name="value"` pairs.
 
@@ -255,7 +270,7 @@ Attributes provide additional configuration for elements. They are placed in the
 | `name` | `<input>`, `<select>` | Key used when form data is submitted |
 
 
-## 6. Semantic HTML
+# CHAPTER 6: Semantic HTML
 
 **Semantic HTML** means using tags that describe the meaning and role of their content, not merely its visual appearance.
 
@@ -319,7 +334,7 @@ Attributes provide additional configuration for elements. They are placed in the
 > **Rule:** If a `<div>` has a class name like `header`, `nav`, `main`, `footer`, or `article` — replace it with the corresponding semantic element.
 
 
-## 7. HTML Forms
+# CHAPTER 7: HTML Forms
 
 Forms collect user input and submit it to a server.
 
@@ -371,7 +386,7 @@ Forms collect user input and submit it to a server.
 > Never use `GET` for sensitive data (passwords, personal information) — query parameters are visible in server logs and browser history.
 
 
-## 8. Input Types & Native Validation
+# CHAPTER 8: Input Types & Native Validation
 
 ### Input Types
 
@@ -415,7 +430,7 @@ Forms collect user input and submit it to a server.
 ```
 
 
-## 9. Tables
+# CHAPTER 9: Tables
 
 Tables represent **tabular data** — information that has a natural row-and-column structure.
 
@@ -462,7 +477,7 @@ Tables represent **tabular data** — information that has a natural row-and-col
 
 ---
 
-## 10. Lists
+# CHAPTER 10: Lists
 
 ### Unordered List — order is not meaningful
 
@@ -496,7 +511,7 @@ Tables represent **tabular data** — information that has a natural row-and-col
 ```
 
 
-## 11. Media
+# CHAPTER 11: Media
 
 ### Audio
 
@@ -537,7 +552,7 @@ Tables represent **tabular data** — information that has a natural row-and-col
 ```
 
 
-## 12. HTML Entities
+# CHAPTER 12: HTML Entities
 
 Reserved HTML characters must be escaped using entities to render correctly.
 
@@ -553,7 +568,7 @@ Reserved HTML characters must be escaped using entities to render correctly.
 | `®` | `&reg;` | `&#174;` | Registered trademark |
 
 
-## 13. HTML5 Browser APIs
+# CHAPTER 13: HTML5 Browser APIs
 
 HTML5 introduced browser APIs that JavaScript can access. These are introduced here conceptually; their JavaScript implementations are covered in [04 — JavaScript](../04-javascript/notes.md).
 
@@ -568,7 +583,7 @@ HTML5 introduced browser APIs that JavaScript can access. These are introduced h
 | **Drag and Drop** | Native browser drag-and-drop event system |
 
 
-## 14. Accessibility
+# CHAPTER 14: Accessibility
 
 Web accessibility (a11y) ensures that applications are usable by people with disabilities — visual, auditory, motor, and cognitive.
 
@@ -606,7 +621,7 @@ ARIA (Accessible Rich Internet Applications) supplements HTML semantics for cust
 ```
 
 
-## 15. SEO in HTML
+# CHAPTER 15: SEO in HTML
 
 Search Engine Optimization improves a page's visibility in search results.
 
@@ -630,7 +645,7 @@ Search Engine Optimization improves a page's visibility in search results.
 ```
 
 
-## 16. Best Practices
+# CHAPTER 16: Best Practices
 
 | Practice | Rule |
 |:---------|:-----|
@@ -643,7 +658,7 @@ Search Engine Optimization improves a page's visibility in search results.
 | **Validate** | Use the W3C Markup Validation Service |
 
 
-## 17. Deprecated Tags
+# CHAPTER 17: Deprecated Tags
 
 These tags are obsolete in HTML5. Replace them with CSS.
 
@@ -658,7 +673,7 @@ These tags are obsolete in HTML5. Replace them with CSS.
 | `<big>` / `<small>` (presentational) | CSS `font-size` |
 
 
-## 18. Common Mistakes
+# CHAPTER 18: Common Mistakes
 
 ### ❌ Div Soup — using `<div>` for everything
 

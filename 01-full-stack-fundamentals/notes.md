@@ -1,25 +1,41 @@
-# Full Stack Fundamentals
+title: "Full Stack Fundamentals: Complete Beginner to Advanced"
+subtitle: "From First Principles to Production-Grade Architecture"
+author: "Principal Software Engineer — 15+ Years Industry Experience"
+version: "2.0"
+date: "2025"
 
-> **Module 01** · Prerequisites: None · Next: [HTML →](../02-html/notes.md)
+# Full Stack Fundamentals
+## Complete Beginner to Advanced Engineering Handbook
+
+> A production-grade, book-quality reference covering internet fundamentals, client-server architecture, and full stack development concepts. Written for engineers at all levels — from beginners to FAANG system designers.
+
+> **Prerequisites:** None · **Next:** [02 — HTML →](../02-html/notes.md)
 
 
 ## Table of Contents
 
-1. [What is Full Stack Development?](#1-what-is-full-stack-development)
-2. [How the Internet Works](#2-how-the-internet-works)
-3. [The Browser](#3-the-browser)
-4. [Client-Server Architecture](#4-client-server-architecture)
-5. [Web Architecture](#5-web-architecture)
-6. [HTTP Overview](#6-http-overview)
-7. [Tech Stacks](#7-tech-stacks)
-8. [Databases](#8-databases)
-9. [Version Control](#9-version-control)
-10. [Developer Tooling & Workflow](#10-developer-tooling--workflow)
-11. [Deployment Overview](#11-deployment-overview)
-12. [Full Stack Roadmap](#12-full-stack-roadmap)
+### Part I: Foundations
+- [Chapter 1: What is Full Stack Development?](#chapter-1-what-is-full-stack-development)
+- [Chapter 2: How the Internet Works](#chapter-2-how-the-internet-works)
+- [Chapter 3: The Browser](#chapter-3-the-browser)
+- [Chapter 4: Client-Server Architecture](#chapter-4-client-server-architecture)
+
+### Part II: Web Architecture
+- [Chapter 5: Web Architecture](#chapter-5-web-architecture)
+- [Chapter 6: HTTP Overview](#chapter-6-http-overview)
+- [Chapter 7: Tech Stacks](#chapter-7-tech-stacks)
+
+### Part III: Data & Tools
+- [Chapter 8: Databases](#chapter-8-databases)
+- [Chapter 9: Version Control](#chapter-9-version-control)
+- [Chapter 10: Developer Tooling & Workflow](#chapter-10-developer-tooling--workflow)
+
+### Part IV: Deployment & Roadmap
+- [Chapter 11: Deployment Overview](#chapter-11-deployment-overview)
+- [Chapter 12: Full Stack Roadmap](#chapter-12-full-stack-roadmap)
 
 
-## 1. What is Full Stack Development?
+# CHAPTER 1: What is Full Stack Development?
 
 A **full stack developer** designs and builds every layer of a web application — the user interface, the server-side logic, and the database. The term "full stack" refers to the complete set of software layers required to deliver a working application to a user.
 
@@ -30,7 +46,7 @@ A **full stack developer** designs and builds every layer of a web application �
 | **Database** | Persistent data storage and retrieval | PostgreSQL, MongoDB, Redis |
 
 
-## 2. How the Internet Works
+# CHAPTER 2: How the Internet Works
 
 ### DNS Resolution
 
@@ -60,7 +76,7 @@ All web communication travels over **TCP/IP** (Transmission Control Protocol / I
 > **Warning:** All production web applications must use HTTPS. HTTP transmits data in plaintext.
 
 
-## 3. The Browser
+# CHAPTER 3: The Browser
 
 A web browser is a runtime environment that:
 
@@ -80,7 +96,7 @@ A web browser is a runtime environment that:
 > **Note:** The DOM and JavaScript interaction are covered in depth in [Module 04 — JavaScript](../04-javascript/notes.md#16-dom-manipulation).
 
 
-## 4. Client-Server Architecture
+# CHAPTER 4: Client-Server Architecture
 
 Every web application is built on a **client-server** model. The client initiates requests; the server processes them and sends responses.
 
@@ -102,7 +118,7 @@ Every web application is built on a **client-server** model. The client initiate
 - The server is stateless by default: each request must carry enough information to be processed independently.
 
 
-## 5. Web Architecture
+# CHAPTER 5: Web Architecture
 
 A production web application is divided into distinct layers, each with a clearly bounded responsibility.
 
@@ -156,7 +172,7 @@ A production web application is divided into distinct layers, each with a clearl
 | **Database** | Persist and retrieve data reliably |
 
 
-## 6. HTTP Overview
+# CHAPTER 6: HTTP Overview
 
 **HTTP (Hypertext Transfer Protocol)** is the application-layer protocol that defines how clients and servers communicate. Every interaction between a browser and a server is an HTTP transaction consisting of a **request** and a **response**.
 
@@ -165,7 +181,7 @@ HTTP is stateless — each request is independent. The server does not retain in
 > **Note:** HTTP is covered in full detail in [Module 05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md). This section provides only the conceptual introduction required for understanding web architecture.
 
 
-## 7. Tech Stacks
+# CHAPTER 7: Tech Stacks
 
 A **tech stack** is the combination of technologies used to build an application end-to-end.
 
@@ -208,7 +224,7 @@ React.js receives data, updates state, re-renders
 - Fast initial development cycle suited to startups and prototypes.
 
 
-## 8. Databases
+# CHAPTER 8: Databases
 
 ### SQL (Relational Databases)
 
@@ -260,7 +276,7 @@ Stores data as flexible documents, key-value pairs, or graphs. The schema is not
 | **Scaling** | Vertical (primarily) | Horizontal |
 
 
-## 9. Version Control
+# CHAPTER 9: Version Control
 
 **Git** is the industry-standard version control system. It tracks changes to files over time, enables collaboration, and supports rollback to any previous state.
 
@@ -299,7 +315,7 @@ git log --oneline -10       # View last 10 commits
 ```
 
 
-## 10. Developer Tooling & Workflow
+# CHAPTER 10: Developer Tooling & Workflow
 
 | Tool | Purpose |
 |:-----|:--------|
@@ -312,7 +328,7 @@ git log --oneline -10       # View last 10 commits
 | **Browser DevTools** | Inspect DOM, debug JS, profile network requests |
 
 
-## 11. Deployment Overview
+# CHAPTER 11: Deployment Overview
 
 **Deployment** is the process of making an application accessible to users over the internet.
 
@@ -332,7 +348,7 @@ Local (dev) → Staging (testing) → Production (users)
 > **Warning:** Environment variables (secrets, database URLs, API keys) must never be committed to version control. Use `.env` files locally and platform-provided secret management in production.
 
 
-## 12. Full Stack Roadmap
+# CHAPTER 12: Full Stack Roadmap
 
 The recommended learning sequence for this repository:
 

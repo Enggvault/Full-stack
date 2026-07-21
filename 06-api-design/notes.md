@@ -1,50 +1,56 @@
+title: "API Design & HTTP Status Codes: Complete Beginner to Advanced"
+subtitle: "From First Principles to Production-Grade Architecture"
+author: "Principal Backend Engineer — 15+ Years Industry Experience"
+version: "2.0"
+date: "2025"
+
 # API Design & HTTP Status Codes
+## Complete Beginner to Advanced Engineering Handbook
 
-> **Module 06** · Full-Stack Engineering · Enggvault
-> Prerequisites: Basic JavaScript · HTML/CSS
+> A production-grade, book-quality reference covering REST API design principles, HTTP status codes, validation, authentication, and production implementation. Written for engineers at all levels — from beginners to FAANG system designers.
 
-
-##  Learning Objectives
-
-| Item | Detail |
-|:-----|:-------|
-| **What you will learn** | API design principles, HTTP methods, status codes, REST, validation, authentication, Express.js implementation |
-| **Prerequisites** | Basic JavaScript (variables, functions, objects, arrays) |
-| **Difficulty** | Beginner → Advanced |
-| **Estimated Reading Time** | 3–4 hours |
-| **Skills Gained** | Build and design REST APIs, choose correct HTTP methods and status codes, handle errors, validate input, document APIs |
+> **Prerequisites:** [05 — HTTP, JSON & Fetch ←](../05-http-json-fetch/notes.md) · **Next:** [07 — Node.js & Express →](../07-nodejs-express/notes.md)
 
 
 ## Table of Contents
 
-1. [Introduction to APIs](#chapter-1-introduction-to-apis)
-2. [Client-Server Architecture](#chapter-2-client-server-architecture)
-3. [HTTP Basics](#chapter-3-http-basics)
-4. [HTTP Request Lifecycle](#chapter-4-http-request-lifecycle)
-5. [HTTP Methods](#chapter-5-http-methods)
-6. [REST API Design Principles](#chapter-6-rest-api-design-principles)
-7. [Designing Good Endpoints](#chapter-7-designing-good-endpoints)
-8. [Route Parameters](#chapter-8-route-parameters)
-9. [Query Parameters](#chapter-9-query-parameters)
-10. [Request Body](#chapter-10-request-body)
-11. [Response Body](#chapter-11-response-body)
-12. [CRUD Operations](#chapter-12-crud-operations)
-13. [HTTP Status Codes](#chapter-13-http-status-codes)
-14. [Validation](#chapter-14-validation)
-15. [Error Handling](#chapter-15-error-handling)
-16. [Authentication Overview](#chapter-16-authentication-overview)
-17. [Security Best Practices](#chapter-17-security-best-practices)
-18. [API Documentation](#chapter-18-api-documentation)
-19. [Complete Express CRUD Example](#chapter-19-complete-express-crud-example)
-20. [Best Practices](#chapter-20-best-practices)
-21. [Common Mistakes](#chapter-21-common-mistakes)
-22. [Interview Questions](#chapter-22-interview-questions)
-23. [Practice Projects](#chapter-23-practice-projects)
-24. [Cheat Sheet](#chapter-24-cheat-sheet)
-25. [Summary](#chapter-25-summary)
+### Part I: API Foundations
+- [Chapter 1: Introduction to APIs](#chapter-1-introduction-to-apis)
+- [Chapter 2: Client-Server Architecture](#chapter-2-client-server-architecture)
+- [Chapter 3: HTTP Basics](#chapter-3-http-basics)
+- [Chapter 4: HTTP Request Lifecycle](#chapter-4-http-request-lifecycle)
+- [Chapter 5: HTTP Methods](#chapter-5-http-methods)
+
+### Part II: REST API Design
+- [Chapter 6: REST API Design Principles](#chapter-6-rest-api-design-principles)
+- [Chapter 7: Designing Good Endpoints](#chapter-7-designing-good-endpoints)
+- [Chapter 8: Route Parameters](#chapter-8-route-parameters)
+- [Chapter 9: Query Parameters](#chapter-9-query-parameters)
+- [Chapter 10: Request Body](#chapter-10-request-body)
+- [Chapter 11: Response Body](#chapter-11-response-body)
+- [Chapter 12: CRUD Operations](#chapter-12-crud-operations)
+
+### Part III: Status Codes & Error Handling
+- [Chapter 13: HTTP Status Codes](#chapter-13-http-status-codes)
+- [Chapter 14: Validation](#chapter-14-validation)
+- [Chapter 15: Error Handling](#chapter-15-error-handling)
+
+### Part IV: Security & Documentation
+- [Chapter 16: Authentication Overview](#chapter-16-authentication-overview)
+- [Chapter 17: Security Best Practices](#chapter-17-security-best-practices)
+- [Chapter 18: API Documentation](#chapter-18-api-documentation)
+
+### Part V: Implementation & Reference
+- [Chapter 19: Complete Express CRUD Example](#chapter-19-complete-express-crud-example)
+- [Chapter 20: Best Practices](#chapter-20-best-practices)
+- [Chapter 21: Common Mistakes](#chapter-21-common-mistakes)
+- [Chapter 22: Interview Questions](#chapter-22-interview-questions)
+- [Chapter 23: Practice Projects](#chapter-23-practice-projects)
+- [Chapter 24: Cheat Sheet](#chapter-24-cheat-sheet)
+- [Chapter 25: Summary](#chapter-25-summary)
 
 
-## Chapter 1: Introduction to APIs
+# CHAPTER 1: Introduction to APIs
 
 ### What is an API?
 
@@ -100,7 +106,7 @@ APIs solve this by providing a **controlled, standardised interface**:
 | **2020s** | REST + GraphQL + gRPC | All three coexist for different use cases |
 
 
-## Chapter 2: Client-Server Architecture
+# CHAPTER 2: Client-Server Architecture
 
 ### The Three-Tier Model
 
@@ -188,7 +194,7 @@ The **database** is where data is permanently stored. The server queries it base
 > Because it would expose your credentials, allow data tampering, bypass business logic, and be a massive security vulnerability.
 
 
-## Chapter 3: HTTP Basics
+# CHAPTER 3: HTTP Basics
 
 ### What is HTTP?
 
@@ -300,7 +306,7 @@ Body:
 | `X-Request-ID` | Both | Unique request identifier for tracing | `550e8400-e29b-41d4` |
 
 
-## Chapter 4: HTTP Request Lifecycle
+# CHAPTER 4: HTTP Request Lifecycle
 
 When you make an API call, many steps happen in milliseconds. Understanding this lifecycle helps you debug issues.
 
@@ -370,7 +376,7 @@ When you make an API call, many steps happen in milliseconds. Understanding this
 ```
 
 
-## Chapter 5: HTTP Methods
+# CHAPTER 5: HTTP Methods
 
 HTTP methods tell the server **what action** to perform on the resource. Choosing the correct method is fundamental to good API design.
 
@@ -636,7 +642,7 @@ OPTIONS /api/v1/users
 ```
 
 
-## Chapter 6: REST API Design Principles
+# CHAPTER 6: REST API Design Principles
 
 ### What is REST?
 
@@ -721,7 +727,7 @@ Level 0 ──── Level 1 ──── Level 2 ──── Level 3
 > **Most production APIs operate at Level 2.** Aim for Level 2.
 
 
-## Chapter 7: Designing Good Endpoints
+# CHAPTER 7: Designing Good Endpoints
 
 ### The Golden Rule
 
@@ -781,7 +787,7 @@ https://api.example.com/v2/users    ← Breaking changes go here
 This lets you make breaking changes in `v2` without breaking `v1` clients.
 
 
-## Chapter 8: Route Parameters
+# CHAPTER 8: Route Parameters
 
 Route parameters are **variable segments** in a URL path. They are used to identify a **specific resource**.
 
@@ -847,7 +853,7 @@ app.get('/api/v1/posts/:postId/comments/:commentId', (req, res) => {
 | **Express access** | `req.params.id` | `req.query.role` |
 
 
-## Chapter 9: Query Parameters
+# CHAPTER 9: Query Parameters
 
 Query parameters are **key-value pairs** appended to a URL after `?`. Multiple parameters are separated by `&`.
 
@@ -921,7 +927,7 @@ GET /products?q=wireless+headphones
 ```
 
 
-## Chapter 10: Request Body
+# CHAPTER 10: Request Body
 
 The **request body** contains data that the client sends to the server to create or update a resource. It is used with POST, PUT, and PATCH requests.
 
@@ -996,7 +1002,7 @@ app.post('/api/v1/users', (req, res) => {
 ```
 
 
-## Chapter 11: Response Body
+# CHAPTER 11: Response Body
 
 Every API response should follow a **consistent structure**. This makes it predictable for the client — it always knows where to find the data, errors, and metadata.
 
@@ -1063,7 +1069,7 @@ res.json({ success: true });
 ```
 
 
-## Chapter 12: CRUD Operations
+# CHAPTER 12: CRUD Operations
 
 **CRUD** stands for the four basic operations every data-driven application performs:
 
@@ -1086,7 +1092,7 @@ res.json({ success: true });
 | Delete product | DELETE | `/products/:id` | — | `204 No Content` |
 
 
-## Chapter 13: HTTP Status Codes
+# CHAPTER 13: HTTP Status Codes
 
 ### Why Status Codes Matter
 
@@ -1638,7 +1644,7 @@ app.use('/api', (req, res, next) => {
 
 
 
-## Chapter 14: Validation
+# CHAPTER 14: Validation
 
 **Validation** is the process of checking that data sent by the client is correct, complete, and safe before processing it. Never trust client input.
 
@@ -1739,7 +1745,7 @@ app.post('/api/v1/users', (req, res) => {
 ```
 
 
-## Chapter 15: Error Handling
+# CHAPTER 15: Error Handling
 
 A well-designed API returns **consistent, actionable error responses**. Poor error handling is one of the most common API design mistakes.
 
@@ -1832,7 +1838,7 @@ app.get('/api/v1/users', asyncHandler(async (req, res) => {
 ```
 
 
-## Chapter 16: Authentication Overview
+# CHAPTER 16: Authentication Overview
 
 **Authentication** answers the question: **"Who are you?"**
 
@@ -1950,7 +1956,7 @@ Authorization: Bearer <token>
 JWT tokens are the most common type of Bearer token.
 
 
-## Chapter 17: Security Best Practices
+# CHAPTER 17: Security Best Practices
 
 ### 1. Always Use HTTPS
 
@@ -2038,7 +2044,7 @@ const secret = process.env.JWT_SECRET;
 | Logs stored securely | ✅ |
 
 
-## Chapter 18: API Documentation
+# CHAPTER 18: API Documentation
 
 > A great API with poor documentation is a bad API.
 
@@ -2123,7 +2129,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 | **Code Examples** | curl, JavaScript, Python |
 
 
-## Chapter 19: Complete Express CRUD Example
+# CHAPTER 19: Complete Express CRUD Example
 
 Let's build a full **User API** from scratch with all CRUD operations, validation, and error handling.
 
@@ -2391,7 +2397,7 @@ curl -X DELETE http://localhost:3000/api/v1/users/3
 
 
 
-## Chapter 20: Best Practices
+# CHAPTER 20: Best Practices
 
 1. **Use correct HTTP methods** — GET for reading, POST for creating, PUT/PATCH for updating, DELETE for deleting.
 2. **Use plural nouns in URIs** — `/users` not `/user`.
@@ -2426,7 +2432,7 @@ curl -X DELETE http://localhost:3000/api/v1/users/3
 
 
 
-## Chapter 21: Common Mistakes
+# CHAPTER 21: Common Mistakes
 
 | # | Mistake | Why It's Wrong | Fix |
 |:--|:--------|:---------------|:----|
@@ -2457,7 +2463,7 @@ curl -X DELETE http://localhost:3000/api/v1/users/3
 | 25 | No logging | Impossible to debug production issues | Log every request with method, path, status |
 
 
-## Chapter 22: Interview Questions
+# CHAPTER 22: Interview Questions
 
 ### Beginner Level
 
@@ -2630,7 +2636,7 @@ Tells the client how long to wait before retrying. Used with 429 (rate limit) an
 Add a `deletedAt` timestamp field. Instead of `DELETE FROM users WHERE id = ?`, do `UPDATE users SET deletedAt = NOW() WHERE id = ?`. Return 204 to the client. Filter out soft-deleted records from GET queries. This preserves data integrity and audit history.
 
 
-## Chapter 23: Practice Projects
+# CHAPTER 23: Practice Projects
 
 | # | Project | Difficulty | Skills | Est. Time |
 |:--|:--------|:----------:|:-------|:---------:|
@@ -2656,7 +2662,7 @@ Add a `deletedAt` timestamp field. Instead of `DELETE FROM users WHERE id = ?`, 
 | 20 | Multi-tenant SaaS API | ⭐⭐⭐⭐ | Org isolation, ABAC, API keys | 10 hrs |
 
 
-## Chapter 24: Cheat Sheet
+# CHAPTER 24: Cheat Sheet
 
 ### HTTP Methods
 
@@ -2775,7 +2781,7 @@ app.listen(3000);
 ```
 
 
-## Chapter 25: Summary
+# CHAPTER 25: Summary
 
 | Chapter | Key Takeaways |
 |:--------|:-------------|

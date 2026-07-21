@@ -1,6 +1,9 @@
-# 08 — Databases & SQL
+# Module 08 — Databases & SQL
+
+## Purpose
 
 This module is the canonical reference for databases in this repository. It covers everything from fundamental SQL commands to advanced indexing, normalization, transactions, and NoSQL databases.
+
 
 ## Topics Covered
 
@@ -15,6 +18,7 @@ This module is the canonical reference for databases in this repository. It cove
 - Real-World Database Architecture
 - Comprehensive Interview Questions and Cheat Sheet
 
+
 ## Learning Objectives
 
 After completing this module, you will be able to:
@@ -26,18 +30,27 @@ After completing this module, you will be able to:
 - Understand the mechanics of ACID transactions and isolation levels.
 - Safely connect and interact with databases from a backend application.
 
+
 ## Prerequisites
 
 - Basic programming knowledge
 - [07 — Node.js & Express Deep Dive](../07-nodejs-express/README.md)
 
+
 ## Estimated Reading Time
 
 5–7 hours
 
+
 ## Difficulty
 
 🟥 Advanced
+
+
+## Next Module
+
+→ [Next.js (Planned)]()
+
 
 ## Files in This Module
 
@@ -45,7 +58,3 @@ After completing this module, you will be able to:
 |:-----|:------------|
 | `README.md` | This file — module overview and objectives |
 | `notes.md` | Full reference notes for this module |
-
-## Next Module
-
-→ [Next.js (Planned)]()

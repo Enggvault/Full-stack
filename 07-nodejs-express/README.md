@@ -1,6 +1,9 @@
-# 07 — Node.js & Express Deep Dive
+# Module 07 — Node.js & Express
+
+## Purpose
 
 This module is the canonical server-side programming reference in this repository. It covers Node.js from its runtime internals to building a complete production-structured REST API with Express.js.
+
 
 ## Topics Covered
 
@@ -18,6 +21,7 @@ This module is the canonical server-side programming reference in this repositor
 - Complete Student Management CRUD API (project)
 - 50 interview Q&As, best practices, common mistakes, cheat sheet
 
+
 ## Learning Objectives
 
 After completing this module, you will be able to:
@@ -29,18 +33,27 @@ After completing this module, you will be able to:
 - Write async route handlers without callback hell.
 - Use core modules: `fs`, `path`, `http`, `events`, `stream`.
 
+
 ## Prerequisites
 
 - [06 — API Design](../06-api-design/README.md)
 - JavaScript: functions, objects, arrays, Promises, async/await
 
+
 ## Estimated Reading Time
 
 5–7 hours
 
+
 ## Difficulty
 
 🟥 Advanced
+
+
+## Next Module
+
+→ [08 — Databases & SQL](../08-databases/README.md)
+
 
 ## Files in This Module
 
@@ -48,7 +61,3 @@ After completing this module, you will be able to:
 |:-----|:------------|
 | `README.md` | This file — module overview and objectives |
 | `notes.md` | Full reference notes for this module (28 chapters) |
-
-## Next Module
-
-→ [08 — Databases & SQL](../08-databases/README.md)

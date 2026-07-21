@@ -1,53 +1,61 @@
-# Node.js & Express Deep Dive
+title: "Node.js & Express: Complete Beginner to Advanced"
+subtitle: "From First Principles to Production-Grade Architecture"
+author: "Principal Node.js Engineer — 15+ Years Industry Experience"
+version: "2.0"
+date: "2025"
 
-> **Module 07** · Full-Stack Engineering · Enggvault
-> Prerequisites: [API Design ←](../06-api-design/notes.md) · JavaScript fundamentals
+# Node.js & Express
+## Complete Beginner to Advanced Engineering Handbook
 
+> A production-grade, book-quality reference covering Node.js internals, Express routing, middleware, authentication, and project architecture. Written for engineers at all levels — from beginners to FAANG system designers.
 
-## Learning Objectives
-
-| Item | Detail |
-|:-----|:-------|
-| **What you will learn** | Node.js internals, Express routing, middleware, async patterns, file system, authentication, project architecture |
-| **Prerequisites** | JavaScript (functions, callbacks, Promises, async/await, objects, arrays) |
-| **Difficulty** | Beginner → Advanced |
-| **Estimated Reading Time** | 5–7 hours |
-| **Skills Gained** | Build production-ready REST APIs, understand the Event Loop, handle errors, structure scalable projects |
+> **Prerequisites:** [06 — API Design ←](../06-api-design/notes.md) · **Next:** [08 — Databases →](../08-databases/notes.md)
 
 
 ## Table of Contents
 
-1. [Introduction to Node.js](#chapter-1-introduction-to-nodejs)
-2. [Installing Node.js](#chapter-2-installing-nodejs)
-3. [Node.js Internals](#chapter-3-nodejs-internals)
-4. [Modules](#chapter-4-modules)
-5. [npm Deep Dive](#chapter-5-npm-deep-dive)
-6. [Express.js Introduction](#chapter-6-expressjs-introduction)
-7. [Express Application Structure](#chapter-7-express-application-structure)
-8. [Routing](#chapter-8-routing)
-9. [Request & Response Objects](#chapter-9-request--response-objects)
-10. [Middleware Deep Dive](#chapter-10-middleware-deep-dive)
-11. [Static Files](#chapter-11-static-files)
-12. [Template Engines](#chapter-12-template-engines)
-13. [Environment Variables](#chapter-13-environment-variables)
-14. [Error Handling](#chapter-14-error-handling)
-15. [Async Programming](#chapter-15-async-programming)
-16. [File System Module](#chapter-16-file-system-module)
-17. [Path Module](#chapter-17-path-module)
-18. [HTTP Module](#chapter-18-http-module)
-19. [Events](#chapter-19-events)
-20. [Streams](#chapter-20-streams)
-21. [Buffers](#chapter-21-buffers)
-22. [Authentication Basics](#chapter-22-authentication-basics)
-23. [REST API Best Practices](#chapter-23-rest-api-best-practices)
-24. [Express Project — Student Management API](#chapter-24-express-project--student-management-api)
-25. [Interview Questions](#chapter-25-interview-questions)
-26. [Best Practices](#chapter-26-best-practices)
-27. [Common Mistakes](#chapter-27-common-mistakes)
-28. [Cheat Sheet](#chapter-28-cheat-sheet)
+### Part I: Node.js Foundations
+- [Chapter 1: Introduction to Node.js](#chapter-1-introduction-to-nodejs)
+- [Chapter 2: Installing Node.js](#chapter-2-installing-nodejs)
+- [Chapter 3: Node.js Internals](#chapter-3-nodejs-internals)
+
+### Part II: Core Ecosystem
+- [Chapter 4: Modules](#chapter-4-modules)
+- [Chapter 5: npm Deep Dive](#chapter-5-npm-deep-dive)
+
+### Part III: Express.js Mastery
+- [Chapter 6: Express.js Introduction](#chapter-6-expressjs-introduction)
+- [Chapter 7: Express Application Structure](#chapter-7-express-application-structure)
+- [Chapter 8: Routing](#chapter-8-routing)
+- [Chapter 9: Request & Response Objects](#chapter-9-request--response-objects)
+- [Chapter 10: Middleware Deep Dive](#chapter-10-middleware-deep-dive)
+- [Chapter 11: Static Files](#chapter-11-static-files)
+- [Chapter 12: Template Engines](#chapter-12-template-engines)
+- [Chapter 13: Environment Variables](#chapter-13-environment-variables)
+
+### Part IV: Production Engineering
+- [Chapter 14: Error Handling](#chapter-14-error-handling)
+- [Chapter 15: Async Programming](#chapter-15-async-programming)
+- [Chapter 16: File System Module](#chapter-16-file-system-module)
+- [Chapter 17: Path Module](#chapter-17-path-module)
+- [Chapter 18: HTTP Module](#chapter-18-http-module)
+- [Chapter 19: Events](#chapter-19-events)
+- [Chapter 20: Streams](#chapter-20-streams)
+- [Chapter 21: Buffers](#chapter-21-buffers)
+
+### Part V: Real-World Application
+- [Chapter 22: Authentication Basics](#chapter-22-authentication-basics)
+- [Chapter 23: REST API Best Practices](#chapter-23-rest-api-best-practices)
+- [Chapter 24: Express Project — Student Management API](#chapter-24-express-project--student-management-api)
+
+### Part VI: Reference
+- [Chapter 25: Interview Questions](#chapter-25-interview-questions)
+- [Chapter 26: Best Practices](#chapter-26-best-practices)
+- [Chapter 27: Common Mistakes](#chapter-27-common-mistakes)
+- [Chapter 28: Cheat Sheet](#chapter-28-cheat-sheet)
 
 
-## Chapter 1: Introduction to Node.js
+# CHAPTER 1: Introduction to Node.js
 
 ### What is Node.js?
 
@@ -198,7 +206,7 @@ console.log('Continuing...'); // Runs immediately, before file is read
 - Heavy mathematical computation
 
 
-## Chapter 2: Installing Node.js
+# CHAPTER 2: Installing Node.js
 
 ### Direct Installation
 
@@ -276,7 +284,7 @@ Use npx for one-time scaffolding commands.
 | **pnpm** | Fastest | Shared node_modules store; disk efficient |
 
 
-## Chapter 3: Node.js Internals
+# CHAPTER 3: Node.js Internals
 
 This chapter explains how Node.js actually works under the hood — knowledge that separates beginners from professionals.
 
@@ -472,7 +480,7 @@ setImmediate(() => {
 ```
 
 
-## Chapter 4: Modules
+# CHAPTER 4: Modules
 
 A **module** is a reusable piece of JavaScript code contained in its own file. Modules help you organize code, avoid naming conflicts, and share functionality between files.
 
@@ -599,7 +607,7 @@ console.log(divide(10, 2));  // 5
 
 ---
 
-## Chapter 5: npm Deep Dive
+# CHAPTER 5: npm Deep Dive
 
 ### package.json
 
@@ -739,7 +747,7 @@ dist/
 ```
 
 
-## Chapter 6: Express.js Introduction
+# CHAPTER 6: Express.js Introduction
 
 ### What is Express?
 
@@ -834,7 +842,7 @@ app.use(express.json()); // Parse JSON request bodies
 ```
 
 
-## Chapter 7: Express Application Structure
+# CHAPTER 7: Express Application Structure
 
 ### Professional Folder Structure
 
@@ -944,7 +952,7 @@ app.listen(PORT, () => {
 ```
 
 
-## Chapter 8: Routing
+# CHAPTER 8: Routing
 
 ### Basic Routes
 
@@ -1043,7 +1051,7 @@ app.route('/users/:id')
 ```
 
 
-## Chapter 9: Request & Response Objects
+# CHAPTER 9: Request & Response Objects
 
 ### The Request Object (req)
 
@@ -1139,7 +1147,7 @@ app.get('/good', (req, res) => {
 ```
 
 
-## Chapter 10: Middleware Deep Dive
+# CHAPTER 10: Middleware Deep Dive
 
 ### What is Middleware?
 
@@ -1261,7 +1269,7 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 })); // Rate limit
 ```
 
 
-## Chapter 11: Static Files
+# CHAPTER 11: Static Files
 
 Express can serve static files (HTML, CSS, JavaScript, images) directly.
 
@@ -1288,7 +1296,7 @@ project/
 Express will serve `public/index.html` at `GET /index.html` (and `GET /` if it exists).
 
 
-## Chapter 12: Template Engines
+# CHAPTER 12: Template Engines
 
 Template engines let the server render HTML with dynamic data. In REST API development, you typically return JSON — template engines are used for server-rendered apps (dashboards, email templates).
 
@@ -1328,7 +1336,7 @@ app.get('/dashboard', (req, res) => {
 > **For REST APIs:** Skip template engines. Return JSON and let the frontend handle rendering.
 
 
-## Chapter 13: Environment Variables
+# CHAPTER 13: Environment Variables
 
 ### Why Environment Variables?
 
@@ -1402,7 +1410,7 @@ console.log(config.port); // 3000
 ```
 
 
-## Chapter 14: Error Handling
+# CHAPTER 14: Error Handling
 
 ### Types of Errors
 
@@ -1494,7 +1502,7 @@ app.get('/users', asyncHandler(async (req, res) => {
 ```
 
 
-## Chapter 15: Async Programming
+# CHAPTER 15: Async Programming
 
 ### Callbacks (Legacy)
 
@@ -1615,7 +1623,7 @@ results.forEach(result => {
 ```
 
 
-## Chapter 16: File System Module
+# CHAPTER 16: File System Module
 
 Node.js `fs` module provides APIs for interacting with the file system.
 
@@ -1702,7 +1710,7 @@ await log('User 123 logged in');
 ```
 
 
-## Chapter 17: Path Module
+# CHAPTER 17: Path Module
 
 The `path` module provides utilities for working with file and directory paths in a cross-platform way (Windows uses `\`, Unix uses `/`).
 
@@ -1761,7 +1769,7 @@ app.use(express.static(publicDir));
 > **Note:** `__dirname` and `__filename` are not available in ES Modules. Use `import.meta.url` instead.
 
 
-## Chapter 18: HTTP Module
+# CHAPTER 18: HTTP Module
 
 The `http` module is what Express is built on top of. You can create a raw HTTP server without Express:
 
@@ -1814,7 +1822,7 @@ https.get('https://jsonplaceholder.typicode.com/todos/1', (res) => {
 In practice, use `node-fetch`, `axios`, or Node 18+ built-in `fetch` for making requests.
 
 
-## Chapter 19: Events
+# CHAPTER 19: Events
 
 Node.js has an `EventEmitter` class for implementing the observer (pub/sub) pattern.
 
@@ -1881,7 +1889,7 @@ logger.log('error', 'Database connection failed');
 ```
 
 
-## Chapter 20: Streams
+# CHAPTER 20: Streams
 
 Streams allow processing data **piece by piece** instead of loading everything into memory at once. Essential for large files, video, and network data.
 
@@ -1957,7 +1965,7 @@ app.get('/download', (req, res) => {
 ```
 
 
-## Chapter 21: Buffers
+# CHAPTER 21: Buffers
 
 A **Buffer** is a fixed-size chunk of memory used to store raw binary data — bytes. Used when working with binary data like files, images, network packets, or encrypted data.
 
@@ -2000,7 +2008,7 @@ app.post('/upload', (req, res) => {
 ```
 
 
-## Chapter 22: Authentication Basics
+# CHAPTER 22: Authentication Basics
 
 ### Session-Based Authentication
 
@@ -2075,7 +2083,7 @@ function authMiddleware(req, res, next) {
 ```
 
 
-## Chapter 23: REST API Best Practices
+# CHAPTER 23: REST API Best Practices
 
 *(Cross-reference with [Module 06 — API Design](../06-api-design/notes.md) for full coverage)*
 
@@ -2095,7 +2103,7 @@ function authMiddleware(req, res, next) {
 | **Auth** | JWT in `Authorization: Bearer <token>` header |
 
 
-## Chapter 24: Express Project — Student Management API
+# CHAPTER 24: Express Project — Student Management API
 
 A complete, production-structured CRUD API.
 
@@ -2405,7 +2413,7 @@ curl -X DELETE http://localhost:3000/api/v1/students/3
 ```
 
 
-## Chapter 25: Interview Questions
+# CHAPTER 25: Interview Questions
 
 ### Node.js — Beginner
 
@@ -2580,7 +2588,7 @@ Out of memory — JavaScript heap exhausted. Common causes: memory leak (event l
 `const [users, products] = await Promise.all([db.getUsers(), db.getProducts()])` — both queries execute simultaneously, dramatically reducing response time compared to sequential awaits.
 
 
-## Chapter 26: Best Practices
+# CHAPTER 26: Best Practices
 
 ### Code Organization
 1. Separate `app.js` (Express setup) from `server.js` (listening) — makes testing easier.
@@ -2622,7 +2630,7 @@ Out of memory — JavaScript heap exhausted. Common causes: memory leak (event l
 29. Use semantic versioning for your API — bump MAJOR for breaking changes.
 30. Write integration tests for every endpoint — at minimum happy path + 4xx cases.
 
-## Chapter 27: Common Mistakes
+# CHAPTER 27: Common Mistakes
 
 | # | Mistake | Problem | Fix |
 |:--|:--------|:--------|:----|
@@ -2649,7 +2657,7 @@ Out of memory — JavaScript heap exhausted. Common causes: memory leak (event l
 
 ---
 
-## Chapter 28: Cheat Sheet
+# CHAPTER 28: Cheat Sheet
 
 ### Node.js Core Commands
 

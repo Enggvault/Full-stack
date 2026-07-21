@@ -4,7 +4,7 @@
 
 **A structured, single-source-of-truth documentation project for learning full-stack web development — from the fundamentals of the web to API design.**
 
-[![Modules](https://img.shields.io/badge/Modules-6-4f46e5?style=flat-square)](.)
+[![Modules](https://img.shields.io/badge/Modules-8-4f46e5?style=flat-square)](.)
 [![Format](https://img.shields.io/badge/Format-Markdown-0ea5e9?style=flat-square)](.)
 [![Level](https://img.shields.io/badge/Level-Beginner%20→%20Advanced-10b981?style=flat-square)](.)
 [![License](https://img.shields.io/badge/License-MIT-f59e0b?style=flat-square)](./LICENSE)

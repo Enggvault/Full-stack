@@ -1,31 +1,46 @@
-# CSS Reference
+title: "CSS: Complete Beginner to Advanced"
+subtitle: "From First Principles to Production-Grade Architecture"
+author: "Principal Frontend Engineer — 15+ Years Industry Experience"
+version: "2.0"
+date: "2025"
 
-> **Module 03** · Prerequisites: [HTML ←](../02-html/notes.md) · Next: [JavaScript →](../04-javascript/notes.md)
+# CSS
+## Complete Beginner to Advanced Engineering Handbook
+
+> A production-grade, book-quality reference covering every aspect of CSS, from basic selectors to modern architecture. Written for engineers at all levels — from beginners to FAANG system designers.
+
+> **Prerequisites:** [02 — HTML ←](../02-html/notes.md) · **Next:** [04 — JavaScript →](../04-javascript/notes.md)
+
 
 ## Table of Contents
 
-1. [What is CSS?](#1-what-is-css)
-2. [Ways to Add CSS](#2-ways-to-add-css)
-3. [Selectors](#3-selectors)
-4. [Specificity & the Cascade](#4-specificity--the-cascade)
-5. [Units](#5-units)
-6. [Colors](#6-colors)
-7. [Typography](#7-typography)
-8. [The Box Model](#8-the-box-model)
-9. [Display Property](#9-display-property)
-10. [Position Property](#10-position-property)
-11. [Flexbox](#11-flexbox)
-12. [CSS Grid](#12-css-grid)
-13. [Responsive Design](#13-responsive-design)
-14. [Transforms & Transitions](#14-transforms--transitions)
-15. [Animations](#15-animations)
-16. [CSS Custom Properties](#16-css-custom-properties)
-17. [CSS Functions](#17-css-functions)
-18. [Filters & Effects](#18-filters--effects)
-19. [Architecture & Performance](#19-architecture--performance)
+### Part I: CSS Fundamentals
+- [Chapter 1: What is CSS?](#chapter-1-what-is-css)
+- [Chapter 2: Ways to Add CSS](#chapter-2-ways-to-add-css)
+- [Chapter 3: Selectors](#chapter-3-selectors)
+- [Chapter 4: Specificity & the Cascade](#chapter-4-specificity--the-cascade)
+- [Chapter 5: Units](#chapter-5-units)
+- [Chapter 6: Colors](#chapter-6-colors)
+- [Chapter 7: Typography](#chapter-7-typography)
+
+### Part II: Layout
+- [Chapter 8: The Box Model](#chapter-8-the-box-model)
+- [Chapter 9: Display Property](#chapter-9-display-property)
+- [Chapter 10: Position Property](#chapter-10-position-property)
+- [Chapter 11: Flexbox](#chapter-11-flexbox)
+- [Chapter 12: CSS Grid](#chapter-12-css-grid)
+- [Chapter 13: Responsive Design](#chapter-13-responsive-design)
+
+### Part III: Motion, Variables & Architecture
+- [Chapter 14: Transforms & Transitions](#chapter-14-transforms--transitions)
+- [Chapter 15: Animations](#chapter-15-animations)
+- [Chapter 16: CSS Custom Properties](#chapter-16-css-custom-properties)
+- [Chapter 17: CSS Functions](#chapter-17-css-functions)
+- [Chapter 18: Filters & Effects](#chapter-18-filters--effects)
+- [Chapter 19: Architecture & Performance](#chapter-19-architecture--performance)
 
 
-## 1. What is CSS?
+# CHAPTER 1: What is CSS?
 
 **CSS (Cascading Style Sheets)** is a stylesheet language that controls the visual presentation of HTML documents — colors, typography, spacing, layout, and motion.
 
@@ -38,7 +53,7 @@ JavaScript  →  Behavior  (what it does)
 CSS is a **living standard**, continuously updated via separate specification modules (Selectors Level 4, CSS Grid Level 2, etc.).
 
 
-## 2. Ways to Add CSS
+# CHAPTER 2: Ways to Add CSS
 
 ```html
 <!-- 1. External stylesheet — best practice for all real projects -->
@@ -55,7 +70,7 @@ CSS is a **living standard**, continuously updated via separate specification mo
 
 **Priority (highest to lowest):** Inline > Internal > External > Browser default
 
-## 3. Selectors
+# CHAPTER 3: Selectors
 
 ### Basic Selectors
 
@@ -112,7 +127,7 @@ CSS is a **living standard**, continuously updated via separate specification mo
 ::placeholder    /* Placeholder text in inputs */
 ```
 
-## 4. Specificity & the Cascade
+# CHAPTER 4: Specificity & the Cascade
 
 When multiple rules target the same element and property, the **cascade** determines which rule wins using three factors in order of priority:
 
@@ -140,7 +155,7 @@ h1       { color: green; } /* 0-0-0-1 */
 Properties like `color`, `font-family`, and `line-height` are **inherited** by children. Layout properties (`margin`, `border`, `padding`) are not. Use `inherit` to force inheritance, `initial` to reset to the browser default.
 
 
-## 5. Units
+# CHAPTER 5: Units
 
 ### Absolute Units
 
@@ -164,7 +179,7 @@ Properties like `color`, `font-family`, and `line-height` are **inherited** by c
 > **Rule of thumb:** `rem` for font sizes, `%` or `fr` for layout, `px` for fine details like borders.
 
 
-## 6. Colors
+# CHAPTER 6: Colors
 
 ```css
 .element {
@@ -185,7 +200,7 @@ Properties like `color`, `font-family`, and `line-height` are **inherited** by c
 
 ---
 
-## 7. Typography
+# CHAPTER 7: Typography
 
 ```css
 body {
@@ -214,7 +229,7 @@ p {
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 ```
 
-## 8. The Box Model
+# CHAPTER 8: The Box Model
 
 Every HTML element is a rectangular box. The Box Model defines how dimensions are calculated.
 
@@ -267,7 +282,7 @@ margin: 0 auto;              /* center a block element horizontally */
 ```
 
 
-## 9. Display Property
+# CHAPTER 9: Display Property
 
 | Value | Behavior |
 |:------|:---------|
@@ -280,7 +295,7 @@ margin: 0 auto;              /* center a block element horizontally */
 | `inline-flex` | Flex container that itself behaves as an inline element |
 
 
-## 10. Position Property
+# CHAPTER 10: Position Property
 
 | Value | Behavior |
 |:------|:---------|
@@ -310,7 +325,7 @@ margin: 0 auto;              /* center a block element horizontally */
 ```
 
 
-## 11. Flexbox
+# CHAPTER 11: Flexbox
 
 Flexbox is a **1-dimensional** layout model that arranges items in a row or a column.
 
@@ -372,7 +387,7 @@ Cross Axis →  Perpendicular to the main axis
 ```
 
 
-## 12. CSS Grid
+# CHAPTER 12: CSS Grid
 
 CSS Grid is a **2-dimensional** layout model that arranges items in rows and columns simultaneously.
 
@@ -431,7 +446,7 @@ grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 | **Control** | Content-driven | Layout-driven |
 
 
-## 13. Responsive Design
+# CHAPTER 13: Responsive Design
 
 Responsive design ensures a layout works well across screen sizes — from a 320px phone to a 2560px monitor.
 
@@ -469,7 +484,7 @@ Responsive design ensures a layout works well across screen sizes — from a 320
 | Desktop | ≥ 1200px |
 
 
-## 14. Transforms & Transitions
+# CHAPTER 14: Transforms & Transitions
 
 ### Transforms
 
@@ -505,7 +520,7 @@ Responsive design ensures a layout works well across screen sizes — from a 320
 > Animate `transform` and `opacity` — these are GPU-composited and do not cause layout reflow. Avoid animating `width`, `height`, `margin`, or `top`.
 
 
-## 15. Animations
+# CHAPTER 15: Animations
 
 `@keyframes` enables complex, multi-step animations.
 
@@ -541,7 +556,7 @@ Responsive design ensures a layout works well across screen sizes — from a 320
 | `animation-play-state` | `running`, `paused` |
 
 
-## 16. CSS Custom Properties
+# CHAPTER 16: CSS Custom Properties
 
 CSS custom properties (variables) store values for reuse and enable theming.
 
@@ -574,7 +589,7 @@ CSS custom properties (variables) store values for reuse and enable theming.
 ```
 
 
-## 17. CSS Functions
+# CHAPTER 17: CSS Functions
 
 | Function | Example | Description |
 |:---------|:--------|:------------|
@@ -588,7 +603,7 @@ CSS custom properties (variables) store values for reuse and enable theming.
 | `minmax()` | `minmax(200px, 1fr)` | Grid track size constraint |
 
 
-## 18. Filters & Effects
+# CHAPTER 18: Filters & Effects
 
 ```css
 /* Image filters */
@@ -630,7 +645,7 @@ img {
 ```
 
 
-## 19. Architecture & Performance
+# CHAPTER 19: Architecture & Performance
 
 ### Naming Conventions
 
