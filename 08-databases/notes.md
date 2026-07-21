@@ -59,10 +59,8 @@ date: "2025"
 - [Chapter 29: 250+ Database & SQL Interview Questions](#chapter-29-250-database--sql-interview-questions)
 - [Chapter 30: Complete Cheat Sheets](#chapter-30-complete-cheat-sheets)
 
----
 
 
----
 
 # CHAPTER 1: Introduction to Databases
 
@@ -162,7 +160,6 @@ timeline
 5. **How does a DBMS ensure durability?**
    *Answer:* Through Write-Ahead Logging (WAL). Before any change is written to the actual database files on disk, a record of the transaction is appended to a sequential log file and synced to disk. If the system crashes, the WAL is replayed to restore the state.
 
----
 
 # CHAPTER 2 (Part A): Relational Databases (RDBMS)
 
@@ -311,7 +308,6 @@ Similar to CockroachDB but uses a modified PostgreSQL query layer on top of a cu
 10. **What is an HTAP database?**
     *Answer:* Hybrid Transactional/Analytical Processing. Systems like TiDB can handle high-throughput OLTP (inserts/updates) using a row store, while simultaneously synchronizing data to a columnar store to serve complex OLAP analytical queries without impacting the transactional workload.
 
----
 
 # CHAPTER 3: Structured vs Semi-Structured vs Unstructured Data
 
@@ -675,7 +671,7 @@ results = list(users.aggregate(pipeline))
 8.  **Q: Why would you use `$facet`?**
     **A:** To perform multiple independent aggregations on the same dataset in a single stage, useful for building UI elements like faceted search or multi-metric dashboards in one network request.
 
----
+
 
 ### CouchDB
 Apache CouchDB is a document database built around a RESTful HTTP/JSON API.
@@ -699,7 +695,7 @@ Microsoft's globally distributed database.
 *   **5 Consistency Levels:** Strong → Bounded Staleness → Session → Consistent Prefix → Eventual.
 *   **Request Units (RU):** The currency of Cosmos DB. Pricing is based on provisioned throughput measured in RUs/sec.
 
----
+
 
 ## Key-Value Databases
 
@@ -819,7 +815,7 @@ def is_rate_limited(user_id):
 6.  **Q: How does Redis Cluster route requests?**
     **A:** The key space is divided into 16384 slots. Clients hash the key and ask a node. If the node doesn't hold the slot, it returns a `MOVED` error pointing to the correct node. Smart clients cache this slot mapping.
 
----
+
 
 ### Amazon DynamoDB
 AWS's flagship serverless NoSQL database.
@@ -836,7 +832,6 @@ AWS's flagship serverless NoSQL database.
 *   **No Persistence:** Pure volatile cache.
 *   **When to choose:** Pure, massively scalable, simplistic cache without advanced data structures needed.
 
----
 
 ## Wide-Column Databases
 
