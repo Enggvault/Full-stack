@@ -3,7 +3,6 @@
 > **Module 07** · Full-Stack Engineering · Enggvault
 > Prerequisites: [API Design ←](../06-api-design/notes.md) · JavaScript fundamentals
 
----
 
 ## Learning Objectives
 
@@ -15,7 +14,6 @@
 | **Estimated Reading Time** | 5–7 hours |
 | **Skills Gained** | Build production-ready REST APIs, understand the Event Loop, handle errors, structure scalable projects |
 
----
 
 ## Table of Contents
 
@@ -48,7 +46,6 @@
 27. [Common Mistakes](#chapter-27-common-mistakes)
 28. [Cheat Sheet](#chapter-28-cheat-sheet)
 
----
 
 ## Chapter 1: Introduction to Node.js
 
@@ -200,7 +197,6 @@ console.log('Continuing...'); // Runs immediately, before file is read
 - Machine learning inference
 - Heavy mathematical computation
 
----
 
 ## Chapter 2: Installing Node.js
 
@@ -279,7 +275,6 @@ Use npx for one-time scaffolding commands.
 | **yarn** | Faster | Deterministic lockfile; workspaces |
 | **pnpm** | Fastest | Shared node_modules store; disk efficient |
 
----
 
 ## Chapter 3: Node.js Internals
 
@@ -476,7 +471,6 @@ setImmediate(() => {
 });
 ```
 
----
 
 ## Chapter 4: Modules
 
@@ -744,7 +738,6 @@ node_modules/
 dist/
 ```
 
----
 
 ## Chapter 6: Express.js Introduction
 
@@ -840,7 +833,6 @@ Without this, `req.body` is `undefined` for POST/PUT/PATCH requests:
 app.use(express.json()); // Parse JSON request bodies
 ```
 
----
 
 ## Chapter 7: Express Application Structure
 
@@ -951,7 +943,6 @@ app.listen(PORT, () => {
 });
 ```
 
----
 
 ## Chapter 8: Routing
 
@@ -1051,7 +1042,6 @@ app.route('/users/:id')
   .delete((req, res) => res.status(204).send());
 ```
 
----
 
 ## Chapter 9: Request & Response Objects
 
@@ -1148,7 +1138,6 @@ app.get('/good', (req, res) => {
 });
 ```
 
----
 
 ## Chapter 10: Middleware Deep Dive
 
@@ -1271,7 +1260,6 @@ app.use(morgan('dev'));           // HTTP request logging
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 })); // Rate limit
 ```
 
----
 
 ## Chapter 11: Static Files
 
@@ -1299,7 +1287,6 @@ project/
 
 Express will serve `public/index.html` at `GET /index.html` (and `GET /` if it exists).
 
----
 
 ## Chapter 12: Template Engines
 
@@ -1340,7 +1327,6 @@ app.get('/dashboard', (req, res) => {
 
 > **For REST APIs:** Skip template engines. Return JSON and let the frontend handle rendering.
 
----
 
 ## Chapter 13: Environment Variables
 
@@ -1415,7 +1401,6 @@ const config = require('./config/env');
 console.log(config.port); // 3000
 ```
 
----
 
 ## Chapter 14: Error Handling
 
@@ -1508,7 +1493,6 @@ app.get('/users', asyncHandler(async (req, res) => {
 }));
 ```
 
----
 
 ## Chapter 15: Async Programming
 
@@ -1630,7 +1614,6 @@ results.forEach(result => {
 });
 ```
 
----
 
 ## Chapter 16: File System Module
 
@@ -1718,7 +1701,6 @@ await log('Server started on port 3000');
 await log('User 123 logged in');
 ```
 
----
 
 ## Chapter 17: Path Module
 
@@ -1778,7 +1760,6 @@ app.use(express.static(publicDir));
 
 > **Note:** `__dirname` and `__filename` are not available in ES Modules. Use `import.meta.url` instead.
 
----
 
 ## Chapter 18: HTTP Module
 
@@ -1832,7 +1813,6 @@ https.get('https://jsonplaceholder.typicode.com/todos/1', (res) => {
 
 In practice, use `node-fetch`, `axios`, or Node 18+ built-in `fetch` for making requests.
 
----
 
 ## Chapter 19: Events
 
@@ -1900,7 +1880,6 @@ logger.log('info', 'Server started');
 logger.log('error', 'Database connection failed');
 ```
 
----
 
 ## Chapter 20: Streams
 
@@ -1977,7 +1956,6 @@ app.get('/download', (req, res) => {
 });
 ```
 
----
 
 ## Chapter 21: Buffers
 
@@ -2021,7 +1999,6 @@ app.post('/upload', (req, res) => {
 });
 ```
 
----
 
 ## Chapter 22: Authentication Basics
 
@@ -2097,7 +2074,6 @@ function authMiddleware(req, res, next) {
 }
 ```
 
----
 
 ## Chapter 23: REST API Best Practices
 
@@ -2118,7 +2094,6 @@ function authMiddleware(req, res, next) {
 | **Filtering** | Query params for filter/sort/search |
 | **Auth** | JWT in `Authorization: Bearer <token>` header |
 
----
 
 ## Chapter 24: Express Project — Student Management API
 
@@ -2429,7 +2404,6 @@ curl -X PATCH http://localhost:3000/api/v1/students/1 \
 curl -X DELETE http://localhost:3000/api/v1/students/3
 ```
 
----
 
 ## Chapter 25: Interview Questions
 
