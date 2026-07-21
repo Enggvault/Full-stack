@@ -938,7 +938,6 @@ A drop-in replacement for Cassandra, written in C++ instead of Java.
 *   **HBase:** Open-source Hadoop ecosystem equivalent. Runs on HDFS.
 *   **Architecture:** Master-slave (unlike Cassandra's ring). Relies on ZooKeeper for coordination. Optimized for massive batch processing.
 
----
 
 ## Graph Databases
 
@@ -1015,7 +1014,6 @@ results = graph.run(query).data()
 *   **ArangoDB:** Multi-model (document + graph + key-value) with unified AQL query language.
 *   **TigerGraph:** Designed for massive scale. C++-based parallel processing for 10+ hop traversals across billions of nodes in real-time, widely used in financial fraud detection.
 
----
 
 ## Master NoSQL Comparison Table
 
@@ -1029,7 +1027,6 @@ results = graph.run(query).data()
 | **Scaling** | Master/Replica, Sharding | Master/Replica, Hash Slots | Masterless Ring, VNodes | Vertical (writes), Read Replicas |
 | **Concurrency** | MVCC (Document level) | Single-threaded Event Loop | Append-only, Tombstones | ACID Transactions |
 
----
 
 # CHAPTER 2 (Part C): Time-Series, Search, Vector & Real-Time Databases
 
@@ -1087,7 +1084,7 @@ OpenTSDB is a scalable TSDB built on top of Apache HBase.
 | **Model** | Push | Push (SQL INSERT) | Push | Pull (Scraping) |
 | **Use Case** | IoT, Metrics | Relational + TS | Big Data Metrics | Cloud-native Monitoring |
 
----
+
 
 ## Search Databases
 
@@ -1189,7 +1186,6 @@ A community-driven, open-source fork of Elasticsearch created by AWS after Elast
 ### Apache Solr
 Built on Lucene, Solr is highly mature and enterprise-focused. It traditionally relies on Apache Zookeeper for cluster management and provides a more rigid, document-centric approach compared to Elasticsearch.
 
----
 
 ## Vector Databases (Complete Deep Dive)
 
@@ -1262,7 +1258,7 @@ sequenceDiagram
     App-->>User: "Go to settings > reset..."
 ```
 
----
+
 
 ## Real-Time Databases
 
@@ -1283,7 +1279,7 @@ Leverages PostgreSQL logical replication (WAL) to broadcast database changes to 
 | SSE (Server-Sent Events) | Server to Client | Yes | Unidirectional streams (Stock tickers) |
 | Long Polling | Bidirectional | No (reconnects) | Fallback for restricted networks |
 
----
+
 
 # CHAPTER 4: Database Design
 
@@ -1348,7 +1344,7 @@ Data warehouses use specific schemas for OLAP queries.
 4. **Q: Why are soft deletes dangerous for uniqueness constraints?**
    **A:** A `UNIQUE(email)` constraint will fail if a new user registers with the email of a soft-deleted user. Solution: use a partial index (`WHERE deleted_at IS NULL`).
 
----
+
 
 # CHAPTER 5: SQL Deep Dive
 
@@ -1361,7 +1357,7 @@ SQL (Structured Query Language) is categorized into four primary sub-languages b
 - **DCL (Data Control Language):** Controls access to data. Commands: `GRANT`, `REVOKE`.
 - **TCL (Transaction Control Language):** Manages transactions. Commands: `BEGIN`, `COMMIT`, `ROLLBACK`, `SAVEPOINT`, `RELEASE SAVEPOINT`.
 
----
+
 
 ## DDL: CREATE, ALTER, DROP, TRUNCATE
 
@@ -1443,7 +1439,7 @@ CREATE INDEX idx_users_preferences ON users USING GIN (preferences);
 CREATE INDEX idx_active_users ON users(created_at) WHERE is_active = TRUE;
 ```
 
----
+
 
 ### ALTER TABLE
 
@@ -1467,7 +1463,7 @@ ALTER TABLE users ALTER COLUMN account_balance TYPE FLOAT USING account_balance:
 ALTER TABLE users ADD CONSTRAINT chk_balance CHECK (account_balance >= 0);
 ```
 
----
+
 
 ### DROP
 
@@ -1482,7 +1478,6 @@ DROP TABLE users CASCADE;
 DROP TABLE users RESTRICT;
 ```
 
----
 
 ### TRUNCATE vs DELETE vs DROP Comparison Table
 
@@ -1496,7 +1491,6 @@ DROP TABLE users RESTRICT;
 | **Speed** | Very Fast | Slower (row-by-row) | Fast |
 | **Rollback** | Yes (in most modern RDBMS like Postgres/SQL Server) | Yes | Yes (in most RDBMS) |
 
----
 
 ## DML: INSERT, UPDATE, DELETE, MERGE
 
@@ -1553,7 +1547,7 @@ UPDATE users SET deleted_at = CURRENT_TIMESTAMP WHERE id = 'uuid-123';
 -- Subsequent queries must include: WHERE deleted_at IS NULL
 ```
 
----
+
 
 # CHAPTER 6: SQL Queries — Complete Mastery
 
@@ -1667,7 +1661,7 @@ SELECT
 FROM products;
 ```
 
----
+
 
 # CHAPTER 7: SQL Joins — Visual Deep Dive
 
@@ -1728,7 +1722,7 @@ LEFT JOIN employees e2 ON e1.manager_id = e2.id;
 
 *(End of Part D)*
 
----
+
 
 # CHAPTER 8: Transactions & ACID
 
@@ -1770,7 +1764,7 @@ COMMIT;
 - **Implicit:** In autocommit mode (default in PostgreSQL/MySQL), every standalone `INSERT`, `UPDATE`, or `DELETE` is treated as its own transaction.
 - **Explicit:** Explicitly bounded by `BEGIN` and `COMMIT`/`ROLLBACK`.
 
----
+
 
 ### ACID Properties (Deep Dive)
 
@@ -1795,7 +1789,7 @@ Once a transaction is committed, it remains committed even in the event of a sys
 **Internal Mechanism:** Achieved via the **Write-Ahead Log (WAL)**. Before acknowledging a `COMMIT` to the client, the DB writes the changes to the WAL file on disk and issues an `fsync()` system call to ensure it bypasses the OS cache and hits the physical storage.
 **Group Commit:** To improve performance, databases batch multiple transactions and `fsync` them together. High-performance systems often use a **Battery-Backed Write Cache (BBWC)** on RAID controllers to acknowledge writes in RAM instantly, with a battery ensuring they flush to disk if power fails.
 
----
+
 
 ### Concurrency Problems Without Isolation
 
@@ -1810,7 +1804,7 @@ When multiple transactions execute concurrently, they can interfere with each ot
 4. **Lost Update:** Two transactions read the same data, modify it, and commit. One update overwrites the other.
    *Example:* Tx1 reads balance=$100. Tx2 reads balance=$100. Tx1 adds $10, writes $110. Tx2 adds $20, writes $120. Tx1's update is lost.
 
----
+
 
 ### Isolation Levels (Complete)
 
@@ -1837,7 +1831,7 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 BEGIN;
 ```
 
----
+
 
 ### Locking
 
@@ -1877,7 +1871,7 @@ SELECT pg_advisory_lock(12345);
 SELECT pg_advisory_unlock(12345);
 ```
 
----
+
 
 ### Deadlocks
 
@@ -1903,7 +1897,7 @@ for uid in user_ids:
     db.execute("UPDATE users SET balance = balance + 10 WHERE id = ?", (uid,))
 ```
 
----
+
 
 ### MVCC (Multi-Version Concurrency Control)
 
@@ -1940,7 +1934,7 @@ sequenceDiagram
     Tx1->>DB: COMMIT
 ```
 
----
+
 
 ### Distributed Transactions
 
@@ -1969,7 +1963,7 @@ sequenceDiagram
     OrderService->>PaymentService: Refund Payment (Compensating Tx)
 ```
 
----
+
 
 ### Chapter 8 Interview Questions
 
@@ -2003,7 +1997,7 @@ sequenceDiagram
 10. **Q: Why do updates in PostgreSQL sometimes cause index bloat?**
     **A:** Because PostgreSQL MVCC writes a new row (tuple) for every update. Unless HOT (Heap-Only Tuples) optimization applies, every index must be updated to point to the new physical tuple location, leading to index bloat.
 
----
+
 
 # CHAPTER 9: Database Indexing (Deep Dive)
 
@@ -2066,7 +2060,7 @@ Instead of indexing every row, BRIN stores the `Min` and `Max` values for a cont
 ### SP-GiST (Space-Partitioned GiST)
 Used for data structures that partition space into non-overlapping regions (Quad-trees, k-d trees, Radix trees). Excellent for phone numbers, URL routing, or point data.
 
----
+
 
 ### Clustered vs Non-Clustered Indexes
 
@@ -2105,7 +2099,7 @@ CREATE INDEX idx_users_login ON users(username) INCLUDE (last_login, status);
 SELECT username, last_login, status FROM users WHERE username = 'john';
 ```
 
----
+
 
 ### Index Maintenance
 
@@ -2140,7 +2134,7 @@ The `EXPLAIN` command shows how the database plans to execute a query.
 3. **Functions in WHERE:** `WHERE YEAR(created_at) = 2023`. The DB cannot use an index on `created_at`. Rewrite to `WHERE created_at >= '2023-01-01' AND created_at < '2024-01-01'`.
 4. **Leading wildcards:** `WHERE email LIKE '%gmail.com'` cannot use a standard B-Tree index.
 
----
+
 
 ### Chapter 9 Interview Questions
 
@@ -2174,7 +2168,7 @@ The `EXPLAIN` command shows how the database plans to execute a query.
 10. **Q: How does a Bitmap Heap Scan work in Postgres?**
     **A:** It scans the index, puts all matching row pointers into an in-memory bitmap sorted by physical disk location, and then sequentially reads the required disk pages. It turns random I/O into pseudo-sequential I/O.
 
----
+
 
 # CHAPTER 10: Database Internals
 
@@ -2288,7 +2282,7 @@ Modern OLAP (Analytics) engines use **Vectorized Execution**, processing batches
 8. **Q: Why is Columnar Storage better for OLAP/Analytics?**
    **A:** Analytics queries usually aggregate a few columns across millions of rows (e.g., SUM(revenue)). Columnar DBs only read those specific column files from disk (saving I/O) and achieve high compression since adjacent data is of the same type.
 
----
+
 
 # CHAPTER 11: Data Warehouse
 
@@ -2354,7 +2348,7 @@ flowchart LR
     Marts --> Looker
 ```
 
----
+
 
 ### ETL vs ELT
 
@@ -2368,7 +2362,7 @@ In the **ETL** model, transformations happen *before* the data reaches the wareh
 In the **ELT** model, raw data is loaded directly into the data warehouse. Transformations are then executed *inside* the warehouse using native SQL.
 - **When it makes sense:** Modern cloud data warehouses (Snowflake, BigQuery) have practically limitless compute power. Using ELT allows analysts to write transformations in SQL (using tools like **dbt**) rather than relying on data engineers to write Scala/Python jobs. It provides faster time-to-value and preserves raw data for future needs.
 
----
+
 
 ### Star Schema vs Snowflake Schema
 
@@ -2431,7 +2425,7 @@ Dimensions change over time (e.g., a customer moves to a new city). How do we ha
 - **Type 2 (Add Row):** Insert a new record with `start_date`, `end_date`, and `is_current` flags. Preserves complete history. The standard for DWs.
 - **Type 3 (Add Column):** Add a `previous_city` column. Keeps limited history.
 
----
+
 
 ### Snowflake (Platform)
 
@@ -2457,7 +2451,7 @@ SELECT
 FROM user_events;
 ```
 
----
+
 
 ### Google BigQuery
 
@@ -2483,7 +2477,7 @@ FROM `project.dataset.daily_sales`
 WHERE order_date >= '2023-01-01' -- Prunes partitions!
 ```
 
----
+
 
 ### Amazon Redshift
 
@@ -2500,7 +2494,7 @@ Data must be distributed across compute nodes. Choosing the right style is cruci
 - **KEY:** Hashed on a specific column. Rows with the same key go to the same node. Use this for the foreign key you frequently join on.
 - **ALL:** A full copy of the table is placed on every node. Ideal for small, slowly changing dimension tables.
 
----
+
 
 ### Interview Questions
 
@@ -2522,7 +2516,7 @@ Data must be distributed across compute nodes. Choosing the right style is cruci
 6. **Q: In Amazon Redshift, when would you use an 'ALL' distribution style?**
    **A:** For small, frequently joined dimension tables. By placing a full copy of the table on every compute node, Redshift can perform joins locally without needing to transfer data across the network, which is a major performance bottleneck.
 
----
+
 
 # CHAPTER 12: Data Lake
 
@@ -2624,7 +2618,7 @@ flowchart LR
 5. **Q: What is the purpose of the Landing Zone in a Data Lake?**
    **A:** It acts as an immutable vault for raw source data. If downstream ETL pipelines fail, or business logic changes requiring a full recalculation of metrics, the original, untampered data is always available to replay from the landing zone.
 
----
+
 
 # CHAPTER 13: Lakehouse Architecture
 
@@ -2715,7 +2709,7 @@ flowchart TD
 4. **Q: Explain the difference between Copy-on-Write and Merge-on-Read in Apache Hudi.**
    **A:** Copy-on-Write creates a completely new, updated version of a file every time a record changes, optimizing for fast read performance. Merge-on-Read quickly appends updates to a log file, which are then merged dynamically with the base file during a read query, optimizing for fast, high-frequency writes.
 
----
+
 
 # CHAPTER 14: Database Replication
 
@@ -2813,7 +2807,7 @@ Replication lag is the delay between a write on the primary and that data appear
 6. **Q: How would you mitigate replication lag causing inconsistent reads in a web application?**
    **A:** Implement a "read-after-write" consistency pattern in the application layer. When a user mutates data, write a flag to their session or cache. For the next 5 seconds, route all of that specific user's read requests directly to the primary, while other users continue reading from the replica.
 
----
+
 
 # CHAPTER 15: Database Sharding
 
@@ -2933,7 +2927,7 @@ CREATE TABLE events_2023_q2 PARTITION OF events
 6. **Q: What is the difference between Sharding and Partitioning?**
    **A:** Partitioning breaks a large table into smaller physical tables within the *same* database instance (logical separation). Sharding distributes the data across completely different physical servers over a network (horizontal scaling).
 
----
+
 
 # CHAPTER 16: CAP Theorem & Consistency Models
 
@@ -3013,7 +3007,7 @@ While relational databases adhere to **ACID** (Atomicity, Consistency, Isolation
 6. **Q: Why is MongoDB considered a CP system by default?**
    **A:** MongoDB uses a Replica Set with a primary node. If a network partition isolates the primary from the majority of the nodes, the primary will step down and stop accepting writes. It sacrifices Availability to ensure that a split-brain scenario does not cause data Inconsistency. It waits for the partition to resolve or a new primary to be elected by the majority.
 
----
+
 
 # CHAPTER 17: Cloud Databases
 
@@ -3157,7 +3151,7 @@ A serverless MySQL-compatible database powered by Vitess (the sharding framework
 | **Neon** | Postgres | Serverless | Auto to Zero | Yes | Compute/Storage | Dev workflows | Database Branching |
 | **PlanetScale**| MySQL/Vitess | Sharded | Horizontal | Yes | Read/Write rows | High-scale MySQL | Non-blocking Migrations |
 
----
+
 
 # CHAPTER 18: Database Regions & Global Architecture
 
@@ -3201,7 +3195,7 @@ graph TD
 
 > **Warning:** Cross-region writes are inherently slow. If an EU user writes to a US primary, the response time cannot be less than the speed of light. Consider geo-partitioning data if regional writes are strictly required.
 
----
+
 
 # CHAPTER 19: Database Connections
 
@@ -3253,7 +3247,7 @@ Example: `postgresql://user:pass@host/db?sslmode=verify-full`
 - For local development, use `.env` files and add `.env` to `.gitignore`.
 - In AWS, use **AWS Secrets Manager** to rotate credentials automatically. Your application requests the credential from the API at startup.
 
----
+
 
 # CHAPTER 20: CRUD Operations (Production Examples)
 
@@ -3393,7 +3387,7 @@ async function getUserProfile(userId) {
 }
 ```
 
----
+
 
 # CHAPTER 21: Connecting Databases to Applications
 
@@ -3531,7 +3525,7 @@ func getUsersHandler(w http.ResponseWriter, r *http.Request) {
 3. **Transaction Management:** For APIs that modify multiple tables (e.g., Order Creation: deduct inventory, create order, process payment), wrap all operations in a database `TRANSACTION`. If the API server crashes halfway through, the DB will safely rollback the partial state.
 4. **Timeouts:** Set `statement_timeout` on your database or driver to prevent long-running queries from locking up application threads and database workers.
 
----
+
 
 # CHAPTER 22: ORMs (Object-Relational Mappers)
 
@@ -3562,7 +3556,7 @@ Under the hood, an ORM:
 - **Black-box Queries:** The ORM might generate highly inefficient SQL for complex operations.
 - **Learning Curve:** Complex ORMs (like Hibernate) have a steeper learning curve than SQL itself.
 
----
+
 
 ## 22.2 Prisma (TypeScript/Node.js)
 
@@ -3665,7 +3659,7 @@ When Prisma's API isn't enough, use the raw escape hatch:
 const result = await prisma.$queryRaw`SELECT * FROM "User" WHERE email = ${email}`;
 ```
 
----
+
 
 ## 22.3 Drizzle ORM (TypeScript/Node.js)
 
@@ -3708,7 +3702,7 @@ Drizzle uses `drizzle-kit` for migrations and introspection.
 - **DX:** Prisma has a cleaner Object-graph API (`include`), while Drizzle requires you to think in SQL (`leftJoin`).
 - **Raw SQL Transparency:** Drizzle is 1:1 with SQL. Prisma obscures the SQL (which can be good or bad depending on expertise).
 
----
+
 
 ## 22.4 TypeORM (TypeScript/Node.js)
 
@@ -3745,7 +3739,7 @@ const user = await userRepository.findOne({
 - **Lazy Loading:** Using Promises on relations enables lazy loading. If you map over `user.photos` in a loop, you will trigger an N+1 explosion.
 - **Circular Dependencies:** Defining relationships often requires `forwardRef` or arrow functions `() => Model` because of TypeScript execution order.
 
----
+
 
 ## 22.5 Sequelize (JavaScript/TypeScript)
 
