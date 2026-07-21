@@ -1,17 +1,14 @@
----
-title: "Databases & SQL: Complete Beginner to Advanced Engineering Handbook"
+title: "Databases & SQL: Complete Beginner to Advanced"
 subtitle: "From First Principles to Production-Grade Architecture"
 author: "Principal Database Architect — 20+ Years Industry Experience"
 version: "2.0"
 date: "2025"
----
 
 # Databases & SQL
 ## Complete Beginner to Advanced Engineering Handbook
 
 > A production-grade, book-quality reference covering every database paradigm, from relational foundations to AI-native vector databases. Written for engineers at all levels — from beginners to FAANG system designers.
 
----
 
 ## Table of Contents
 
@@ -3778,7 +3775,7 @@ Post.findAll({
 });
 ```
 
----
+
 
 ## 22.6 Mongoose (Node.js + MongoDB)
 
@@ -3815,7 +3812,7 @@ By default, Mongoose returns massive Document objects with save/update methods. 
 const users = await User.find().lean();
 ```
 
----
+
 
 ## 22.7 Hibernate (Java + Spring)
 
@@ -3855,7 +3852,7 @@ session.createQuery("SELECT u FROM User u JOIN FETCH u.posts", User.class).list(
 - **First-Level Cache:** Session scoped. Enabled by default. Querying the same entity by ID twice in a transaction hits the DB once.
 - **Second-Level Cache:** SessionFactory scoped (shared across app). Requires external providers like Ehcache or Redis.
 
----
+
 
 ## 22.8 Entity Framework Core (C# / .NET)
 
@@ -3884,7 +3881,7 @@ var activeBlogs = context.Blogs
 var blogs = context.Blogs.Include(b => b.Posts).ToList();
 ```
 
----
+
 
 ## 22.9 SQLAlchemy (Python)
 
@@ -3911,7 +3908,7 @@ session.commit()
 
 **Alembic:** The de-facto migration tool for SQLAlchemy.
 
----
+
 
 ## 22.10 Diesel & sqlx (Rust)
 
@@ -3925,7 +3922,7 @@ let user = query!("SELECT id, email FROM users WHERE id = $1", 1)
     .await?;
 ```
 
----
+
 
 ## 22.11 ORM Comparison Table
 
@@ -3938,7 +3935,6 @@ let user = query!("SELECT id, email FROM users WHERE id = $1", 1)
 | **EF Core** | C# | High | High | Medium | `FromSqlRaw` | `Add-Migration` | .NET ecosystem |
 | **SQLAlchemy**| Python | Medium | High | Medium | TextClause | Alembic | FastAPI / Flask backends |
 
----
 
 ## 22.12 When to use ORM vs Raw SQL
 
@@ -3954,7 +3950,7 @@ let user = query!("SELECT id, email FROM users WHERE id = $1", 1)
 
 > **Tip:** The best modern approach is often a hybrid: Use an ORM (like Prisma/Drizzle) for 95% of your standard CRUD, and drop down to native SQL/Query Builders for the 5% performance-critical reporting queries.
 
----
+
 
 # CHAPTER 23: Authentication & Authorization with Databases
 
@@ -4004,7 +4000,7 @@ async function loginUser(email, plainTextPassword) {
 }
 ```
 
----
+
 
 ## 23.2 JWT (JSON Web Tokens)
 
@@ -4039,7 +4035,7 @@ function authenticateToken(req, res, next) {
 }
 ```
 
----
+
 
 ## 23.3 OAuth 2.0 + OIDC
 
@@ -4068,7 +4064,7 @@ CREATE TABLE accounts (
 );
 ```
 
----
+
 
 ## 23.4 Database-level Authorization
 
@@ -4087,7 +4083,7 @@ CREATE POLICY user_isolation_policy ON posts
 ```
 > **Note:** Platforms like Supabase heavily rely on RLS as the primary authorization mechanism because their API maps directly to the database.
 
----
+
 
 ## 23.5 RBAC vs ABAC
 
@@ -4114,7 +4110,7 @@ Rules based on dynamic attributes.
 *Example Rule:* "A user can edit a document IF they are the creator AND the document status is 'draft' AND it is during business hours."
 RBAC fails here because it requires too many granular roles. ABAC relies on Policy Engines (like OPA - Open Policy Agent) evaluating context dynamically.
 
----
+
 
 # CHAPTER 24: Database Security
 
@@ -4159,7 +4155,7 @@ const user = await User.find({ username: req.body.username });
 ```
 **Prevention:** Validate inputs (ensure string, not object). Use `mongo-sanitize`.
 
----
+
 
 ## 24.3 Encryption
 
@@ -4177,7 +4173,7 @@ Encrypting specific sensitive fields (e.g., SSN, credit cards) *inside* the DB. 
 Ensure all connections to the database are encrypted over the network.
 - Append `?sslmode=require` to your connection string.
 
----
+
 
 ## 24.4 Secrets Management
 
@@ -4197,7 +4193,7 @@ async function getDbCredentials() {
 **HashiCorp Vault Dynamic Secrets:**
 Vault can dynamically generate a unique database username and password for every application instance, and automatically revoke it after 1 hour. If credentials leak, they are immediately useless.
 
----
+
 
 ## 24.5 Audit Logging & Backups
 
@@ -4219,7 +4215,7 @@ CREATE TABLE audit_log (
 - **3-2-1 Rule:** 3 copies of data, 2 different media formats, 1 stored offsite (e.g., S3).
 - **Crucial:** A backup is not a backup until you have successfully tested restoring it.
 
----
+
 
 # CHAPTER 25: Performance Optimization
 
@@ -4241,7 +4237,7 @@ ORDER BY total_exec_time DESC LIMIT 5;
 In `postgresql.conf`:
 `log_min_duration_statement = 1000` (Logs any query taking over 1 second).
 
----
+
 
 ## 25.2 Query Optimization Techniques
 
@@ -4259,7 +4255,7 @@ Look for:
   - Fast: `SELECT 1 FROM posts WHERE user_id = 1 LIMIT 1` (Stops at first match).
 - **Avoid Implicit Casts:** `WHERE id = '123'` prevents index usage if `id` is an INTEGER.
 
----
+
 
 ## 25.3 Caching with Redis
 
@@ -4309,7 +4305,7 @@ FROM orders GROUP BY day;
 REFRESH MATERIALIZED VIEW CONCURRENTLY daily_sales;
 ```
 
----
+
 
 ## 25.5 Scaling
 
@@ -4323,7 +4319,7 @@ Opening a TCP connection to the database is slow. A Connection Pool keeps a set 
 - Application-level: Node.js `pg.Pool`.
 - Proxy-level: `PgBouncer` or `RDS Proxy`. (Vital for Serverless functions which would otherwise open thousands of simultaneous connections).
 
----
+
 
 # CHAPTER 26: Database Monitoring
 
@@ -4336,7 +4332,7 @@ Monitoring ensures you detect anomalies before users report downtime.
 - **Lock Waits / Deadlocks:** Queries waiting on each other, halting throughput.
 - **Autovacuum Activity (PostgreSQL):** Is vacuum keeping up with dead tuples (bloat)?
 
----
+
 
 ## 26.2 Prometheus + Grafana
 
@@ -4367,7 +4363,7 @@ services:
       - "3000:3000"
 ```
 
----
+
 
 ## 26.3 Slow Query Analysis Workflow
 
@@ -4379,7 +4375,7 @@ When an alert triggers for slow DB performance, follow this incident response wo
 5. **Mitigate:** Deploy a concurrent index creation (`CREATE INDEX CONCURRENTLY`), or rewrite the application query logic.
 6. **Verify:** Check Grafana to ensure query latency returns to normal.
 
----
+
 
 # Interview Questions (Chapters 22-26)
 
@@ -4413,7 +4409,7 @@ When an alert triggers for slow DB performance, follow this incident response wo
 **Q10: What is WAL, and how is it used for database backups?**
 **A:** Write-Ahead Logging (WAL) is a mechanism where database changes are written to a log file before being flushed to the actual data files. By continuously archiving WAL files, you can achieve Point-in-Time Recovery (PITR), allowing you to restore the database to any specific second in the past.
 
----
+
 
 # CHAPTER 27: Real-World Projects
 
@@ -4547,7 +4543,7 @@ src/
 - **Cascading Deletes**: If a student is removed, enrollments are automatically cleared.
 - **Constraints**: Enforced credit constraints (>0) and GPA ranges directly in the DB to maintain integrity regardless of application bugs.
 
----
+
 
 ## Project 2: Banking System
 
@@ -4636,7 +4632,7 @@ AFTER UPDATE ON accounts
 FOR EACH ROW EXECUTE FUNCTION log_account_changes();
 ```
 
----
+
 
 ## Project 3: E-Commerce Backend
 
@@ -4692,7 +4688,7 @@ ORDER BY ts_rank(search_vector, plainto_tsquery('english', 'wireless headphones'
 - **JSONB for Attributes**: Solves the Entity-Attribute-Value (EAV) problem. Products have varied attributes (shoes have sizes, laptops have RAM). JSONB indexes make this highly queryable.
 - **Redis Cart**: `HSET cart:user_123 sku_abc 2` (Fast, ephemeral storage).
 
----
+
 
 ## Project 7: AI Chat Application with Vector Database
 
@@ -4743,7 +4739,6 @@ ORDER BY c.embedding <=> '[0.1, 0.2, ...]' -- <=> is cosine distance operator
 LIMIT 3;
 ```
 
----
 
 # CHAPTER 28: Best Database for Every Use Case
 
@@ -4776,7 +4771,7 @@ graph TD
     I -->|Yes| J[Redis]
 ```
 
----
+
 
 # CHAPTER 29: 250+ Database & SQL Interview Questions
 
@@ -4879,7 +4874,7 @@ You cannot run `ALTER TABLE ... ADD COLUMN with DEFAULT` on a 10TB table as it l
 4. Update the application to read from the new column.
 5. Drop old constraints/columns safely.
 
----
+
 
 # CHAPTER 30: Complete Cheat Sheets
 
