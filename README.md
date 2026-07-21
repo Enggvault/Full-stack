@@ -53,12 +53,16 @@ graph TD
     D["04 — JavaScript"]
     E["05 — HTTP, JSON & Fetch"]
     F["06 — API Design"]
+    G["07 — Node.js & Express"]
+    H["08 — Databases & SQL"]
 
     A -->|"Internet, Architecture, Tooling"| B
     B -->|"Document Structure, Semantics"| C
     C -->|"Styling, Layout, Responsive"| D
     D -->|"Language Core, DOM, Events"| E
     E -->|"HTTP, Fetch, Promises, Async"| F
+    F -->|"REST, Best Practices"| G
+    G -->|"Node.js, Express, Middleware"| H
 ```
 
 
@@ -72,6 +76,8 @@ graph TD
 | 04 | [JavaScript](./04-javascript/README.md) | Language core, DOM, events, storage, OOP, modules | 🟦 Intermediate |
 | 05 | [HTTP, JSON & Fetch](./05-http-json-fetch/README.md) | HTTP protocol, JSON, Fetch API, Promises, async/await, CRUD | 🟦 Intermediate |
 | 06 | [API Design](./06-api-design/README.md) | REST, auth, versioning, pagination, GraphQL, gRPC, security | 🟥 Advanced |
+| 07 | [Node.js & Express](./07-nodejs-express/README.md) | Node.js internals, Express routing, middleware, file system, authentication | 🟥 Advanced |
+| 08 | [Databases & SQL](./08-databases/README.md) | SQL syntax, Joins, Normalization, ACID, Query Optimization, NoSQL vs SQL | 🟥 Advanced |
 
 
 ## Repository Structure
@@ -94,9 +100,15 @@ Full-stack/
 ├── 05-http-json-fetch/
 │   ├── README.md
 │   └── notes.md                      — HTTP, JSON, Fetch reference
-└── 06-api-design/
+├── 06-api-design/
+│   ├── README.md
+│   └── notes.md                      — API design reference
+├── 07-nodejs-express/
+│   ├── README.md
+│   └── notes.md                      — Node.js & Express reference
+└── 08-databases/
     ├── README.md
-    └── notes.md                      — API design reference
+    └── notes.md                      — Databases & SQL reference
 ```
 
 
@@ -142,6 +154,8 @@ No prior programming experience is assumed for Module 01. Starting from Module 0
 04 → JavaScript
 05 → HTTP, JSON & Fetch
 06 → API Design
+07 → Node.js & Express
+08 → Databases & SQL
 ```
 
 Each module's `README.md` lists its specific prerequisites and links to the next module.
@@ -175,8 +189,6 @@ Planned additions to the roadmap:
 
 | # | Module | Status |
 |:--|:-------|:------:|
-| 07 | Node.js & Express | Planned |
-| 08 | Databases (PostgreSQL, MongoDB) | Planned |
 | 09 | Authentication (JWT, OAuth 2.0) | Planned |
 | 10 | React | Planned |
 | 11 | Next.js | Planned |
