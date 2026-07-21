@@ -4,7 +4,6 @@
 
 This module covers the complete HTML language. It is the canonical reference for all HTML concepts in this repository. No other module re-explains HTML structure, tags, semantics, forms, or accessibility.
 
----
 
 ## Topics Covered
 
@@ -19,7 +18,6 @@ This module covers the complete HTML language. It is the canonical reference for
 - SEO best practices in HTML
 - Deprecated tags and common mistakes
 
----
 
 ## Learning Objectives
 
@@ -31,31 +29,25 @@ By the end of this module, the reader should be able to:
 - Apply ARIA attributes to custom UI components for screen reader compatibility.
 - Identify common HTML mistakes (div soup, skipped heading levels, missing alt text) and correct them.
 
----
-
 ## Prerequisites
 
 - [01 — Full Stack Fundamentals](../01-full-stack-fundamentals/README.md) — specifically the browser and client-server sections.
 
----
 
 ## Estimated Reading Time
 
 40 – 50 minutes
 
----
 
 ## Difficulty
 
 ⬛ Beginner
 
----
 
 ## Next Module
 
 → [03 — CSS](../03-css/README.md)
 
----
 
 ## Files in This Module
 

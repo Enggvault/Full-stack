@@ -4,7 +4,6 @@
 
 This module is the canonical reference for CSS in this repository. It assumes the reader has completed Module 02 (HTML) and understands document structure and semantic elements. No HTML basics are re-explained here.
 
----
 
 ## Topics Covered
 
@@ -26,7 +25,6 @@ This module is the canonical reference for CSS in this repository. It assumes th
 - Filters, effects, and `object-fit`
 - CSS architecture and performance
 
----
 
 ## Learning Objectives
 
@@ -39,31 +37,26 @@ By the end of this module, the reader should be able to:
 - Write CSS animations using `@keyframes` and `transition`.
 - Design a simple dark-mode toggle using CSS custom properties.
 
----
 
 ## Prerequisites
 
 - [02 — HTML](../02-html/README.md)
 
----
 
 ## Estimated Reading Time
 
 50 – 65 minutes
 
----
 
 ## Difficulty
 
 ⬛ Beginner
 
----
 
 ## Next Module
 
 → [04 — JavaScript](../04-javascript/README.md)
 
----
 
 ## Files in This Module
 

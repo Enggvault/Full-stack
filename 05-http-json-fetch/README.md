@@ -4,7 +4,6 @@
 
 This module is the canonical reference for the communication layer between the browser and a server. It bridges the JavaScript language knowledge from Module 04 with the API design principles in Module 06.
 
----
 
 ## Topics Covered
 
@@ -19,7 +18,6 @@ This module is the canonical reference for the communication layer between the b
 - Reading the Browser Network tab
 - Common error handling patterns
 
----
 
 ## Learning Objectives
 
@@ -32,31 +30,26 @@ By the end of this module, the reader should be able to:
 - Read JSON from a server response and update the DOM with the result.
 - Use the browser's Network tab to inspect request/response details.
 
----
 
 ## Prerequisites
 
 - [04 — JavaScript](../04-javascript/README.md) — particularly Promises and async/await introduction.
 
----
 
 ## Estimated Reading Time
 
 50 – 65 minutes
 
----
 
 ## Difficulty
 
-🟦 Intermediate
+ Intermediate
 
----
 
 ## Next Module
 
 → [06 — API Design](../06-api-design/README.md)
 
----
 
 ## Files in This Module
 

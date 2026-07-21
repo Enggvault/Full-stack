@@ -490,7 +490,6 @@ app.post('/api/v1/users', (req, res) => {
 
 **Key Rule:** Always return **201 Created** (not 200) when a resource is successfully created.
 
----
 
 ### PUT
 
@@ -781,7 +780,6 @@ https://api.example.com/v2/users    ← Breaking changes go here
 
 This lets you make breaking changes in `v2` without breaking `v1` clients.
 
----
 
 ## Chapter 8: Route Parameters
 
@@ -848,7 +846,6 @@ app.get('/api/v1/posts/:postId/comments/:commentId', (req, res) => {
 | **Example** | `/users/123` | `/users?role=admin` |
 | **Express access** | `req.params.id` | `req.query.role` |
 
----
 
 ## Chapter 9: Query Parameters
 
@@ -923,7 +920,6 @@ GET /users?search=tushar      → Search users by name/email
 GET /products?q=wireless+headphones
 ```
 
----
 
 ## Chapter 10: Request Body
 
@@ -999,7 +995,6 @@ app.post('/api/v1/users', (req, res) => {
 });
 ```
 
----
 
 ## Chapter 11: Response Body
 
@@ -1067,7 +1062,6 @@ res.status(204).send();
 res.json({ success: true });
 ```
 
----
 
 ## Chapter 12: CRUD Operations
 
@@ -1091,7 +1085,6 @@ res.json({ success: true });
 | Update one field | PATCH | `/products/:id` | `{ price: 999 }` | `200 OK` |
 | Delete product | DELETE | `/products/:id` | — | `204 No Content` |
 
----
 
 ## Chapter 13: HTTP Status Codes
 
@@ -1113,7 +1106,6 @@ HTTP status codes are **three-digit numbers** the server returns to tell the cli
 5xx  →  Server Error     (server failed to handle a valid request)
 ```
 
----
 
 ### 1xx — Informational
 
@@ -1127,7 +1119,6 @@ Rarely used in REST APIs directly. The server uses them to communicate intermedi
 
 > **101 Switching Protocols** is what makes WebSockets work. The browser sends `Upgrade: websocket` header and the server responds with 101.
 
----
 
 ### 2xx — Success
 
@@ -1152,7 +1143,6 @@ app.get('/api/v1/users/:id', (req, res) => {
 
 > **Interview Tip:** "What's the difference between 200 and 201?" — 200 is for successful reads/updates; 201 is for successful **creation** of a new resource.
 
----
 
 #### 201 Created
 
@@ -1179,7 +1169,6 @@ app.post('/api/v1/users', (req, res) => {
 
 > **Common Mistake:** Returning `200 OK` instead of `201 Created` when a resource is created. This is technically wrong and makes the API less informative.
 
----
 
 #### 202 Accepted
 
@@ -1204,7 +1193,6 @@ app.post('/api/v1/reports/generate', (req, res) => {
 });
 ```
 
----
 
 #### 204 No Content
 
@@ -1228,7 +1216,7 @@ app.delete('/api/v1/users/:id', (req, res) => {
 });
 ```
 
----
+
 
 ### 3xx — Redirection
 
@@ -1246,7 +1234,6 @@ app.get('/api/users', (req, res) => {
 });
 ```
 
----
 
 #### 302 Found (Temporary Redirect)
 
@@ -1256,7 +1243,6 @@ app.get('/api/users', (req, res) => {
 | **Use when** | Temporarily redirecting (maintenance page, A/B testing) |
 | **Effect** | Client should continue using the original URL for future requests |
 
----
 
 #### 304 Not Modified
 
@@ -1280,7 +1266,6 @@ app.get('/api/v1/products', (req, res) => {
 
 > **Interview Tip:** 304 is a caching optimization. It saves bandwidth by not re-sending data the client already has.
 
----
 
 #### 307 Temporary Redirect
 
@@ -1290,13 +1275,10 @@ Like 302, but the client **must** use the **same HTTP method** for the redirecte
 
 Like 301, but the client **must** use the **same HTTP method** for the redirected request.
 
----
 
 ### 4xx — Client Errors
 
 These mean **the client made a mistake**. The server understood the request but can't fulfill it.
-
----
 
 #### 400 Bad Request
 
@@ -1326,7 +1308,6 @@ app.post('/api/v1/users', (req, res) => {
 });
 ```
 
----
 
 #### 401 Unauthorized
 
@@ -1356,7 +1337,6 @@ app.get('/api/v1/admin', (req, res) => {
 });
 ```
 
----
 
 #### 403 Forbidden
 
@@ -1381,7 +1361,6 @@ app.delete('/api/v1/users/:id', (req, res) => {
 });
 ```
 
----
 
 #### 404 Not Found
 
@@ -1417,7 +1396,6 @@ app.use((req, res) => {
 });
 ```
 
----
 
 #### 405 Method Not Allowed
 
@@ -1440,7 +1418,6 @@ res.status(405)
    });
 ```
 
----
 
 #### 409 Conflict
 
@@ -1465,7 +1442,6 @@ app.post('/api/v1/users', async (req, res) => {
 });
 ```
 
----
 
 #### 410 Gone
 
@@ -1475,7 +1451,6 @@ app.post('/api/v1/users', async (req, res) => {
 | **Use when** | A resource was intentionally removed and will never return |
 | **Difference from 404** | 404 = never existed or unknown; 410 = did exist, now gone |
 
----
 
 #### 415 Unsupported Media Type
 
@@ -1500,7 +1475,6 @@ app.post('/api/v1/users', (req, res) => {
 });
 ```
 
----
 
 #### 422 Unprocessable Entity
 
@@ -1527,7 +1501,6 @@ app.post('/api/v1/events', (req, res) => {
 });
 ```
 
----
 
 #### 429 Too Many Requests
 
@@ -1551,13 +1524,11 @@ app.use((req, res) => {
 });
 ```
 
----
 
 ### 5xx — Server Errors
 
 These mean the server made a mistake. The **request was valid** but the server failed to handle it.
 
----
 
 #### 500 Internal Server Error
 
@@ -1586,7 +1557,6 @@ app.use((err, req, res, next) => {
 
 > **Warning:** Never do `res.json({ error: err.stack })` in production. Exposing stack traces leaks your file paths, library versions, and server structure to attackers.
 
----
 
 #### 501 Not Implemented
 
@@ -1595,7 +1565,6 @@ app.use((err, req, res, next) => {
 | **Meaning** | The server does not support the functionality required to fulfill the request |
 | **Use when** | A feature is planned but not yet built |
 
----
 
 #### 502 Bad Gateway
 
@@ -1605,7 +1574,6 @@ app.use((err, req, res, next) => {
 | **Use when** | Your API calls a third-party service and that service returns garbage |
 | **Real example** | Nginx returns 502 when the Node.js process is down |
 
----
 
 #### 503 Service Unavailable
 
@@ -1632,7 +1600,6 @@ app.use('/api', (req, res, next) => {
 });
 ```
 
----
 
 #### 504 Gateway Timeout
 
@@ -1670,7 +1637,6 @@ app.use('/api', (req, res, next) => {
 | 504 | Gateway Timeout | Server Error | Upstream timeout |
 
 
----
 
 ## Chapter 14: Validation
 
@@ -1772,7 +1738,6 @@ app.post('/api/v1/users', (req, res) => {
 });
 ```
 
----
 
 ## Chapter 15: Error Handling
 
@@ -1866,7 +1831,6 @@ app.get('/api/v1/users', asyncHandler(async (req, res) => {
 }));
 ```
 
----
 
 ## Chapter 16: Authentication Overview
 
@@ -1985,7 +1949,6 @@ Authorization: Bearer <token>
 
 JWT tokens are the most common type of Bearer token.
 
----
 
 ## Chapter 17: Security Best Practices
 
@@ -2074,7 +2037,6 @@ const secret = process.env.JWT_SECRET;
 | Auth on all protected routes | ✅ |
 | Logs stored securely | ✅ |
 
----
 
 ## Chapter 18: API Documentation
 
@@ -2160,7 +2122,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 | **Errors** | Error codes and their meanings |
 | **Code Examples** | curl, JavaScript, Python |
 
----
 
 ## Chapter 19: Complete Express CRUD Example
 
@@ -2429,7 +2390,6 @@ curl -X DELETE http://localhost:3000/api/v1/users/3
 ```
 
 
----
 
 ## Chapter 20: Best Practices
 
@@ -2464,7 +2424,7 @@ curl -X DELETE http://localhost:3000/api/v1/users/3
 29. **Use compression** — gzip/Brotli for large responses.
 30. **Test every endpoint** — happy path, validation, auth, and 404 cases.
 
----
+
 
 ## Chapter 21: Common Mistakes
 
@@ -2496,7 +2456,6 @@ curl -X DELETE http://localhost:3000/api/v1/users/3
 | 24 | String IDs where numbers expected | Type mismatch bugs | Parse `req.params.id` with `parseInt()` |
 | 25 | No logging | Impossible to debug production issues | Log every request with method, path, status |
 
----
 
 ## Chapter 22: Interview Questions
 
@@ -2551,7 +2510,6 @@ PUT replaces the entire resource — missing fields are deleted. PATCH partially
 **Q15. What is CORS?**
 Cross-Origin Resource Sharing — a browser security mechanism that restricts web pages from making API calls to a different domain than the one that served the page. Servers must explicitly allow cross-origin requests.
 
----
 
 ### Intermediate Level
 
@@ -2611,7 +2569,6 @@ Stack traces reveal file paths, function names, library versions, and code struc
 **Q30. What is the `Content-Type` header used for?**
 It tells the server (on request) or the client (on response) what format the body is in. For JSON APIs: `Content-Type: application/json`.
 
----
 
 ### Advanced Level
 
@@ -2672,7 +2629,6 @@ Tells the client how long to wait before retrying. Used with 429 (rate limit) an
 **Q45. How would you implement soft delete in a REST API?**
 Add a `deletedAt` timestamp field. Instead of `DELETE FROM users WHERE id = ?`, do `UPDATE users SET deletedAt = NOW() WHERE id = ?`. Return 204 to the client. Filter out soft-deleted records from GET queries. This preserves data integrity and audit history.
 
----
 
 ## Chapter 23: Practice Projects
 
@@ -2699,7 +2655,6 @@ Add a `deletedAt` timestamp field. Instead of `DELETE FROM users WHERE id = ?`, 
 | 19 | Social Feed API | ⭐⭐⭐⭐ | Follow/unfollow, feed generation | 8 hrs |
 | 20 | Multi-tenant SaaS API | ⭐⭐⭐⭐ | Org isolation, ABAC, API keys | 10 hrs |
 
----
 
 ## Chapter 24: Cheat Sheet
 
@@ -2819,7 +2774,6 @@ app.use((err, req, res, next) => {
 app.listen(3000);
 ```
 
----
 
 ## Chapter 25: Summary
 
@@ -2850,7 +2804,6 @@ app.listen(3000);
 | **23 – Projects** | 20 projects from Todo API to Multi-tenant SaaS API. |
 | **24 – Cheat Sheet** | One-page reference: methods, status codes, REST rules, response format, Express syntax. |
 
----
 
 ## References
 
@@ -2863,7 +2816,6 @@ app.listen(3000);
 - [JWT.io — JSON Web Tokens](https://jwt.io/)
 - [OWASP API Security Top 10](https://owasp.org/www-project-api-security/)
 
----
 
 > **Next Module →** [Node.js & Express Deep Dive](../07-nodejs-express/notes.md)
 > **Previous Module ←** [HTTP, JSON & Fetch](../05-http-json-fetch/notes.md)

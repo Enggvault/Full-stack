@@ -6,7 +6,6 @@ This module covers the design and architecture of server-side APIs. It is the ca
 
 This module is distinct from Module 05, which covers **consuming** APIs from the browser. This module covers **building** APIs on the server.
 
----
 
 ## Topics Covered
 
@@ -30,7 +29,6 @@ This module is distinct from Module 05, which covers **consuming** APIs from the
 - Node.js/Express implementation examples
 - Security best practices
 
----
 
 ## Learning Objectives
 
@@ -44,25 +42,21 @@ By the end of this module, the reader should be able to:
 - Describe when to use REST, GraphQL, or gRPC for a given problem.
 - Document an API using OpenAPI 3.0.
 
----
 
 ## Prerequisites
 
 - [05 — HTTP, JSON & Fetch](../05-http-json-fetch/README.md)
 
----
 
 ## Estimated Reading Time
 
 90 – 120 minutes
 
----
 
 ## Difficulty
 
-🟥 Advanced
+ Advanced
 
----
 
 ## Files in This Module
 

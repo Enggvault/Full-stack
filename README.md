@@ -14,7 +14,6 @@
 
 </div>
 
----
 
 ## Table of Contents
 
@@ -32,7 +31,6 @@
 - [License](#license)
 - [Author](#author)
 
----
 
 ## Project Description
 
@@ -42,7 +40,6 @@ Each module covers exactly one topic. Every concept has a single canonical locat
 
 The writing follows the conventions of professional technical documentation: concise, technically accurate, and example-driven.
 
----
 
 ## Learning Roadmap
 
@@ -64,7 +61,6 @@ graph TD
     E -->|"HTTP, Fetch, Promises, Async"| F
 ```
 
----
 
 ## Module Overview
 
@@ -77,7 +73,6 @@ graph TD
 | 05 | [HTTP, JSON & Fetch](./05-http-json-fetch/README.md) | HTTP protocol, JSON, Fetch API, Promises, async/await, CRUD | 🟦 Intermediate |
 | 06 | [API Design](./06-api-design/README.md) | REST, auth, versioning, pagination, GraphQL, gRPC, security | 🟥 Advanced |
 
----
 
 ## Repository Structure
 
@@ -104,7 +99,6 @@ Full-stack/
     └── notes.md                      — API design reference
 ```
 
----
 
 ## Quick Start
 
@@ -123,7 +117,6 @@ Full-stack/
 
 3. **Start reading** — open [`01-full-stack-fundamentals/notes.md`](./01-full-stack-fundamentals/notes.md) and follow the navigation links at the top and bottom of each module.
 
----
 
 ## Features
 
@@ -134,13 +127,11 @@ Full-stack/
 - **Modern code examples** — ES2024+, `const`/`let`, `async`/`await`, Fetch API
 - **Self-contained** — no external tooling required; read in any Markdown viewer
 
----
 
 ## Prerequisites
 
 No prior programming experience is assumed for Module 01. Starting from Module 04, basic familiarity with a code editor (VS Code recommended) and a browser's developer tools is expected.
 
----
 
 ## Recommended Learning Order
 
@@ -155,7 +146,6 @@ No prior programming experience is assumed for Module 01. Starting from Module 0
 
 Each module's `README.md` lists its specific prerequisites and links to the next module.
 
----
 
 ## How to Use This Repository
 
@@ -164,7 +154,6 @@ Each module's `README.md` lists its specific prerequisites and links to the next
 3. **Follow cross-references.** When a `notes.md` file references another module, follow it. Concepts are explained once and referenced everywhere they apply.
 4. **Run the code examples.** Every code block is self-contained. Open a browser console or a local `.js` file and execute them.
 
----
 
 ## Contribution Guide
 
@@ -179,7 +168,6 @@ Contributions that maintain the documentation's quality and architecture are wel
 - Keep prose concise. This is documentation, not a tutorial blog post.
 - Validate Markdown rendering before submitting.
 
----
 
 ## Future Modules
 
@@ -194,13 +182,11 @@ Planned additions to the roadmap:
 | 11 | Next.js | Planned |
 | 12 | Deployment & DevOps | Planned |
 
----
 
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).
 
----
 
 ## Author
 

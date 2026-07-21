@@ -6,7 +6,6 @@ This module is the canonical reference for the JavaScript language and browser A
 
 HTTP, JSON, the Fetch API, Promises, and async/await are introduced here at a surface level to complete the language picture, but are fully documented in [05 — HTTP, JSON & Fetch](../05-http-json-fetch/README.md).
 
----
 
 ## Topics Covered
 
@@ -30,7 +29,6 @@ HTTP, JSON, the Fetch API, Promises, and async/await are introduced here at a su
 - Modules — `import`/`export`
 - Async JavaScript (introduction — see Module 05 for full coverage)
 
----
 
 ## Learning Objectives
 
@@ -43,32 +41,27 @@ By the end of this module, the reader should be able to:
 - Store and retrieve data from `localStorage`.
 - Define a class with a constructor, instance methods, and inheritance.
 
----
 
 ## Prerequisites
 
 - [02 — HTML](../02-html/README.md)
 - [03 — CSS](../03-css/README.md)
 
----
 
 ## Estimated Reading Time
 
 70 – 90 minutes
 
----
 
 ## Difficulty
 
-🟦 Intermediate
+ Intermediate
 
----
 
 ## Next Module
 
 → [05 — HTTP, JSON & Fetch](../05-http-json-fetch/README.md)
 
----
 
 ## Files in This Module
 
