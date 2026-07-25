@@ -394,7 +394,6 @@ graph TD
 5. **How has the rise of Large Language Models (LLMs) changed the handling of unstructured data?**
    *Answer:* LLMs and deep learning models can parse unstructured text, images, and audio to extract dense feature embeddings (vectors). These vectors are stored in Vector Databases, turning historically unsearchable unstructured data into semantically searchable information.
 
----
 
 # CHAPTER 2 (Part B): NoSQL — Document, Key-Value, Wide-Column, Graph Databases
 
@@ -4281,7 +4280,6 @@ async function getUserProfile(userId) {
 If a highly accessed key (e.g., "Trending Products") expires, 10,000 requests might hit the cache simultaneously, find it empty, and all 10,000 query the database at once, crashing it.
 **Fix:** Use Distributed Locks (Redis `SET NX`) so only the first request queries the DB while others wait.
 
----
 
 ## 25.4 Materialized Views for Analytics
 
@@ -4959,7 +4957,6 @@ JOIN pg_catalog.pg_stat_activity blocking_activity ON blocking_activity.pid = bl
 WHERE NOT blocked_locks.granted AND blocking_locks.granted;
 ```
 
----
 
 > **Next Module →** 09 — Authentication (Planned)
 > **Previous Module ←** [Node.js & Express](../07-nodejs-express/notes.md)
