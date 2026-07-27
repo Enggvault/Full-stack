@@ -817,5 +817,3 @@ Before deploying any authentication system to production, verify:
 - **OIDC (OpenID Connect):** Identity authentication layer on top of OAuth 2.0.
 - **MFA:** Multi-Factor Authentication (OTP, Authenticator Apps).
 - **WebAuthn/Passkeys:** Public Key cryptography replacing passwords entirely.
-
-
