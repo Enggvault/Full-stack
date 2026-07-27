@@ -1273,7 +1273,6 @@ Before launching to production, verify every item on this list.
 - [ ] PII, passwords, and tokens are scrubbed from logs.
 - [ ] Alerts configured for credential stuffing spikes.
 
----
 
 ## 56. The Ultimate Cheat Sheet
 
