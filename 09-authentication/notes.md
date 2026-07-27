@@ -646,5 +646,3 @@ Authentication differs depending on the framework:
 - **OIDC:** OpenID Connect (Identity layer on OAuth 2.0).
 - **MFA:** Multi-Factor Authentication (OTP, Authenticator Apps).
 - **WebAuthn/Passkeys:** Public Key cryptography replacing passwords.
-
-
