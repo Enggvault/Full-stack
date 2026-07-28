@@ -49,7 +49,7 @@ After completing this module, you will be able to:
 
 ## Next Module
 
-→ 09 — Authentication (Planned)
+→ [09 — Authentication](../09-authentication/README.md)
 
 
 ## Files in This Module

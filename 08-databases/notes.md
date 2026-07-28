@@ -4958,5 +4958,5 @@ WHERE NOT blocked_locks.granted AND blocking_locks.granted;
 ```
 
 
-> **Next Module →** 09 — Authentication (Planned)
+> **Next Module →** [09 — Authentication](../09-authentication/notes.md)
 > **Previous Module ←** [Node.js & Express](../07-nodejs-express/notes.md)

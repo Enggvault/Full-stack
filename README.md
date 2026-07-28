@@ -4,7 +4,7 @@
 
 **A structured, single-source-of-truth documentation project for learning full-stack web development — from the fundamentals of the web to API design.**
 
-[![Modules](https://img.shields.io/badge/Modules-8-4f46e5?style=flat-square)](.)
+[![Modules](https://img.shields.io/badge/Modules-9-4f46e5?style=flat-square)](.)
 [![Format](https://img.shields.io/badge/Format-Markdown-0ea5e9?style=flat-square)](.)
 [![Level](https://img.shields.io/badge/Level-Beginner%20→%20Advanced-10b981?style=flat-square)](.)
 [![License](https://img.shields.io/badge/License-MIT-f59e0b?style=flat-square)](./LICENSE)
@@ -55,6 +55,7 @@ graph TD
     F["06 — API Design"]
     G["07 — Node.js & Express"]
     H["08 — Databases & SQL"]
+    I["09 — Authentication"]
 
     A -->|"Internet, Architecture, Tooling"| B
     B -->|"Document Structure, Semantics"| C
@@ -63,6 +64,7 @@ graph TD
     E -->|"HTTP, Fetch, Promises, Async"| F
     F -->|"REST, Best Practices"| G
     G -->|"Node.js, Express, Middleware"| H
+    H -->|"Sessions, JWTs, OAuth 2.0"| I
 ```
 
 
@@ -78,6 +80,7 @@ graph TD
 | 06 | [API Design](./06-api-design/README.md) | REST, auth, versioning, pagination, GraphQL, gRPC, security | 🟥 Advanced |
 | 07 | [Node.js & Express](./07-nodejs-express/README.md) | Node.js internals, Express routing, middleware, file system, authentication | 🟥 Advanced |
 | 08 | [Databases & SQL](./08-databases/README.md) | SQL syntax, Joins, Normalization, ACID, Query Optimization, NoSQL vs SQL | 🟥 Advanced |
+| 09 | [Authentication](./09-authentication/README.md) | Identity, Cookies, Sessions, JWT, OAuth 2.0, Security | 🟥 Advanced |
 
 
 ## Repository Structure
@@ -106,9 +109,12 @@ Full-stack/
 ├── 07-nodejs-express/
 │   ├── README.md
 │   └── notes.md                      — Node.js & Express reference
-└── 08-databases/
+├── 08-databases/
+│   ├── README.md
+│   └── notes.md                      — Databases & SQL reference
+└── 09-authentication/
     ├── README.md
-    └── notes.md                      — Databases & SQL reference
+    └── notes.md                      — Authentication reference
 ```
 
 
@@ -156,6 +162,7 @@ No prior programming experience is assumed for Module 01. Starting from Module 0
 06 → API Design
 07 → Node.js & Express
 08 → Databases & SQL
+09 → Authentication
 ```
 
 Each module's `README.md` lists its specific prerequisites and links to the next module.
@@ -189,7 +196,6 @@ Planned additions to the roadmap:
 
 | # | Module | Status |
 |:--|:-------|:------:|
-| 09 | Authentication (JWT, OAuth 2.0) | Planned |
 | 10 | React | Planned |
 | 11 | Next.js | Planned |
 | 12 | Deployment & DevOps | Planned |

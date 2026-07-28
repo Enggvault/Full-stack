@@ -40,3 +40,18 @@ The detailed curriculum is located in [`notes.md`](./notes.md).
 - **System Design** (Small SaaS, E-Commerce, Microservices, Enterprise SSO)
 - **Interview Preparation** (Questions, Scenarios, Follow-ups)
 - **Common Mistakes & Checklists** (Pitfalls, Production Checklist, Cheat Sheet)
+
+## Estimated Reading Time
+5–7 hours
+
+## Difficulty
+🟥 Advanced
+
+## Next Module
+→ 10 — Authorization (Planned)
+
+## Files in This Module
+| File | Description |
+|:-----|:------------|
+| `README.md` | This file — module overview and objectives |
+| `notes.md` | Full reference notes for this module |
