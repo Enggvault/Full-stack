@@ -1433,5 +1433,4 @@ Before launching to production, verify every item on this list.
 - **403 Forbidden:** You are logged in, but you lack permission (Authorization failure).
 - **429 Too Many Requests:** Rate limiting triggered.
 
----
-*(End of Authentication Handbook)*
+
