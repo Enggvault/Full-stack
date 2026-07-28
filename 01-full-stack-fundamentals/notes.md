@@ -1,373 +1,382 @@
 title: "Full Stack Fundamentals: Complete Beginner to Advanced"
 subtitle: "From First Principles to Production-Grade Architecture"
-author: "Principal Software Engineer — 15+ Years Industry Experience"
-version: "2.0"
-date: "2025"
+author: "Principal Software Engineer"
+version: "3.0"
+date: "2026"
 
 # Full Stack Fundamentals
 ## Complete Beginner to Advanced Engineering Handbook
 
-> A production-grade, book-quality reference covering internet fundamentals, client-server architecture, and full stack development concepts. Written for engineers at all levels — from beginners to FAANG system designers.
+> Welcome to the definitive engineering handbook on Full Stack Fundamentals for EnggVault. This document is designed as a university-level and professional software-engineering reference book. It covers the absolute basics of the internet to the complex architectures used in modern scalable web applications.
 
+> **Difficulty:** Beginner → Intermediate → Advanced → System Design
 > **Prerequisites:** None · **Next:** [02 — HTML →](../02-html/notes.md)
-
 
 ## Table of Contents
 
-### Part I: Foundations
+### Part I: The Internet & The Browser
 - [Chapter 1: What is Full Stack Development?](#chapter-1-what-is-full-stack-development)
-- [Chapter 2: How the Internet Works](#chapter-2-how-the-internet-works)
-- [Chapter 3: The Browser](#chapter-3-the-browser)
+- [Chapter 2: How the Internet Works (Deep Dive)](#chapter-2-how-the-internet-works-deep-dive)
+- [Chapter 3: The Browser & Rendering Engine](#chapter-3-the-browser--rendering-engine)
 - [Chapter 4: Client-Server Architecture](#chapter-4-client-server-architecture)
 
-### Part II: Web Architecture
-- [Chapter 5: Web Architecture](#chapter-5-web-architecture)
-- [Chapter 6: HTTP Overview](#chapter-6-http-overview)
-- [Chapter 7: Tech Stacks](#chapter-7-tech-stacks)
+### Part II: Core Web Technologies
+- [Chapter 5: Web Architecture (N-Tier)](#chapter-5-web-architecture-n-tier)
+- [Chapter 6: HTTP & Network Protocols](#chapter-6-http--network-protocols)
+- [Chapter 7: Modern Tech Stacks](#chapter-7-modern-tech-stacks)
 
-### Part III: Data & Tools
-- [Chapter 8: Databases](#chapter-8-databases)
-- [Chapter 9: Version Control](#chapter-9-version-control)
+### Part III: Data & Infrastructure
+- [Chapter 8: Database Fundamentals](#chapter-8-database-fundamentals)
+- [Chapter 9: Version Control & Git Internals](#chapter-9-version-control--git-internals)
 - [Chapter 10: Developer Tooling & Workflow](#chapter-10-developer-tooling--workflow)
+- [Chapter 11: Deployment & Cloud Infrastructure](#chapter-11-deployment--cloud-infrastructure)
 
-### Part IV: Deployment & Roadmap
-- [Chapter 11: Deployment Overview](#chapter-11-deployment-overview)
-- [Chapter 12: Full Stack Roadmap](#chapter-12-full-stack-roadmap)
+### Part IV: Production & Advanced Topics
+- [Chapter 12: Security Fundamentals](#chapter-12-security-fundamentals)
+- [Chapter 13: Performance Engineering](#chapter-13-performance-engineering)
+- [Chapter 14: Real-World Architecture (System Design)](#chapter-14-real-world-architecture-system-design)
+- [Chapter 15: Interview Preparation](#chapter-15-interview-preparation)
+- [Chapter 16: Production Checklist](#chapter-16-production-checklist)
+- [Chapter 17: Cheat Sheet](#chapter-17-cheat-sheet)
 
+---
 
 # CHAPTER 1: What is Full Stack Development?
 
 A **full stack developer** designs and builds every layer of a web application — the user interface, the server-side logic, and the database. The term "full stack" refers to the complete set of software layers required to deliver a working application to a user.
 
+## 1.1 The Layers of the Stack
+
 | Layer | Responsibility | Examples |
 |:------|:---------------|:---------|
-| **Frontend** | The interface rendered in a user's browser | HTML, CSS, React, Next.js |
-| **Backend** | Server-side logic, data processing, APIs | Node.js, Django, Spring Boot |
-| **Database** | Persistent data storage and retrieval | PostgreSQL, MongoDB, Redis |
+| **Frontend (Client-side)** | The interface rendered in a user's browser. Responsible for UI, UX, and capturing inputs. | HTML, CSS, JavaScript, React, Next.js, Vue |
+| **Backend (Server-side)** | The business logic layer. Processes data, enforces security, and communicates with the database. | Node.js, Python/Django, Java/Spring Boot |
+| **Database (Data Layer)** | Persistent data storage and retrieval. | PostgreSQL, MongoDB, Redis |
+| **Infrastructure / DevOps**| Where the application lives and how it is deployed. | AWS, Vercel, Docker, Kubernetes |
 
+## 1.2 The Evolution of the Full Stack
+- **Web 1.0 (1990s):** Static HTML pages delivered from a web server.
+- **Web 2.0 (2000s):** Dynamic pages (PHP, Ruby on Rails) rendering HTML on the server on every request.
+- **The SPA Era (2010s):** Single Page Applications (React, Angular). The server just sends JSON; the browser renders everything.
+- **Modern Era (2020s+):** Server-Side Rendering (SSR) and Server Components (Next.js) mixing the best of both worlds.
 
-# CHAPTER 2: How the Internet Works
+## 1.3 Interview Questions
+1. **What distinguishes a Full Stack developer from a Frontend or Backend developer?**
+   *Answer:* A full-stack developer has working knowledge of all layers of an application, from configuring the database schema and writing server APIs to building the client-side user interface and deploying the application.
 
-### DNS Resolution
+# CHAPTER 2: How the Internet Works (Deep Dive)
 
-When a user enters `https://example.com` into a browser, the following sequence occurs:
+Before writing any code, engineers must understand the physical and logical infrastructure that delivers data across the globe.
 
-```
-Browser → DNS Resolver → Root Nameserver → TLD Nameserver → Authoritative Nameserver
-                                                                        ↓
-                                              IP Address returned: 93.184.216.34
-```
+## 2.1 Packets and Routing (BGP)
+The internet is a global network of interconnected networks. Data does not travel in one continuous stream; it is broken into tiny chunks called **packets**.
+- **Routers** read the destination IP address on the packet and forward it to the next router.
+- **BGP (Border Gateway Protocol)** is the "postal service" of the internet, calculating the most efficient path between networks.
 
-1. The browser checks its local DNS cache for the domain's IP address.
-2. If not cached, it queries the operating system's DNS resolver.
-3. The resolver contacts a series of nameservers to find the authoritative record.
-4. The IP address is returned and cached for future requests.
+## 2.2 DNS Resolution (Domain Name System)
+Computers communicate using IP addresses (e.g., `93.184.216.34`), but humans use domain names (`example.com`). DNS translates domain names to IP addresses.
 
-### TCP/IP
+When a user types `https://example.com`, the following sequence occurs:
+1. **Local Cache:** The browser checks its internal cache and the OS cache.
+2. **Resolver:** If not found, the OS queries the configured DNS Resolver (usually provided by the ISP or 1.1.1.1/8.8.8.8).
+3. **Root Nameserver:** The resolver asks the Root Server, which directs it to the `.com` TLD (Top-Level Domain) server.
+4. **TLD Nameserver:** The TLD server directs it to the Authoritative Nameserver for `example.com`.
+5. **Authoritative Nameserver:** Returns the actual IP Address.
 
-All web communication travels over **TCP/IP** (Transmission Control Protocol / Internet Protocol). TCP ensures packets arrive in order and without loss. IP addresses identify machines on the network.
+## 2.3 The TCP/IP Model
+All web communication travels over the TCP/IP suite.
+- **IP (Internet Protocol):** Handles addressing and routing packets from machine A to machine B.
+- **TCP (Transmission Control Protocol):** Runs on top of IP. It ensures packets arrive reliably, in order, and without loss. It establishes a connection via a "Three-Way Handshake" (SYN, SYN-ACK, ACK).
 
-### TLS/SSL
+## 2.4 TLS/SSL (HTTPS)
+**HTTPS** adds a cryptographic layer (TLS) over TCP.
+- Authenticates the server via a certificate issued by a trusted Certificate Authority (CA).
+- Establishes an encrypted channel using asymmetric cryptography (to exchange a session key) and symmetric cryptography (to encrypt the actual data).
 
-**HTTPS** adds a TLS handshake before any HTTP data is transmitted. TLS:
-- Authenticates the server via a certificate issued by a trusted Certificate Authority.
-- Establishes an encrypted channel so data cannot be read in transit.
+## 2.5 Interview Questions
+1. **What happens exactly when you type a URL into your browser and press Enter?**
+   *Answer:* DNS Resolution (Browser cache -> OS cache -> Resolver -> Root -> TLD -> Authoritative) to get the IP. TCP 3-way handshake to establish a connection. TLS handshake to secure the connection. The browser sends an HTTP GET request. The server processes it and returns an HTTP response containing HTML. The browser parses the HTML, requests CSS/JS assets, builds the DOM and CSSOM, and paints the pixels to the screen.
 
-> **Warning:** All production web applications must use HTTPS. HTTP transmits data in plaintext.
+# CHAPTER 3: The Browser & Rendering Engine
 
+A web browser is a complex runtime environment, arguably the most ubiquitous operating system on the planet.
 
-# CHAPTER 3: The Browser
+## 3.1 The Rendering Pipeline
+1. **Parsing:** The browser fetches the HTML and parses it into a tree called the **DOM** (Document Object Model).
+2. **CSSOM:** It fetches CSS and builds the **CSSOM** (CSS Object Model).
+3. **Render Tree:** It combines the DOM and CSSOM into a Render Tree (excluding hidden elements like `display: none`).
+4. **Layout (Reflow):** It calculates the exact geometric position and size of every node on the screen.
+5. **Paint:** It paints the pixels onto the screen.
+6. **Compositing:** Layers are drawn in the correct order (z-index) on the GPU.
 
-A web browser is a runtime environment that:
+## 3.2 Browser Engines
+| Browser | Engine | JavaScript Engine |
+|:--------|:-------|:------------------|
+| Chrome / Edge | Blink | V8 |
+| Firefox | Gecko | SpiderMonkey |
+| Safari | WebKit | JavaScriptCore |
 
-- Fetches resources (HTML, CSS, JavaScript, images) over HTTP.
-- Parses HTML and constructs the **DOM** (Document Object Model) — a tree of nodes representing the page structure.
-- Applies CSS rules to compute the visual layout.
-- Executes JavaScript, which can read and modify the DOM and make additional network requests.
+## 3.3 The V8 Engine & The Event Loop
+JavaScript is single-threaded. V8 is the engine that compiles JS to machine code.
+- **Call Stack:** Where function calls are executed.
+- **Web APIs:** Browser APIs (like `fetch` or `setTimeout`) execute in the background.
+- **Callback Queue / Microtask Queue:** When Web APIs finish, their callbacks are placed here.
+- **Event Loop:** Continuously checks if the Call Stack is empty. If it is, it pushes the first item from the queues onto the stack.
 
-**Major browser engines:**
-
-| Engine | Used By |
-|:-------|:--------|
-| V8 | Chrome, Edge, Node.js |
-| SpiderMonkey | Firefox |
-| JavaScriptCore | Safari |
-
-> **Note:** The DOM and JavaScript interaction are covered in depth in [Module 04 — JavaScript](../04-javascript/notes.md#16-dom-manipulation).
-
+## 3.4 Interview Questions
+1. **What is the DOM?**
+   *Answer:* The Document Object Model is an in-memory tree representation of the HTML document. It provides an API that allows JavaScript to dynamically query and modify the structure, style, and content of the page.
+2. **Why is JavaScript single-threaded, and how does it handle asynchronous operations?**
+   *Answer:* JS is single-threaded to avoid complex concurrency issues like deadlocks when modifying the DOM. It handles async operations via the Event Loop, offloading heavy tasks to Web APIs and executing callbacks only when the main thread is idle.
 
 # CHAPTER 4: Client-Server Architecture
 
-Every web application is built on a **client-server** model. The client initiates requests; the server processes them and sends responses.
+Every web application is built on a **client-server** model.
 
-```
-+------------------+        HTTP Request        +------------------+
-|                  | ─────────────────────────→ |                  |
-|   Client         |                            |   Server         |
-|   (Browser /     |                            |   (Application + |
-|   Mobile App)    | ←───────────────────────── |   Database)      |
-|                  |        HTTP Response        |                  |
-+------------------+                            +------------------+
-```
-
-**Key characteristics:**
-
-- The client is responsible for rendering the UI and capturing user input.
-- The server is responsible for business logic, data validation, and database access.
-- Communication between them follows a defined contract — the API.
-- The server is stateless by default: each request must carry enough information to be processed independently.
-
-
-# CHAPTER 5: Web Architecture
-
-A production web application is divided into distinct layers, each with a clearly bounded responsibility.
-
-```
-+----------------------------------------------------------+
-|  USER                                                    |
-|  Person interacting with the application                 |
-+----------------------------------------------------------+
-                          │
-                          ▼
-+----------------------------------------------------------+
-|  BROWSER / CLIENT                                        |
-|  Chrome, Firefox, Safari, Mobile App                    |
-|  Renders the UI; sends HTTP requests                     |
-+----------------------------------------------------------+
-                          │
-                          ▼
-+----------------------------------------------------------+
-|  FRONTEND  (Presentation Layer)                          |
-|  HTML, CSS, JavaScript, React, Next.js                  |
-|  Constructs the user interface; handles user events      |
-+----------------------------------------------------------+
-                          │  HTTP Request
-                          ▼
-+----------------------------------------------------------+
-|  API LAYER  (Communication Layer)                        |
-|  REST Endpoints, GraphQL, gRPC                          |
-|  Routes requests to the correct handler                  |
-+----------------------------------------------------------+
-                          │
-                          ▼
-+----------------------------------------------------------+
-|  BACKEND  (Application Logic Layer)                      |
-|  Node.js/Express, Django, FastAPI, Spring Boot          |
-|  Validates input; applies business rules; queries DB     |
-+----------------------------------------------------------+
-                          │
-                          ▼
-+----------------------------------------------------------+
-|  DATABASE  (Persistence Layer)                           |
-|  PostgreSQL, MongoDB, MySQL, Redis                      |
-|  Stores and retrieves all persistent data                |
-+----------------------------------------------------------+
+## 4.1 The Model
+```mermaid
+sequenceDiagram
+    participant C as Client (Browser)
+    participant S as Server (Backend)
+    participant DB as Database
+    
+    C->>S: 1. HTTP Request (e.g., GET /users)
+    S->>DB: 2. SQL Query (SELECT * FROM users)
+    DB-->>S: 3. Query Results (Data)
+    S-->>C: 4. HTTP Response (200 OK + JSON)
 ```
 
-| Layer | Primary Responsibility |
-|:------|:----------------------|
-| **Frontend** | Render UI, capture input, call the API |
-| **API** | Define the contract between frontend and backend |
-| **Backend** | Validate, process, apply business rules |
-| **Database** | Persist and retrieve data reliably |
+## 4.2 Key Characteristics
+- **Client (Frontend):** Responsible for rendering UI, capturing user input, and maintaining presentation state.
+- **Server (Backend):** Responsible for business logic, data validation, security, and persistence.
+- **Statelessness:** By default, every HTTP request is entirely independent. The server does not remember the client from one request to the next unless a session identifier (cookie/token) is provided.
 
+# CHAPTER 5: Web Architecture (N-Tier)
 
-# CHAPTER 6: HTTP Overview
+A production web application is divided into distinct layers, ensuring separation of concerns.
 
-**HTTP (Hypertext Transfer Protocol)** is the application-layer protocol that defines how clients and servers communicate. Every interaction between a browser and a server is an HTTP transaction consisting of a **request** and a **response**.
+## 5.1 N-Tier Architecture Diagram
+```mermaid
+flowchart TD
+    Client[Browser / Mobile App] -->|HTTP Request| CDN[CDN / Load Balancer]
+    CDN -->|Forward Request| Gateway[API Gateway]
+    Gateway -->|Route| WebServer[Web Server / Reverse Proxy]
+    WebServer -->|Execute Code| AppServer[Application Server / Node.js]
+    AppServer -->|Read/Write| Cache[(Redis Cache)]
+    AppServer -->|Query| Database[(PostgreSQL DB)]
+```
 
-HTTP is stateless — each request is independent. The server does not retain information about previous requests unless a persistence mechanism (cookies, tokens) is used.
+## 5.2 Monolith vs. Microservices
+- **Monolith:** All backend logic (auth, billing, user management) is compiled into a single massive application. Easier to deploy and debug, but difficult to scale massively.
+- **Microservices:** Logic is split into dozens of independent, small applications that communicate over the network. Much harder to orchestrate (requires Kubernetes), but allows independent scaling of specific features.
 
-> **Note:** HTTP is covered in full detail in [Module 05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md). This section provides only the conceptual introduction required for understanding web architecture.
+# CHAPTER 6: HTTP & Network Protocols
 
+**HTTP (Hypertext Transfer Protocol)** is the application-layer protocol defining how clients and servers communicate.
 
-# CHAPTER 7: Tech Stacks
+> **Note:** Deep dive in [Module 05 — HTTP, JSON & Fetch](../05-http-json-fetch/notes.md).
+
+## 6.1 HTTP Methods & Status Codes
+- **GET:** Read data.
+- **POST:** Create data.
+- **PUT/PATCH:** Update data.
+- **DELETE:** Remove data.
+
+**Crucial Status Codes:**
+- `200 OK`, `201 Created`
+- `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`
+- `500 Internal Server Error`
+
+## 6.2 The Evolution of HTTP
+- **HTTP/1.1:** Text-based, keep-alive connections. Suffers from "Head of Line Blocking" (one slow request blocks all others on that connection).
+- **HTTP/2:** Binary protocol, multiplexing (sending multiple parallel requests over a single TCP connection). Server push.
+- **HTTP/3:** Uses QUIC (over UDP) instead of TCP. Eliminates TCP head-of-line blocking and provides faster connection setup.
+
+## 6.3 REST vs GraphQL vs gRPC
+- **REST:** Resource-based URLs (`/users/123`). Uses standard HTTP methods. Returns fixed JSON structures.
+- **GraphQL:** Single endpoint (`/graphql`). The client specifies exactly what data it wants in a query language. Eliminates over-fetching.
+- **gRPC:** High-performance framework by Google. Uses Protobufs instead of JSON. Operates over HTTP/2. Ideal for internal microservice-to-microservice communication.
+
+# CHAPTER 7: Modern Tech Stacks
 
 A **tech stack** is the combination of technologies used to build an application end-to-end.
 
-### Popular Stacks
+## 7.1 Popular Stacks
 
-| Stack | Technologies | Primary Use Case |
-|:------|:-------------|:-----------------|
-| **MERN** | MongoDB, Express, React, Node.js | Full-stack JavaScript web apps |
-| **PERN** | PostgreSQL, Express, React, Node.js | Full-stack JS with relational data |
-| **MEAN** | MongoDB, Express, Angular, Node.js | Full-stack JS with Angular frontend |
-| **T3** | TypeScript, tRPC, Tailwind, Prisma, Next.js | Type-safe modern full-stack |
-| **Django** | Django, PostgreSQL, HTML/CSS/JS | Python-based full-stack |
-| **LAMP** | Linux, Apache, MySQL, PHP | Traditional web apps, WordPress |
+| Stack | Technologies | Best For |
+|:------|:-------------|:---------|
+| **MERN** | MongoDB, Express, React, Node.js | Fast prototyping, full-stack JavaScript. |
+| **T3 Stack** | Next.js, tRPC, Tailwind, Prisma | Type-safe modern React applications. |
+| **Django / Python** | Django, PostgreSQL | Data-heavy applications, rapid development. |
+| **Spring Boot / Java** | Spring, PostgreSQL, React/Angular | Enterprise applications, highly scalable microservices. |
+| **Go / Fiber** | Go, PostgreSQL | Extremely high performance, low memory footprint microservices. |
 
-### MERN Architecture
+# CHAPTER 8: Database Fundamentals
 
-```
-React.js (Frontend)
-        │
-        │  GET /api/users  (HTTP)
-        ▼
-Express.js (API + Backend)
-        │
-        ▼
-Node.js (Runtime)
-        │
-        ▼
-MongoDB (Database)
-        │  Returns JSON documents
-        ▼
-Express.js formats response
-        │
-        ▼
-React.js receives data, updates state, re-renders
-```
+Databases are the source of truth for your application.
 
-**Why MERN is popular:**
-- A single language (JavaScript) across frontend, backend, and database layer.
-- Large ecosystem of packages via npm.
-- Fast initial development cycle suited to startups and prototypes.
+> **Note:** Deep dive in [Module 08 — Databases](../08-databases/notes.md).
 
+## 8.1 SQL (Relational)
+- Data is stored in strict tables with predefined schemas.
+- Data is heavily normalized to avoid duplication.
+- Uses JOINs to connect data.
+- Strongly ACID compliant (Atomicity, Consistency, Isolation, Durability).
+- *Examples:* PostgreSQL, MySQL.
 
-# CHAPTER 8: Databases
+## 8.2 NoSQL (Non-Relational)
+- Data is stored in flexible documents (JSON), key-value pairs, or graphs.
+- Schemas are fluid; data is often denormalized.
+- Scales horizontally much easier than SQL.
+- *Examples:* MongoDB, Redis, DynamoDB.
 
-### SQL (Relational Databases)
+## 8.3 The CAP Theorem
+In a distributed database system, you can only pick two of the following three guarantees:
+- **Consistency:** Every read receives the most recent write or an error.
+- **Availability:** Every request receives a non-error response.
+- **Partition Tolerance:** The system continues to operate despite network failures dropping messages.
+- *Conclusion:* Since network partitions (P) are inevitable, distributed databases must choose between CP (Consistency) or AP (Availability).
 
-Stores data in **tables** with fixed schemas, rows, and columns. Relationships between tables are enforced by the database engine using foreign keys and JOIN operations.
+# CHAPTER 9: Version Control & Git Internals
 
-```sql
--- Users table
-| id | name  | email           |
-|----|-------|-----------------|
-|  1 | Alice | alice@email.com |
+**Git** is a distributed version control system. It tracks changes to files over time.
 
--- Orders table
-| id | userId | product |
-|----|--------|---------|
-| 10 | 1      | Laptop  |
+## 9.1 Git Architecture
+Git does not store diffs; it stores **snapshots** of the entire project at specific points in time.
+- **Working Directory:** The actual files on your disk.
+- **Staging Area (Index):** Files marked to be included in the next commit.
+- **Local Repository:** Your local `.git` directory containing all history.
+- **Remote Repository:** The hosted copy (e.g., GitHub).
 
--- Retrieve with JOIN
-SELECT users.name, orders.product
-FROM orders JOIN users ON orders.userId = users.id;
-```
+## 9.2 Branching Strategies
+- **GitFlow:** Strict branches (`main`, `develop`, `feature/*`, `release/*`). Safe but slow, often leading to "merge hell".
+- **Trunk-Based Development:** All developers push to `main` constantly, using short-lived feature branches and feature flags. Required for true CI/CD.
 
-**SQL databases:** PostgreSQL, MySQL, SQLite, Supabase
-
-### NoSQL (Non-Relational Databases)
-
-Stores data as flexible documents, key-value pairs, or graphs. The schema is not enforced by the database — it is the application's responsibility.
-
-```json
-{
-  "_id": "648f...",
-  "name": "Tushar",
-  "email": "thetushardev0@gmail.com",
-  "orders": [
-    { "product": "Laptop", "qty": 1 }
-  ]
-}
-```
-
-**NoSQL databases:** MongoDB, Redis, Firebase, Cassandra
-
-### SQL vs NoSQL
-
-| Feature | SQL | NoSQL |
-|:--------|:----|:------|
-| **Schema** | Fixed, defined upfront | Flexible, per-document |
-| **Relationships** | Native (JOIN, foreign keys) | Application-managed |
-| **Consistency** | Strong (ACID) | Eventual (typically) |
-| **Best for** | Financial data, complex relations | Rapid iteration, variable structure |
-| **Scaling** | Vertical (primarily) | Horizontal |
-
-
-# CHAPTER 9: Version Control
-
-**Git** is the industry-standard version control system. It tracks changes to files over time, enables collaboration, and supports rollback to any previous state.
-
-### Core Concepts
-
-| Concept | Description |
-|:--------|:------------|
-| **Repository** | A project directory tracked by Git |
-| **Commit** | A snapshot of the project at a point in time |
-| **Branch** | An independent line of development |
-| **Merge** | Combining changes from one branch into another |
-| **Pull Request** | A review process before merging code |
-| **Remote** | A hosted copy of the repository (GitHub, GitLab) |
-
-### Git Workflow (Feature Branch)
-
-```
-main ─────────────────────────────────────────────────────▶ production
-         │                              │
-         └─ feature/login-page ─────────┘
-              commit → commit → PR → review → merge
-```
-
-### Essential Commands
-
-```bash
-git init                    # Initialise a new repository
-git clone <url>             # Clone a remote repository
-git add .                   # Stage all changes
-git commit -m "message"     # Commit staged changes
-git push origin main        # Push commits to remote
-git pull origin main        # Pull latest changes
-git checkout -b feature/x   # Create and switch to a new branch
-git merge feature/x         # Merge a branch into the current branch
-git log --oneline -10       # View last 10 commits
-```
-
+## 9.3 Interview Questions
+1. **What is the difference between `git merge` and `git rebase`?**
+   *Answer:* `merge` combines two branches and creates a new "merge commit", preserving the exact history. `rebase` rewrites history by placing the current branch's commits at the tip of the target branch, resulting in a cleaner, linear history, but is dangerous if the branch is shared publicly.
 
 # CHAPTER 10: Developer Tooling & Workflow
 
-| Tool | Purpose |
-|:-----|:--------|
-| **VS Code** | Code editor with extension ecosystem |
-| **Git** | Version control — track changes, collaborate, roll back |
-| **GitHub / GitLab** | Remote repository hosting, pull requests, CI/CD |
-| **Node.js / npm** | JavaScript runtime; package manager |
-| **Postman / Insomnia** | API testing and exploration |
-| **Docker** | Containerise the application for consistent environments |
-| **Browser DevTools** | Inspect DOM, debug JS, profile network requests |
+Professional engineers rely on robust tooling to ensure code quality.
 
+## 10.1 CI/CD (Continuous Integration / Continuous Deployment)
+- **CI:** Automatically running a suite of automated tests and linters every time code is pushed to a PR. Prevents broken code from merging.
+- **CD:** Automatically deploying the code to production immediately after it is merged to the main branch.
+- *Tools:* GitHub Actions, GitLab CI.
 
-# CHAPTER 11: Deployment Overview
+## 10.2 Containerization (Docker)
+"It works on my machine" is solved by Docker.
+- **Image:** A lightweight, standalone, executable package that includes everything needed to run a piece of software (code, runtime, libraries).
+- **Container:** A running instance of an image. It guarantees the application will behave exactly the same locally as it does on a Linux server in the cloud.
 
-**Deployment** is the process of making an application accessible to users over the internet.
+# CHAPTER 11: Deployment & Cloud Infrastructure
 
-| Component | Options |
-|:----------|:--------|
-| **Frontend hosting** | Vercel, Netlify, GitHub Pages, AWS S3 + CloudFront |
-| **Backend hosting** | Railway, Render, AWS EC2, Google Cloud Run, Fly.io |
-| **Database** | Supabase (PostgreSQL), MongoDB Atlas, PlanetScale |
-| **CI/CD** | GitHub Actions, GitLab CI, CircleCI |
+Where does code run?
 
-**Deployment stages:**
+## 11.1 Infrastructure Models
+- **IaaS (Infrastructure as a Service):** You rent raw virtual machines (VMs). You configure the OS, networking, and scaling. (AWS EC2).
+- **PaaS (Platform as a Service):** You just provide the code. The platform handles the OS, runtime, and scaling automatically. (Vercel, Render, Heroku).
+- **SaaS (Software as a Service):** A fully managed application you consume (GitHub, Slack).
 
-```
-Local (dev) → Staging (testing) → Production (users)
-```
+## 11.2 The Edge
+Traditionally, servers sat in one data center (e.g., US-East). Users in Australia experienced high latency.
+- **Edge Computing (Cloudflare Workers, Vercel Edge):** Deploying lightweight serverless functions to hundreds of mini-datacenters around the globe, executing code physically close to the user.
 
-> **Warning:** Environment variables (secrets, database URLs, API keys) must never be committed to version control. Use `.env` files locally and platform-provided secret management in production.
+# CHAPTER 12: Security Fundamentals
 
+Security is a primary requirement, not an afterthought.
 
-# CHAPTER 12: Full Stack Roadmap
+## 12.1 OWASP Top 10 Concepts
+- **Injection (SQLi):** Untrusted user data is executed as a command. Fixed via parameterized queries.
+- **Broken Authentication:** Flaws in session/token management.
+- **XSS (Cross-Site Scripting):** Executing malicious JavaScript in a victim's browser.
+- **CSRF (Cross-Site Request Forgery):** Tricking a browser into taking action on an authenticated site.
 
-The recommended learning sequence for this repository:
+> **Note:** Deep dive in [Module 09 — Authentication](../09-authentication/notes.md).
 
-```
-01 - Full Stack Fundamentals  ← You are here
-02 - HTML
-03 - CSS
-04 - JavaScript
-05 - HTTP, JSON & Fetch
-06 - API Design
-─────────────────────────── (Upcoming)
-07 - Node.js & Express
-08 - Databases (PostgreSQL, MongoDB)
-09 - Authentication (JWT, OAuth 2.0)
-10 - React
-11 - Next.js
-12 - Deployment
-```
+# CHAPTER 13: Performance Engineering
 
----
+Performance directly correlates to user retention and revenue.
 
-> **Next:** [02 — HTML →](../02-html/notes.md)
+## 13.1 Core Web Vitals (Google SEO)
+Google ranks websites based on objective performance metrics:
+- **LCP (Largest Contentful Paint):** How long does it take for the largest image/text block to become visible?
+- **FID (First Input Delay) / INP (Interaction to Next Paint):** How fast does the site respond when the user clicks a button?
+- **CLS (Cumulative Layout Shift):** Does the page jump around unexpectedly while loading?
+
+## 13.2 Optimization Strategies
+- Minify and gzip/Brotli compress assets.
+- Utilize a CDN (Content Delivery Network) to serve static assets from the Edge.
+- Implement Caching (Redis) to avoid recalculating expensive database queries.
+
+# CHAPTER 14: Real-World Architecture (System Design)
+
+How does a full-stack application scale from 1 user to 1 million users?
+
+## 14.1 Stage 1: The Monolith (1-1000 users)
+- 1 Server running the API and the Database.
+- Easy to deploy, cheap.
+- Single point of failure.
+
+## 14.2 Stage 2: Vertical Scaling (10k users)
+- Upgrading the server to a larger machine with more RAM and CPU cores.
+- Moving the database to a separate, dedicated server.
+
+## 14.3 Stage 3: Horizontal Scaling (100k users)
+- Spinning up 5 separate API servers.
+- Placing a **Load Balancer** in front of them to distribute traffic.
+- The servers must be **stateless**. Sessions must be moved to an external store like Redis.
+
+## 14.4 Stage 4: Caching and Database Replication (1M users)
+- The database becomes the bottleneck.
+- **Read Replicas:** One Primary DB for writes, 3 Replica DBs for reads.
+- **Caching Layer:** Placing Redis in front of the database to serve frequent queries instantly.
+
+# CHAPTER 15: Interview Preparation
+
+### Beginner
+1. What is the difference between Frontend and Backend?
+2. Explain what a full-stack developer is.
+3. What is an API?
+
+### Intermediate
+4. Explain what happens when you type google.com into your browser.
+5. What is the difference between TCP and UDP?
+6. Explain the concept of horizontal vs. vertical scaling.
+7. What is the CAP theorem?
+
+### Advanced
+8. Explain the browser rendering pipeline from DOM construction to screen paint.
+9. How does the JavaScript Event Loop work under the hood?
+10. Describe how you would scale a simple CRUD application to handle 1 million concurrent users.
+
+# CHAPTER 16: Production Checklist
+
+Before starting any full-stack project, ensure you have:
+- [ ] Version control (Git) initialized with a `.gitignore`.
+- [ ] A linter (ESLint) and formatter (Prettier) configured.
+- [ ] CI/CD pipelines set up to run tests on every PR.
+- [ ] Separate environments configured (Development, Staging, Production).
+- [ ] Environment variables securely managed (no hardcoded secrets).
+- [ ] Docker configured for identical local and production environments.
+
+# CHAPTER 17: Cheat Sheet
+
+### Essential Git Commands
+- `git init`: Initialize repo.
+- `git status`: Check working tree status.
+- `git add .`: Stage all changes.
+- `git commit -m "msg"`: Commit changes.
+- `git push origin main`: Push to remote.
+- `git rebase main`: Rebase current branch onto main.
+
+### Common Ports
+- **80:** HTTP
+- **443:** HTTPS
+- **5432:** PostgreSQL
+- **27017:** MongoDB
+- **6379:** Redis
+- **3000 / 8080:** Common local Node.js development ports
+
+> **Next Module →** [02 — HTML](../02-html/notes.md)

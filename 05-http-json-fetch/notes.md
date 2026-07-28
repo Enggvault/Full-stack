@@ -34,6 +34,9 @@ date: "2025"
 
 ### Part IV: Tools & Reference
 - [Chapter 13: Reading the Network Tab](#chapter-13-reading-the-network-tab)
+- [Chapter 14: Interview Preparation](#chapter-14-interview-preparation)
+- [Chapter 15: Production Checklist](#chapter-15-production-checklist)
+- [Chapter 16: Cheat Sheet](#chapter-16-cheat-sheet)
 
 
 # CHAPTER 1: HTTP in Depth
@@ -587,5 +590,70 @@ The browser **DevTools → Network tab** is the primary tool for debugging HTTP 
 - Is the response body what the server actually returned?
 - Is the status code what you expect?
 
+# CHAPTER 14: Interview Preparation
+
+### Beginner
+1. **What is the difference between GET and POST requests?**
+   *Answer:* `GET` is used to retrieve data, has no request body, is cacheable, and is idempotent. `POST` is used to send data to create a resource, contains a request body, is not cacheable by default, and is not idempotent.
+2. **What does a 404 status code mean? What about a 500?**
+   *Answer:* `404 Not Found` means the client requested a resource that does not exist. `500 Internal Server Error` means the server encountered an unexpected condition that prevented it from fulfilling the request.
+
+### Intermediate
+3. **What is a Promise and what are its possible states?**
+   *Answer:* A Promise represents the eventual completion (or failure) of an asynchronous operation. Its states are: Pending (initial state), Fulfilled (operation completed successfully), and Rejected (operation failed).
+4. **How do you handle errors with the Fetch API?**
+   *Answer:* Fetch only rejects on network failures. For HTTP errors (like 404 or 500), the Promise still resolves. You must manually check `response.ok` or `response.status` and `throw` an error to route it to a `.catch()` block.
+
+### Advanced
+5. **Explain CORS (Cross-Origin Resource Sharing).**
+   *Answer:* CORS is a browser security mechanism that restricts web pages from making requests to a different domain than the one that served the web page. To allow cross-origin requests, the target server must return specific headers, such as `Access-Control-Allow-Origin`.
+
+# CHAPTER 15: Production Checklist
+
+Before deploying applications making API calls:
+- [ ] Centralize all API calls (e.g., using a client module or SDK pattern) rather than scattering `fetch()` calls throughout UI components.
+- [ ] Implement robust error handling that accounts for both network failures and non-2xx HTTP responses.
+- [ ] Ensure sensitive data is sent via `POST` or `PUT` bodies over HTTPS, never via query parameters in a `GET` request.
+- [ ] Properly parse error response bodies to provide meaningful feedback to the user (e.g., extracting error messages from the JSON payload).
+- [ ] Use `Promise.all` for independent parallel requests to minimize loading times.
+- [ ] Include authentication tokens securely (e.g., using `Authorization: Bearer <token>`).
+
+# CHAPTER 16: Cheat Sheet
+
+### Basic Fetch Wrapper
+```js
+async function fetchJson(url, options = {}) {
+  const res = await fetch(url, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+  });
+  if (!res.ok) {
+    throw new Error(`HTTP error! Status: ${res.status}`);
+  }
+  return res.status === 204 ? null : await res.json();
+}
+```
+
+### Promise.all Example
+```js
+const [users, posts] = await Promise.all([
+  fetchJson('/api/users'),
+  fetchJson('/api/posts')
+]);
+```
+
+### Common HTTP Status Codes
+- `200`: OK
+- `201`: Created
+- `204`: No Content
+- `400`: Bad Request
+- `401`: Unauthorized
+- `403`: Forbidden
+- `404`: Not Found
+- `500`: Internal Server Error
+```
 
 > **Next:** [06 — API Design →](../06-api-design/notes.md)

@@ -46,8 +46,9 @@ date: "2025"
 - [Chapter 21: Common Mistakes](#chapter-21-common-mistakes)
 - [Chapter 22: Interview Questions](#chapter-22-interview-questions)
 - [Chapter 23: Practice Projects](#chapter-23-practice-projects)
-- [Chapter 24: Cheat Sheet](#chapter-24-cheat-sheet)
-- [Chapter 25: Summary](#chapter-25-summary)
+- [Chapter 24: Production Checklist](#chapter-24-production-checklist)
+- [Chapter 25: Cheat Sheet](#chapter-25-cheat-sheet)
+- [Chapter 26: Summary](#chapter-26-summary)
 
 
 # CHAPTER 1: Introduction to APIs
@@ -2662,7 +2663,24 @@ Add a `deletedAt` timestamp field. Instead of `DELETE FROM users WHERE id = ?`, 
 | 20 | Multi-tenant SaaS API | ⭐⭐⭐⭐ | Org isolation, ABAC, API keys | 10 hrs |
 
 
-# CHAPTER 24: Cheat Sheet
+# CHAPTER 24: Production Checklist
+
+Before releasing an API to production, ensure you have checked:
+- [ ] API is served over HTTPS only.
+- [ ] All endpoints validate incoming data (body, query, params) and return 422 for invalid data.
+- [ ] Authentication (e.g. JWT) is required for sensitive routes.
+- [ ] Authorization checks prevent users from accessing others' data (IDOR prevention).
+- [ ] Rate limiting is enabled to prevent abuse and brute-forcing.
+- [ ] CORS is configured strictly to allow only specific origins.
+- [ ] Security headers (Helmet) are set.
+- [ ] Stack traces are hidden from error responses.
+- [ ] Proper pagination is used on endpoints returning collections.
+- [ ] Sensitive logs (passwords, tokens) are redacted from server logs.
+- [ ] Database queries are parameterized (prevents SQL injection) or use an ORM properly.
+- [ ] API is versioned (e.g., `/v1/...`) to allow future breaking changes.
+- [ ] Documentation (e.g., Swagger/OpenAPI) is up-to-date and accessible to consumers.
+
+# CHAPTER 25: Cheat Sheet
 
 ### HTTP Methods
 
@@ -2781,7 +2799,7 @@ app.listen(3000);
 ```
 
 
-# CHAPTER 25: Summary
+# CHAPTER 26: Summary
 
 | Chapter | Key Takeaways |
 |:--------|:-------------|
@@ -2808,7 +2826,8 @@ app.listen(3000);
 | **21 – Common Mistakes** | 200 for errors, verbs in URLs, no versioning, exposed stack traces, no pagination. |
 | **22 – Interview Q&A** | 45 questions covering beginner → advanced: REST, HTTP, JWT, OAuth, rate limiting, scaling. |
 | **23 – Projects** | 20 projects from Todo API to Multi-tenant SaaS API. |
-| **24 – Cheat Sheet** | One-page reference: methods, status codes, REST rules, response format, Express syntax. |
+| **24 – Checklist** | Launch checklist covering security, performance, and validation. |
+| **25 – Cheat Sheet** | One-page reference: methods, status codes, REST rules, response format, Express syntax. |
 
 
 ## References

@@ -52,7 +52,8 @@ date: "2025"
 - [Chapter 25: Interview Questions](#chapter-25-interview-questions)
 - [Chapter 26: Best Practices](#chapter-26-best-practices)
 - [Chapter 27: Common Mistakes](#chapter-27-common-mistakes)
-- [Chapter 28: Cheat Sheet](#chapter-28-cheat-sheet)
+- [Chapter 28: Production Checklist](#chapter-28-production-checklist)
+- [Chapter 29: Cheat Sheet](#chapter-29-cheat-sheet)
 
 
 # CHAPTER 1: Introduction to Node.js
@@ -2657,7 +2658,23 @@ Out of memory — JavaScript heap exhausted. Common causes: memory leak (event l
 
 ---
 
-# CHAPTER 28: Cheat Sheet
+# CHAPTER 28: Production Checklist
+
+Before deploying a Node.js/Express app, verify:
+- [ ] Use `NODE_ENV=production`.
+- [ ] Use a process manager like PM2 or Docker.
+- [ ] Use `helmet` to set security HTTP headers.
+- [ ] Implement rate limiting (`express-rate-limit`).
+- [ ] Use a logging library (Pino or Winston) instead of `console.log`.
+- [ ] Handle unhandled rejections and uncaught exceptions.
+- [ ] Use gzip compression (`compression` middleware).
+- [ ] Set up CORS properly (`cors` middleware).
+- [ ] Avoid synchronous functions (like `readFileSync`) in request handlers.
+- [ ] Graceful shutdown (handling SIGINT/SIGTERM properly to close DB connections).
+- [ ] Ensure proper database connection pooling.
+- [ ] Sanitize inputs to prevent SQL Injection / NoSQL Injection.
+
+# CHAPTER 29: Cheat Sheet
 
 ### Node.js Core Commands
 

@@ -56,6 +56,7 @@ graph TD
     G["07 — Node.js & Express"]
     H["08 — Databases & SQL"]
     I["09 — Authentication"]
+    J["10 — Caching & Performance"]
 
     A -->|"Internet, Architecture, Tooling"| B
     B -->|"Document Structure, Semantics"| C
@@ -65,6 +66,7 @@ graph TD
     F -->|"REST, Best Practices"| G
     G -->|"Node.js, Express, Middleware"| H
     H -->|"Sessions, JWTs, OAuth 2.0"| I
+    I -->|"Browser Caching, CDNs, Redis"| J
 ```
 
 
@@ -81,6 +83,7 @@ graph TD
 | 07 | [Node.js & Express](./07-nodejs-express/README.md) | Node.js internals, Express routing, middleware, file system, authentication | 🟥 Advanced |
 | 08 | [Databases & SQL](./08-databases/README.md) | SQL syntax, Joins, Normalization, ACID, Query Optimization, NoSQL vs SQL | 🟥 Advanced |
 | 09 | [Authentication](./09-authentication/README.md) | Identity, Cookies, Sessions, JWT, OAuth 2.0, Security | 🟥 Advanced |
+| 10 | [Caching & Performance](./10-caching/README.md) | Browser Caching, CDNs, Redis, Cache Eviction, Stampede Prevention | 🟥 Advanced |
 
 
 ## Repository Structure
@@ -112,9 +115,12 @@ Full-stack/
 ├── 08-databases/
 │   ├── README.md
 │   └── notes.md                      — Databases & SQL reference
-└── 09-authentication/
+├── 09-authentication/
+│   ├── README.md
+│   └── notes.md                      — Authentication reference
+└── 10-caching/
     ├── README.md
-    └── notes.md                      — Authentication reference
+    └── notes.md                      — Caching & Performance reference
 ```
 
 
@@ -163,6 +169,7 @@ No prior programming experience is assumed for Module 01. Starting from Module 0
 07 → Node.js & Express
 08 → Databases & SQL
 09 → Authentication
+10 → Caching & Performance
 ```
 
 Each module's `README.md` lists its specific prerequisites and links to the next module.
@@ -196,9 +203,10 @@ Planned additions to the roadmap:
 
 | # | Module | Status |
 |:--|:-------|:------:|
-| 10 | React | Planned |
-| 11 | Next.js | Planned |
-| 12 | Deployment & DevOps | Planned |
+| 11 | System Design | Planned |
+| 12 | React | Planned |
+| 13 | Next.js | Planned |
+| 14 | Deployment & DevOps | Planned |
 
 
 ## License

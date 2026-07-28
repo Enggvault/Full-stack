@@ -59,7 +59,8 @@ date: "2025"
 - [Chapter 27: Real-World Projects](#chapter-27-real-world-projects)
 - [Chapter 28: Best Database for Every Use Case](#chapter-28-best-database-for-every-use-case)
 - [Chapter 29: 250+ Database & SQL Interview Questions](#chapter-29-250-database--sql-interview-questions)
-- [Chapter 30: Complete Cheat Sheets](#chapter-30-complete-cheat-sheets)
+- [Chapter 30: Production Checklist](#chapter-30-production-checklist)
+- [Chapter 31: Complete Cheat Sheets](#chapter-31-complete-cheat-sheets)
 
 
 
@@ -4865,7 +4866,23 @@ You cannot run `ALTER TABLE ... ADD COLUMN with DEFAULT` on a 10TB table as it l
 
 
 
-# CHAPTER 30: Complete Cheat Sheets
+# CHAPTER 30: Production Checklist
+
+Before launching a production database, verify:
+- [ ] Regular automated backups are enabled and tested via restoration.
+- [ ] Database is in a private subnet, not exposed directly to the public internet.
+- [ ] TLS/SSL is enforced for all client connections.
+- [ ] Connection pooling (e.g., PgBouncer) is configured to prevent connection exhaustion.
+- [ ] Slow query logs are enabled to identify unindexed queries.
+- [ ] Primary keys use UUIDs or BigSerial to prevent ID exhaustion and predictable IDs.
+- [ ] Foreign keys have appropriate `ON DELETE CASCADE` or `RESTRICT` rules.
+- [ ] `EXPLAIN ANALYZE` has been run on all critical read queries to verify index usage.
+- [ ] High Availability (HA) is configured with at least one read replica across availability zones.
+- [ ] Secrets (passwords, connection strings) are stored in a secrets manager, not in code.
+- [ ] Application uses parameterized queries or an ORM to prevent SQL Injection.
+- [ ] Migrations are version-controlled and applied via a CI/CD pipeline, not manually.
+
+# CHAPTER 31: Complete Cheat Sheets
 
 ## PostgreSQL Cheat Sheet
 ```bash

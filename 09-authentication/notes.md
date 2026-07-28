@@ -10,7 +10,7 @@ date: "2026"
 > Welcome to the definitive, deep-dive engineering handbook on Authentication for EnggVault. This document is designed as a university-level and professional software-engineering reference book. It covers authentication from absolute fundamentals to modern identity systems used in massive, large-scale production applications.
 
 > **Difficulty:** Beginner → Intermediate → Advanced → Security Engineer → Backend Engineer → System Design → Production Architecture
-> **Prerequisites:** [08 — Databases ←](../08-databases/notes.md) · **Next:** 10 — Authorization (Planned) →
+> **Prerequisites:** [08 — Databases ←](../08-databases/notes.md) · **Next:** [10 — Caching & Performance →](../10-caching/notes.md)
 
 ## Table of Contents
 
@@ -1373,7 +1373,25 @@ A master list of catastrophic errors developers make in authentication.
 14. **Putting PII in JWT payloads:** JWTs are not encrypted.
 15. **Not using a constant-time comparison for hashes:** Opening the system to timing attacks.
 
-# CHAPTER 53: Authentication Decision Guide
+# CHAPTER 53: Interview Preparation
+
+### Beginner
+1. **What is the difference between Authentication and Authorization?**
+   *Answer:* Authentication verifies *who* the user is (e.g., checking a password). Authorization determines *what* the authenticated user is allowed to do (e.g., checking if they have admin privileges).
+2. **Why should you never store passwords in plaintext?**
+   *Answer:* If the database is compromised, attackers immediately gain access to all passwords. Because users reuse passwords, this compromises their accounts across the internet. Always use a strong hashing algorithm like Argon2 or bcrypt.
+
+### Intermediate
+3. **What is a salt and why is it used?**
+   *Answer:* A salt is a unique random string appended to a password before hashing. It ensures that two users with the same password have different hashes, completely neutralizing pre-computed Rainbow Table attacks.
+4. **Explain Session Fixation and how to prevent it.**
+   *Answer:* An attacker tricks a victim into using a Session ID known to the attacker. Prevention requires Session Rotation: the server must generate a brand new Session ID and invalidate the old one immediately upon successful login.
+
+### Advanced
+5. **How do you securely implement a "Forgot Password" flow?**
+   *Answer:* Generate a high-entropy random token, hash it (e.g. SHA-256), and store the hash in the DB with a short expiration. Send the raw token in an email link. When the user submits the new password, hash the provided token, verify against the DB, update the password, and delete the reset token. Ensure you return a generic response on initial request to prevent user enumeration.
+
+# CHAPTER 54: Authentication Decision Guide
 
 When starting a new project, use this matrix to choose your architecture.
 
@@ -1385,17 +1403,17 @@ When starting a new project, use this matrix to choose your architecture.
 | **B2B SaaS** | OIDC + SAML Integration (Auth0, Okta) | You cannot build enterprise SSO from scratch easily. Buy, don't build. |
 | **Service to Service (Internal)** | mTLS or Client Credentials Flow | Requires machine identity, not user identity. |
 
-# CHAPTER 54: Production Authentication Checklist
+# CHAPTER 55: Production Authentication Checklist
 
 Before launching to production, verify every item on this list.
 
-## 54.1 Passwords & Storage
+## 55.1 Passwords & Storage
 - [ ] Passwords hashed using Argon2id.
 - [ ] Unique salt generated per user.
 - [ ] Pepper used and stored securely in a Secret Manager.
 - [ ] Minimum password length enforced (12+ characters).
 
-## 54.2 Sessions & Tokens
+## 55.2 Sessions & Tokens
 - [ ] All Cookies use `HttpOnly`, `Secure`, and `SameSite=Lax` (or `Strict`).
 - [ ] Session IDs generated using a CSPRNG (Cryptographically Secure Pseudo-Random Number Generator).
 - [ ] JWTs signed with RS256 (Asymmetric) in distributed systems.
@@ -1403,21 +1421,21 @@ Before launching to production, verify every item on this list.
 - [ ] Refresh Tokens are rotated on every use.
 - [ ] Refresh Token reuse detection implemented.
 
-## 54.3 API & Network Security
+## 55.3 API & Network Security
 - [ ] HTTPS enforced on all endpoints (HSTS configured).
 - [ ] Strict IP-based rate limiting on `/login` and `/register`.
 - [ ] Generic error messages used to prevent user enumeration.
 - [ ] CORS strictly configured (No `Access-Control-Allow-Origin: *` with credentials).
 - [ ] Constant-time comparison used for all hash/token validations.
 
-## 54.4 Observability
+## 55.4 Observability
 - [ ] Audit logs implemented for all authentication events.
 - [ ] PII, passwords, and tokens are scrubbed from logs.
 - [ ] Alerts configured for credential stuffing spikes.
 
-# CHAPTER 55: The Ultimate Cheat Sheet
+# CHAPTER 56: The Ultimate Cheat Sheet
 
-## 55.1 Terminology Quick Reference
+## 56.1 Terminology Quick Reference
 - **IdP:** Identity Provider (Google, Okta).
 - **SP / RP:** Service Provider / Relying Party (Your app).
 - **SSO:** Single Sign-On.
@@ -1428,10 +1446,10 @@ Before launching to production, verify every item on this list.
 - **CSRF:** Cross-Site Request Forgery.
 - **XSS:** Cross-Site Scripting.
 
-## 55.2 HTTP Status Quick Reference
+## 56.2 HTTP Status Quick Reference
 - **401 Unauthorized:** You are not logged in.
 - **403 Forbidden:** You are logged in, but you lack permission (Authorization failure).
 - **429 Too Many Requests:** Rate limiting triggered.
 
-> **Next Module →** 10 — Authorization (Planned)
+> **Next Module →** [10 — Caching & Performance](../10-caching/notes.md)
 > **Previous Module ←** [08 — Databases](../08-databases/notes.md)

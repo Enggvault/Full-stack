@@ -37,7 +37,9 @@ date: "2025"
 - [Chapter 16: Best Practices](#chapter-16-best-practices)
 - [Chapter 17: Deprecated Tags](#chapter-17-deprecated-tags)
 - [Chapter 18: Common Mistakes](#chapter-18-common-mistakes)
-
+- [Chapter 19: Interview Preparation](#chapter-19-interview-preparation)
+- [Chapter 20: Production Checklist](#chapter-20-production-checklist)
+- [Chapter 21: Cheat Sheet](#chapter-21-cheat-sheet)
 
 # CHAPTER 1: What is HTML?
 
@@ -748,5 +750,66 @@ These tags are obsolete in HTML5. Replace them with CSS.
 <input type="email" id="email" name="email">
 ```
 
+# CHAPTER 19: Interview Preparation
+
+### Beginner
+1. **What is semantic HTML and why is it important?**
+   *Answer:* Semantic HTML uses tags that convey the meaning of the content (like `<article>`, `<nav>`, `<header>`) rather than just its appearance (like `<div>` or `<span>`). It is crucial for accessibility (screen readers), SEO, and code maintainability.
+2. **What is the difference between an inline and a block-level element?**
+   *Answer:* Block-level elements (e.g., `<div>`, `<p>`) start on a new line and take up the full width available. Inline elements (e.g., `<span>`, `<a>`) do not start on a new line and only take up as much width as necessary.
+
+### Intermediate
+3. **What is the DOM?**
+   *Answer:* The Document Object Model is an API that represents and interacts with any HTML or XML document. It is a node tree that represents the document, allowing programs (like JavaScript) to change the document structure, style, and content.
+4. **How do you optimize HTML for SEO and Accessibility?**
+   *Answer:* Use semantic tags, ensure a logical heading hierarchy (`<h1>` down to `<h6>`), provide descriptive `alt` attributes for images, use `<label>` for form inputs, and include meta descriptions and Open Graph tags in the `<head>`.
+
+### Advanced
+5. **Explain how the browser parses HTML.**
+   *Answer:* The browser fetches the HTML document over the network. The rendering engine parses the raw bytes into characters, then into tokens, then into nodes, and finally builds the DOM tree. If it encounters a synchronous `<script>` tag, parsing is blocked until the script is fetched and executed, which is why `defer` or `async` is recommended.
+
+# CHAPTER 20: Production Checklist
+
+Before deploying any HTML page to production, ensure:
+- [ ] Document starts with `<!DOCTYPE html>` to trigger standards mode.
+- [ ] `<html>` element has the correct `lang` attribute (e.g., `lang="en"`).
+- [ ] `<meta charset="UTF-8">` is the first element in the `<head>`.
+- [ ] `<meta name="viewport" content="width=device-width, initial-scale=1.0">` is present for mobile responsiveness.
+- [ ] Every page has a unique, descriptive `<title>` and `<meta name="description">`.
+- [ ] All images have descriptive `alt` text (or empty `alt=""` for decorative images).
+- [ ] No heading levels are skipped (e.g., jumping from `<h1>` to `<h3>`).
+- [ ] Forms use correct `type` attributes on inputs (e.g., `type="email"`) and all inputs have associated `<label>`s.
+- [ ] Open Graph (`og:`) and Twitter Card meta tags are present for social sharing.
+- [ ] HTML passes the W3C Validator with no major errors.
+
+# CHAPTER 21: Cheat Sheet
+
+### Essential Document Structure
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main>
+    <h1>Main Heading</h1>
+  </main>
+</body>
+</html>
+```
+
+### Important Attributes
+- `id`: Unique identifier on the page.
+- `class`: Reusable identifier for CSS/JS.
+- `data-*`: Store custom data on elements (e.g., `data-user-id="123"`).
+- `aria-*`: Enhance accessibility for screen readers.
+
+### Script Loading
+- `<script src="app.js">`: Blocks parsing, fetches, executes, then resumes parsing.
+- `<script src="app.js" async>`: Fetches in parallel, executes immediately (blocking parsing). Good for independent scripts like analytics.
+- `<script src="app.js" defer>`: Fetches in parallel, executes after HTML parsing is complete. **Best practice** for most scripts.
 
 > **Next:** [03 — CSS →](../03-css/notes.md)

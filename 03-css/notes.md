@@ -38,7 +38,9 @@ date: "2025"
 - [Chapter 17: CSS Functions](#chapter-17-css-functions)
 - [Chapter 18: Filters & Effects](#chapter-18-filters--effects)
 - [Chapter 19: Architecture & Performance](#chapter-19-architecture--performance)
-
+- [Chapter 20: Interview Preparation](#chapter-20-interview-preparation)
+- [Chapter 21: Production Checklist](#chapter-21-production-checklist)
+- [Chapter 22: Cheat Sheet](#chapter-22-cheat-sheet)
 
 # CHAPTER 1: What is CSS?
 
@@ -686,5 +688,76 @@ img, video {
 }
 ```
 
+# CHAPTER 20: Interview Preparation
+
+### Beginner
+1. **Explain the CSS Box Model.**
+   *Answer:* Every HTML element is wrapped in a box consisting of (from inside out) Content, Padding, Border, and Margin. By default, padding and border add to the element's explicit width (`content-box`). Setting `box-sizing: border-box` includes them in the width.
+2. **What is the difference between `display: none` and `visibility: hidden`?**
+   *Answer:* `display: none` completely removes the element from the document flow (it takes up no space). `visibility: hidden` hides the element visually, but it still occupies its exact space in the layout.
+
+### Intermediate
+3. **How does CSS Specificity work?**
+   *Answer:* Specificity determines which CSS rule applies if multiple rules target the same element. It's calculated based on four categories: Inline styles (1000) > IDs (100) > Classes/Attributes/Pseudo-classes (10) > Elements/Pseudo-elements (1).
+4. **Explain the difference between `em` and `rem`.**
+   *Answer:* `rem` is relative to the root (`<html>`) font size (usually 16px). `em` is relative to the font size of the parent element, which can lead to compounding size issues in nested elements.
+
+### Advanced
+5. **How does the browser paint a webpage, and how does CSS affect performance?**
+   *Answer:* The browser builds the DOM and CSSOM, combines them into a Render Tree, calculates Layout (reflow), and Paints pixels. Animating properties like `width` or `margin` triggers a full layout recalculation (slow). Animating `transform` and `opacity` is handed off to the GPU (compositing) and is highly performant.
+
+# CHAPTER 21: Production Checklist
+
+Before pushing CSS to production, ensure:
+- [ ] A CSS Reset or Normalize (e.g., `box-sizing: border-box`, removing default margins) is applied.
+- [ ] CSS is minified using a build tool (Vite, Webpack, PostCSS) to reduce file size.
+- [ ] Autoprefixer is configured to automatically add vendor prefixes (`-webkit-`, `-moz-`) for older browser support.
+- [ ] A design system (custom properties/variables) is strictly used for colors, spacing, and typography to avoid hardcoded magic numbers.
+- [ ] `z-index` values are managed globally (e.g., as CSS variables) to prevent stacking context wars.
+- [ ] All animations respect the user's OS-level motion preferences using `@media (prefers-reduced-motion: reduce)`.
+- [ ] Media queries use a mobile-first approach (`min-width`).
+
+# CHAPTER 22: Cheat Sheet
+
+### Center a Div (Flexbox)
+```css
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+```
+
+### Center a Div (Grid)
+```css
+.parent {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+```
+
+### Media Queries (Mobile First)
+```css
+/* Base styles (Mobile) */
+.col { width: 100%; }
+
+/* Tablet */
+@media (min-width: 768px) {
+  .col { width: 50%; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .col { width: 33.333%; }
+}
+```
+
+### CSS Variables
+```css
+:root { --primary: #3b82f6; }
+.btn { background: var(--primary); }
+```
 
 > **Next:** [04 — JavaScript →](../04-javascript/notes.md)

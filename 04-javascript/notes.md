@@ -41,6 +41,9 @@ date: "2025"
 - [Chapter 20: Classes & OOP](#chapter-20-classes--oop)
 - [Chapter 21: Modules](#chapter-21-modules)
 - [Chapter 22: Async JavaScript — Introduction](#chapter-22-async-javascript--introduction)
+- [Chapter 23: Interview Preparation](#chapter-23-interview-preparation)
+- [Chapter 24: Production Checklist](#chapter-24-production-checklist)
+- [Chapter 25: Cheat Sheet](#chapter-25-cheat-sheet)
 
 
 # CHAPTER 1: Introduction
@@ -813,5 +816,66 @@ async function loadUserPosts(id) {
 
 > The Fetch API, JSON, Promises in depth, error handling patterns, and CRUD via Fetch are fully covered in [05 — HTTP, JSON & Fetch →](../05-http-json-fetch/notes.md)
 
+# CHAPTER 23: Interview Preparation
+
+### Beginner
+1. **What is the difference between `let`, `const`, and `var`?**
+   *Answer:* `var` is function/globally scoped, hoisted, and can be redeclared. `let` and `const` are block-scoped and subject to the Temporal Dead Zone. `let` can be reassigned; `const` cannot.
+2. **Explain the difference between `==` and `===`.**
+   *Answer:* `==` performs type coercion before comparing (e.g., `'5' == 5` is true). `===` strictly compares both value and type without coercion.
+
+### Intermediate
+3. **What is a closure? Provide an example.**
+   *Answer:* A closure is a function that retains access to its lexical scope even after the outer function has finished executing. It is used for data privacy and currying.
+4. **How does the `this` keyword work?**
+   *Answer:* `this` dynamically refers to the object calling the function. In methods, it's the object. In standard functions (non-strict mode), it defaults to `window`. Arrow functions do not have their own `this`; they inherit it from their enclosing lexical context.
+
+### Advanced
+5. **Describe the Event Loop in Node.js / Browser.**
+   *Answer:* JavaScript is single-threaded. Synchronous code goes into the Call Stack. Asynchronous tasks (timers, fetch) are passed to Web APIs. Once complete, their callbacks enter the Microtask Queue (Promises) or Callback Queue (Timers). When the Call Stack is empty, the Event Loop pushes tasks from the queues into the stack.
+
+# CHAPTER 24: Production Checklist
+
+Before pushing JavaScript code to production:
+- [ ] Use `const` by default. Only use `let` when reassignment is explicitly needed.
+- [ ] Ensure `Strict Mode` (`"use strict";`) is enabled or use ES modules (where it is enabled by default).
+- [ ] Avoid modifying global prototypes (`Array.prototype.customMap = ...`) to prevent collisions.
+- [ ] Implement `try/catch` blocks for all `async/await` operations.
+- [ ] Do not expose sensitive API keys in frontend JavaScript.
+- [ ] Ensure all unused imports and dead code are stripped out during the build process (Tree Shaking).
+- [ ] Run code through an AST-based linter like ESLint to catch syntax errors and anti-patterns.
+
+# CHAPTER 25: Cheat Sheet
+
+### Array Iteration
+```js
+const numbers = [1, 2, 3, 4, 5];
+// Map - Transforms items
+const doubled = numbers.map(n => n * 2);
+// Filter - Removes items
+const evens = numbers.filter(n => n % 2 === 0);
+// Reduce - Accumulates
+const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+```
+
+### Object Destructuring
+```js
+const user = { id: 1, name: 'Alice', role: 'admin' };
+const { name, role: userRole, status = 'active' } = user;
+```
+
+### Async / Await
+```js
+async function getData() {
+  try {
+    const res = await fetch('https://api.example.com/data');
+    if (!res.ok) throw new Error('Network response was not ok');
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}
+```
 
 > **Next:** [05 — HTTP, JSON & Fetch →](../05-http-json-fetch/notes.md)
