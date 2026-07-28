@@ -1,176 +1,142 @@
-title: "Caching & Performance: Complete Beginner to Advanced"
-subtitle: "From Browser Caches to Global CDN & Redis Architectures"
+title: "Caching"
+subtitle: "Performance, Scalability, and Redis"
 author: "Principal Systems Engineer"
 version: "1.0"
 date: "2026"
 
-# Caching & Performance
-## Complete Beginner to Advanced Engineering Handbook
+# Caching
+## Engineering Reference
 
-> A production-grade, book-quality reference covering every layer of caching, from browser headers to distributed Redis clusters and cache stampede prevention.
-
-> **Prerequisites:** [09 — Authentication ←](../09-authentication/notes.md) · **Next:** 11 — System Design (Planned) →
-
-## Table of Contents
-
-### Part I: Caching Foundations
-- [Chapter 1: What is Caching?](#chapter-1-what-is-caching)
-- [Chapter 2: Why Do We Cache?](#chapter-2-why-do-we-cache)
-- [Chapter 3: The Cache Key](#chapter-3-the-cache-key)
-
-### Part II: Levels of Caching
-- [Chapter 4: Client-Side Caching (Browser)](#chapter-4-client-side-caching-browser)
-- [Chapter 5: Content Delivery Networks (CDNs)](#chapter-5-content-delivery-networks-cdns)
-- [Chapter 6: API Gateway & Reverse Proxy Caching](#chapter-6-api-gateway--reverse-proxy-caching)
-- [Chapter 7: Application Level Caching (Redis/Memcached)](#chapter-7-application-level-caching-redis-memcached)
-- [Chapter 8: Database Query Caching](#chapter-8-database-query-caching)
-
-### Part III: Cache Management
-- [Chapter 9: Cache Eviction Policies](#chapter-9-cache-eviction-policies)
-- [Chapter 10: Cache Invalidation Strategies](#chapter-10-cache-invalidation-strategies)
-- [Chapter 11: The Cache Stampede Problem](#chapter-11-the-cache-stampede-problem)
-
-### Part IV: Reference
-- [Chapter 12: Interview Preparation](#chapter-12-interview-preparation)
-- [Chapter 13: Production Checklist](#chapter-13-production-checklist)
-- [Chapter 14: Cheat Sheet](#chapter-14-cheat-sheet)
+> **Prerequisites:** [09 — Authentication ←](../09-authentication/notes.md) · **Next:** [11 — Message Queues →](../11-message-queues/notes.md)
 
 ---
 
-# CHAPTER 1: What is Caching?
+## 1. Fundamentals
 
-Caching is the process of storing copies of data in a temporary, high-speed storage layer so that future requests for that data are served faster. 
+- **What is caching?** Storing copies of frequently accessed data in a fast, temporary storage layer (usually RAM) so that future requests can be served significantly faster than querying the primary database.
+- **Why caching exists:** Reading from RAM is ~100,000 times faster than reading from a spinning disk, and avoids expensive SQL `JOIN`s and network round-trips. It is the primary way to survive massive traffic spikes.
+- **Cache Hit:** The requested data was found in the cache. Fast response.
+- **Cache Miss:** The requested data was *not* in the cache. The system must fetch it from the database (slow) and then store it in the cache for next time.
+- **Hit Ratio:** The percentage of requests served from the cache. A 90% hit ratio is excellent.
+- **TTL (Time to Live):** The lifespan of a cached item before it is automatically deleted.
+- **Expiration:** Deleting data when its TTL hits zero.
+- **Eviction:** Deleting data *before* its TTL hits zero because the cache ran out of memory (e.g., LRU: Least Recently Used).
 
-Whenever a client requests data, the system checks the cache first (a **Cache Hit**). If the data is not there (a **Cache Miss**), the system fetches it from the primary, slower data store, returns it to the client, and saves a copy in the cache for the next time.
+## 2. Cache Strategies
 
-# CHAPTER 2: Why Do We Cache?
+How the application interacts with the cache and database.
 
-1. **Reduce Latency:** Reading from RAM (Redis) takes microseconds. Reading from a disk (Database) takes milliseconds. Reading from a remote server takes hundreds of milliseconds.
-2. **Reduce Load:** By intercepting traffic, caches protect fragile primary databases from being overwhelmed during traffic spikes.
-3. **Save Money:** Serving static assets from a CDN is orders of magnitude cheaper than serving them from expensive compute instances.
+- **Cache-aside (Lazy Loading):** The application checks the cache first. If it's a miss, the application queries the DB, writes to the cache, and returns the data. (Most common).
+- **Read-through:** The application *only* asks the cache for data. If it's a miss, the *cache itself* fetches the data from the DB.
+- **Write-through:** When updating data, the application writes it to both the cache and the DB simultaneously. Slower writes, but guarantees the cache is never stale.
+- **Write-behind (Write-back):** The application writes *only* to the cache, which responds immediately. The cache asynchronously writes to the DB later. Blazing fast, but risks data loss if the cache crashes.
+- **Write-around:** The application writes directly to the DB, bypassing the cache. Used for data that is written once but rarely read.
+- **Refresh-ahead:** The cache automatically refreshes popular data *before* it expires.
 
-# CHAPTER 3: The Cache Key
+## 3. HTTP Caching
 
-Caches operate as Key-Value stores. The **Cache Key** is a unique identifier used to retrieve the data.
+Browsers and CDNs can cache API responses, reducing load on your backend to zero.
 
-**Bad Cache Key:** `user_profile` (Will return the same profile for everyone).
-**Good Cache Key:** `user_profile:u_12345` (Returns a specific user's profile).
+- **Cache-Control:** The primary HTTP header for caching (e.g., `Cache-Control: public, max-age=3600` caches for 1 hour).
+- **ETag:** A hash of the response body. The browser sends `If-None-Match: "hash"`. If the data hasn't changed, the server returns `304 Not Modified` (empty body) instead of sending the data again.
+- **Last-Modified:** Similar to ETag, but uses timestamps (`If-Modified-Since`).
+- **Expires:** Legacy header defining an absolute date/time when the cache expires.
+- **Browser Cache:** Lives on the user's laptop.
+- **CDN Cache (Content Delivery Network):** Lives in edge servers globally (Cloudflare, AWS CloudFront).
+- **Reverse Proxy Cache:** Lives on your infrastructure in front of your API (Nginx, Varnish).
 
-Keys must be deterministic and include all variables that change the output (e.g., if a query depends on `userId` and `sortBy`, the key must include both).
+## 4. Redis
 
-# CHAPTER 4: Client-Side Caching (Browser)
+Redis is an open-source, in-memory, key-value data store. It is the industry standard for backend caching.
 
-The fastest request is the one that never hits the network. Browsers cache assets (images, CSS, JS) locally.
+- **Key-Value Model:** Everything is stored under a string key (e.g., `user:123`).
+- **Strings:** The most basic type, can hold text, JSON strings, or numbers.
+- **Lists:** Linked lists. Great for recent items (e.g., "Top 10 latest tweets").
+- **Sets:** Unordered collections of unique strings. (e.g., tracking unique IP addresses).
+- **Sorted Sets (ZSET):** Sets ordered by a "score". Perfect for Leaderboards.
+- **Hashes:** Maps mapping string fields to string values (representing objects).
+- **Pub/Sub:** Publisher/Subscriber messaging pattern for real-time communication.
+- **Streams:** An append-only log, similar to Kafka.
+- **Transactions:** Using `MULTI` and `EXEC` to group commands.
+- **Lua Scripts:** Run custom scripts directly inside Redis atomically (used for rate limiting).
+- **Persistence:** Redis can save snapshots to disk (RDB) or log every write (AOF) to survive reboots, even though it operates in RAM.
 
-### Cache-Control Header
-The server controls browser caching using the `Cache-Control` HTTP header.
-- `Cache-Control: public, max-age=31536000` (Cache for 1 year. Used for static assets with hashed filenames like `app.v2.js`).
-- `Cache-Control: no-cache` (Forces the browser to validate with the server before using the cached copy via ETags).
-- `Cache-Control: no-store` (Never cache this. Used for sensitive data like bank balances).
+## 5. Redis Architecture
 
-### ETags (Entity Tags)
-An ETag is a hash of the file's contents. 
-1. Server sends: `ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"`
-2. On the next request, Browser asks: `If-None-Match: "33a64df551425fcc55e4d42a148795d9f25f89d4"`
-3. If the file hasn't changed, Server replies: `304 Not Modified` (Empty body, saving massive bandwidth).
+- **Replication:** A Primary Redis node handles writes, and replicates data to multiple Replica nodes which handle reads.
+- **Redis Sentinel:** Monitors the Primary. If the Primary crashes, Sentinel automatically promotes a Replica to Primary (High Availability).
+- **Redis Cluster:** Automatically shards data across multiple Primary nodes, allowing Redis to hold more data than can fit on a single machine's RAM.
 
-# CHAPTER 5: Content Delivery Networks (CDNs)
+## 6. Cache Problems
 
-A CDN (e.g., Cloudflare, AWS CloudFront, Fastly) is a globally distributed network of cache servers.
-- **Problem:** If your server is in New York, a user in Tokyo experiences 200ms of speed-of-light latency.
-- **Solution:** A CDN places servers (Edge nodes) in Tokyo. When the first user in Tokyo requests an image, the CDN fetches it from New York (Cache Miss) and stores it in Tokyo. The next 10,000 users in Tokyo get the image directly from the local node in 10ms (Cache Hit).
+Caching introduces massive complexity.
 
-# CHAPTER 6: API Gateway & Reverse Proxy Caching
+- **Cache Stampede (Thundering Herd):** A popular cache key (e.g., the Homepage) expires. Suddenly, 10,000 concurrent requests all experience a Cache Miss simultaneously. They all hit the database at the same time, instantly crashing it. (Solved by debouncing DB calls or soft TTLs).
+- **Cache Avalanche:** A Redis server crashes, or thousands of keys expire at the exact same millisecond, shifting 100% of traffic to the database. (Solved by adding random "jitter" to TTLs).
+- **Cache Penetration:** Attackers intentionally request IDs that don't exist in the database (e.g., `user:-1`). It misses the cache, hits the DB, misses the DB, and never gets cached. (Solved by caching `null` values or using Bloom Filters).
+- **Hot Keys:** A single Redis key (e.g., "Super Bowl Score") gets 1,000,000 requests per second, overwhelming the single Redis node holding it. (Solved by local memory caching).
+- **Stale Data:** The cache contains old data because the database was updated but the cache wasn't invalidated.
 
-Tools like Nginx or API Gateways can cache entire HTTP responses. If thousands of users request `GET /api/v1/leaderboard`, Nginx can cache the JSON response for 60 seconds. During that minute, your Node.js application receives zero traffic for that route.
+## 7. Cache Consistency
 
-# CHAPTER 7: Application Level Caching (Redis/Memcached)
+The hardest problem in computer science.
 
-When the application must perform expensive logic or complex database joins, it stores the computed result in an in-memory datastore like Redis.
+```text
+Database
+↓
+Cache
+```
 
-```javascript
-async function getDashboardData(userId) {
-  const cacheKey = `dashboard:${userId}`;
+When you update the Database, the Cache now holds incorrect data. You must either:
+1. Wait for the TTL to expire organically.
+2. Manually **Invalidate** (delete) the cache key immediately after the DB updates.
+If the manual invalidation fails (network error), the data remains permanently out of sync until the TTL expires.
+
+## 8. Application Caching Example (Node.js)
+
+```typescript
+import { createClient } from 'redis';
+const redis = createClient();
+await redis.connect();
+
+async function getUserProfile(userId: string) {
+  const cacheKey = `user:${userId}`;
   
   // 1. Check Cache
-  const cached = await redis.get(cacheKey);
-  if (cached) return JSON.parse(cached); // Cache Hit
-
-  // 2. Cache Miss: Do the heavy lifting
-  const data = await database.query('SELECT complex_stuff...');
+  const cachedData = await redis.get(cacheKey);
+  if (cachedData) return JSON.parse(cachedData);
   
-  // 3. Populate Cache with a TTL (Time-To-Live) of 5 minutes
-  await redis.set(cacheKey, JSON.stringify(data), 'EX', 300);
+  // 2. Cache Miss - Query DB
+  const user = await db.users.find(userId);
   
-  return data;
+  // 3. Populate Cache with TTL (3600 seconds)
+  await redis.setEx(cacheKey, 3600, JSON.stringify(user));
+  
+  return user;
 }
 ```
 
-# CHAPTER 8: Database Query Caching
+## 9. Distributed Caching
 
-Some databases (like MySQL) historically tried to cache identical queries automatically. This is generally considered an anti-pattern today because any write to a table invalidates the entire cache for that table, leading to massive overhead. It is better to use Redis.
+- **Shared Cache:** In a microservices environment, instead of each Node.js server keeping data in its own RAM (which leads to server A having different data than server B), all servers connect to a centralized Redis cluster.
+- **Invalidation:** If Server A updates a user, it deletes `user:123` from Redis. Next time Server B needs that user, it experiences a cache miss and fetches the fresh data.
 
-# CHAPTER 9: Cache Eviction Policies
+## 10. Production
 
-When a cache fills up, it must evict old data to make room for new data.
-- **LRU (Least Recently Used):** Evicts the item that hasn't been accessed for the longest time. (Industry standard for most use cases).
-- **LFU (Least Frequently Used):** Evicts the item accessed the fewest times. Good for tracking highly viral content.
-- **FIFO (First In, First Out):** Evicts the oldest item, regardless of how often it is accessed.
+- **Monitoring:** Track your Hit Ratio. If it's below 50%, your cache might be too small (high eviction rate).
+- **Memory Usage:** Monitor RAM. Redis stops accepting writes if it hits its `maxmemory` limit.
+- **Eviction Policy:** Always set a policy like `volatile-lru` so Redis automatically deletes old keys to make room for new ones.
+- **Failure Handling (Fallback):** If Redis crashes, your Node.js app must gracefully degrade and query the DB directly, rather than crashing the entire API.
 
-# CHAPTER 10: Cache Invalidation Strategies
+## 11. Design Examples
 
-"There are only two hard things in Computer Science: cache invalidation and naming things." - Phil Karlton
+- **E-commerce (Product Page):** Rarely changes, highly read. Cache in Redis for 10 minutes. Cache static assets in CDN.
+- **Social Media (Feed):** Extremely personalized. Do not cache the final HTML. Cache the individual posts, then assemble the feed dynamically.
+- **APIs (Rate Limiting):** Use Redis `INCR` to count requests per IP address.
+- **Dashboards (Analytics):** Heavy SQL `SUM()` queries. Pre-compute the results every 5 minutes in a background job and store the JSON in Redis.
+- **User Profiles:** Cache-aside. Invalidate the cache key the moment the user clicks "Save Profile".
 
-1. **Write-Through:** Data is written to the Database and the Cache simultaneously. Keeps cache always fresh, but increases write latency.
-2. **Write-Around:** Data is written to the Database, bypassing the Cache. The Cache is only populated on a read miss.
-3. **Write-Back:** Data is written to the Cache only. The Cache acknowledges the write immediately, and asynchronously syncs to the Database. Dangerous (data loss if cache crashes) but extremely fast.
-4. **TTL (Time-To-Live):** The most common approach. Set an expiration (e.g., 5 minutes) and let the cache self-invalidate. Accept that data might be stale for 5 minutes.
+---
 
-# CHAPTER 11: The Cache Stampede Problem
-
-A **Cache Stampede** (or Thundering Herd) occurs when a highly requested cached item (like the homepage of a news site) expires. 
-
-If 10,000 concurrent users request the homepage at the exact millisecond the cache expires, they all experience a Cache Miss. All 10,000 requests hit the primary database simultaneously to recalculate the homepage, instantly crashing the database.
-
-**Solutions:**
-1. **Locking (Mutex):** When a miss occurs, acquire a Redis lock. Only the first request goes to the database; the other 9,999 wait and poll the cache.
-2. **Probabilistic Early Expiration (XFetch):** A background thread randomly recalculates the cache *before* it strictly expires.
-
-# CHAPTER 12: Interview Preparation
-
-### Beginner
-1. **What is a Cache Miss?**
-   *Answer:* When requested data is not found in the cache, forcing the system to retrieve it from the slower primary datastore.
-2. **What does a CDN do?**
-   *Answer:* A CDN distributes cached copies of static assets (like images and JS) to edge servers globally, drastically reducing geographic latency for users far from the origin server.
-
-### Intermediate
-3. **Explain the difference between LRU and LFU.**
-   *Answer:* LRU (Least Recently Used) evicts items that haven't been accessed recently, focusing on recency. LFU (Least Frequently Used) evicts items with the lowest total access count, focusing on overall popularity.
-4. **What is an ETag and how does it save bandwidth?**
-   *Answer:* An ETag is a hash of a file's contents. The browser sends it in the `If-None-Match` header. If the file on the server hasn't changed, the server returns `304 Not Modified` with an empty body, saving the bandwidth of re-downloading the file.
-
-### Advanced
-5. **How do you prevent a Cache Stampede (Thundering Herd)?**
-   *Answer:* A cache stampede happens when a popular cached item expires, and thousands of concurrent requests instantly hit the database. You can prevent it by implementing a mutex lock in Redis (so only one worker fetches the new data) or by using Probabilistic Early Recomputation, where the cache is refreshed *before* it actually expires.
-
-# CHAPTER 13: Production Checklist
-
-- [ ] Static assets have `Cache-Control: public, max-age=31536000` and use hashed filenames (e.g., `main.a4b3.js`).
-- [ ] Sensitive API endpoints explicitly return `Cache-Control: no-store`.
-- [ ] API Gateway / Nginx is configured to strip cookies before caching public responses to prevent cross-user data leakage.
-- [ ] Redis is configured with an explicit eviction policy (e.g., `allkeys-lru`) and a memory limit (`maxmemory`).
-- [ ] All Application-Level cached items have a strict TTL to prevent stale data accumulation.
-- [ ] Heavy / viral endpoints are protected against Cache Stampedes (e.g., using locks).
-
-# CHAPTER 14: Cheat Sheet
-
-| Strategy | Description | Best For |
-| :--- | :--- | :--- |
-| **Write-Through** | Write to Cache & DB simultaneously | Data that must never be stale |
-| **Write-Around** | Write to DB, Cache populated on Read | Data written once, read rarely |
-| **Write-Back** | Write to Cache, Async to DB | Extreme write-heavy workloads |
-| **TTL Expiry** | Expire after X seconds | Leaderboards, Analytics, Dashboards |
-
-> **Next Module →** 11 — System Design (Planned)
+> **Next Module →** [11 — Message Queues](../11-message-queues/notes.md)
 > **Previous Module ←** [09 — Authentication](../09-authentication/notes.md)
