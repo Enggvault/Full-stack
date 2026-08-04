@@ -7,7 +7,7 @@
 
 ---
 
-## Part 1: Multiple Choice Questions (2 marks each) (do any 20)
+## Part 1: Multiple Choice Questions (1 marks each) (do any 20)
 
 ### Section A: Very Easy
 1. What is the command used to initialize a new local Git repository?
