@@ -18,6 +18,11 @@ date: "2025"
 - [Chapter 1: Introduction to Databases](#chapter-1-introduction-to-databases)
 - [Chapter 2: Types of Databases — Complete Deep Dive](#chapter-2-types-of-databases)
   - [2A: Relational Databases (RDBMS)](#relational-databases-rdbms)
+    - [2.1: Foundational Concepts](#21-foundational-concepts)
+    - [2.2: Relational Algebra](#22-relational-algebra)
+    - [2.3: PostgreSQL](#23-postgresql-the-advanced-open-source-rdbms)
+    - [2.4: MySQL / MariaDB](#24-mysql--mariadb-the-webs-default)
+    - [2.5: SQLite](#25-sqlite-the-ubiquitous-embedded-db)
   - [2B: NoSQL — Document, Key-Value, Wide-Column, Graph](#nosql-document-key-value-wide-column-graph-databases)
   - [2C: Time-Series, Search, Vector & Real-Time Databases](#time-series-search-vector--real-time-databases)
 - [Chapter 3: Structured vs Semi-Structured vs Unstructured Data](#chapter-3-structured-vs-semi-structured-vs-unstructured-data)
@@ -202,7 +207,1111 @@ graph TD
     E -- No --> M[Traditional RDBMS: PostgreSQL, MySQL]
 ```
 
-## 2.2 PostgreSQL: The Advanced Open-Source RDBMS
+## 2.2 Relational Algebra
+
+Relational databases are introduced to beginners as tables, rows, columns, keys, and foreign keys. That practical view is essential, but it does not yet explain how a database turns a request such as “find the CSE students enrolled in Database Systems” into a precisely defined result. **Relational algebra** supplies that missing logical layer.
+
+It is the mathematical and procedural language for manipulating relations. SQL is the language application developers write; a database engine can translate SQL into an internal logical plan whose operations are very close to relational algebra before choosing physical operators such as an index scan, hash join, or merge join.
+
+The position of this chapter in the handbook is deliberate:
+
+```text
+Relational model
+        ↓
+Relational algebra
+        ↓
+SQL and logical query plans
+        ↓
+Query optimization
+        ↓
+Physical execution and storage
+```
+
+Relational algebra is therefore useful in two settings at once:
+
+* **University and DBMS theory:** It provides precise notation, closure, equivalence rules, relational laws, and a foundation for relational calculus.
+* **Software engineering:** It explains what a SQL query means, why joins can produce large intermediates, and why an optimizer may push filters down or reorder joins.
+
+### 2.2.1 Why Relational Algebra Exists
+
+An application query is usually stated as a business question. For example:
+
+> Return the names of CSE students who are enrolled in Database Systems.
+
+The DBMS must determine several logical steps:
+
+1. Keep only students in the CSE department.
+2. Match those students to enrollment records.
+3. Match the enrollment records to the Database Systems course.
+4. Return only the names.
+
+Relational algebra gives every step a formal meaning. Each operation accepts relation(s) and produces another relation, so a complex query can be built by composing smaller expressions. This is the theoretical bridge between a relation’s schema and the execution plans discussed later in the handbook.
+
+### 2.2.2 The Mathematical Foundation: Domains
+
+A **domain** is the set of valid values that an attribute may contain. A domain is more than a storage type: it describes the allowed meaning and values of a field.
+
+```text
+StudentID  = {1, 2, 3, 4, ...}
+Department = {CSE, ECE, AIML, ME}
+Age        = {18, 19, 20, 21, ...}
+Grade      = {A, A-, B+, B, B-, C, ...}
+```
+
+In a production schema, domains are usually enforced with data types, `CHECK` constraints, lookup tables, enumerated types, or foreign keys. For example, `Age` may be an integer constrained to a reasonable range, while `Department` may reference `DEPARTMENT(DepartmentID)` instead of accepting arbitrary strings.
+
+Domains matter because they:
+
+* prevent nonsensical values from entering a relation;
+* make comparisons meaningful, such as comparing two dates or two integers;
+* allow the DBMS to reason about compatible attributes in union, join, and comparison operations; and
+* document the business meaning of an attribute independently of its physical representation.
+
+### 2.2.3 The Consistent Example Database
+
+The examples in this chapter use one small university database. A few helper relations are derived from it when an operator needs a special shape, such as division.
+
+```text
+STUDENT(StudentID, Name, Department, Age)
+COURSE(CourseID, CourseName, Credits)
+ENROLLMENT(StudentID, CourseID, Grade)
+DEPARTMENT(DepartmentID, DepartmentName)
+EMPLOYEE(EmployeeID, EmployeeName, DepartmentID, Salary)
+```
+
+`EMPLOYEE` is an intentional extension of the same university database so that grouping and salary examples have a realistic relation to aggregate. It is not a separate unrelated schema.
+
+#### STUDENT
+
+| StudentID | Name    | Department | Age |
+| ---------:|---------|------------|----:|
+| 101 | Alice   | CSE  | 20 |
+| 102 | Bob     | ECE  | 21 |
+| 103 | Charlie | CSE  | 20 |
+| 104 | Diana   | AIML | 22 |
+| 105 | Evan    | CSE  | 21 |
+
+#### COURSE
+
+| CourseID | CourseName       | Credits |
+|----------|------------------|--------:|
+| C101 | Database Systems  | 4 |
+| C102 | Operating Systems | 4 |
+| C103 | Machine Learning  | 3 |
+| C104 | Computer Networks | 3 |
+| C105 | Distributed Systems | 3 |
+
+#### ENROLLMENT
+
+| StudentID | CourseID | Grade |
+|----------:|----------|-------|
+| 101 | C101 | A  |
+| 101 | C102 | B+ |
+| 102 | C101 | B  |
+| 103 | C101 | A- |
+| 103 | C103 | A  |
+| 105 | C101 | A  |
+| 105 | C102 | A  |
+| 105 | C104 | B  |
+
+`Diana` intentionally has no enrollment row. That makes unmatched tuples visible in outer-join examples.
+
+#### DEPARTMENT
+
+| DepartmentID | DepartmentName |
+|--------------|----------------|
+| D01 | Computer Science and Engineering |
+| D02 | Electronics and Communication    |
+| D03 | Artificial Intelligence and Machine Learning |
+
+#### EMPLOYEE
+
+| EmployeeID | EmployeeName | DepartmentID | Salary |
+|------------|--------------|--------------|-------:|
+| E01 | Anika | D01 | 90000  |
+| E02 | Ravi  | D01 | 110000 |
+| E03 | Meera | D02 | 80000  |
+| E04 | Omar  | D02 | 100000 |
+| E05 | Zoe   | D03 | 120000 |
+
+For division, define two relations from the existing enrollment data:
+
+```text
+STUDENT_COURSE(StudentID, CourseID)
+    = π_StudentID, CourseID(ENROLLMENT)
+
+REQUIRED_COURSE(CourseID)
+    = { (C101), (C102) }
+```
+
+The required-course relation means that a student must have both Database Systems and Operating Systems to satisfy the “all required courses” query.
+
+### 2.2.4 What Is a Relation?
+
+Mathematically, a relation is a **set of tuples** drawn from specified attribute domains. Practically, it is represented by a table.
+
+```text
+STUDENT
++-----+---------+------------+-----+
+| ID  | Name    | Department | Age |
++-----+---------+------------+-----+
+| 101 | Alice   | CSE        | 20  |
+| 102 | Bob     | ECE        | 21  |
+| 103 | Charlie | CSE        | 20  |
++-----+---------+------------+-----+
+```
+
+The central vocabulary is:
+
+```text
+Relation  = set of tuples
+Tuple     = row
+Attribute = named column
+```
+
+The relation schema for the example is:
+
+```text
+STUDENT(StudentID, Name, Department, Age)
+```
+
+It says what attributes exist and what domains they draw values from. The **relation instance** is the current set of tuples stored at a particular moment. The schema is relatively stable design metadata; the instance changes as students are added, updated, or removed.
+
+```mermaid
+flowchart TD
+    A[Relation] --> B[Relation Schema]
+    A --> C[Relation Instance]
+
+    B --> D[Attributes]
+    B --> E[Domains]
+
+    C --> F[Tuples / Rows]
+    F --> G[Attribute Values]
+```
+
+### 2.2.5 Degree, Cardinality, Schema, and Instance
+
+For a relation:
+
+* **Degree** (also called arity) is the number of attributes. `STUDENT` has degree 4.
+* **Cardinality** is the number of tuples in the current instance. The sample `STUDENT` relation has cardinality 5.
+* **Relation schema** is the relation name plus its attributes and domains: `STUDENT(StudentID, Name, Department, Age)`.
+* **Relation instance** is the actual set of rows at a given time.
+* **Attribute domain** is the valid-value set for each attribute.
+
+Degree belongs to the schema; cardinality belongs to an instance. A query can preserve degree, reduce degree, or add attributes depending on the operator. Cardinality is data-dependent: a selection may return zero rows, while a Cartesian product has a predictable cardinality when its inputs are known.
+
+### 2.2.6 Important Properties of Classical Relations
+
+Classical relational algebra uses **set semantics**:
+
+1. **No duplicate tuples:** A relation is a set, so the same complete tuple cannot occur twice.
+2. **Tuple order is irrelevant:** `{t1, t2}` and `{t2, t1}` are the same relation. A relation has no inherent presentation order.
+3. **The schema fixes attribute identity and correspondence:** The named attributes define what each value means. A displayed column order is part of the schema notation and matters for positional compatibility in textbook expressions, although a named relational model does not treat physical display order as meaningful.
+4. **Attribute values are atomic:** Each tuple has one indivisible value from each attribute domain. A list or nested relation inside a cell is outside first-normal-form classical assumptions.
+5. **Every tuple follows the same schema:** A `STUDENT` tuple has exactly one `StudentID`, `Name`, `Department`, and `Age` value.
+
+#### Classical Sets vs SQL Bags
+
+SQL tables and query results commonly use **bag** (multiset) semantics. A bag can contain duplicate rows. For example, a plain SQL projection can return the same department more than once:
+
+```sql
+SELECT Department
+FROM STUDENT;
+```
+
+The result contains `CSE` three times for the sample data. Classical projection removes duplicate tuples, so the matching relational algebra result is:
+
+```text
+π_Department(STUDENT) = { (CSE), (ECE), (AIML) }
+```
+
+To request the set-like result in SQL, use `DISTINCT`:
+
+```sql
+SELECT DISTINCT Department
+FROM STUDENT;
+```
+
+SQL set operators such as `UNION`, `INTERSECT`, and `EXCEPT` normally eliminate duplicates, while `UNION ALL` explicitly preserves them. Query optimizers and engine implementations must account for this semantic difference when translating or rewriting queries.
+
+Classical relational algebra also does not include SQL’s `NULL`, ordering, three-valued logic, or window functions. Those require extensions or separate semantic rules, discussed later.
+
+### 2.2.7 What Is Relational Algebra?
+
+**Relational Algebra is a procedural query language consisting of operations that take one or more relations as input and produce a relation as output.** “Procedural” here means that an expression describes a sequence or composition of relational transformations, not that it specifies low-level storage instructions.
+
+```text
+Relations
+    ↓
+Relational algebra operation
+    ↓
+Relation
+```
+
+For example:
+
+```text
+σ_Department='CSE'(STUDENT)
+```
+
+reads as “apply selection with the predicate `Department = 'CSE'` to `STUDENT`.” The result is itself a relation, so it can be fed into another operation.
+
+```mermaid
+flowchart LR
+    A[(Relation A)] --> C[Relational Algebra Operator]
+    B[(Relation B)] --> C
+    C --> D[(Result Relation)]
+```
+
+### 2.2.8 Closure Property
+
+The **closure property** says that every relational algebra operation returns a relation:
+
+```text
+Input:    Relation
+Operation: Relational algebra operator
+Output:   Relation
+```
+
+This is what makes expressions composable. For example:
+
+```text
+π_Name(σ_Age > 20(STUDENT))
+```
+
+The inner selection returns a relation. The outer projection accepts that relation and returns another relation. Intermediate relations do not need to be stored as permanent tables; they can be conceptual results in a query plan.
+
+The closure property also explains why query optimizers can transform a query into a different tree of operations as long as the final relation has equivalent semantics.
+
+### 2.2.9 Classification of Relational Algebra Operators
+
+```mermaid
+mindmap
+  root((Relational Algebra))
+    Unary Operators
+      Selection
+      Projection
+      Rename
+    Set Operators
+      Union
+      Intersection
+      Difference
+    Binary Operators
+      Cartesian Product
+      Join
+    Extended Operators
+      Division
+      Aggregation
+      Grouping
+      Outer Join
+```
+
+#### Fundamental / Primitive Operators
+
+The minimal classical operator set commonly presented in DBMS texts is:
+
+* **Selection** (`σ`)
+* **Projection** (`π`)
+* **Union** (`∪`)
+* **Set difference** (`−`)
+* **Cartesian product** (`×`)
+* **Rename** (`ρ`)
+
+These operators are sufficient to express a broad class of relational queries. Different textbooks choose slightly different primitive bases; for example, intersection and joins can be derived from the operators above.
+
+#### Derived and Extended Operators
+
+* **Intersection** (`∩`) is derivable from difference.
+* **Theta join**, **equi join**, and **natural join** are convenient forms built from product and selection.
+* **Division** (`÷`) expresses “for every” queries.
+* **Outer joins** preserve unmatched tuples and introduce null markers in SQL-style semantics.
+* **Grouping and aggregation** (`γ`) compute counts, sums, averages, and other summaries.
+
+The last group is generally called **extended relational algebra**, not the minimal classical operator set.
+
+## 2.2.10 Selection Operator (`σ`)
+
+### Meaning
+
+Selection chooses the tuples (rows) that satisfy a predicate. It does not choose columns.
+
+```text
+σ_condition(Relation)
+```
+
+For the sample data:
+
+```text
+σ_Age > 20(STUDENT)
+```
+
+means “return students whose age is greater than 20.”
+
+### Input → Operator → Output
+
+```text
+Input Relation: STUDENT
+       ↓
+Operator: σ_Age > 20
+       ↓
+Output Relation: students older than 20
+```
+
+Input:
+
+| StudentID | Name    | Department | Age |
+|----------:|---------|------------|----:|
+| 101 | Alice   | CSE  | 20 |
+| 102 | Bob     | ECE  | 21 |
+| 103 | Charlie | CSE  | 20 |
+| 104 | Diana   | AIML | 22 |
+| 105 | Evan    | CSE  | 21 |
+
+Output:
+
+| StudentID | Name  | Department | Age |
+|----------:|-------|------------|----:|
+| 102 | Bob   | ECE  | 21 |
+| 104 | Diana | AIML | 22 |
+| 105 | Evan  | CSE  | 21 |
+
+The degree stays 4. The cardinality can stay the same, decrease, or become zero; selection never adds columns.
+
+### Predicate Forms
+
+Selection predicates can use:
+
+```text
+=, ≠, <, >, ≤, ≥
+AND (∧)
+OR  (∨)
+NOT (¬)
+```
+
+Examples:
+
+```text
+σ_Department='CSE'(STUDENT)
+σ_Age ≥ 20 ∧ Department='CSE'(STUDENT)
+σ_Department='CSE' ∨ Department='ECE'(STUDENT)
+σ_NOT(Age = 20)(STUDENT)
+```
+
+The logical notation is often written with SQL-style operators in practical notes:
+
+```text
+σ_{Age >= 20 AND Department = 'CSE'}(STUDENT)
+```
+
+### SQL Equivalent
+
+```sql
+SELECT *
+FROM STUDENT
+WHERE Age > 20;
+```
+
+```mermaid
+flowchart LR
+    A[(STUDENT)] --> B["σ Age > 20"]
+    B --> C[(Students with Age > 20)]
+```
+
+### Practical Use
+
+Selection corresponds most closely to SQL’s `WHERE` filtering. In a production engine, a selective predicate may be applied during an index scan or as early as possible during a table scan. Filtering early is important because it can reduce the number of tuples later joins and aggregations must process.
+
+## 2.2.11 Projection Operator (`π`)
+
+### Meaning
+
+Projection chooses attributes (columns) from a relation:
+
+```text
+π_attribute1, attribute2(Relation)
+```
+
+Example:
+
+```text
+π_Name, Department(STUDENT)
+```
+
+### Input → Operator → Output
+
+```text
+Input Relation: STUDENT
+       ↓
+Operator: π_Name, Department
+       ↓
+Output Relation: names and departments
+```
+
+Input:
+
+| StudentID | Name    | Department | Age |
+|----------:|---------|------------|----:|
+| 101 | Alice   | CSE  | 20 |
+| 102 | Bob     | ECE  | 21 |
+| 103 | Charlie | CSE  | 20 |
+| 104 | Diana   | AIML | 22 |
+| 105 | Evan    | CSE  | 21 |
+
+Classical output:
+
+| Name    | Department |
+|---------|------------|
+| Alice   | CSE  |
+| Bob     | ECE  |
+| Charlie | CSE  |
+| Diana   | AIML |
+| Evan    | CSE  |
+
+Projection reduces the degree. Under set semantics it also removes duplicate result tuples. For example:
+
+```text
+π_Department(STUDENT)
+```
+
+returns one tuple for each distinct department:
+
+| Department |
+|------------|
+| CSE |
+| ECE |
+| AIML |
+
+### SQL Equivalent
+
+```sql
+SELECT DISTINCT Name, Department
+FROM STUDENT;
+```
+
+`DISTINCT` is shown because classical projection is set-valued. `Name` is unique in the sample, but a real SQL projection may duplicate a selected combination of columns.
+
+### Practical Use
+
+Projection corresponds most closely to the column list of SQL’s `SELECT`. Query optimizers can use projection pushdown to avoid reading, copying, or transmitting columns that no later operation needs. A pushed projection must retain any join keys, grouping keys, filter attributes, or final output attributes needed later.
+
+## 2.2.12 Selection vs Projection
+
+| Operation  | Symbol | Works on | Main purpose | Result shape |
+|------------|--------|----------|--------------|--------------|
+| Selection  | `σ` | Rows / tuples | Filter tuples by a predicate | Same columns, possibly fewer rows |
+| Projection | `π` | Columns / attributes | Choose attributes | Fewer columns, duplicate tuples removed classically |
+
+```text
+Selection = Select rows
+Projection = Project columns
+```
+
+```mermaid
+flowchart TD
+    A[(Original Relation)] --> B["Selection σ"]
+    A --> C["Projection π"]
+
+    B --> D[Subset of Rows]
+    C --> E[Subset of Columns]
+```
+
+They can be composed:
+
+```text
+π_Name(σ_Department='CSE'(STUDENT))
+```
+
+This first filters rows to CSE students, then keeps only their names.
+
+## 2.2.13 Rename Operator (`ρ`)
+
+### Meaning
+
+Rename changes a relation name, attribute names, or both:
+
+```text
+ρ_NewName(Relation)
+ρ_NewName(new_attribute_list)(Relation)
+```
+
+Examples:
+
+```text
+ρ_S(STUDENT)
+ρ_S(StudentID, StudentName, Dept, StudentAge)(STUDENT)
+```
+
+### Why Rename Matters
+
+Rename is important for:
+
+* **Self joins:** Compare two tuples from the same relation, such as students in the same department.
+* **Attribute conflicts:** Give two same-named attributes distinct names before a product or join.
+* **Readable expressions:** Short aliases make long query trees easier to inspect.
+
+For a self-join:
+
+```text
+S1 ← ρ_S1(STUDENT)
+S2 ← ρ_S2(STUDENT)
+π_{S1.Name, S2.Name}
+  (σ_{S1.Department = S2.Department ∧ S1.StudentID < S2.StudentID}(S1 × S2))
+```
+
+This finds distinct pairs of students in the same department without pairing a student with themself or emitting both `(Alice, Charlie)` and `(Charlie, Alice)`.
+
+### SQL Equivalent
+
+```sql
+SELECT S.Name
+FROM STUDENT AS S;
+```
+
+Attribute aliases use `AS` as well:
+
+```sql
+SELECT Name AS StudentName
+FROM STUDENT;
+```
+
+In query processing, a SQL table alias is conceptually similar to relation rename, while a selected-column alias changes the output label rather than changing the source relation’s stored schema.
+
+## 2.2.14 Union (`∪`)
+
+### Meaning
+
+Union combines tuples from two relations:
+
+```text
+R ∪ S
+```
+
+The result contains every tuple that appears in `R`, in `S`, or in both. Because classical relations are sets, duplicate tuples appear only once.
+
+### Union Compatibility
+
+`R` and `S` must be **union-compatible**:
+
+1. They have the same number of attributes (same degree).
+2. Corresponding attributes have compatible domains.
+3. In named-schema presentations, corresponding attributes must be aligned or explicitly renamed so that their meanings match.
+
+For the example database:
+
+```text
+CSE_IDS = π_StudentID(σ_Department='CSE'(STUDENT))
+        = { (101), (103), (105) }
+
+ECE_IDS = π_StudentID(σ_Department='ECE'(STUDENT))
+        = { (102) }
+```
+
+Both relations have one integer attribute, so their union is valid.
+
+```text
+CSE_IDS ∪ ECE_IDS
+```
+
+Output:
+
+| StudentID |
+|----------:|
+| 101 |
+| 102 |
+| 103 |
+| 105 |
+
+If two relations have different names for semantically corresponding attributes, rename them first. A relation of student IDs cannot be unioned directly with a relation of course IDs merely because both are integers; domain compatibility includes meaning, not just storage type.
+
+### SQL Equivalent
+
+```sql
+SELECT StudentID
+FROM STUDENT
+WHERE Department = 'CSE'
+UNION
+SELECT StudentID
+FROM STUDENT
+WHERE Department = 'ECE';
+```
+
+`UNION` removes duplicate rows. `UNION ALL` is a bag-preserving SQL extension and does not have the same default set semantics as classical union.
+
+## 2.2.15 Intersection (`∩`)
+
+### Meaning
+
+Intersection returns tuples that exist in both relations:
+
+```text
+R ∩ S
+```
+
+Example:
+
+```text
+DB_IDS = π_StudentID(σ_CourseID='C101'(ENROLLMENT))
+       = { (101), (102), (103), (105) }
+
+CSE_IDS ∩ DB_IDS
+```
+
+Output:
+
+| StudentID |
+|----------:|
+| 101 |
+| 103 |
+| 105 |
+
+This means “CSE students who are enrolled in Database Systems.” Both inputs must be union-compatible.
+
+### Derived Operator
+
+Intersection is often treated as a derived operator:
+
+```text
+R ∩ S = R − (R − S)
+```
+
+The inner difference removes from `R` everything not in `S`; the outer difference removes those remaining non-common tuples from `R`.
+
+### SQL Equivalent
+
+```sql
+SELECT StudentID
+FROM STUDENT
+WHERE Department = 'CSE'
+INTERSECT
+SELECT StudentID
+FROM ENROLLMENT
+WHERE CourseID = 'C101';
+```
+
+`INTERSECT` is set-like by default in standard SQL. As with other SQL set operators, duplicate and `NULL` behavior should be checked against the target DBMS when exact edge-case semantics matter.
+
+## 2.2.16 Set Difference (`−`)
+
+### Meaning
+
+Difference returns tuples present in the left relation but absent from the right relation:
+
+```text
+R − S
+```
+
+Example:
+
+```text
+ALL_IDS = π_StudentID(STUDENT)
+DB_IDS  = π_StudentID(σ_CourseID='C101'(ENROLLMENT))
+
+ALL_IDS − DB_IDS
+```
+
+Output:
+
+| StudentID |
+|----------:|
+| 104 |
+
+This identifies the student who is not enrolled in Database Systems.
+
+Difference is directional:
+
+```text
+R − S ≠ S − R
+```
+
+`R − S` means “in `R` but not `S`.” The two input relations must be union-compatible.
+
+### SQL Equivalent
+
+```sql
+SELECT StudentID
+FROM STUDENT
+EXCEPT
+SELECT StudentID
+FROM ENROLLMENT
+WHERE CourseID = 'C101';
+```
+
+PostgreSQL and many standards-oriented systems use `EXCEPT`. Oracle traditionally uses `MINUS` for the same set-difference idea. In SQL, an anti-join or `NOT EXISTS` is often clearer when the two sides have different schemas or when `NULL` behavior must be controlled explicitly.
+
+## 2.2.17 Cartesian Product (`×`)
+
+### Meaning
+
+The Cartesian product pairs every tuple of `R` with every tuple of `S`:
+
+```text
+R × S
+```
+
+If `R` has `m` rows and `S` has `n` rows, then:
+
+```text
+|R × S| = m × n
+```
+
+The degree of the product is the sum of the input degrees, subject to handling duplicate attribute names through qualification or rename.
+
+```mermaid
+flowchart LR
+    A[(R)] --> C["Cartesian Product ×"]
+    B[(S)] --> C
+    C --> D[(R × S)]
+```
+
+### Small Numerical Example
+
+```text
+R(StudentID) = { (101), (102) }       -- 2 rows
+S(CourseID)  = { (C101), (C102), (C103) } -- 3 rows
+```
+
+Input → operator → output:
+
+```text
+R (2 rows)       ┐
+                 ├── × ──→ R × S (2 × 3 = 6 rows)
+S (3 rows)       ┘
+```
+
+Output:
+
+| R.StudentID | S.CourseID |
+|------------:|------------|
+| 101 | C101 |
+| 101 | C102 |
+| 101 | C103 |
+| 102 | C101 |
+| 102 | C102 |
+| 102 | C103 |
+
+### SQL Equivalent
+
+```sql
+SELECT *
+FROM R
+CROSS JOIN S;
+```
+
+In hand-written SQL, an accidental missing join condition can create an unintended Cartesian product. Even a deliberate product can become enormous: 10 million rows crossed with 100,000 rows would conceptually contain one trillion pairs before later filtering.
+
+### Why Product Matters for Joins
+
+Although databases usually implement joins with specialized algorithms, the logical relationship is fundamental:
+
+```text
+Join = Cartesian product + condition
+```
+
+The next sections make that relationship precise.
+
+## 2.2.18 Join Operations
+
+A **join** combines tuples from two relations when they are related by a predicate. In the university database, the relationship is represented by foreign keys:
+
+```text
+STUDENT.StudentID       = ENROLLMENT.StudentID
+ENROLLMENT.CourseID     = COURSE.CourseID
+```
+
+The foreign-key constraint protects data integrity, but the join predicate determines which tuples are combined for a query.
+
+```mermaid
+erDiagram
+    STUDENT ||--o{ ENROLLMENT : enrolls
+    COURSE ||--o{ ENROLLMENT : contains
+
+    STUDENT {
+        int student_id PK
+        string name
+        string department
+        int age
+    }
+
+    COURSE {
+        string course_id PK
+        string course_name
+        int credits
+    }
+
+    ENROLLMENT {
+        int student_id FK
+        string course_id FK
+        string grade
+    }
+```
+
+### Inner Join
+
+An inner join returns only combinations for which the join predicate is true. Students without enrollments and courses without enrollments are absent from an inner join result.
+
+```text
+STUDENT ⋈_{STUDENT.StudentID = ENROLLMENT.StudentID} ENROLLMENT
+```
+
+Selected output columns might look like this:
+
+| StudentID | Name    | CourseID | Grade |
+|----------:|---------|----------|-------|
+| 101 | Alice   | C101 | A  |
+| 101 | Alice   | C102 | B+ |
+| 102 | Bob     | C101 | B  |
+| 103 | Charlie | C101 | A- |
+| 103 | Charlie | C103 | A  |
+| 105 | Evan    | C101 | A  |
+| 105 | Evan    | C102 | A  |
+| 105 | Evan    | C104 | B  |
+
+`Diana` does not appear because she has no matching enrollment tuple. The output has multiple rows for a student with multiple enrollments; a join does not automatically collapse one-to-many relationships.
+
+## 2.2.19 Theta Join (`⋈θ`)
+
+### Meaning
+
+A theta join combines tuples using an arbitrary comparison condition:
+
+```text
+R ⋈_condition S
+```
+
+The condition may use `=`, `≠`, `<`, `>`, `≤`, or `≥`, together with logical operators where supported.
+
+The most important identity is:
+
+```text
+R ⋈_condition S = σ_condition(R × S)
+```
+
+This says that a theta join is logically a Cartesian product followed by a selection. Database engines generally use specialized join algorithms instead of materializing the full product, but this identity explains the algebraic meaning.
+
+```mermaid
+flowchart LR
+    A[(R)] --> C["R × S"]
+    B[(S)] --> C
+    C --> D["σ condition"]
+    D --> E[(Theta Join)]
+```
+
+Example:
+
+```text
+STUDENT ⋈_{STUDENT.StudentID = ENROLLMENT.StudentID} ENROLLMENT
+```
+
+Conceptually:
+
+```text
+σ_{STUDENT.StudentID = ENROLLMENT.StudentID}
+  (STUDENT × ENROLLMENT)
+```
+
+For a non-equality condition, a conceptual example is:
+
+```text
+EMPLOYEE ⋈_{EMPLOYEE.Salary > EMPLOYEE.Salary'} ρ_{EMPLOYEE'}(EMPLOYEE)
+```
+
+This can compare employees with different salaries after renaming one copy of the relation. It is a theta join, although a self-join is usually the more readable engineering term for the complete expression.
+
+### SQL Equivalent
+
+```sql
+SELECT S.StudentID, S.Name, E.CourseID, E.Grade
+FROM STUDENT AS S
+JOIN ENROLLMENT AS E
+  ON S.StudentID = E.StudentID;
+```
+
+## 2.2.20 Equi Join
+
+An **equi join** is a theta join whose predicate uses equality:
+
+```text
+R ⋈_{R.a = S.b} S
+```
+
+The student/enrollment example is an equi join:
+
+```text
+STUDENT ⋈_{STUDENT.StudentID = ENROLLMENT.StudentID} ENROLLMENT
+```
+
+Unlike a natural join, an equi join does not automatically remove the duplicate join columns. Conceptually, both `STUDENT.StudentID` and `ENROLLMENT.StudentID` remain in the joined schema; a projection can select one.
+
+```sql
+SELECT S.*, E.CourseID, E.Grade
+FROM STUDENT AS S
+JOIN ENROLLMENT AS E
+  ON S.StudentID = E.StudentID;
+```
+
+Equi joins are the most common production joins because foreign-key relationships are normally matched by equality and because explicit predicates make intent visible.
+
+## 2.2.21 Natural Join
+
+### Meaning
+
+A natural join automatically:
+
+1. Finds attributes with the same name in both relations.
+2. Requires compatible domains for those attributes.
+3. Matches tuples where all common attributes are equal.
+4. Emits one copy of each common attribute.
+
+Notation:
+
+```text
+R ⋈ S
+```
+
+Because `STUDENT` and `ENROLLMENT` both contain `StudentID`:
+
+```text
+STUDENT ⋈ ENROLLMENT
+```
+
+is conceptually equivalent to:
+
+```text
+π_{STUDENT.StudentID, Name, Department, Age, CourseID, Grade}
+  (STUDENT ⋈_{STUDENT.StudentID = ENROLLMENT.StudentID} ENROLLMENT)
+```
+
+The duplicate `StudentID` is represented once in the natural-join result. Similarly:
+
+```text
+STUDENT ⋈ ENROLLMENT ⋈ COURSE
+```
+
+can use the common `StudentID` and `CourseID` attributes to connect all three relations.
+
+### SQL Equivalent and Production Warning
+
+SQL has a `NATURAL JOIN` syntax:
+
+```sql
+SELECT *
+FROM STUDENT
+NATURAL JOIN ENROLLMENT;
+```
+
+It is usually safer in production code to write the condition explicitly:
+
+```sql
+SELECT *
+FROM STUDENT AS S
+JOIN ENROLLMENT AS E
+  ON S.StudentID = E.StudentID;
+```
+
+Natural joins are name-driven. If an unrelated column such as `Status`, `CreatedAt`, or `DepartmentID` is later added to both tables, the natural join may silently gain an extra equality predicate and return fewer rows. Explicit join conditions are more reviewable and resilient to schema evolution.
+
+## 2.2.22 Outer Joins
+
+Inner joins discard unmatched tuples. Outer joins preserve some or all unmatched tuples and fill attributes from the missing side with SQL `NULL` markers.
+
+```text
+Left outer join:  R ⟕ S
+Right outer join: R ⟖ S
+Full outer join:  R ⟗ S
+```
+
+```mermaid
+flowchart LR
+    A[All Students] --> B["LEFT OUTER JOIN"]
+    C[Enrollment] --> B
+    B --> D[All Students + Matching Enrollment]
+```
+
+### Left Outer Join (`⟕`)
+
+`R ⟕ S` preserves every tuple from the left relation `R` and adds matching attributes from `S` when available.
+
+```text
+STUDENT ⟕_{STUDENT.StudentID = ENROLLMENT.StudentID} ENROLLMENT
+```
+
+Representative output:
+
+| StudentID | Name    | CourseID | Grade |
+|----------:|---------|----------|-------|
+| 101 | Alice   | C101 | A  |
+| 101 | Alice   | C102 | B+ |
+| 102 | Bob     | C101 | B  |
+| 103 | Charlie | C101 | A- |
+| 103 | Charlie | C103 | A  |
+| 104 | Diana   | `NULL` | `NULL` |
+| 105 | Evan    | C101 | A  |
+| 105 | Evan    | C102 | A  |
+| 105 | Evan    | C104 | B  |
+
+`Diana` is preserved even though no enrollment matches. A one-to-many match still produces one output tuple per matching enrollment.
+
+SQL:
+
+```sql
+SELECT S.StudentID, S.Name, E.CourseID, E.Grade
+FROM STUDENT AS S
+LEFT JOIN ENROLLMENT AS E
+  ON S.StudentID = E.StudentID;
+```
+
+### Right Outer Join (`⟖`)
+
+`R ⟖ S` preserves every tuple from the right relation `S`. It is equivalent in intent to swapping the input sides of a left outer join:
+
+```text
+STUDENT ⟖_{STUDENT.StudentID = ENROLLMENT.StudentID} ENROLLMENT
+```
+
+preserves every enrollment, including any enrollment whose student is missing in a snapshot. Foreign-key enforcement normally prevents that missing parent in a valid database, but right joins can still be useful when the right side is an independent reporting relation.
+
+```sql
+SELECT S.StudentID, S.Name, E.CourseID, E.Grade
+FROM STUDENT AS S
+RIGHT JOIN ENROLLMENT AS E
+  ON S.StudentID = E.StudentID;
+```
+
+### Full Outer Join (`⟗`)
+
+`R ⟗ S` preserves unmatched tuples from both relations. To make the behavior visible with the sample database, `COURSE` contains `C105` but no enrollment references it:
+
+```text
+COURSE ⟗_{COURSE.CourseID = ENROLLMENT.CourseID} ENROLLMENT
+```
+
+The output includes all matched course/enrollment combinations plus a row like:
+
+| CourseID | CourseName | StudentID | Grade |
+|----------|------------|----------:|-------|
+| C105 | Distributed Systems | `NULL` | `NULL` |
+
+If an enrollment had no matching course, full outer join would also preserve that enrollment with `CourseName = NULL`.
+
+```sql
+SELECT C.CourseID, C.CourseName, E.StudentID, E.Grade
+FROM COURSE AS C
+FULL OUTER JOIN ENROLLMENT AS E
+  ON C.CourseID = E.CourseID;
+```
+
+### Inner vs Outer Join
+
+| Join | Preserves unmatched left tuples? | Preserves unmatched right tuples? | Missing-side values |
+|------|----------------------------------|-----------------------------------|----------------------|
+| Inner | No | No | Not emitted |
+| Left outer | Yes | No | `NULL` |
+| Right outer | No | Yes | `NULL` |
+| Full outer | Yes | Yes | `NULL` |
+
+Outer joins are generally classified as **extended relational algebra** because classical relations contain only domain values and do not include SQL’s `NULL` marker. Predicates involving `NULL` also obey SQL’s three-valued logic, so an outer-join rewrite that is valid for inner joins may not be valid for an outer join.
+
 
 PostgreSQL is an object-relational database management system with an emphasis on extensibility and standards compliance.
 
@@ -230,7 +1339,7 @@ graph TD
 
 > **Production Use:** GitLab, Apple, Instagram heavily rely on PostgreSQL for complex relational workloads.
 
-## 2.3 MySQL / MariaDB: The Web's Default
+## 2.4 MySQL / MariaDB: The Web's Default
 
 MySQL gained popularity alongside PHP as the backbone of the LAMP stack.
 
@@ -250,20 +1359,20 @@ MySQL gained popularity alongside PHP as the backbone of the LAMP stack.
 ### Replication
 MySQL uses the Binary Log (binlog) for replication. It supports statement-based, row-based, and GTID-based (Global Transaction Identifier) replication, which is crucial for high availability.
 
-## 2.4 SQLite: The Ubiquitous Embedded DB
+## 2.5 SQLite: The Ubiquitous Embedded DB
 
 *   **Architecture:** Serverless. The entire database is a single file on disk. The application links directly to the SQLite C library.
 *   **Concurrency:** Uses file locking. While multiple readers can read concurrently, only one writer can write at a time. Write-Ahead Logging (WAL) mode significantly improves concurrent read/write performance.
 *   **Use Cases:** Mobile apps (iOS CoreData), web browsers (local storage), IoT devices, and local testing.
 *   **Limitations:** No network access, poor write concurrency at scale.
 
-## 2.5 Oracle Database, SQL Server, IBM Db2
+## 2.6 Oracle Database, SQL Server, IBM Db2
 
 *   **Oracle:** Famous for its SGA (System Global Area) shared memory model, Real Application Clusters (RAC) for active-active high availability, and massive enterprise feature set. Often criticized for complex and expensive licensing.
 *   **SQL Server:** Microsoft's RDBMS. Deeply integrated with Windows OS (though now runs on Linux). Features T-SQL, SQL Server Agent for job scheduling, and Always On Availability Groups.
 *   **Db2:** IBM's flagship. Pioneered many relational concepts. Now features BLU Acceleration for columnar, in-memory analytical processing.
 
-## 2.6 Distributed SQL (NewSQL)
+## 2.7 Distributed SQL (NewSQL)
 
 ### CockroachDB
 Built for global scale. It chunks data into 512MB ranges and replicates them across nodes using the Raft consensus algorithm. It uses highly synchronized clocks to provide strict serializable ACID transactions across datacenters.
@@ -274,7 +1383,7 @@ An open-source HTAP database. It uses TiKV (a distributed key-value store) for r
 ### YugabyteDB
 Similar to CockroachDB but uses a modified PostgreSQL query layer on top of a custom distributed document store (DocDB). High compatibility with Postgres extensions.
 
-## 2.7 RDBMS Master Comparison Table
+## 2.8 RDBMS Master Comparison Table
 
 | Database | Architecture | Core Strengths | Weaknesses | License/Pricing | Primary Use Case |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -288,7 +1397,7 @@ Similar to CockroachDB but uses a modified PostgreSQL query layer on top of a cu
 | **TiDB** | HTAP Distributed | Real-time analytics on OLTP | Operational complexity | Open Source | E-commerce, Gaming analytics |
 | **YugabyteDB** | Distributed SQL | High Postgres compatibility | Maturing ecosystem | Open Source | Geo-distributed Postgres apps|
 
-## 2.8 Interview Questions
+## 2.9 Interview Questions
 
 1. **How does PostgreSQL handle concurrent writes differently than MySQL's InnoDB?**
    *Answer:* PostgreSQL uses append-only MVCC, creating new tuple versions and relying on Autovacuum to clean up dead tuples. InnoDB modifies data in place and writes the old version to an Undo Log, avoiding vacuuming overhead but requiring complex log management.
